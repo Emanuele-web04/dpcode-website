@@ -31,7 +31,7 @@ export default function Home() {
           </div>
 
           {/* Screenshot */}
-          <div className="relative mt-8 mb-10 rounded-2xl bg-[#FAF8F5] px-4 pt-8 pb-4 dark:bg-[#0b0d0f] sm:mt-12 sm:mb-16 sm:px-10 sm:pt-10 sm:pb-10">
+          <div className="relative mt-8 mb-10 rounded-2xl bg-[#FAF8F5] p-4 dark:bg-[#0b0d0f] sm:mt-12 sm:mb-16 sm:p-10">
             <div className="rounded-lg border border-black/[0.06] shadow-xl shadow-black/[0.06] dark:border-white/[0.06] dark:shadow-black/[0.3] sm:rounded-xl">
               {/* Light mode screenshot */}
               <Image
