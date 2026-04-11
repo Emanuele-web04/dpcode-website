@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { FaGithub } from "react-icons/fa";
 import Navbar from "@/components/Navbar";
 import DownloadButton from "@/components/DownloadButton";
 
@@ -17,15 +16,6 @@ export default function Home() {
 
           {/* CTA */}
           <div className="mt-5 flex items-center sm:mt-6">
-            <a
-              href="https://github.com/Emanuele-web04/dpcode"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
-            >
-              <FaGithub className="size-4 shrink-0" />
-              View on GitHub
-            </a>
             <DownloadButton />
           </div>
 
