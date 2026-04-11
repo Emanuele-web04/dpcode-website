@@ -17,7 +17,7 @@ export default function Home() {
           {/* CTA */}
           <div className="mt-5 flex items-center sm:mt-6">
             <a
-              href="https://github.com/pingdotgg/t3code"
+              href="https://github.com/Emanuele-web04/dpcode"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
@@ -31,7 +31,7 @@ export default function Home() {
           </div>
 
           {/* Screenshot */}
-          <div className="relative mt-8 mb-10 rounded-2xl bg-[#FAF8F5] p-4 dark:bg-[#131213] sm:mt-12 sm:mb-16 sm:p-8">
+          <div className="relative mt-8 mb-10 rounded-2xl bg-[#FAF8F5] p-2 dark:bg-[#131213] sm:mt-12 sm:mb-16 sm:p-8">
             <div className="rounded-lg border border-black/[0.06] shadow-xl shadow-black/[0.06] dark:border-white/[0.06] dark:shadow-black/[0.3] sm:rounded-xl">
               {/* Light mode screenshot */}
               <Image
