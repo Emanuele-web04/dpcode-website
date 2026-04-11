@@ -15,8 +15,13 @@ export default function Home() {
           </h1>
 
           {/* CTA */}
-          <div className="mt-5 flex items-center sm:mt-6">
-            <DownloadButton />
+          <div className="mt-5 sm:mt-6">
+            <div className="flex items-center">
+              <DownloadButton />
+            </div>
+            <p className="mt-3 text-[10px] text-neutral-500 dark:text-neutral-400">
+              Already downloaded by <span className="font-medium text-neutral-900 dark:text-neutral-100">28 people</span>
+            </p>
           </div>
 
           {/* Screenshot */}
