@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 
 function formatStars(count: number): string {
@@ -31,7 +32,7 @@ export default async function Navbar() {
     <nav className="w-full px-4 pt-5 pb-4 sm:px-6">
       <div className="mx-auto flex h-8 max-w-[1200px] items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+        <Link href="/" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
           <Image
             src="/dpcode-icon.png"
             alt="DP Code"
@@ -40,7 +41,7 @@ export default async function Navbar() {
             className="rounded-md border border-black/10 dark:border-white/10"
           />
           <span className="hidden sm:inline">DP Code</span>
-        </a>
+        </Link>
 
         {/* Socials — centered */}
         <div className="flex items-center gap-5 text-[13px] text-neutral-500 dark:text-neutral-400">

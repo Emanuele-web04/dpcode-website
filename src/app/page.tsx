@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import Navbar from "@/components/Navbar";
+import DownloadButton from "@/components/DownloadButton";
 
 export default function Home() {
   return (
@@ -25,9 +26,7 @@ export default function Home() {
               <FaGithub className="size-4 shrink-0" />
               View on GitHub
             </a>
-            <span className="ml-3 text-[13px] text-neutral-500 dark:text-neutral-400">
-              Soon available on macOS
-            </span>
+            <DownloadButton />
           </div>
 
           {/* Screenshot */}
