@@ -4,10 +4,10 @@ import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-col bg-white dark:bg-[#0a0a0a]">
+    <div className="flex min-h-screen flex-col bg-white dark:bg-[#0a0a0a]">
       <Navbar />
 
-      <section className="px-4 pt-10 sm:px-6 sm:pt-14">
+      <section className="flex-1 px-4 pt-10 sm:px-6 sm:pt-14">
         <div className="mx-auto w-full max-w-[1200px]">
           {/* Headline */}
           <h1 className="text-[1.35rem] font-medium leading-[1.2] tracking-[-0.02em] text-neutral-900 dark:text-neutral-100 sm:text-[1.7rem]">
@@ -57,8 +57,8 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="px-4 py-4 sm:px-6">
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between text-[12px] text-neutral-400">
+      <footer className="mt-auto px-4 py-4 sm:px-6">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between text-[10px] text-neutral-400 sm:text-[12px]">
           <span>
             Made by{" "}
             <a href="https://x.com/emanueledpt" target="_blank" rel="noopener noreferrer" className="text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
