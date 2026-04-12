@@ -1,8 +1,17 @@
+// FILE: page.tsx
+// Purpose: Renders the homepage hero, including the live installer count and primary CTA.
+// Layer: App Router page
+// Depends on: Navbar, DownloadButton, InstallerCount, getInstallerCount
+
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import DownloadButton from "@/components/DownloadButton";
+import InstallerCount from "@/components/InstallerCount";
+import { getInstallerCount } from "@/lib/installerCount";
 
-export default function Home() {
+export default async function Home() {
+  const initialInstallerCount = await getInstallerCount();
+
   return (
     <div className="flex min-h-screen flex-col bg-white dark:bg-[#0a0a0a]">
       <Navbar />
@@ -20,7 +29,7 @@ export default function Home() {
               <DownloadButton />
             </div>
             <p className="mt-3 text-[10px] text-neutral-500 dark:text-neutral-400">
-              Already downloaded by <span className="font-medium text-neutral-900 dark:text-neutral-100">28 people</span>
+              <InstallerCount initialCount={initialInstallerCount} />
             </p>
           </div>
 
