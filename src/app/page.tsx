@@ -38,10 +38,10 @@ export default async function Home() {
             <div className="rounded-lg border border-black/[0.06] shadow-xl shadow-black/[0.06] dark:border-white/[0.06] dark:shadow-black/[0.3] sm:rounded-xl">
               {/* Light mode screenshot */}
               <Image
-                src="/dpcode-ui.png"
+                src="/dpcode-ui-light.png"
                 alt="DP Code — AI-powered coding assistant interface"
-                width={2400}
-                height={1500}
+                width={3024}
+                height={1898}
                 className="block h-auto w-full rounded-lg dark:hidden sm:rounded-xl"
                 priority
               />
