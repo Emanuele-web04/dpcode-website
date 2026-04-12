@@ -43,8 +43,10 @@ export default function InstallerCount({
           return;
         }
 
+        const nextCount = data.count;
+
         startTransition(() => {
-          setCount(data.count);
+          setCount(nextCount);
         });
       } catch {
         // Keep the last known value on network errors.
