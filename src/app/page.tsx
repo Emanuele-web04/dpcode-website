@@ -28,7 +28,7 @@ export default async function Home() {
             <div className="flex items-center">
               <DownloadButton />
             </div>
-            <p className="mt-3 text-[10px] text-neutral-500 dark:text-neutral-400">
+            <p className="mt-1.5 text-[10px] text-neutral-500 dark:text-neutral-400">
               <InstallerCount initialCount={initialInstallerCount} />
             </p>
           </div>
