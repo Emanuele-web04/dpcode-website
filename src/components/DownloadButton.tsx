@@ -25,7 +25,9 @@ function getDownloadLabel(userAgent: string, platform: string): string {
   return "Download for your machine";
 }
 
-export default function DownloadButton() {
+type Variant = "default" | "light";
+
+export default function DownloadButton({ variant = "default" }: { variant?: Variant } = {}) {
   const label = useSyncExternalStore(
     () => () => undefined,
     () => {
@@ -39,12 +41,17 @@ export default function DownloadButton() {
     () => "Download for macOS"
   );
 
+  const variantClass =
+    variant === "light"
+      ? "bg-white text-neutral-900 hover:bg-neutral-100"
+      : "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100";
+
   return (
     <a
       href={RELEASES_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100"
+      className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-medium transition-colors ${variantClass}`}
     >
       {label}
       <HiOutlineDownload className="size-4" aria-hidden="true" />
