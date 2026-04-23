@@ -11,7 +11,7 @@ import InstallerCount from "@/components/InstallerCount";
 import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
 import ClosingCTA from "@/components/ClosingCTA";
-import { ClaudeIcon } from "@/components/BrandIcons";
+import { ClaudeIcon, OpencodeIcon } from "@/components/BrandIcons";
 import { getInstallerCount } from "@/lib/installerCount";
 
 export default async function Home() {
@@ -55,6 +55,9 @@ export default async function Home() {
                   </div>
                   <div className="inline-flex size-[38px] -rotate-[3deg] items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md">
                     <SiGooglegemini className="size-[18px] text-[#4C8BF5]" />
+                  </div>
+                  <div className="inline-flex size-[38px] rotate-[5deg] items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md">
+                    <OpencodeIcon className="size-[18px] text-white" />
                   </div>
                 </div>
 

@@ -1,7 +1,7 @@
 import { SiOpenai, SiGooglegemini } from "react-icons/si";
 import DownloadButton from "@/components/DownloadButton";
 import InstallerCount from "@/components/InstallerCount";
-import { ClaudeIcon } from "@/components/BrandIcons";
+import { ClaudeIcon, OpencodeIcon } from "@/components/BrandIcons";
 
 export default function ClosingCTA({ initialInstallerCount }: { initialInstallerCount: number | null }) {
   return (
@@ -36,6 +36,9 @@ export default function ClosingCTA({ initialInstallerCount }: { initialInstaller
           <div className="inline-flex size-[38px] -rotate-[3deg] items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md">
             <SiGooglegemini className="size-[18px] text-[#4C8BF5]" />
           </div>
+          <div className="inline-flex size-[38px] rotate-[5deg] items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md">
+            <OpencodeIcon className="size-[18px] text-white" />
+          </div>
         </div>
 
         <h2 className="text-[2rem] font-medium leading-[1.05] tracking-[-0.03em] text-white sm:text-[3rem]">
@@ -44,7 +47,7 @@ export default function ClosingCTA({ initialInstallerCount }: { initialInstaller
         </h2>
         <p className="mx-auto mt-5 max-w-[560px] text-[14px] leading-relaxed text-white/60 sm:text-[15px]">
           DP Code is free, open source, and built for your subscriptions.
-          Plug in Claude, Codex, or Gemini, and ship faster today.
+          Plug in Claude, Codex, Gemini, or opencode, and ship faster today.
         </p>
 
         <div className="mt-9 flex flex-col items-center gap-2">

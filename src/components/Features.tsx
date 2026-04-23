@@ -51,10 +51,16 @@ const activeHarnesses: Harness[] = [
     accent: "text-[#4C8BF5]",
     ring: RING,
   },
+  {
+    name: "opencode",
+    tagline: "Open-source terminal agent. Plug in any provider you already use.",
+    Icon: OpencodeIcon,
+    accent: "text-white",
+    ring: RING,
+  },
 ];
 
 const soonHarnesses: { name: string; Icon: GenericIcon }[] = [
-  { name: "opencode", Icon: OpencodeIcon },
   { name: "Cursor", Icon: CursorIcon },
 ];
 
@@ -107,11 +113,11 @@ export default function Features() {
             Use what you <span className="text-[#606acc]">already</span> pay for.
           </h2>
           <p className={body}>
-            DP Code speaks every major harness. Plug in Claude, Codex, or Gemini with
-            the account you already use. No new bills, no walled gardens.
+            DP Code speaks every major harness. Plug in Claude, Codex, Gemini, or
+            opencode with the account you already use. No new bills, no walled gardens.
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {activeHarnesses.map(({ name, tagline, Icon, accent, ring }) => (
               <div
                 key={name}
@@ -348,9 +354,9 @@ export default function Features() {
                 Lose track of <span className="text-[#606acc]">none</span>.
               </h2>
               <p className={body}>
-                Run Claude, Codex, and Gemini across multiple worktrees, across
-                multiple projects, all in one window. Every thread stays exactly
-                where you left it.
+                Run Claude, Codex, Gemini, and opencode across multiple worktrees,
+                across multiple projects, all in one window. Every thread stays
+                exactly where you left it.
               </p>
             </div>
 
