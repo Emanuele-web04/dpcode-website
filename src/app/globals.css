@@ -71,6 +71,19 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/*
+ * Hard guarantee: nothing in the tree can introduce a horizontal scrollbar.
+ * `overflow-x: clip` is preferred over `hidden` because it does not create a
+ * new scrolling block (so internal `position: sticky` keeps working). If a
+ * child accidentally renders past 100vw on mobile, the page is clipped
+ * instead of scrolled, which is the desired UX.
+ */
+html,
+body {
+  overflow-x: clip;
+}
+
+
 ::selection {
   background: color-mix(in oklab, var(--accent-link) 28%, transparent);
   color: inherit;

@@ -15,14 +15,21 @@ const tabInactive =
 const tabActive =
   "rounded-none border-[var(--divide)] bg-[var(--mock-row)] text-[var(--text-primary)]";
 
+/**
+ * Terminal lines must never push the page wider on mobile. Each line
+ * is `truncate` (whitespace-nowrap + ellipsis) so anything past the
+ * mock's clip rect is replaced with `…`. The outer mockPanel already
+ * applies `overflow-hidden`; truncate is for visual polish (ellipsis
+ * vs hard clip) and to avoid baseline jitter from wrapping.
+ */
 function TerminalBody({ tab }: { tab: TabId }) {
   if (tab === "dev") {
     return (
-      <div className="font-mono text-[11px] leading-relaxed text-[var(--text-secondary)]">
-        <div>
+      <div className="min-w-0 font-mono text-[11px] leading-relaxed text-[var(--text-secondary)]">
+        <div className="truncate">
           <span className="text-[var(--text-tertiary)]">$ </span>pnpm dev
         </div>
-        <div className="text-[var(--text-primary)]">✓ ready on :3000</div>
+        <div className="truncate text-[var(--text-primary)]">✓ ready on :3000</div>
         <div className="mt-1 text-[var(--text-tertiary)]">
           <span className="animate-pulse">▋</span>
         </div>
@@ -31,31 +38,29 @@ function TerminalBody({ tab }: { tab: TabId }) {
   }
   if (tab === "test") {
     return (
-      <div className="font-mono text-[11px] leading-relaxed text-[var(--text-secondary)]">
-        <div>
-          <span className="text-[var(--text-tertiary)]">$ </span>pnpm test
-          --watch
+      <div className="min-w-0 font-mono text-[11px] leading-relaxed text-[var(--text-secondary)]">
+        <div className="truncate">
+          <span className="text-[var(--text-tertiary)]">$ </span>pnpm test --watch
         </div>
-        <div className="text-[var(--text-primary)]">PASS 24 tests</div>
-        <div className="text-[var(--text-tertiary)]">
+        <div className="truncate text-[var(--text-primary)]">PASS 24 tests</div>
+        <div className="truncate text-[var(--text-tertiary)]">
           Waiting for file changes...
         </div>
       </div>
     );
   }
   return (
-    <div className="font-mono text-[11px] leading-relaxed text-[var(--text-secondary)]">
-      <div>
-        <span className="text-[var(--text-tertiary)]">$ </span>tail -n 50 -f
-        .next/server.log
+    <div className="min-w-0 font-mono text-[11px] leading-relaxed text-[var(--text-secondary)]">
+      <div className="truncate">
+        <span className="text-[var(--text-tertiary)]">$ </span>tail -n 50 -f .next/server.log
       </div>
-      <div className="text-[var(--text-tertiary)]">
+      <div className="truncate text-[var(--text-tertiary)]">
         [14:02:01] GET /api/installer-count 200 12ms
       </div>
-      <div className="text-[var(--text-tertiary)]">
+      <div className="truncate text-[var(--text-tertiary)]">
         [14:02:04] POST /__nextjs_original-stack-frames 204 3ms
       </div>
-      <div className="text-amber-700 dark:text-amber-400/90">
+      <div className="truncate text-amber-700 dark:text-amber-400/90">
         [14:02:08] WARN slow query: getInstallerCount 180ms
       </div>
       <div className="mt-1 text-[var(--text-tertiary)]">
@@ -107,7 +112,7 @@ export function TerminalTabsMock() {
           </button>
         </div>
       </div>
-      <div className="min-h-[7.5rem] flex-1 p-3.5">
+      <div className="min-h-[7.5rem] min-w-0 flex-1 p-3.5">
         <TerminalBody tab={tab} />
       </div>
     </div>

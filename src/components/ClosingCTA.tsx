@@ -9,8 +9,8 @@ export default function ClosingCTA({
   initialInstallerCount: number | null;
 }) {
   return (
-    <section className="border-t border-[var(--divide)] bg-[var(--page-bg)]">
-      <div className="mx-auto max-w-[720px] px-4 py-24 text-center sm:px-6 sm:py-32">
+    <section className="border-t border-[var(--divide)] bg-[var(--page-bg)] py-16 sm:py-24">
+      <div className="mx-auto w-full max-w-7xl px-4 text-center sm:px-6">
         <div className="mb-8 flex items-center justify-center gap-2 sm:mb-10">
           <div className="inline-flex size-[38px] -rotate-[6deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
             <ClaudeIcon className="size-[18px] text-[#D97757]" />
@@ -30,7 +30,7 @@ export default function ClosingCTA({
           Start coding with every AI
           <br className="hidden sm:block" /> you already pay for.
         </h2>
-        <p className="mx-auto mt-6 max-w-[480px] text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
+        <p className="mx-auto mt-6 max-w-7xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
           DP Code is free, open source, and built for your subscriptions. Plug
           in Claude, Codex, Gemini, or OpenCode, and ship faster today.
         </p>

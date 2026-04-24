@@ -15,7 +15,7 @@ const heading =
   "text-[1.65rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem]";
 const body =
   "mt-5 max-w-xl text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]";
-const container = "mx-auto w-full max-w-[1100px] px-4 sm:px-6";
+const container = "mx-auto w-full max-w-7xl px-4 sm:px-6";
 
 /** Inner UI mock sits on --mock-surface; outer elevated pad comes from SplitShowcase. */
 const mockPanel = "overflow-hidden rounded-xl bg-[var(--mock-surface)]";
@@ -45,7 +45,7 @@ const activeHarnesses: Harness[] = [
   },
   {
     name: "Gemini",
-    tagline: "3.1 Pro and 3.1 Flash. Bring your Google AI Studio key.",
+    tagline: "3.1 Pro and 3.1 Flash, on your Google AI Pro / Ultra subscription.",
     Icon: SiGooglegemini,
     accent: "text-[#4C8BF5]",
     status: "3.1 Pro",
@@ -109,7 +109,7 @@ const parallelLanes: {
 export default function Features() {
   return (
     <div>
-      <section className="border-t border-[var(--divide)] py-20 sm:py-28">
+      <section className="border-t border-[var(--divide)] py-14 sm:py-20">
         <div className={container}>
           <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
             Providers
@@ -202,7 +202,7 @@ export default function Features() {
 
       <MultiProjectShowcase />
 
-      <section className="border-t border-[var(--divide)] py-20 sm:py-28">
+      <section className="border-t border-[var(--divide)] py-14 sm:py-20">
         <div className={container}>
           <h2 className={heading}>
             Ten things at once.

@@ -14,7 +14,7 @@ const mockPanel = "overflow-hidden rounded-xl bg-[var(--mock-surface)]";
 export default function Workflow() {
   return (
     <section className="relative overflow-hidden border-t border-[var(--divide)] py-12 sm:py-16">
-      <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
         <h2 className={heading}>Every tool. One window.</h2>
         <p className={body}>
           Split chats across agents, stack terminals, peek at docs, and hand off

@@ -113,7 +113,7 @@ function IC({ children }: { children: React.ReactNode }) {
    ════════════════════════════════════════════ */
 export default function DPCodeMock() {
   return (
-    <div className="relative mx-auto w-full max-w-[1100px]">
+    <div className="relative mx-auto w-full max-w-7xl">
       {/* Label */}
       <div className="mb-3 text-center">
         <span className="text-xs font-medium tracking-wide text-neutral-400 uppercase">DP Code</span>
@@ -226,7 +226,7 @@ export default function DPCodeMock() {
 
             {/* Chat scroll */}
             <div className="flex-1 overflow-y-auto px-5 py-4 select-text">
-              <div className="mx-auto flex max-w-[620px] flex-col gap-4 text-[13px] leading-[1.65] text-neutral-700">
+              <div className="mx-auto flex max-w-7xl flex-col gap-4 text-[13px] leading-[1.65] text-neutral-700">
 
                 {/* Read markers */}
                 <div className="flex flex-col gap-1 text-[11.5px] text-neutral-400 font-mono">
@@ -300,7 +300,7 @@ export default function DPCodeMock() {
 
             {/* ── Composer ── */}
             <div className="border-t border-black/[0.04] px-4 py-3">
-              <div className="mx-auto max-w-[620px]">
+              <div className="mx-auto max-w-7xl">
                 <div className="flex items-end gap-2 rounded-xl border border-black/[0.06] bg-neutral-50/40 px-3 py-2.5">
                   <div className="min-w-0 flex-1 text-[12.5px] text-neutral-400">
                     Ask anything, drop files/folders, or use / to show available commands...

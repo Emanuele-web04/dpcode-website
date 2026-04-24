@@ -4,11 +4,18 @@ type SplitShowcaseProps = {
   eyebrow?: string;
   title: string;
   description: string;
+  /** Swap text/mock columns at lg+. */
   reverse?: boolean;
   children: ReactNode;
 };
 
-/** Alternating row: copy on page canvas + elevated block (Cursor-style surface, not a bordered card). */
+/**
+ * Alternating row: copy + elevated mock.
+ * Mobile/tablet: stacked column (mock at full width).
+ * Desktop (lg+): true 50/50 grid so wide mocks (e.g. dual-pane chats) don't
+ * collapse the text column. `minmax(0, 1fr)` (Tailwind grid-cols-2) lets the
+ * mock shrink past its intrinsic min-content, which `flex-1` could not.
+ */
 export function SplitShowcase({
   eyebrow,
   title,
@@ -17,12 +24,10 @@ export function SplitShowcase({
   children,
 }: SplitShowcaseProps) {
   return (
-    <div
-      className={`flex flex-col gap-6 py-8 sm:gap-10 sm:py-12 lg:flex-row lg:items-stretch lg:gap-16 xl:gap-24 ${
-        reverse ? "lg:flex-row-reverse" : ""
-      }`}
-    >
-      <div className="max-w-[min(100%,26rem)] shrink-0 self-start lg:w-[40%] xl:w-[38%]">
+    <div className="grid grid-cols-1 gap-6 py-8 sm:gap-10 sm:py-12 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
+      <div
+        className={`min-w-0 self-start ${reverse ? "lg:order-2" : "lg:order-1"}`}
+      >
         {eyebrow ? (
           <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
             {eyebrow}
@@ -35,7 +40,11 @@ export function SplitShowcase({
           {description}
         </p>
       </div>
-      <div className="relative flex min-h-0 min-w-0 flex-1 flex-col">
+      <div
+        className={`relative flex min-h-0 min-w-0 flex-col ${
+          reverse ? "lg:order-1" : "lg:order-2"
+        }`}
+      >
         <div className="relative flex min-h-0 flex-1 flex-col rounded-2xl bg-[var(--block-elevated)] p-3 sm:p-4">
           {children}
         </div>

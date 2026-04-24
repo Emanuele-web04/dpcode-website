@@ -1,4 +1,4 @@
-import { GoGitBranch } from "react-icons/go";
+import { LuGitBranch } from "react-icons/lu";
 import { SiGooglegemini, SiOpenai } from "react-icons/si";
 import { ClaudeIcon, OpencodeIcon } from "@/components/BrandIcons";
 import {
@@ -15,7 +15,7 @@ const menuRow =
 function HandoffHeaderPill() {
   return (
     <div className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[var(--divide)] bg-[var(--page-bg)] px-3 py-1.5 text-[11px] font-medium text-[var(--text-primary)] shadow-[0_1px_0_color-mix(in_oklab,var(--text-primary)_6%,transparent)] dark:shadow-none">
-      <GoGitBranch
+      <LuGitBranch
         className="size-3.5 shrink-0 text-[var(--text-secondary)]"
         aria-hidden
       />

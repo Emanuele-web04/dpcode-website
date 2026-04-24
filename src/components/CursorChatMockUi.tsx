@@ -201,19 +201,21 @@ export function CompactComposer({
           </div>
         </div>
       </div>
-      <div className="mt-1.5 flex items-center justify-between px-0.5 text-[9px] text-[var(--text-tertiary)]">
+      <div className="mt-1.5 flex items-center justify-between gap-2 px-0.5 text-[9px] text-[var(--text-tertiary)]">
         <div className="flex min-w-0 items-center gap-2">
-          <span className="inline-flex items-center gap-0.5 truncate">
+          <span className="inline-flex shrink-0 items-center gap-0.5">
             Local
             <FiChevronDown className="size-2.5 shrink-0" />
           </span>
-          <span className="inline-flex items-center gap-0.5 truncate">
+          <span className="inline-flex min-w-0 items-center gap-0.5">
             <GoGitBranch className="size-2.5 shrink-0" />
-            main
+            <span className="truncate">main</span>
             <FiChevronDown className="size-2.5 shrink-0" />
           </span>
         </div>
-        <span className="shrink-0 tabular-nums">Full access · 36%</span>
+        <span className="shrink-0 truncate tabular-nums">
+          <span className="hidden sm:inline">Full access · </span>36%
+        </span>
       </div>
     </div>
   );

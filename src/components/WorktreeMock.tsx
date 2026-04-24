@@ -64,7 +64,7 @@ export function WorktreeMock() {
                 onClick={() => setSelected(index)}
                 className={`flex w-full items-center gap-2.5 rounded-md px-2 py-1.5 text-left transition-colors hover:bg-[var(--mock-row)] focus-visible:bg-[var(--mock-row)] focus-visible:outline-none ${
                   isSelected
-                    ? "bg-[var(--mock-row-strong)] hover:bg-[var(--mock-row-strong)]"
+                    ? "bg-[var(--mock-row)] hover:bg-[var(--mock-row)]"
                     : ""
                 }`}
               >

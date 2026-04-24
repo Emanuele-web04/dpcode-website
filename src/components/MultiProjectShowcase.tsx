@@ -9,7 +9,7 @@ const sectionHeading =
   "text-[1.35rem] font-medium leading-[1.14] tracking-[-0.03em] text-[var(--text-primary)] sm:text-[1.6rem]";
 const sectionBody =
   "mt-3 max-w-xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:mt-4 sm:text-[14px]";
-const container = "mx-auto w-full max-w-[1100px] px-4 sm:px-6";
+const container = "mx-auto w-full max-w-7xl px-4 sm:px-6";
 
 const steps: { title: string; description: string }[] = [
   {
@@ -110,8 +110,8 @@ export function MultiProjectShowcase() {
           own agents, runs, and state.
         </p>
 
-        <div className="mt-6 flex flex-col gap-6 sm:mt-8 lg:flex-row lg:items-start lg:gap-10 xl:gap-14">
-          <div className="shrink-0 lg:w-[38%] xl:w-[36%]">
+        <div className="mt-6 grid grid-cols-1 gap-6 sm:mt-8 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-14">
+          <div className="min-w-0 self-start">
             {/* Mobile: vertical stack, title + short body per step */}
             <ol
               className="flex flex-col gap-1.5 sm:hidden"
@@ -203,7 +203,7 @@ export function MultiProjectShowcase() {
             </div>
           </div>
 
-          <div className="relative min-h-0 min-w-0 flex-1">
+          <div className="relative min-w-0">
             <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
               Projects
             </p>
