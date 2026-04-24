@@ -1,10 +1,5 @@
 "use client";
 
-// FILE: DownloadButton.tsx
-// Purpose: Renders the hero download CTA and adapts its label to the visitor's OS.
-// Layer: Client component
-// Depends on: React browser APIs for platform detection
-
 import { useSyncExternalStore } from "react";
 import { HiOutlineDownload } from "react-icons/hi";
 
@@ -25,13 +20,10 @@ function getDownloadLabel(userAgent: string, platform: string): string {
   return "Download for your machine";
 }
 
-type Variant = "default" | "light";
-
-export default function DownloadButton({ variant = "default" }: { variant?: Variant } = {}) {
+export default function DownloadButton() {
   const label = useSyncExternalStore(
     () => () => undefined,
     () => {
-      // Prefer browser signals so the CTA reflects the visitor's device after hydration.
       const navigatorWithUserAgentData = navigator as NavigatorWithUserAgentData;
       return getDownloadLabel(
         navigator.userAgent,
@@ -41,17 +33,12 @@ export default function DownloadButton({ variant = "default" }: { variant?: Vari
     () => "Download for macOS"
   );
 
-  const variantClass =
-    variant === "light"
-      ? "bg-white text-neutral-900 hover:bg-neutral-100"
-      : "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100";
-
   return (
     <a
       href={RELEASES_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-medium transition-colors ${variantClass}`}
+      className="inline-flex items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] px-5 py-2.5 text-[13px] font-medium text-[var(--btn-primary-fg)] transition-opacity hover:opacity-90"
     >
       {label}
       <HiOutlineDownload className="size-4" aria-hidden="true" />

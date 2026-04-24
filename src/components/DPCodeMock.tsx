@@ -1,5 +1,8 @@
 "use client";
 
+import { GoGitBranch } from "react-icons/go";
+import { SiAnthropic } from "react-icons/si";
+
 /* ── Tiny inline SVG icons (no deps) ── */
 
 function IconSearch({ className = "size-4" }: { className?: string }) {
@@ -44,14 +47,6 @@ function IconPen({ className = "size-4" }: { className?: string }) {
   );
 }
 
-function IconGitBranch({ className = "size-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="6" x2="6" y1="3" y2="15" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" />
-    </svg>
-  );
-}
-
 function IconDiff({ className = "size-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -80,16 +75,6 @@ function IconSend({ className = "size-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-    </svg>
-  );
-}
-
-/* ── Claude icon ── */
-function ClaudeIcon({ className = "size-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="10" fill="#D97757" />
-      <path d="M8 9.5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-5z" fill="white" opacity="0.9" />
     </svg>
   );
 }
@@ -228,7 +213,7 @@ export default function DPCodeMock() {
               </div>
               <div className="flex shrink-0 items-center gap-1.5">
                 <button className="flex items-center gap-1.5 rounded-md border border-black/[0.06] px-2 py-1 text-[11px] font-medium text-neutral-600">
-                  <IconGitBranch className="size-3" />
+                  <GoGitBranch className="size-3" />
                   <span className="hidden lg:inline">Hand off to</span>
                   <CodexIcon className="size-3.5" />
                   <span className="hidden lg:inline">Codex</span>
@@ -328,7 +313,7 @@ export default function DPCodeMock() {
                 {/* Status bar */}
                 <div className="mt-2 flex items-center gap-2 text-[11px] text-neutral-400">
                   <div className="flex items-center gap-1.5">
-                    <ClaudeIcon className="size-3.5" />
+                    <SiAnthropic className="size-3.5 text-[#D97757]" />
                     <span className="font-medium text-neutral-500">Claude Opus 4.5</span>
                     <span className="text-neutral-300">&middot;</span>
                     <span>High</span>

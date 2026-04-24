@@ -2,31 +2,33 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { formatStars, getStars } from "@/lib/githubStars";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default async function Navbar() {
   const stars = await getStars();
   return (
-    <nav className="w-full px-4 pt-5 pb-4 sm:px-6">
-      <div className="mx-auto flex h-8 max-w-[1200px] items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+    <nav className="w-full px-4 py-4 sm:px-6">
+      <div className="mx-auto flex h-9 max-w-[1200px] items-center justify-between gap-3 sm:gap-6">
+        <Link
+          href="/"
+          className="flex shrink-0 items-center gap-2 text-[14px] font-medium tracking-[-0.02em] text-[var(--text-primary)]"
+        >
           <Image
             src="/dpcode-icon.png"
             alt="DP Code"
-            width={24}
-            height={24}
-            className="rounded-md border border-black/10 dark:border-white/10"
+            width={22}
+            height={22}
+            className="rounded-[5px] border border-[var(--divide)]"
           />
           <span className="hidden sm:inline">DP Code</span>
         </Link>
 
-        {/* Socials — centered */}
-        <div className="flex items-center gap-5 text-[13px] text-neutral-500 dark:text-neutral-400">
+        <div className="flex min-w-0 flex-1 items-center justify-center gap-4 text-[13px] text-[var(--text-tertiary)] sm:gap-6">
           <a
             href="https://x.com/emanueledpt"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-neutral-900 dark:hover:text-white"
+            className="shrink-0 transition-colors hover:text-[var(--text-primary)]"
           >
             X
           </a>
@@ -34,7 +36,7 @@ export default async function Navbar() {
             href="https://youtube.com/@emanueledpt"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-neutral-900 dark:hover:text-white"
+            className="shrink-0 transition-colors hover:text-[var(--text-primary)]"
           >
             YouTube
           </a>
@@ -42,7 +44,7 @@ export default async function Navbar() {
             href="https://github.com/Emanuele-web04/dpcode"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-neutral-900 dark:hover:text-white"
+            className="shrink-0 transition-colors hover:text-[var(--text-primary)]"
           >
             GitHub
           </a>
@@ -50,32 +52,32 @@ export default async function Navbar() {
             href="https://emanueledipietro.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden transition-colors hover:text-neutral-900 dark:hover:text-white sm:block"
+            className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] sm:inline"
           >
             Website
           </a>
         </div>
 
-        {/* GitHub */}
-        <div className="flex items-center gap-4">
-          {stars !== null && (
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <ThemeToggle />
+          {stars !== null ? (
             <a
               href="https://github.com/Emanuele-web04/dpcode"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[13px] text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+              className="hidden items-center gap-1.5 text-[13px] text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)] sm:flex"
             >
               <FaGithub className="size-4" />
               {formatStars(stars)}
             </a>
-          )}
+          ) : null}
           <a
-            href="https://github.com/Emanuele-web04/dpcode"
+            href="https://github.com/Emanuele-web04/dpcode/releases"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-neutral-900 px-3.5 py-1 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
+            className="rounded-full border border-[var(--divide)] px-3.5 py-1 text-[13px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)]"
           >
-            GitHub
+            Download
           </a>
         </div>
       </div>

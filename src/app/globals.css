@@ -3,13 +3,58 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --page-bg: #f5f4f2;
+  --text-primary: #141413;
+  --text-secondary: color-mix(in oklab, var(--text-primary) 58%, transparent);
+  --text-tertiary: color-mix(in oklab, var(--text-primary) 42%, transparent);
+  --block-elevated: #e8e6e2;
+  --mock-surface: #ddd9d3;
+  --mock-row: color-mix(in oklab, var(--text-primary) 6%, transparent);
+  --mock-row-strong: color-mix(in oklab, var(--text-primary) 10%, transparent);
+  --divide: color-mix(in oklab, var(--text-primary) 12%, transparent);
+  --accent-link: #ea580c;
+  --accent-link-hover: #c2410c;
+  --glow-a: color-mix(in oklab, #0ea5e9 22%, transparent);
+  --glow-b: color-mix(in oklab, #8b5cf6 16%, transparent);
+  --btn-primary-bg: #1c1917;
+  --btn-primary-fg: #fafaf9;
+  --btn-primary-hover: #292524;
+  --background: var(--page-bg);
+  --foreground: var(--text-primary);
+  --surface-border: var(--divide);
+  --surface-muted: var(--text-secondary);
+  /* Cursor-style chat mock (split showcase) */
+  --chat-feed-bg: #f5f5f5;
+  --chat-user-bubble: #e8e8e8;
+  --chat-input-surface: #ececec;
+  --chat-file-card-bg: #fafafa;
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --page-bg: #121110;
+  --text-primary: #f5f4f2;
+  --text-secondary: color-mix(in oklab, var(--text-primary) 55%, transparent);
+  --text-tertiary: color-mix(in oklab, var(--text-primary) 38%, transparent);
+  --block-elevated: #1c1b19;
+  --mock-surface: #161514;
+  --mock-row: color-mix(in oklab, var(--text-primary) 8%, transparent);
+  --mock-row-strong: color-mix(in oklab, var(--text-primary) 12%, transparent);
+  --divide: color-mix(in oklab, var(--text-primary) 12%, transparent);
+  --accent-link: #fb923c;
+  --accent-link-hover: #fdba74;
+  --glow-a: color-mix(in oklab, #38bdf8 18%, transparent);
+  --glow-b: color-mix(in oklab, #a78bfa 12%, transparent);
+  --btn-primary-bg: #fafaf9;
+  --btn-primary-fg: #121110;
+  --btn-primary-hover: #e7e5e4;
+  --background: var(--page-bg);
+  --foreground: var(--text-primary);
+  --surface-border: var(--divide);
+  --surface-muted: var(--text-secondary);
+  --chat-feed-bg: #141312;
+  --chat-user-bubble: color-mix(in oklab, var(--text-primary) 10%, transparent);
+  --chat-input-surface: #1a1918;
+  --chat-file-card-bg: #1e1d1c;
 }
 
 @theme inline {
@@ -23,10 +68,10 @@ html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 ::selection {
-  background: rgba(59, 130, 246, 0.25);
+  background: color-mix(in oklab, var(--accent-link) 28%, transparent);
   color: inherit;
 }

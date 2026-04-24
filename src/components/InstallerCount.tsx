@@ -72,7 +72,7 @@ export default function InstallerCount({
   return (
     <span>
       Already downloaded by{" "}
-      <span className="font-medium text-neutral-900 dark:text-neutral-100">
+      <span className="font-medium text-[var(--text-primary)]">
         {formatInstallerCount(count)} people
       </span>
     </span>
