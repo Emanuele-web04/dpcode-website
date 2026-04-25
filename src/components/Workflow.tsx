@@ -4,28 +4,17 @@ import { TerminalTabsMock } from "@/components/TerminalTabsMock";
 import { ParallelChatMock } from "@/components/ParallelChatMock";
 import { SplitShowcase } from "@/components/SplitShowcase";
 
-const heading =
-  "text-[1.65rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem]";
-const body =
-  "mt-5 max-w-xl text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]";
-
 const mockPanel = "overflow-hidden rounded-xl bg-[var(--mock-surface)]";
 
 export default function Workflow() {
   return (
     <section className="relative overflow-hidden border-t border-[var(--divide)] py-12 sm:py-16">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
-        <h2 className={heading}>Every tool. One window.</h2>
-        <p className={body}>
-          Split chats across agents, stack terminals, peek at docs, and hand off
-          a thread to another provider, all without leaving DP Code.
-        </p>
-
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <SplitShowcase
           eyebrow="Parallel chats"
-          title="Split chats. Parallel Work."
+          title="Split chats. Parallel work."
           description="Open a lane per agent or task and keep both threads running at once—same window, no tab shuffle, no lost context."
-          reverse={false}
+          stacked
         >
           <ParallelChatMock />
         </SplitShowcase>

@@ -2,8 +2,12 @@ import type { ComponentType } from "react";
 import { SiOpenai, SiGooglegemini } from "react-icons/si";
 import { GoGitBranch } from "react-icons/go";
 import { FiGitMerge } from "react-icons/fi";
-import { TbArrowsSplit2 } from "react-icons/tb";
-import { ClaudeIcon, OpencodeIcon, CursorIcon } from "@/components/BrandIcons";
+import {
+  ClaudeIcon,
+  OpencodeIcon,
+  CursorIcon,
+  WorktreeIcon,
+} from "@/components/BrandIcons";
 import { SplitShowcase } from "@/components/SplitShowcase";
 import { WorktreeMock } from "@/components/WorktreeMock";
 import { MultiProjectShowcase } from "@/components/MultiProjectShowcase";
@@ -15,7 +19,7 @@ const heading =
   "text-[1.65rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem]";
 const body =
   "mt-5 max-w-xl text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]";
-const container = "mx-auto w-full max-w-7xl px-4 sm:px-6";
+const container = "mx-auto w-full max-w-6xl px-4 sm:px-6";
 
 /** Inner UI mock sits on --mock-surface; outer elevated pad comes from SplitShowcase. */
 const mockPanel = "overflow-hidden rounded-xl bg-[var(--mock-surface)]";
@@ -93,14 +97,14 @@ const parallelLanes: {
   {
     title: "OpenCode Support",
     age: "25m",
-    branchIcon: TbArrowsSplit2,
+    branchIcon: WorktreeIcon,
     Icon: OpencodeIcon,
     iconClass: "text-[var(--text-primary)]",
   },
   {
     title: "Logo Component",
     age: "36m",
-    branchIcon: TbArrowsSplit2,
+    branchIcon: WorktreeIcon,
     Icon: SiGooglegemini,
     iconClass: "text-[#4C8BF5]",
   },

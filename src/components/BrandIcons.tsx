@@ -1,6 +1,20 @@
 import { SiAnthropic } from "react-icons/si";
+import { LuSplit } from "react-icons/lu";
 
 type IconProps = { className?: string };
+
+/**
+ * Default worktrees glyph: Lucide's "split" icon, rotated 90° so the trunk
+ * points up and the two branches diverge horizontally — reads as a worktree
+ * fork rather than a left-to-right path split.
+ */
+export function WorktreeIcon({ className }: IconProps) {
+  return (
+    <span className={`inline-flex rotate-90 ${className ?? ""}`}>
+      <LuSplit className="size-full" aria-hidden="true" />
+    </span>
+  );
+}
 
 /** Anthropic mark (replaces legacy Claude wordmark in UI). */
 export function ClaudeIcon({ className }: IconProps) {

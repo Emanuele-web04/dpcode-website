@@ -9,25 +9,7 @@ const sectionHeading =
   "text-[1.35rem] font-medium leading-[1.14] tracking-[-0.03em] text-[var(--text-primary)] sm:text-[1.6rem]";
 const sectionBody =
   "mt-3 max-w-xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:mt-4 sm:text-[14px]";
-const container = "mx-auto w-full max-w-7xl px-4 sm:px-6";
-
-const steps: { title: string; description: string }[] = [
-  {
-    title: "Stack every repo",
-    description:
-      "Add each folder once. DP Code keeps agents, threads, and worktrees scoped per project—no crossed wires.",
-  },
-  {
-    title: "Read status at a glance",
-    description:
-      "Live dots and provider badges show what’s running where. Skip the tab archaeology.",
-  },
-  {
-    title: "Switch without losing your place",
-    description:
-      "Jump between clients, products, or side work in one click. Every thread picks up exactly where you stopped.",
-  },
-];
+const container = "mx-auto w-full max-w-6xl px-4 sm:px-6";
 
 type ProjectRow = {
   name: string;
@@ -94,116 +76,24 @@ function ProjectFolderMock({
 }
 
 export function MultiProjectShowcase() {
-  /** Copy / product points — unrelated to the folder picker. */
-  const [activeStep, setActiveStep] = useState(0);
-  /** Folder list selection only. */
   const [selectedFolder, setSelectedFolder] = useState(0);
-  const detailId = "multi-project-step-detail";
 
   return (
     <section className="border-t border-[var(--divide)] py-12 sm:py-20">
       <div className={container}>
-        <h2 className={sectionHeading}>Work across projects at the same time.</h2>
-        <p className={sectionBody}>
-          Juggle client work, your product, and experiments without a dozen
-          windows. One sidebar keeps every codebase a click away—each with its
-          own agents, runs, and state.
-        </p>
-
-        <div className="mt-6 grid grid-cols-1 gap-6 sm:mt-8 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-14">
-          <div className="min-w-0 self-start">
-            {/* Mobile: vertical stack, title + short body per step */}
-            <ol
-              className="flex flex-col gap-1.5 sm:hidden"
-              aria-label="Tips for multi-project workflows"
-            >
-              {steps.map((step, index) => {
-                const isSelected = activeStep === index;
-                return (
-                  <li key={step.title}>
-                    <button
-                      type="button"
-                      aria-pressed={isSelected}
-                      aria-label={`${index + 1}. ${step.title}`}
-                      onClick={() => setActiveStep(index)}
-                      className={`flex w-full gap-2.5 rounded-lg border px-2.5 py-2 text-left transition-colors ${
-                        isSelected
-                          ? "border-[var(--divide)] bg-[var(--mock-row)]"
-                          : "border-transparent hover:bg-[var(--mock-row)]"
-                      } `}
-                    >
-                      <span
-                        className={`flex size-7 shrink-0 items-center justify-center rounded-full font-mono text-[11px] font-medium tabular-nums ${
-                          isSelected
-                            ? "bg-[var(--block-elevated)] text-[var(--text-primary)]"
-                            : "bg-[var(--block-elevated)] text-[var(--text-tertiary)]"
-                        }`}
-                      >
-                        {index + 1}
-                      </span>
-                      <span className="min-w-0">
-                        <span className="block text-[13px] font-medium leading-tight text-[var(--text-primary)]">
-                          {step.title}
-                        </span>
-                        <span className="mt-0.5 block text-[12px] leading-snug text-[var(--text-secondary)]">
-                          {step.description}
-                        </span>
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ol>
-
-            {/* sm+: single horizontal row of titles; detail line below */}
-            <div className="hidden sm:block">
-              <ol
-                className="flex flex-row flex-wrap gap-1.5"
-                aria-label="Tips for multi-project workflows"
-              >
-                {steps.map((step, index) => {
-                  const isSelected = activeStep === index;
-                  return (
-                    <li key={step.title} className="min-w-0">
-                      <button
-                        type="button"
-                        aria-pressed={isSelected}
-                        aria-describedby={isSelected ? detailId : undefined}
-                        aria-label={`Step ${index + 1}: ${step.title}`}
-                        onClick={() => setActiveStep(index)}
-                        onMouseEnter={() => setActiveStep(index)}
-                        className={`inline-flex max-w-full items-center gap-1.5 rounded-full border py-1 pl-1 pr-2.5 text-left text-[11px] font-medium transition-colors sm:py-1.5 sm:pl-1.5 sm:pr-3 sm:text-[12px] ${
-                          isSelected
-                            ? "border-[var(--divide)] bg-[var(--mock-row)] text-[var(--text-primary)]"
-                            : "border-transparent text-[var(--text-secondary)] hover:bg-[var(--mock-row)] hover:text-[var(--text-primary)]"
-                        } `}
-                      >
-                        <span
-                          className={`flex size-5 shrink-0 items-center justify-center rounded-full font-mono text-[10px] font-medium tabular-nums sm:size-6 sm:text-[11px] ${
-                            isSelected
-                              ? "bg-[var(--block-elevated)] text-[var(--text-primary)]"
-                              : "bg-[var(--block-elevated)] text-[var(--text-tertiary)]"
-                          }`}
-                        >
-                          {index + 1}
-                        </span>
-                        <span className="min-w-0 truncate">{step.title}</span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ol>
-              <p
-                id={detailId}
-                key={activeStep}
-                className="mt-2.5 text-[12px] leading-snug text-[var(--text-secondary)] sm:text-[13px]"
-              >
-                {steps[activeStep].description}
-              </p>
-            </div>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-end lg:gap-10 xl:gap-14">
+          <div className="min-w-0 lg:self-end lg:pb-6">
+            <h2 className={sectionHeading}>
+              Work across projects at the same time.
+            </h2>
+            <p className={sectionBody}>
+              Juggle client work, your product, and experiments without a dozen
+              windows. One sidebar keeps every codebase a click away—each with
+              its own agents, runs, and state.
+            </p>
           </div>
 
-          <div className="relative min-w-0">
+          <div className="relative min-w-0 lg:self-end">
             <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
               Projects
             </p>

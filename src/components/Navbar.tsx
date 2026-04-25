@@ -8,7 +8,7 @@ export default async function Navbar() {
   const stars = await getStars();
   return (
     <nav className="w-full px-4 py-4 sm:px-6">
-      <div className="mx-auto flex h-9 max-w-7xl items-center justify-between gap-2 sm:gap-6">
+      <div className="mx-auto flex h-9 max-w-6xl items-center justify-between gap-2 sm:gap-6">
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2 text-[14px] font-medium tracking-[-0.02em] text-[var(--text-primary)]"
@@ -72,7 +72,7 @@ export default async function Navbar() {
               rel="noopener noreferrer"
               className="hidden items-center gap-1.5 text-[13px] text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)] sm:flex"
             >
-              <FaGithub className="size-4" />
+              <FaGithub className="size-4 text-[var(--text-primary)]" />
               {formatStars(stars)}
             </a>
           ) : null}

@@ -3,8 +3,7 @@
 import type { ComponentType } from "react";
 import { useState } from "react";
 import { SiOpenai, SiGooglegemini } from "react-icons/si";
-import { TbArrowsSplit2 } from "react-icons/tb";
-import { ClaudeIcon, OpencodeIcon } from "@/components/BrandIcons";
+import { ClaudeIcon, OpencodeIcon, WorktreeIcon } from "@/components/BrandIcons";
 
 type GenericIcon = ComponentType<{ className?: string }>;
 
@@ -77,7 +76,7 @@ export function WorktreeMock() {
                 <span className="shrink-0 text-[11px] text-[var(--text-tertiary)]">
                   {project}
                 </span>
-                <TbArrowsSplit2 className="size-3 shrink-0 text-[var(--text-tertiary)]" />
+                <WorktreeIcon className="size-3 shrink-0 text-[var(--text-tertiary)]" />
                 <span className="w-7 shrink-0 text-right font-mono text-[11px] tabular-nums text-[var(--text-tertiary)]">
                   {age}
                 </span>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { HiOutlineDownload } from "react-icons/hi";
+import { LuArrowDownToLine } from "react-icons/lu";
 
 const RELEASES_URL = "https://github.com/Emanuele-web04/dpcode/releases";
 type NavigatorWithUserAgentData = Navigator & {
@@ -41,7 +41,7 @@ export default function DownloadButton() {
       className="inline-flex items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] px-5 py-2.5 text-[13px] font-medium text-[var(--btn-primary-fg)] transition-opacity hover:opacity-90"
     >
       {label}
-      <HiOutlineDownload className="size-4" aria-hidden="true" />
+      <LuArrowDownToLine className="size-4" aria-hidden="true" />
     </a>
   );
 }

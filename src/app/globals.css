@@ -23,11 +23,11 @@
   --foreground: var(--text-primary);
   --surface-border: var(--divide);
   --surface-muted: var(--text-secondary);
-  /* Cursor-style chat mock (split showcase) */
-  --chat-feed-bg: #f5f5f5;
-  --chat-user-bubble: #e8e8e8;
-  --chat-input-surface: #ececec;
-  --chat-file-card-bg: #fafafa;
+  /* Cursor-style chat mock (split showcase) — warm-toned to match page palette */
+  --chat-feed-bg: #f2efe7;
+  --chat-user-bubble: #e6e2d8;
+  --chat-input-surface: #ebe7dd;
+  --chat-file-card-bg: #f8f5ec;
 }
 
 .dark {

@@ -29,7 +29,7 @@ export default async function Home() {
           a huge gap between the install-count line and the screenshot card.
         */}
         <section className="pt-6 pb-12 sm:pt-10 sm:pb-20">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
             <div className="mb-8 flex items-center gap-2 sm:mb-10">
               <div className="inline-flex size-[38px] -rotate-[6deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
                 <ClaudeIcon className="size-[18px] text-[#D97757]" />
@@ -96,7 +96,7 @@ export default async function Home() {
       <ClosingCTA initialInstallerCount={initialInstallerCount} />
 
       <footer className="mt-auto border-t border-[var(--divide)] py-8">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 text-[12px] text-[var(--text-tertiary)] sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:px-6">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 text-[12px] text-[var(--text-tertiary)] sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:px-6">
           <span>
             Made by{" "}
             <a

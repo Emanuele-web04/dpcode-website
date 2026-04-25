@@ -98,11 +98,11 @@ export function OneClickPrMock() {
       >
         <div className="flex flex-wrap items-center gap-2">
           <div className="inline-flex overflow-hidden rounded-xl border border-[var(--divide)] text-[10.5px] font-medium">
-            <span className="inline-flex items-center gap-1 bg-[var(--mock-row)] px-2 py-1 text-[var(--text-primary)]">
+            <span className="inline-flex items-center gap-1 bg-[var(--chat-file-card-bg)] px-2 py-1 text-[var(--text-primary)]">
               <PrimaryIcon className="size-3.5 shrink-0 text-[var(--text-secondary)]" />
               {primaryLabel}
             </span>
-            <span className="flex items-center border-l border-[var(--divide)] bg-[var(--mock-row)] px-1.5 py-1 text-[var(--text-tertiary)]">
+            <span className="flex items-center border-l border-[var(--divide)] bg-[var(--chat-file-card-bg)] px-1.5 py-1 text-[var(--text-tertiary)]">
               <FiChevronDown className="size-3 shrink-0" aria-hidden />
             </span>
           </div>
