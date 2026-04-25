@@ -29,11 +29,9 @@ export function SplitShowcase({
     ? "flex flex-col gap-6 py-8 sm:gap-8 sm:py-12"
     : "grid grid-cols-1 gap-6 py-8 sm:gap-10 sm:py-12 lg:grid-cols-2 lg:items-end lg:gap-12 xl:gap-16";
 
-  const textOrderClass = stacked
-    ? ""
-    : reverse
-      ? "lg:order-2"
-      : "lg:order-1";
+  const textColClass = stacked
+    ? "min-w-0"
+    : `min-w-0 lg:self-end lg:pb-6 ${reverse ? "lg:order-2" : "lg:order-1"}`;
 
   const mockOrderClass = stacked
     ? ""
@@ -43,7 +41,7 @@ export function SplitShowcase({
 
   return (
     <div className={wrapperClass}>
-      <div className={`min-w-0 lg:self-end lg:pb-6 ${textOrderClass}`}>
+      <div className={textColClass}>
         {eyebrow ? (
           <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
             {eyebrow}
