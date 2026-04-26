@@ -49,7 +49,7 @@ export default async function Navbar() {
             href="https://github.com/Emanuele-web04/dpcode"
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 transition-colors hover:text-[var(--text-primary)]"
+            className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] sm:inline"
           >
             GitHub
           </a>
@@ -70,7 +70,8 @@ export default async function Navbar() {
               href="https://github.com/Emanuele-web04/dpcode"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden items-center gap-1.5 text-[13px] text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)] sm:flex"
+              aria-label={`GitHub stars: ${formatStars(stars)}`}
+              className="flex items-center gap-1 text-[12.5px] text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)] sm:gap-1.5 sm:text-[13px]"
             >
               <FaGithub className="size-4 text-[var(--text-primary)]" />
               {formatStars(stars)}

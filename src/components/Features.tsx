@@ -42,7 +42,8 @@ const activeHarnesses: Harness[] = [
   },
   {
     name: "Codex",
-    tagline: "GPT-5.5 and the o-series, straight from your ChatGPT plan.",
+    tagline:
+      "GPT-5.5, GPT-5.4 Thinking, GPT-5.3 Codex — whatever your ChatGPT plan unlocks.",
     Icon: SiOpenai,
     accent: "text-[var(--text-primary)]",
     status: "GPT-5.5",
