@@ -56,7 +56,10 @@ export async function getInstallerCount(): Promise<number | null> {
     }
 
     const releases = (await response.json()) as GitHubRelease[];
-    return countInstallerDownloads(releases);
+    const count = countInstallerDownloads(releases);
+
+    // New releases can briefly report zero while assets/download counts settle.
+    return count > 0 ? count : null;
   } catch {
     return null;
   }

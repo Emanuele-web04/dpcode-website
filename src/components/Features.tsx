@@ -1,6 +1,5 @@
 import type { ComponentType } from "react";
 import { SiOpenai, SiGooglegemini } from "react-icons/si";
-import { GoGitBranch } from "react-icons/go";
 import { FiGitMerge } from "react-icons/fi";
 import {
   ClaudeIcon,
@@ -20,9 +19,6 @@ const heading =
 const body =
   "mt-5 max-w-xl text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]";
 const container = "mx-auto w-full max-w-6xl px-4 sm:px-6";
-
-/** Inner UI mock sits on --mock-surface; outer elevated pad comes from SplitShowcase. */
-const mockPanel = "overflow-hidden rounded-xl bg-[var(--mock-surface)]";
 
 type Harness = {
   name: string;

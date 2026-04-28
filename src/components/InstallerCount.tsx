@@ -65,7 +65,7 @@ export default function InstallerCount({
     };
   }, []);
 
-  if (count === null) {
+  if (count === null || count <= 0) {
     return <span>Already downloaded by developers across macOS, Windows, and Linux.</span>;
   }
 

@@ -13,6 +13,8 @@ import ClosingCTA from "@/components/ClosingCTA";
 import { ClaudeIcon, OpencodeIcon } from "@/components/BrandIcons";
 import { getInstallerCount } from "@/lib/installerCount";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const initialInstallerCount = await getInstallerCount();
 
