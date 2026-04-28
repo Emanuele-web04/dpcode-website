@@ -1,3 +1,9 @@
+// FILE: Features.tsx
+// Purpose: Renders homepage provider, workflow, and parallel-work feature sections.
+// Layer: Marketing UI section
+// Exports: Features default component
+// Depends on: BrandIcons, showcase mocks, and react-icons provider marks
+
 import type { ComponentType } from "react";
 import { SiOpenai, SiGooglegemini } from "react-icons/si";
 import { FiGitMerge } from "react-icons/fi";
@@ -5,6 +11,7 @@ import {
   ClaudeIcon,
   OpencodeIcon,
   CursorIcon,
+  PiIcon,
   WorktreeIcon,
 } from "@/components/BrandIcons";
 import { SplitShowcase } from "@/components/SplitShowcase";
@@ -53,20 +60,29 @@ const activeHarnesses: Harness[] = [
   },
   {
     name: "OpenCode",
-    tagline: "Open-source terminal agent. Plug into 75+ providers, including local models.",
+    tagline: "Open-source terminal agent on your OpenCode Zen or OpenCode Go subscription.",
     Icon: OpencodeIcon,
     accent: "text-[var(--text-primary)]",
-    status: "75+ providers",
+    status: "Zen + Go",
   },
 ];
 
-const soonHarness: Harness = {
-  name: "Cursor",
-  tagline: "Bring your Cursor subscription into DP Code.",
-  Icon: CursorIcon,
-  accent: "text-[var(--text-tertiary)]",
-  status: "Coming soon",
-};
+const soonHarnesses: Harness[] = [
+  {
+    name: "Cursor",
+    tagline: "Bring your Cursor subscription into DP Code.",
+    Icon: CursorIcon,
+    accent: "text-[var(--text-tertiary)]",
+    status: "Coming soon",
+  },
+  {
+    name: "Pi",
+    tagline: "Bring your Pi assistant into DP Code.",
+    Icon: PiIcon,
+    accent: "",
+    status: "Coming soon",
+  },
+];
 
 const parallelLanes: {
   title: string;
@@ -148,25 +164,30 @@ export default function Features() {
             ))}
           </div>
 
-          <div className="border-b border-[var(--divide)] p-6 transition-colors hover:bg-[var(--mock-row)] sm:p-7">
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex min-w-0 items-center gap-3">
-                <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-[var(--block-elevated)]">
-                  <soonHarness.Icon
-                    className={`size-[18px] ${soonHarness.accent}`}
-                  />
-                </span>
-                <span className="truncate text-[15px] font-medium text-[var(--text-primary)]">
-                  {soonHarness.name}
-                </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2">
+            {soonHarnesses.map(({ name, tagline, Icon, accent, status }) => (
+              <div
+                key={name}
+                className="border-b border-[var(--divide)] p-6 transition-colors hover:bg-[var(--mock-row)] sm:p-7 sm:first:border-r sm:first:border-[var(--divide)]"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-[var(--block-elevated)]">
+                      <Icon className={`size-[18px] ${accent}`} />
+                    </span>
+                    <span className="truncate text-[15px] font-medium text-[var(--text-primary)]">
+                      {name}
+                    </span>
+                  </div>
+                  <span className="shrink-0 font-mono text-[12px] tabular-nums text-[var(--text-tertiary)]">
+                    {status}
+                  </span>
+                </div>
+                <p className="mt-3 text-[13px] leading-relaxed text-[var(--text-secondary)] sm:text-[13.5px]">
+                  {tagline}
+                </p>
               </div>
-              <span className="shrink-0 font-mono text-[12px] tabular-nums text-[var(--text-tertiary)]">
-                {soonHarness.status}
-              </span>
-            </div>
-            <p className="mt-3 text-[13px] leading-relaxed text-[var(--text-secondary)] sm:text-[13.5px]">
-              {soonHarness.tagline}
-            </p>
+            ))}
           </div>
         </div>
       </section>

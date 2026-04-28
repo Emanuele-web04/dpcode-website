@@ -1,3 +1,9 @@
+// FILE: BrandIcons.tsx
+// Purpose: Holds small brand glyph components used across marketing sections.
+// Layer: UI component helpers
+// Exports: WorktreeIcon, ClaudeIcon, OpencodeIcon, CursorIcon, PiIcon
+// Depends on: react-icons marks and inline SVGs
+
 import { SiAnthropic } from "react-icons/si";
 import { LuSplit } from "react-icons/lu";
 
@@ -41,6 +47,23 @@ export function CursorIcon({ className }: IconProps) {
       <path
         d="M457.43,125.94L244.42,2.96c-6.84-3.95-15.28-3.95-22.12,0L9.3,125.94c-5.75,3.32-9.3,9.46-9.3,16.11v247.99c0,6.65,3.55,12.79,9.3,16.11l213.01,122.98c6.84,3.95,15.28,3.95,22.12,0l213.01-122.98c5.75-3.32,9.3-9.46,9.3-16.11v-247.99c0-6.65-3.55-12.79-9.3-16.11h-.01ZM444.05,151.99l-205.63,356.16c-1.39,2.4-5.06,1.42-5.06-1.36v-233.21c0-4.66-2.49-8.97-6.53-11.31L24.87,145.67c-2.4-1.39-1.42-5.06,1.36-5.06h411.26c5.84,0,9.49,6.33,6.57,11.39h-.01Z"
         fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Pi block-letter mark — stylized "Pi" composed of square modules. */
+export function PiIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 800 800" className={className} aria-hidden="true">
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M165.29 165.29 H517.36 V400 H400 V517.36 H282.65 V634.72 H165.29 Z M282.65 282.65 V400 H400 V282.65 Z"
+      />
+      <path
+        fill="currentColor"
+        d="M517.36 400 H634.72 V634.72 H517.36 Z"
       />
     </svg>
   );
