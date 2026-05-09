@@ -10,7 +10,7 @@ import InstallerCount from "@/components/InstallerCount";
 import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
 import ClosingCTA from "@/components/ClosingCTA";
-import { ClaudeIcon, OpencodeIcon } from "@/components/BrandIcons";
+import { ClaudeIcon, OpencodeIcon, CursorIcon } from "@/components/BrandIcons";
 import { getInstallerCount } from "@/lib/installerCount";
 
 export const dynamic = "force-dynamic";
@@ -44,6 +44,9 @@ export default async function Home() {
               </div>
               <div className="inline-flex size-[38px] rotate-[5deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
                 <OpencodeIcon className="size-[18px] text-[var(--text-primary)]" />
+              </div>
+              <div className="inline-flex size-[38px] -rotate-[4deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <CursorIcon className="size-[18px] text-[var(--text-primary)]" />
               </div>
             </div>
 

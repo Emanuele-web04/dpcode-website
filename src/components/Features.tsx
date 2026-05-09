@@ -65,16 +65,16 @@ const activeHarnesses: Harness[] = [
     accent: "text-[var(--text-primary)]",
     status: "Zen + Go",
   },
+  {
+    name: "Cursor",
+    tagline: "Composer 2, GPT, and Claude — all on your Cursor subscription.",
+    Icon: CursorIcon,
+    accent: "text-[var(--text-primary)]",
+    status: "Composer 2",
+  },
 ];
 
 const soonHarnesses: Harness[] = [
-  {
-    name: "Cursor",
-    tagline: "Bring your Cursor subscription into DP Code.",
-    Icon: CursorIcon,
-    accent: "text-[var(--text-tertiary)]",
-    status: "Coming soon",
-  },
   {
     name: "Pi",
     tagline: "Bring your Pi assistant into DP Code.",
@@ -133,9 +133,9 @@ export default function Features() {
           </p>
           <h2 className={`${heading} mt-3`}>Use what you already pay for.</h2>
           <p className={body}>
-            DP Code speaks every major harness. Plug in Claude, Codex, Gemini, or
-            OpenCode with the account you already use. No new bills, no walled
-            gardens.
+            DP Code speaks every major harness. Plug in Claude, Codex, Gemini,
+            OpenCode, or Cursor with the account you already use. No new bills,
+            no walled gardens.
           </p>
 
           <div className="mt-12 grid grid-cols-1 border-t border-[var(--divide)] sm:grid-cols-2">
@@ -232,9 +232,9 @@ export default function Features() {
             Lose track of none.
           </h2>
           <p className={body}>
-            Run Claude, Codex, Gemini, and OpenCode across multiple worktrees,
-            across multiple projects, all in one window. Every thread stays
-            exactly where you left it.
+            Run Claude, Codex, Gemini, OpenCode, and Cursor across multiple
+            worktrees, across multiple projects, all in one window. Every thread
+            stays exactly where you left it.
           </p>
 
           <ul className="mt-12 divide-y divide-[var(--divide)]">

@@ -1,7 +1,7 @@
 import { SiOpenai, SiGooglegemini } from "react-icons/si";
 import DownloadButton from "@/components/DownloadButton";
 import InstallerCount from "@/components/InstallerCount";
-import { ClaudeIcon, OpencodeIcon } from "@/components/BrandIcons";
+import { ClaudeIcon, OpencodeIcon, CursorIcon } from "@/components/BrandIcons";
 
 export default function ClosingCTA({
   initialInstallerCount,
@@ -24,6 +24,9 @@ export default function ClosingCTA({
           <div className="inline-flex size-[38px] rotate-[5deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
             <OpencodeIcon className="size-[18px] text-[var(--text-primary)]" />
           </div>
+          <div className="inline-flex size-[38px] -rotate-[4deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+            <CursorIcon className="size-[18px] text-[var(--text-primary)]" />
+          </div>
         </div>
 
         <h2 className="text-[1.65rem] font-medium leading-[1.1] tracking-[-0.04em] text-[var(--text-primary)] sm:text-[2.25rem] sm:leading-[1.06]">
@@ -32,7 +35,7 @@ export default function ClosingCTA({
         </h2>
         <p className="mx-auto mt-6 max-w-6xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
           DP Code is free, open source, and built for your subscriptions. Plug
-          in Claude, Codex, Gemini, or OpenCode, and ship faster today.
+          in Claude, Codex, Gemini, OpenCode, or Cursor, and ship faster today.
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-3">
