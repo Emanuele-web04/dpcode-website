@@ -12,6 +12,7 @@ import {
   OpencodeIcon,
   CursorIcon,
   PiIcon,
+  KiloCodeIcon,
   WorktreeIcon,
 } from "@/components/BrandIcons";
 import { SplitShowcase } from "@/components/SplitShowcase";
@@ -71,6 +72,14 @@ const activeHarnesses: Harness[] = [
     Icon: CursorIcon,
     accent: "text-[var(--text-primary)]",
     status: "Composer 2",
+  },
+  {
+    name: "Kilo Code",
+    tagline:
+      "Open-source agent across VS Code, JetBrains, and CLI — 500+ models on your own keys.",
+    Icon: KiloCodeIcon,
+    accent: "text-[var(--text-primary)]",
+    status: "500+ models",
   },
 ];
 

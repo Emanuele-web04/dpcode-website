@@ -1,7 +1,7 @@
 // FILE: BrandIcons.tsx
 // Purpose: Holds small brand glyph components used across marketing sections.
 // Layer: UI component helpers
-// Exports: WorktreeIcon, ClaudeIcon, OpencodeIcon, CursorIcon, PiIcon
+// Exports: WorktreeIcon, ClaudeIcon, OpencodeIcon, CursorIcon, PiIcon, KiloCodeIcon
 // Depends on: react-icons marks and inline SVGs
 
 import { SiAnthropic } from "react-icons/si";
@@ -65,6 +65,31 @@ export function PiIcon({ className }: IconProps) {
         fill="currentColor"
         d="M517.36 400 H634.72 V634.72 H517.36 Z"
       />
+    </svg>
+  );
+}
+
+/**
+ * KiloCode mark — pixel-style square frame with stylized K/C glyphs.
+ * Original artwork is solid black, so we drive every shape with
+ * currentColor and rely on the parent text color (var(--text-primary))
+ * to keep it readable in both light and dark themes.
+ */
+export function KiloCodeIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      className={className}
+      aria-hidden="true"
+      fill="currentColor"
+    >
+      <path d="M23,26v-2h3v-5l-2-2h-4v2h-3v5l2,2h4ZM20,20h3v3h-3v-3Z" />
+      <rect x="12" y="17" width="3" height="3" />
+      <polygon points="26 12 23 12 23 9 20 6 17 6 17 9 20 9 20 12 17 12 17 15 26 15 26 12" />
+      <path d="M0,0v32h32V0H0ZM29,29H3V3h26v26Z" />
+      <polygon points="15 26 15 23 9 23 9 17 6 17 6 23.1875 8.8125 26 15 26" />
+      <rect x="12" y="6" width="3" height="3" />
+      <polygon points="9 12 12 12 12 15 15 15 15 12 12 9 9 9 9 6 6 6 6 15 9 15 9 12" />
     </svg>
   );
 }
