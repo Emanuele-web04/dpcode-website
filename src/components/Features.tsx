@@ -81,17 +81,16 @@ const activeHarnesses: Harness[] = [
     accent: "text-[var(--text-primary)]",
     status: "500+ models",
   },
-];
-
-const soonHarnesses: Harness[] = [
   {
     name: "Pi",
     tagline: "Bring your Pi assistant into DP Code.",
     Icon: PiIcon,
-    accent: "",
-    status: "Coming soon",
+    accent: "text-[var(--text-primary)]",
+    status: "Available",
   },
 ];
+
+const soonHarnesses: Harness[] = [];
 
 const parallelLanes: {
   title: string;
@@ -173,31 +172,33 @@ export default function Features() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2">
-            {soonHarnesses.map(({ name, tagline, Icon, accent, status }) => (
-              <div
-                key={name}
-                className="border-b border-[var(--divide)] p-6 transition-colors hover:bg-[var(--mock-row)] sm:p-7 sm:first:border-r sm:first:border-[var(--divide)]"
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex min-w-0 items-center gap-3">
-                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-[var(--block-elevated)]">
-                      <Icon className={`size-[18px] ${accent}`} />
-                    </span>
-                    <span className="truncate text-[15px] font-medium text-[var(--text-primary)]">
-                      {name}
+          {soonHarnesses.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+              {soonHarnesses.map(({ name, tagline, Icon, accent, status }) => (
+                <div
+                  key={name}
+                  className="border-b border-[var(--divide)] p-6 transition-colors hover:bg-[var(--mock-row)] sm:p-7 sm:first:border-r sm:first:border-[var(--divide)]"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex min-w-0 items-center gap-3">
+                      <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-[var(--block-elevated)]">
+                        <Icon className={`size-[18px] ${accent}`} />
+                      </span>
+                      <span className="truncate text-[15px] font-medium text-[var(--text-primary)]">
+                        {name}
+                      </span>
+                    </div>
+                    <span className="shrink-0 font-mono text-[12px] tabular-nums text-[var(--text-tertiary)]">
+                      {status}
                     </span>
                   </div>
-                  <span className="shrink-0 font-mono text-[12px] tabular-nums text-[var(--text-tertiary)]">
-                    {status}
-                  </span>
+                  <p className="mt-3 text-[13px] leading-relaxed text-[var(--text-secondary)] sm:text-[13.5px]">
+                    {tagline}
+                  </p>
                 </div>
-                <p className="mt-3 text-[13px] leading-relaxed text-[var(--text-secondary)] sm:text-[13.5px]">
-                  {tagline}
-                </p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
 
