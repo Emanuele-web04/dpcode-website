@@ -5,6 +5,7 @@ import {
   ClaudeIcon,
   OpencodeIcon,
   CursorIcon,
+  GrokIcon,
   KiloCodeIcon,
 } from "@/components/BrandIcons";
 
@@ -32,6 +33,9 @@ export default function ClosingCTA({
           <div className="inline-flex size-[38px] -rotate-[4deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
             <CursorIcon className="size-[18px] text-[var(--text-primary)]" />
           </div>
+          <div className="inline-flex size-[38px] rotate-[2deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+            <GrokIcon className="size-[18px] text-[var(--text-primary)]" />
+          </div>
           <div className="inline-flex size-[38px] rotate-[3deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
             <KiloCodeIcon className="size-[18px] text-[var(--text-primary)]" />
           </div>
@@ -43,7 +47,8 @@ export default function ClosingCTA({
         </h2>
         <p className="mx-auto mt-6 max-w-6xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
           DP Code is free, open source, and built for your subscriptions. Plug
-          in Claude, Codex, Gemini, OpenCode, or Cursor, and ship faster today.
+          in Claude, Codex, Gemini, OpenCode, Cursor, or Grok CLI, and ship
+          faster today.
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-3">
