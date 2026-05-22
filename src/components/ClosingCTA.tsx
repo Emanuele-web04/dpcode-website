@@ -47,8 +47,8 @@ export default function ClosingCTA({
         </h2>
         <p className="mx-auto mt-6 max-w-6xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
           DP Code is free, open source, and built for your subscriptions. Plug
-          in Claude, Codex, Gemini, OpenCode, Cursor, or Grok CLI, and ship
-          faster today.
+          in Claude, Codex, Gemini, OpenCode, Cursor, or Grok, and ship faster
+          today.
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-3">

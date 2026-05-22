@@ -75,8 +75,8 @@ const activeHarnesses: Harness[] = [
     status: "Composer 2",
   },
   {
-    name: "Grok CLI",
-    tagline: "Run the new Grok CLI from the same DP Code workspace.",
+    name: "Grok",
+    tagline: "Run Grok from the same DP Code workspace.",
     Icon: GrokIcon,
     accent: "text-[var(--text-primary)]",
     status: "CLI",
@@ -150,8 +150,8 @@ export default function Features() {
           <h2 className={`${heading} mt-3`}>Use what you already pay for.</h2>
           <p className={body}>
             DP Code speaks every major harness. Plug in Claude, Codex, Gemini,
-            OpenCode, Cursor, or Grok CLI with the account you already use. No
-            new bills, no walled gardens.
+            OpenCode, Cursor, or Grok with the account you already use. No new
+            bills, no walled gardens.
           </p>
 
           <div className="mt-12 grid grid-cols-1 border-t border-[var(--divide)] sm:grid-cols-2">
@@ -250,7 +250,7 @@ export default function Features() {
             Lose track of none.
           </h2>
           <p className={body}>
-            Run Claude, Codex, Gemini, OpenCode, Cursor, and Grok CLI across
+            Run Claude, Codex, Gemini, OpenCode, Cursor, and Grok across
             multiple worktrees, across multiple projects, all in one window.
             Every thread stays exactly where you left it.
           </p>
