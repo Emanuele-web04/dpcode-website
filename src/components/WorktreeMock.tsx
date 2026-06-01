@@ -18,28 +18,28 @@ const sessions: {
 }[] = [
   {
     title: "Browser Use Support",
-    project: "dpcode",
+    project: "synara",
     Agent: SiOpenai,
     agentColor: "text-[var(--text-secondary)]",
     age: "1h",
   },
   {
     title: "Terminal LSP setup",
-    project: "dpcode",
+    project: "synara",
     Agent: OpencodeIcon,
     agentColor: "text-[var(--text-secondary)]",
     age: "4d",
   },
   {
     title: "Inline diffs",
-    project: "dpcode",
+    project: "synara",
     Agent: ClaudeIcon,
     agentColor: "text-[#D97757]",
     age: "12m",
   },
   {
     title: "Theme tokens",
-    project: "dpcode",
+    project: "synara",
     Agent: SiGooglegemini,
     agentColor: "text-[#4C8BF5]",
     age: "2d",

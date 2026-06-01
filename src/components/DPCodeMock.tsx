@@ -116,7 +116,7 @@ export default function DPCodeMock() {
     <div className="relative mx-auto w-full max-w-6xl">
       {/* Label */}
       <div className="mb-3 text-center">
-        <span className="text-xs font-medium tracking-wide text-neutral-400 uppercase">DP Code</span>
+        <span className="text-xs font-medium tracking-wide text-neutral-400 uppercase">Synara</span>
       </div>
 
       {/* Window */}
@@ -128,7 +128,7 @@ export default function DPCodeMock() {
             <div className="size-3 rounded-full bg-[#FEBC2E]" />
             <div className="size-3 rounded-full bg-[#28C840]" />
           </div>
-          <div className="flex-1 text-center text-[12px] font-medium text-neutral-400">DP Code</div>
+          <div className="flex-1 text-center text-[12px] font-medium text-neutral-400">Synara</div>
           <div className="w-12" />
         </div>
 
@@ -187,7 +187,7 @@ export default function DPCodeMock() {
                 <div className="flex items-center gap-1.5 px-1 py-0.5 text-[12px] text-neutral-500">
                   <IconChevronDown className="size-2.5" />
                   <IconFolder className="size-3 text-neutral-400" />
-                  <span className="font-medium text-neutral-600">dpcode-website</span>
+                  <span className="font-medium text-neutral-600">synara-website</span>
                 </div>
                 <div className="ml-3 flex flex-col gap-px">
                   <ThreadItem label="hry" />

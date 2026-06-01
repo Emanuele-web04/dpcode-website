@@ -14,13 +14,13 @@ export default async function Navbar() {
           className="flex shrink-0 items-center gap-2 text-[14px] font-medium tracking-[-0.02em] text-[var(--text-primary)]"
         >
           <Image
-            src="/dpcode-icon.png"
-            alt="DP Code"
+            src="/synara-icon.png"
+            alt="Synara"
             width={22}
             height={22}
             className="rounded-[5px] border border-[var(--divide)]"
           />
-          <span className="hidden sm:inline">DP Code</span>
+          <span className="hidden sm:inline">Synara</span>
         </Link>
 
         {/*

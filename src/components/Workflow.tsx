@@ -51,12 +51,12 @@ export default function Workflow() {
               </div>
               <div className="flex flex-1 items-center gap-1.5 rounded-md bg-[var(--mock-row)] px-2 py-1 text-[10.5px] text-[var(--text-secondary)]">
                 <FiGlobe className="size-3 text-[var(--text-tertiary)]" />
-                <span className="truncate font-mono">dpcode.cc</span>
+                <span className="truncate font-mono">synara.cc</span>
               </div>
             </div>
             <div className="grid grid-cols-[1fr_0.8fr] gap-4 p-4 text-[11px] leading-relaxed sm:grid-cols-[1fr_0.6fr]">
               <div className="space-y-1.5">
-                <div className="text-[var(--text-primary)]">DP Code · Docs</div>
+                <div className="text-[var(--text-primary)]">Synara · Docs</div>
                 <div className="h-1.5 w-3/4 rounded-full bg-[var(--mock-row-strong)]" />
                 <div className="h-1.5 w-5/6 rounded-full bg-[var(--mock-row)]" />
                 <div className="h-1.5 w-2/3 rounded-full bg-[var(--mock-row)]" />

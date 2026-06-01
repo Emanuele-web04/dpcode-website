@@ -15,13 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DP Code - The best way to code with your AI subscriptions",
+  title: "Synara - The best way to code with your AI subscriptions",
   description:
-    "DP Code - the best way to code with your AI subscriptions.",
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
+    "Synara - the best way to code with your AI subscriptions.",
 };
 
 export default function RootLayout({

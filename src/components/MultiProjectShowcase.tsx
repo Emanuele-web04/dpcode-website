@@ -28,7 +28,7 @@ type Thread = {
 type ProjectRow = {
   name: string;
   liveDot: boolean;
-  /** Corner tray badge: `public/dpcode-icon.png`. */
+  /** Corner tray badge: `public/synara-icon.png`. */
   badge: "app" | null;
   threads: Thread[];
 };
@@ -67,7 +67,7 @@ const projectRows: ProjectRow[] = [
     ],
   },
   {
-    name: "dpcode",
+    name: "synara",
     liveDot: true,
     badge: "app",
     threads: [
@@ -159,7 +159,7 @@ function FolderHeader({
         {row.badge === "app" ? (
           <span className="pointer-events-none absolute -bottom-0.5 -right-0.5 flex size-[15px] items-center justify-center overflow-hidden rounded-[5px] bg-neutral-950 shadow-sm ring-1 ring-white/15 dark:bg-black">
             <Image
-              src="/dpcode-icon.png"
+              src="/synara-icon.png"
               alt=""
               width={11}
               height={11}

@@ -46,7 +46,7 @@ export default function ClosingCTA({
           <br className="hidden sm:block" /> you already pay for.
         </h2>
         <p className="mx-auto mt-6 max-w-6xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
-          DP Code is free, open source, and built for your subscriptions. Plug
+          Synara is free, open source, and built for your subscriptions. Plug
           in Claude, Codex, Gemini, OpenCode, Cursor, or Grok, and ship faster
           today.
         </p>

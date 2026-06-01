@@ -76,7 +76,7 @@ const activeHarnesses: Harness[] = [
   },
   {
     name: "Grok",
-    tagline: "Run Grok from the same DP Code workspace.",
+    tagline: "Run Grok from the same Synara workspace.",
     Icon: GrokIcon,
     accent: "text-[var(--text-primary)]",
     status: "CLI",
@@ -91,7 +91,7 @@ const activeHarnesses: Harness[] = [
   },
   {
     name: "Pi",
-    tagline: "Bring your Pi assistant into DP Code.",
+    tagline: "Bring your Pi assistant into Synara.",
     Icon: PiIcon,
     accent: "text-[var(--text-primary)]",
     status: "Available",
@@ -149,7 +149,7 @@ export default function Features() {
           </p>
           <h2 className={`${heading} mt-3`}>Use what you already pay for.</h2>
           <p className={body}>
-            DP Code speaks every major harness. Plug in Claude, Codex, Gemini,
+            Synara speaks every major harness. Plug in Claude, Codex, Gemini,
             OpenCode, Cursor, or Grok with the account you already use. No new
             bills, no walled gardens.
           </p>
@@ -223,7 +223,7 @@ export default function Features() {
           <SplitShowcase
             eyebrow="Ship"
             title="One-click PRs"
-            description="Ship the moment your agent lands a green diff. DP Code opens, titles, and files the PR for you."
+            description="Ship the moment your agent lands a green diff. Synara opens, titles, and files the PR for you."
             reverse={false}
           >
             <OneClickPrMock />

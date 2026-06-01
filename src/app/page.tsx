@@ -70,7 +70,7 @@ export default async function Home() {
               Built to make you extraordinarily productive.
             </h1>
             <p className="mt-5 text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
-              DP Code is the best way to code with the AI subscriptions you
+              Synara is the best way to code with the AI subscriptions you
               already pay for.
             </p>
 
@@ -95,13 +95,13 @@ export default async function Home() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/dpcode-ui-light.png"
-                  alt="DP Code — AI-powered coding assistant interface"
+                  alt="Synara — AI-powered coding assistant interface"
                   className="block h-auto w-full rounded-lg dark:hidden sm:rounded-xl"
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/dpcode-ui-dark.png"
-                  alt="DP Code — AI-powered coding assistant interface"
+                  alt="Synara — AI-powered coding assistant interface"
                   className="hidden h-auto w-full rounded-lg dark:block sm:rounded-xl"
                 />
               </div>
