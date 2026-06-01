@@ -314,7 +314,7 @@ export default function DPCodeMock() {
                 <div className="mt-2 flex items-center gap-2 text-[11px] text-neutral-400">
                   <div className="flex items-center gap-1.5">
                     <SiAnthropic className="size-3.5 text-[#D97757]" />
-                    <span className="font-medium text-neutral-500">Claude Opus 4.5</span>
+                    <span className="font-medium text-neutral-500">Claude Opus 4.8</span>
                     <span className="text-neutral-300">&middot;</span>
                     <span>High</span>
                   </div>

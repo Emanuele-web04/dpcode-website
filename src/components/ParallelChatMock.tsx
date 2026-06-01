@@ -21,7 +21,7 @@ export function ParallelChatMock() {
         composerIcon={
           <ClaudeIcon className="size-2.5 text-[#D97757]" aria-hidden />
         }
-        composerLabel="Opus 4.7"
+        composerLabel="Opus 4.8"
       >
         <AssistantBlock meta="0:05 • 4.5s">
           Re-reading{" "}

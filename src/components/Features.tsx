@@ -40,10 +40,10 @@ type Harness = {
 const activeHarnesses: Harness[] = [
   {
     name: "Claude Code",
-    tagline: "Opus 4.7, Sonnet 4.6, Haiku — whatever's on your Anthropic plan.",
+    tagline: "Opus 4.8, Sonnet 4.6, Haiku — whatever's on your Anthropic plan.",
     Icon: ClaudeIcon,
     accent: "text-[#D97757]",
-    status: "Opus 4.7",
+    status: "Opus 4.8",
   },
   {
     name: "Codex",
@@ -69,10 +69,10 @@ const activeHarnesses: Harness[] = [
   },
   {
     name: "Cursor",
-    tagline: "Composer 2, GPT, and Claude — all on your Cursor subscription.",
+    tagline: "Composer 2.5, GPT, and Claude — all on your Cursor subscription.",
     Icon: CursorIcon,
     accent: "text-[var(--text-primary)]",
-    status: "Composer 2",
+    status: "Composer 2.5",
   },
   {
     name: "Grok",
