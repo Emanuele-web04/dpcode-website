@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "downloads:update": "node scripts/update-installer-downloads.mjs",
     "lint": "eslint"
   },
   "dependencies": {

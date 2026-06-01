@@ -1,9 +1,11 @@
 // FILE: installerCount.ts
-// Purpose: Fetches and summarizes live installer download totals from GitHub releases.
+// Purpose: Fetches, summarizes, and falls back for installer download totals.
 // Layer: Server utility
-// Depends on: GitHub Releases API, optional GITHUB_TOKEN, server-only
+// Depends on: GitHub Releases API, src/data/installer-downloads.json, optional GITHUB_TOKEN
 
 import "server-only";
+
+import storedInstallerDownloads from "@/data/installer-downloads.json";
 
 const RELEASES_API_URL =
   "https://api.github.com/repos/Emanuele-web04/dpcode/releases?per_page=100";
@@ -18,6 +20,12 @@ type GitHubReleaseAsset = {
 type GitHubRelease = {
   assets?: GitHubReleaseAsset[];
 };
+
+export function getStoredInstallerCount(): number | null {
+  return storedInstallerDownloads.count > 0
+    ? storedInstallerDownloads.count
+    : null;
+}
 
 // Counts only actual installer artifacts so updater metadata and blockmaps do not inflate totals.
 export function countInstallerDownloads(releases: GitHubRelease[]): number {
@@ -35,7 +43,7 @@ export function countInstallerDownloads(releases: GitHubRelease[]): number {
   }, 0);
 }
 
-// Fetches the current installer total directly from GitHub with caching disabled.
+// Fetches live GitHub totals first, then falls back to the daily Codex-updated snapshot.
 export async function getInstallerCount(): Promise<number | null> {
   try {
     const headers: HeadersInit = {
@@ -51,16 +59,14 @@ export async function getInstallerCount(): Promise<number | null> {
       cache: "no-store",
     });
 
-    if (!response.ok) {
-      return null;
-    }
+    if (!response.ok) return getStoredInstallerCount();
 
     const releases = (await response.json()) as GitHubRelease[];
     const count = countInstallerDownloads(releases);
 
     // New releases can briefly report zero while assets/download counts settle.
-    return count > 0 ? count : null;
+    return count > 0 ? count : getStoredInstallerCount();
   } catch {
-    return null;
+    return getStoredInstallerCount();
   }
 }
