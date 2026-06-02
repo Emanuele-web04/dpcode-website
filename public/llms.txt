@@ -1,0 +1,36 @@
+# Synara
+
+> Synara is a free, open-source desktop workspace for coding with the AI subscriptions and agent harnesses developers already use. It brings chats, terminals, browser previews, diffs, branches, worktrees, model handoffs, and pull request flow into one local interface.
+
+## Product
+
+- [Homepage](https://synara.cc/): Product overview, download entry point, supported providers, parallel work features, workflow, FAQ, and installer count.
+- [Download Synara](https://github.com/Emanuele-web04/dpcode/releases): Synara desktop app releases for macOS, Windows, and Linux.
+- [Source repository](https://github.com/Emanuele-web04/dpcode): Open-source app repository, issue tracker, release history, and project updates.
+
+## Supported AI Coding Harnesses
+
+- [Claude Code](https://www.anthropic.com/claude-code): Works with the Claude models and Anthropic subscription available to the user.
+- [Codex](https://openai.com/codex/): Works with Codex sessions and models available through the user's ChatGPT or OpenAI plan.
+- [Gemini](https://gemini.google/): Works with Gemini models available through the user's Google AI subscription.
+- [OpenCode](https://opencode.ai/): Supports OpenCode as an open-source terminal agent.
+- [Cursor](https://cursor.com/): Supports Cursor agent workflows from the same Synara workspace.
+- [Grok](https://x.ai/): Supports Grok-powered coding workflows.
+- Kilo Code: Supports Kilo Code agent workflows.
+- Pi: Supports Pi assistant workflows.
+
+## Core Capabilities
+
+- Use existing AI subscriptions instead of buying a separate Synara AI plan.
+- Run multiple coding agents, chats, tasks, projects, and Git worktrees in parallel.
+- Keep dev servers, test watchers, log tails, browser previews, documentation, diffs, and agent chats visible in one desktop workspace.
+- Hand off a stuck thread to another model while keeping the relevant context with the task.
+- Move from finished agent work to a reviewable pull request while preserving normal branch and Git worktree workflows.
+- Run locally as the workspace layer; the selected AI provider receives the session context needed for that provider's models and tools.
+
+## People and Updates
+
+- [Creator](https://x.com/emanueledpt): Updates from Emanuele Di Pietro.
+- [YouTube](https://youtube.com/@emanueledpt): Product demos and related updates.
+- [Personal website](https://emanueledipietro.com): Creator website.
+
