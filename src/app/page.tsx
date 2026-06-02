@@ -9,6 +9,7 @@ import DownloadButton from "@/components/DownloadButton";
 import InstallerCount from "@/components/InstallerCount";
 import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
+import FAQ from "@/components/FAQ";
 import ClosingCTA from "@/components/ClosingCTA";
 import {
   ClaudeIcon,
@@ -113,6 +114,8 @@ export default async function Home() {
       <Features />
 
       <Workflow />
+
+      <FAQ />
 
       <ClosingCTA initialInstallerCount={initialInstallerCount} />
 
