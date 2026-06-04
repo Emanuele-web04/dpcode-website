@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import InstallOptions from "@/components/InstallOptions";
 import { getReleaseDownloads } from "@/lib/releases";
+import { getStoredInstallerCount } from "@/lib/installerCount";
 
 export const metadata: Metadata = {
   title: "Download Synara — macOS, Windows & Linux",
@@ -20,25 +21,33 @@ export const metadata: Metadata = {
 export const revalidate = 1800;
 
 export default async function InstallPage() {
-  const downloads = await getReleaseDownloads();
+  // Seed with the stored snapshot so the page stays static (ISR); InstallerCount
+  // refreshes to the live total client-side once it mounts.
+  const [downloads, installerCount] = [
+    await getReleaseDownloads(),
+    getStoredInstallerCount(),
+  ];
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--page-bg)] text-[var(--text-primary)]">
       <Navbar />
 
-      <section className="pt-8 pb-16 sm:pt-12 sm:pb-24">
-        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6">
+      <section className="pt-10 pb-16 sm:pt-16 sm:pb-24">
+        <div className="mx-auto w-full max-w-4xl px-4 text-center sm:px-6">
           <h1 className="text-[1.5rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem] sm:leading-[1.08]">
             Download Synara
           </h1>
-          <p className="mt-4 max-w-xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
+          <p className="mx-auto mt-4 max-w-xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
             Get the desktop app for your machine. Free, native, and built to make
             you extraordinarily productive with the AI subscriptions you already
             pay for.
           </p>
 
-          <div className="mt-10">
-            <InstallOptions downloads={downloads} />
+          <div className="mt-12">
+            <InstallOptions
+              downloads={downloads}
+              installerCount={installerCount}
+            />
           </div>
         </div>
       </section>

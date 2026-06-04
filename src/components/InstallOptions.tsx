@@ -3,13 +3,14 @@
 //          detects the visitor's OS to highlight the recommended one, and lets
 //          Mac users switch between the Apple Silicon and Intel builds.
 // Layer: Client component
-// Depends on: src/lib/platform, src/lib/releases (ReleaseDownloads type)
+// Depends on: src/lib/platform, src/lib/releases (ReleaseDownloads type), InstallerCount
 
 "use client";
 
 import { useState, useSyncExternalStore, type ReactNode } from "react";
 import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 import { LuArrowDownToLine, LuCheck } from "react-icons/lu";
+import InstallerCount from "@/components/InstallerCount";
 import {
   detectCurrentOS,
   detectMacArch,
@@ -43,8 +44,10 @@ function getArchSnapshot(): MacArch {
 
 export default function InstallOptions({
   downloads,
+  installerCount,
 }: {
   downloads: ReleaseDownloads;
+  installerCount: number | null;
 }) {
   // "unknown"/"arm64" during SSR + first client render, then the real values.
   const os = useSyncExternalStore<OS>(subscribe, getOSSnapshot, () => "unknown");
@@ -61,8 +64,8 @@ export default function InstallOptions({
   const macHref = arch === "arm64" ? downloads.mac.arm64 : downloads.mac.x64;
 
   return (
-    <div>
-      <p className="mb-5 min-h-[18px] text-[12px] text-[var(--text-tertiary)]">
+    <div className="flex flex-col items-center text-center">
+      <p className="mb-6 min-h-[18px] text-[12px] text-[var(--text-tertiary)]">
         {os !== "unknown" ? (
           <>
             Detected{" "}
@@ -74,8 +77,9 @@ export default function InstallOptions({
         )}
       </p>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid w-full gap-4 sm:grid-cols-3">
         <PlatformCard
+          index={0}
           icon={<FaApple className="size-6" aria-hidden="true" />}
           name="macOS"
           subtitle=".dmg · Apple Silicon & Intel"
@@ -86,6 +90,7 @@ export default function InstallOptions({
         </PlatformCard>
 
         <PlatformCard
+          index={1}
           icon={<FaWindows className="size-[22px]" aria-hidden="true" />}
           name="Windows"
           subtitle=".exe installer · 64-bit"
@@ -94,6 +99,7 @@ export default function InstallOptions({
         />
 
         <PlatformCard
+          index={2}
           icon={<FaLinux className="size-6" aria-hidden="true" />}
           name="Linux"
           subtitle=".AppImage · x86_64"
@@ -102,7 +108,11 @@ export default function InstallOptions({
         />
       </div>
 
-      <p className="mt-6 text-[12px] leading-[1.6] text-[var(--text-tertiary)]">
+      <p className="mt-8 text-[12px] text-[var(--text-tertiary)]">
+        <InstallerCount initialCount={installerCount} />
+      </p>
+
+      <p className="mt-2 text-[12px] leading-[1.6] text-[var(--text-tertiary)]">
         {downloads.version ? `Latest release ${downloads.version}. ` : ""}
         Looking for an older version or the checksums?{" "}
         <a
@@ -120,6 +130,7 @@ export default function InstallOptions({
 }
 
 function PlatformCard({
+  index,
   icon,
   name,
   subtitle,
@@ -127,6 +138,7 @@ function PlatformCard({
   recommended,
   children,
 }: {
+  index: number;
   icon: ReactNode;
   name: string;
   subtitle: string;
@@ -136,38 +148,50 @@ function PlatformCard({
 }) {
   return (
     <div
-      className={`relative flex flex-col rounded-2xl border bg-[var(--block-elevated)] p-5 transition-colors ${
+      style={{ animationDelay: `${index * 90}ms` }}
+      className={`animate-rise-in relative flex flex-col items-center rounded-2xl border bg-[var(--block-elevated)] px-5 pb-5 pt-7 text-center transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-0.5 ${
         recommended
           ? "border-[var(--accent-link)]/40 ring-1 ring-[var(--accent-link)]/30"
           : "border-[var(--divide)]"
       }`}
     >
       {recommended ? (
-        <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-[var(--accent-link)]/12 px-2 py-0.5 text-[10.5px] font-medium text-[var(--accent-link)]">
+        <span className="absolute -top-2.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 whitespace-nowrap rounded-full border border-[var(--accent-link)]/30 bg-[var(--page-bg)] px-2.5 py-0.5 text-[10.5px] font-medium text-[var(--accent-link)]">
           <LuCheck className="size-3" aria-hidden="true" />
           For your device
         </span>
       ) : null}
 
-      <span className="text-[var(--text-primary)]">{icon}</span>
+      <span className="flex h-7 items-center justify-center text-[var(--text-primary)]">
+        {icon}
+      </span>
 
       <h3 className="mt-3 text-[15px] font-medium tracking-[-0.02em] text-[var(--text-primary)]">
         {name}
       </h3>
       <p className="mt-1 text-[12px] text-[var(--text-tertiary)]">{subtitle}</p>
 
-      {children ? <div className="mt-4">{children}</div> : null}
-
-      <a
-        href={href}
-        className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--btn-primary-bg)] px-4 py-2 text-[13px] font-medium text-[var(--btn-primary-fg)] transition-opacity hover:opacity-90"
-      >
-        Download
-        <LuArrowDownToLine className="size-4" aria-hidden="true" />
-      </a>
+      {/* Pinned to the bottom so every card's Download button lines up. */}
+      <div className="mt-auto w-full pt-6">
+        {children ? (
+          <div className="mb-3 flex justify-center">{children}</div>
+        ) : null}
+        <a
+          href={href}
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-[var(--btn-primary-bg)] px-4 py-2.5 text-[13px] font-medium text-[var(--btn-primary-fg)] transition-opacity hover:opacity-90"
+        >
+          Download
+          <LuArrowDownToLine className="size-4" aria-hidden="true" />
+        </a>
+      </div>
     </div>
   );
 }
+
+const ARCH_OPTIONS = [
+  { value: "arm64", label: "Apple Silicon" },
+  { value: "x64", label: "Intel" },
+] as const;
 
 function ArchToggle({
   arch,
@@ -176,27 +200,38 @@ function ArchToggle({
   arch: MacArch;
   onChange: (arch: MacArch) => void;
 }) {
+  const activeIndex = arch === "arm64" ? 0 : 1;
+
   return (
     <div
-      className="inline-flex rounded-lg border border-[var(--divide)] p-0.5 text-[12px]"
+      className="relative inline-grid grid-cols-2 rounded-full border border-[var(--divide)] p-0.5 text-[12px]"
       role="group"
       aria-label="macOS chip"
     >
-      {(["arm64", "x64"] as const).map((value) => {
-        const active = arch === value;
+      {/* Dark indicator that slides to the selected segment. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0.5 left-0.5 rounded-full bg-[var(--btn-primary-bg)] transition-transform duration-300 ease-out"
+        style={{
+          width: "calc((100% - 0.25rem) / 2)",
+          transform: `translateX(${activeIndex * 100}%)`,
+        }}
+      />
+      {ARCH_OPTIONS.map((option) => {
+        const active = arch === option.value;
         return (
           <button
-            key={value}
+            key={option.value}
             type="button"
             aria-pressed={active}
-            onClick={() => onChange(value)}
-            className={`rounded-[6px] px-2.5 py-1 font-medium transition-colors ${
+            onClick={() => onChange(option.value)}
+            className={`relative z-10 rounded-full px-3 py-1 font-medium transition-colors duration-200 ${
               active
-                ? "bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)]"
+                ? "text-[var(--btn-primary-fg)]"
                 : "text-[var(--text-tertiary)] hover:text-[var(--text-primary)]"
             }`}
           >
-            {value === "arm64" ? "Apple Silicon" : "Intel"}
+            {option.label}
           </button>
         );
       })}

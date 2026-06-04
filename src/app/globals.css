@@ -88,3 +88,25 @@ body {
   background: color-mix(in oklab, var(--accent-link) 28%, transparent);
   color: inherit;
 }
+
+/* Subtle entrance for the install cards — fade + gentle rise. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise-in {
+  animation: rise-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise-in {
+    animation: none;
+  }
+}
