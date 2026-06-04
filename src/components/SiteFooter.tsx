@@ -1,7 +1,9 @@
 // FILE: SiteFooter.tsx
-// Purpose: Shared page footer (credits + attribution) used across routes.
+// Purpose: Shared page footer (credits + attribution + privacy link) used across routes.
 // Layer: Presentational component
-// Depends on: design tokens in globals.css
+// Depends on: next/link, design tokens in globals.css
+
+import Link from "next/link";
 
 export default function SiteFooter() {
   return (
@@ -18,17 +20,31 @@ export default function SiteFooter() {
             @emanueledpt
           </a>
         </span>
-        <span>
-          Based on{" "}
-          <a
-            href="https://github.com/pingdotgg/t3code"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--accent-link)] transition-colors hover:text-[var(--accent-link-hover)]"
+        <div className="flex items-center gap-4 sm:gap-6">
+          <Link
+            href="/changelog"
+            className="transition-colors hover:text-[var(--text-primary)]"
           >
-            T3 Code
-          </a>
-        </span>
+            Changelog
+          </Link>
+          <Link
+            href="/privacy"
+            className="transition-colors hover:text-[var(--text-primary)]"
+          >
+            Privacy
+          </Link>
+          <span>
+            Based on{" "}
+            <a
+              href="https://github.com/pingdotgg/t3code"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--accent-link)] transition-colors hover:text-[var(--accent-link-hover)]"
+            >
+              T3 Code
+            </a>
+          </span>
+        </div>
       </div>
     </footer>
   );

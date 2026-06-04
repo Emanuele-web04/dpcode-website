@@ -11,6 +11,7 @@ import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
 import FAQ from "@/components/FAQ";
 import ClosingCTA from "@/components/ClosingCTA";
+import PrivacySection from "@/components/PrivacySection";
 import SiteFooter from "@/components/SiteFooter";
 import {
   ClaudeIcon,
@@ -117,6 +118,8 @@ export default async function Home() {
       <Workflow />
 
       <FAQ />
+
+      <PrivacySection />
 
       <ClosingCTA initialInstallerCount={initialInstallerCount} />
 
