@@ -11,25 +11,15 @@ import { LuChevronDown } from "react-icons/lu";
 import { type ChangelogNavItem, useActiveAnchor } from "@/lib/useActiveAnchor";
 
 export default function ChangelogPicker({ items }: { items: ChangelogNavItem[] }) {
-  const { active, setActive } = useActiveAnchor(items);
-
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const anchor = event.target.value;
-    const target = document.getElementById(anchor);
-    if (!target) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    history.replaceState(null, "", `#${anchor}`);
-    setActive(anchor);
-  };
+  const { active, jumpTo } = useActiveAnchor(items);
 
   return (
     <div className="relative inline-flex md:hidden">
       <select
         aria-label="Jump to release"
         value={active ?? items[0]?.anchor ?? ""}
-        onChange={handleChange}
-        className="cursor-pointer appearance-none rounded-full border border-[var(--divide)] bg-[var(--block-elevated)] py-1 pr-5 pl-2.5 font-mono text-[10px] tracking-[0.04em] text-[var(--text-secondary)] uppercase outline-none transition-colors [color-scheme:light] hover:border-[color-mix(in_oklab,var(--text-primary)_25%,transparent)] hover:text-[var(--text-primary)] focus-visible:ring-2 focus-visible:ring-[var(--accent-link)] dark:[color-scheme:dark]"
+        onChange={(event) => jumpTo(event.target.value)}
+        className="cursor-pointer appearance-none rounded-full border border-[var(--divide)] bg-[var(--block-elevated)] py-1 pr-5 pl-2.5 font-mono text-[10px] tracking-[0.04em] text-[var(--text-secondary)] uppercase outline-none transition-colors [color-scheme:light] hover:border-[var(--border-strong)] hover:text-[var(--text-primary)] focus-visible:ring-2 focus-visible:ring-[var(--accent-link)] dark:[color-scheme:dark]"
       >
         {items.map((item) => (
           <option key={item.anchor} value={item.anchor}>

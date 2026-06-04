@@ -4,18 +4,19 @@
 // Layer: App Router page
 // Depends on: Navbar, SiteFooter, InstallOptions, getReleaseDownloads
 
-import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import InstallOptions from "@/components/InstallOptions";
 import { getReleaseDownloads } from "@/lib/releases";
 import { getStoredInstallerCount } from "@/lib/installerCount";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Download Synara — macOS, Windows & Linux",
   description:
     "Download Synara for macOS, Windows, or Linux. The best way to code with the AI subscriptions you already pay for.",
-};
+  path: "/install",
+});
 
 // Release artifacts change rarely; rebuild this route at most every 30 minutes.
 export const revalidate = 1800;

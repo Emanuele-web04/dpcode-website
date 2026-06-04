@@ -7,18 +7,19 @@
 //       app: local SQLite, direct-to-provider, no Synara cloud/account, and
 //       anonymous PostHog analytics that are OFF by default (opt-in).
 
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { LuCheck, LuX, LuArrowDownToLine } from "react-icons/lu";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy — Synara",
   description:
     "Exactly what Synara does and doesn't do with your data: local-first storage, direct-to-provider connections, no account, and anonymous analytics that are off by default.",
-};
+  path: "/privacy",
+});
 
 const LAST_UPDATED = "June 4, 2026";
 

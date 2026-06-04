@@ -13,7 +13,7 @@ import { type ChangelogNavItem, useActiveAnchor } from "@/lib/useActiveAnchor";
 export type { ChangelogNavItem };
 
 export default function ChangelogNav({ items }: { items: ChangelogNavItem[] }) {
-  const { active, setActive } = useActiveAnchor(items);
+  const { active, jumpTo } = useActiveAnchor(items);
   const navRef = useRef<HTMLElement>(null);
 
   // Keep the active row scrolled into view within the rail itself.
@@ -22,19 +22,6 @@ export default function ChangelogNav({ items }: { items: ChangelogNavItem[] }) {
     const link = navRef.current.querySelector(`a[href="#${active}"]`);
     link?.scrollIntoView({ block: "nearest" });
   }, [active]);
-
-  const handleClick = (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    anchor: string,
-  ) => {
-    const target = document.getElementById(anchor);
-    if (!target) return; // fall back to native anchor jump
-    event.preventDefault();
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    history.replaceState(null, "", `#${anchor}`);
-    setActive(anchor);
-  };
 
   return (
     <nav
@@ -52,12 +39,12 @@ export default function ChangelogNav({ items }: { items: ChangelogNavItem[] }) {
             <li key={item.anchor}>
               <a
                 href={`#${item.anchor}`}
-                onClick={(event) => handleClick(event, item.anchor)}
+                onClick={(event) => jumpTo(item.anchor, event)}
                 aria-current={isActive ? "true" : undefined}
                 className={`-ml-px flex items-baseline justify-between gap-2 border-l py-1.5 pl-3 pr-1 text-[12px] transition-colors ${
                   isActive
                     ? "border-[var(--accent-link)] text-[var(--text-primary)]"
-                    : "border-transparent text-[var(--text-tertiary)] hover:border-[color-mix(in_oklab,var(--text-primary)_30%,transparent)] hover:text-[var(--text-secondary)]"
+                    : "border-transparent text-[var(--text-tertiary)] hover:border-[var(--border-strong)] hover:text-[var(--text-secondary)]"
                 }`}
               >
                 <span className={`font-mono ${isActive ? "font-medium" : ""}`}>

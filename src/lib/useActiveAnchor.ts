@@ -1,13 +1,14 @@
 // FILE: lib/useActiveAnchor.ts
-// Purpose: Shared scroll-spy for the changelog surfaces — tracks which release
-//          section is currently in view so the right-rail (ChangelogNav) and the
-//          mobile dropdown (ChangelogPicker) stay in sync without duplicating
-//          the IntersectionObserver wiring.
+// Purpose: Shared changelog navigation behavior — scroll-spies which release
+//          section is in view AND jumps to a release on demand. Both the
+//          right-rail (ChangelogNav) and the mobile dropdown (ChangelogPicker)
+//          consume this so the IntersectionObserver wiring and the smooth,
+//          reduced-motion-aware anchor jump live in exactly one place.
 // Layer: Client hook.
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export interface ChangelogNavItem {
   readonly version: string;
@@ -16,10 +17,14 @@ export interface ChangelogNavItem {
 }
 
 /**
- * Returns the anchor of the release whose section is currently near the top of
- * the viewport, plus a setter so consumers can mark a target active immediately
- * on click. `items` must be a stable reference (it is — the server page builds
- * it once), so the observer is wired up a single time.
+ * Tracks the release whose section is near the top of the viewport (`active`)
+ * and returns `jumpTo`, which scrolls to a release, syncs the URL hash, and
+ * marks it active — honoring `prefers-reduced-motion`. Pass the click event to
+ * `jumpTo` to suppress the default anchor jump; omit it (e.g. from a `<select>`)
+ * and only the programmatic scroll runs.
+ *
+ * `items` must be a stable reference (it is — the server page builds it once),
+ * so the observer is wired up a single time.
  */
 export function useActiveAnchor(items: readonly ChangelogNavItem[]) {
   const [active, setActive] = useState<string | null>(items[0]?.anchor ?? null);
@@ -42,5 +47,21 @@ export function useActiveAnchor(items: readonly ChangelogNavItem[]) {
     return () => observer.disconnect();
   }, [items]);
 
-  return { active, setActive };
+  const jumpTo = useCallback(
+    (anchor: string, event?: { preventDefault: () => void }) => {
+      const target = document.getElementById(anchor);
+      if (!target) return; // no section — let a native anchor jump handle it
+      event?.preventDefault();
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "start",
+      });
+      history.replaceState(null, "", `#${anchor}`);
+      setActive(anchor);
+    },
+    [],
+  );
+
+  return { active, jumpTo };
 }

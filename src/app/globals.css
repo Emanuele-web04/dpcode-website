@@ -12,6 +12,7 @@
   --mock-row: color-mix(in oklab, var(--text-primary) 6%, transparent);
   --mock-row-strong: color-mix(in oklab, var(--text-primary) 10%, transparent);
   --divide: color-mix(in oklab, var(--text-primary) 12%, transparent);
+  --border-strong: color-mix(in oklab, var(--text-primary) 28%, transparent);
   --accent-link: #ea580c;
   --accent-link-hover: #c2410c;
   --glow-a: color-mix(in oklab, #0ea5e9 22%, transparent);
@@ -40,6 +41,7 @@
   --mock-row: color-mix(in oklab, var(--text-primary) 8%, transparent);
   --mock-row-strong: color-mix(in oklab, var(--text-primary) 12%, transparent);
   --divide: color-mix(in oklab, var(--text-primary) 12%, transparent);
+  --border-strong: color-mix(in oklab, var(--text-primary) 28%, transparent);
   --accent-link: #fb923c;
   --accent-link-hover: #fdba74;
   --glow-a: color-mix(in oklab, #38bdf8 18%, transparent);

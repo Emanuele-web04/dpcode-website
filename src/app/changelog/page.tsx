@@ -7,7 +7,6 @@
 // Depends on: Navbar, SiteFooter, CHANGELOG_ENTRIES
 // Note: Content mirrors the in-app "What's new" changelog (src/data/changelog.ts).
 
-import type { Metadata } from "next";
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import { LuArrowDownToLine } from "react-icons/lu";
@@ -15,17 +14,19 @@ import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import ChangelogNav from "@/components/ChangelogNav";
 import ChangelogPicker from "@/components/ChangelogPicker";
+import { pageMetadata } from "@/lib/seo";
 import { CHANGELOG_ENTRIES, type ChangelogEntry } from "@/data/changelog";
 
 // Stable URL anchor per release, e.g. "0.1.1" -> "v0-1-1". Shared by the page
 // sections and the right-rail nav so the two never drift.
 const toAnchor = (version: string) => `v${version.replace(/\./g, "-")}`;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Changelog — Synara",
   description:
     "Every Synara release: new providers, performance work, and the steady polish that makes the app faster and sturdier. Updated with each version.",
-};
+  path: "/changelog",
+});
 
 // Sort newest-first by semver so the source order can drift without affecting
 // the page. Mirrors the in-app sort in whatsNew/logic.ts.

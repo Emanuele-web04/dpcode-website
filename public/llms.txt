@@ -4,7 +4,7 @@
 
 ## Product
 
-- [Homepage](https://synara.cc/): Product overview, download entry point, supported providers, parallel work features, workflow, FAQ, and installer count.
+- [Homepage](https://trysynara.com/): Product overview, download entry point, supported providers, parallel work features, workflow, FAQ, and installer count.
 - [Download Synara](https://github.com/Emanuele-web04/dpcode/releases): Synara desktop app releases for macOS, Windows, and Linux.
 - [Source repository](https://github.com/Emanuele-web04/dpcode): Open-source app repository, issue tracker, release history, and project updates.
 
