@@ -18,7 +18,7 @@ import { pageMetadata } from "@/lib/seo";
 import { CHANGELOG_ENTRIES, type ChangelogEntry } from "@/data/changelog";
 
 // Stable URL anchor per release, e.g. "0.1.1" -> "v0-1-1". Shared by the page
-// sections and the right-rail nav so the two never drift.
+// sections and the left-rail nav so the two never drift.
 const toAnchor = (version: string) => `v${version.replace(/\./g, "-")}`;
 
 export const metadata = pageMetadata({
@@ -73,7 +73,11 @@ export default function ChangelogPage() {
       <Navbar />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 pt-10 pb-24 sm:px-6 sm:pt-16 md:max-w-5xl">
-        <div className="md:grid md:grid-cols-[minmax(0,1fr)_10rem] md:gap-10 lg:grid-cols-[minmax(0,1fr)_12rem] lg:gap-14">
+        <div className="md:grid md:grid-cols-[10rem_minmax(0,1fr)] md:gap-10 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-14">
+          <aside className="hidden md:block">
+            <ChangelogNav items={navItems} />
+          </aside>
+
           <div className="min-w-0">
             <header className="max-w-2xl">
           <p className="hidden font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)] md:block">
@@ -131,10 +135,6 @@ export default function ChangelogPage() {
           </Link>
             </div>
           </div>
-
-          <aside className="hidden md:block">
-            <ChangelogNav items={navItems} />
-          </aside>
         </div>
       </main>
 

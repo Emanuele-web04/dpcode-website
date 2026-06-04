@@ -1,5 +1,5 @@
 // FILE: ChangelogNav.tsx
-// Purpose: Sticky right-rail "on this page" menu (md+) for the changelog — lists
+// Purpose: Sticky left-rail "on this page" menu (md+) for the changelog — lists
 //          every release, scroll-spies the one in view, and anchors to it on
 //          click (smooth, reduced-motion aware). Keeps the active row visible in
 //          the rail as you scroll the page.

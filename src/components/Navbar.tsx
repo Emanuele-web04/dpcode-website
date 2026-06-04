@@ -24,43 +24,30 @@ export default async function Navbar() {
         </Link>
 
         {/*
-          Middle nav: at <360px the page can only fit logo + 2 links + Download
-          + ThemeToggle. We progressively reveal links — only X is visible by
-          default, YouTube/GitHub join in at xs+/sm+, Website at sm+.
+          Middle nav: on mobile only X + Changelog fit alongside the logo, GitHub
+          star count, Download, and ThemeToggle. Install is revealed at sm+.
         */}
         <div className="flex min-w-0 flex-1 items-center justify-center gap-3 text-[13px] text-[var(--text-tertiary)] sm:gap-6">
           <a
-            href="https://x.com/emanueledpt"
+            href="https://x.com/trySynara"
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 transition-colors hover:text-[var(--text-primary)]"
           >
             X
           </a>
-          <a
-            href="https://youtube.com/@emanueledpt"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] min-[400px]:inline"
-          >
-            YouTube
-          </a>
-          <a
-            href="https://github.com/Emanuele-web04/dpcode"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/install"
             className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] sm:inline"
           >
-            GitHub
-          </a>
-          <a
-            href="https://emanueledipietro.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] sm:inline"
+            Install
+          </Link>
+          <Link
+            href="/changelog"
+            className="shrink-0 transition-colors hover:text-[var(--text-primary)]"
           >
-            Website
-          </a>
+            Changelog
+          </Link>
         </div>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
