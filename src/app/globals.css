@@ -85,6 +85,19 @@ body {
   overflow-x: clip;
 }
 
+/*
+ * Hide the scrollbar visually while keeping the element scrollable. Used by the
+ * changelog rail so the overflow list scrolls without the OS scrollbar
+ * intruding on the layout's aesthetic.
+ */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge/IE */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* WebKit/Blink */
+}
+
 
 ::selection {
   background: color-mix(in oklab, var(--accent-link) 28%, transparent);

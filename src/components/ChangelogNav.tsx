@@ -27,7 +27,7 @@ export default function ChangelogNav({ items }: { items: ChangelogNavItem[] }) {
     <nav
       ref={navRef}
       aria-label="Releases"
-      className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pb-8"
+      className="no-scrollbar sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pb-8"
     >
       <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--text-tertiary)]">
         Releases
