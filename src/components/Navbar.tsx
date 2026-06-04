@@ -77,14 +77,12 @@ export default async function Navbar() {
               {formatStars(stars)}
             </a>
           ) : null}
-          <a
-            href="https://github.com/Emanuele-web04/dpcode/releases"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/install"
             className="rounded-full border border-[var(--divide)] px-3 py-1 text-[12.5px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)] sm:px-3.5 sm:text-[13px]"
           >
             Download
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
