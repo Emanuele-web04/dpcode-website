@@ -41,7 +41,7 @@ export default function ChangelogNav({ items }: { items: ChangelogNavItem[] }) {
                 href={`#${item.anchor}`}
                 onClick={(event) => jumpTo(item.anchor, event)}
                 aria-current={isActive ? "true" : undefined}
-                className={`-ml-px flex items-baseline justify-between gap-2 border-l py-1.5 pl-3 pr-1 text-[12px] transition-colors ${
+                className={`-ml-px flex items-baseline justify-between gap-2 border-l py-2 pl-3 pr-1 text-[12px] transition-colors ${
                   isActive
                     ? "border-[var(--accent-link)] text-[var(--text-primary)]"
                     : "border-transparent text-[var(--text-tertiary)] hover:border-[var(--border-strong)] hover:text-[var(--text-secondary)]"

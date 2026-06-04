@@ -73,7 +73,7 @@ export default function ChangelogPage() {
       <Navbar />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 pt-10 pb-24 sm:px-6 sm:pt-16 md:max-w-5xl">
-        <div className="md:grid md:grid-cols-[10rem_minmax(0,1fr)] md:gap-10 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-14">
+        <div className="md:grid md:grid-cols-[9rem_minmax(0,1fr)] md:gap-16 lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-24">
           <aside className="hidden md:block">
             <ChangelogNav items={navItems} />
           </aside>
