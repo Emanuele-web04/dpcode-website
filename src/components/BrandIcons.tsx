@@ -4,7 +4,7 @@
 // Exports: WorktreeIcon, ClaudeIcon, OpencodeIcon, CursorIcon, PiIcon, KiloCodeIcon, GrokIcon
 // Depends on: react-icons marks and inline SVGs
 
-import { SiAnthropic } from "react-icons/si";
+import { SiClaude } from "react-icons/si";
 import { LuSplit } from "react-icons/lu";
 
 type IconProps = { className?: string };
@@ -22,9 +22,9 @@ export function WorktreeIcon({ className }: IconProps) {
   );
 }
 
-/** Anthropic mark (replaces legacy Claude wordmark in UI). */
+/** Claude mark normalized through currentColor for theme support. */
 export function ClaudeIcon({ className }: IconProps) {
-  return <SiAnthropic className={className} aria-hidden="true" />;
+  return <SiClaude className={className} aria-hidden="true" />;
 }
 
 export function OpencodeIcon({ className }: IconProps) {

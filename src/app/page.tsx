@@ -10,6 +10,7 @@ import InstallerCount from "@/components/InstallerCount";
 import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
 import FAQ from "@/components/FAQ";
+import AskAISection from "@/components/AskAISection";
 import ClosingCTA from "@/components/ClosingCTA";
 import PrivacySection from "@/components/PrivacySection";
 import SiteFooter from "@/components/SiteFooter";
@@ -120,6 +121,8 @@ export default async function Home() {
       <FAQ />
 
       <PrivacySection />
+
+      <AskAISection />
 
       <ClosingCTA initialInstallerCount={initialInstallerCount} />
 
