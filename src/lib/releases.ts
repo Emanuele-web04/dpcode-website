@@ -8,6 +8,8 @@
 
 import "server-only";
 
+import storedLatestReleaseDownloads from "@/data/latest-release-downloads.json";
+
 const REPO = "Emanuele-web04/synara";
 const LATEST_RELEASE_API_URL = `https://api.github.com/repos/${REPO}/releases/latest`;
 
@@ -34,8 +36,14 @@ type GitHubRelease = {
   assets?: GitHubReleaseAsset[];
 };
 
-// When the API is unreachable/rate-limited every button still works by pointing
-// at the public releases listing.
+type StoredReleaseDownloads = ReleaseDownloads & {
+  updatedAt?: string;
+  source?: string;
+};
+
+const STORED_FALLBACK = storedLatestReleaseDownloads as StoredReleaseDownloads;
+
+// Last-resort fallback: the public release listing is better than a broken href.
 const FALLBACK: ReleaseDownloads = {
   version: null,
   releasesUrl: RELEASES_URL,
@@ -44,9 +52,30 @@ const FALLBACK: ReleaseDownloads = {
   linux: RELEASES_URL,
 };
 
+// Uses the checked-in snapshot before the generic releases page so installer
+// links remain direct even when GitHub's API blocks the production server.
+function getFallbackDownloads(): ReleaseDownloads {
+  return STORED_FALLBACK.version &&
+    STORED_FALLBACK.mac?.arm64 &&
+    STORED_FALLBACK.mac?.x64 &&
+    STORED_FALLBACK.windows &&
+    STORED_FALLBACK.linux
+    ? {
+        version: STORED_FALLBACK.version,
+        releasesUrl: STORED_FALLBACK.releasesUrl,
+        mac: STORED_FALLBACK.mac,
+        windows: STORED_FALLBACK.windows,
+        linux: STORED_FALLBACK.linux,
+      }
+    : FALLBACK;
+}
+
 export async function getReleaseDownloads(): Promise<ReleaseDownloads> {
   try {
-    const headers: HeadersInit = { Accept: "application/vnd.github+json" };
+    const headers: HeadersInit = {
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    };
     if (process.env.GITHUB_TOKEN) {
       headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
@@ -57,7 +86,7 @@ export async function getReleaseDownloads(): Promise<ReleaseDownloads> {
       next: { revalidate: 1800 },
     });
 
-    if (!response.ok) return FALLBACK;
+    if (!response.ok) return getFallbackDownloads();
 
     const release = (await response.json()) as GitHubRelease;
     const assets = release.assets ?? [];
@@ -79,6 +108,6 @@ export async function getReleaseDownloads(): Promise<ReleaseDownloads> {
       linux: urlFor(/\.AppImage$/i),
     };
   } catch {
-    return FALLBACK;
+    return getFallbackDownloads();
   }
 }
