@@ -8,7 +8,13 @@
 // Note: Content mirrors the in-app "What's new" changelog (src/data/changelog.ts).
 
 import ChangelogContent from "@/components/ChangelogContent";
-import { pageMetadata } from "@/lib/seo";
+import {
+  breadcrumbJsonLd,
+  changelogCollectionJsonLd,
+  jsonLdScript,
+  pageMetadata,
+} from "@/lib/seo";
+import { getSortedReleases } from "@/lib/changelog";
 
 export const metadata = pageMetadata({
   title: "Changelog — Synara",
@@ -18,5 +24,22 @@ export const metadata = pageMetadata({
 });
 
 export default function ChangelogPage() {
-  return <ChangelogContent />;
+  const releases = getSortedReleases();
+  const jsonLd = [
+    changelogCollectionJsonLd(releases),
+    breadcrumbJsonLd([
+      { name: "Synara", path: "/" },
+      { name: "Changelog", path: "/changelog" },
+    ]),
+  ];
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
+      />
+      <ChangelogContent />
+    </>
+  );
 }

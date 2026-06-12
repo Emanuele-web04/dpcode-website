@@ -12,7 +12,12 @@ import Link from "next/link";
 import { LuCheck, LuX, LuArrowDownToLine } from "react-icons/lu";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
-import { pageMetadata } from "@/lib/seo";
+import {
+  SITE_URL,
+  breadcrumbJsonLd,
+  jsonLdScript,
+  pageMetadata,
+} from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Privacy — Synara",
@@ -37,9 +42,30 @@ const NEVER_COLLECTED = [
   "Your name, email, or IP-based location profile",
 ];
 
+const PRIVACY_JSONLD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/privacy#webpage`,
+    name: "Synara privacy",
+    url: `${SITE_URL}/privacy`,
+    dateModified: "2026-06-04",
+    description:
+      "Synara privacy details covering local-first storage, direct-to-provider connections, no Synara account, and opt-in anonymous analytics.",
+  },
+  breadcrumbJsonLd([
+    { name: "Synara", path: "/" },
+    { name: "Privacy", path: "/privacy" },
+  ]),
+];
+
 export default function PrivacyPage() {
   return (
     <div className="flex min-h-screen flex-col bg-[var(--page-bg)] text-[var(--text-primary)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(PRIVACY_JSONLD) }}
+      />
       <Navbar />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 pt-10 pb-20 sm:px-6 sm:pt-14">

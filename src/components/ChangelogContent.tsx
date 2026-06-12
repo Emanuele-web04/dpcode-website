@@ -1,10 +1,7 @@
 // FILE: ChangelogContent.tsx
-// Purpose: The full changelog page body — editorial, single-column layout
-//          (muted date, large headline with a light-gray version, airy bullet
-//          lists, inline `code` chips). Shared by the static /changelog page and
-//          the per-version /changelog/v0.1.1 deep-link route so both render
-//          identically. The per-version route passes `focusVersion` to scroll
-//          the shared link's release into view.
+// Purpose: Changelog page body — editorial layout for the full archive and
+//          per-release pages. Keeps release rendering shared while letting
+//          /changelog/v0.1.1 expose only that release for cleaner indexing.
 // Layer: Server component. Content mirrors the in-app "What's new" dialog
 //        (src/data/changelog.ts).
 
@@ -15,9 +12,9 @@ import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import ChangelogNav from "@/components/ChangelogNav";
 import ChangelogPicker from "@/components/ChangelogPicker";
-import ScrollToRelease from "@/components/ScrollToRelease";
 import { type ChangelogEntry } from "@/data/changelog";
-import { getNavItems, getSortedReleases, toAnchor, toVersionSlug } from "@/lib/changelog";
+import { GITHUB_RELEASES_URL } from "@/lib/seo";
+import { getSortedReleases, toAnchor, toVersionSlug } from "@/lib/changelog";
 
 // Render `backtick` spans as inline code chips; everything else is plain text.
 // The changelog data only uses backticks (no links/bold), so this stays tiny.
@@ -38,13 +35,21 @@ function renderInline(text: string): ReactNode {
 }
 
 export default function ChangelogContent({
-  focusVersion,
+  releases = getSortedReleases(),
+  title = "What's new in Synara.",
+  description = "New providers, performance work, and the steady polish that makes the app faster and sturdier. Every release is logged here — the same notes you see in the app's \"What's new\" dialog.",
 }: {
-  focusVersion?: string;
+  releases?: ChangelogEntry[];
+  title?: string;
+  description?: string;
 } = {}) {
-  const releases = getSortedReleases();
-  const latest = releases[0];
-  const navItems = getNavItems();
+  const highlightedRelease = releases[0];
+  const releaseLabel = releases.length === 1 ? "Release" : "Latest release";
+  const navItems = releases.map((entry) => ({
+    version: entry.version,
+    date: entry.date,
+    anchor: toAnchor(entry.version),
+  }));
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--page-bg)] text-[var(--text-primary)]">
@@ -63,24 +68,24 @@ export default function ChangelogContent({
               </p>
               <ChangelogPicker items={navItems} />
               <h1 className="mt-3 text-[1.5rem] font-medium leading-[1.12] tracking-[-0.035em] sm:text-[2rem]">
-                What&apos;s new in Synara.
+                {title}
               </h1>
               <p className="mt-5 text-[14px] leading-[1.7] text-[var(--text-secondary)] sm:text-[15px]">
-                New providers, performance work, and the steady polish that makes the
-                app faster and sturdier. Every release is logged here — the same notes
-                you see in the app&apos;s &quot;What&apos;s new&quot; dialog.
+                {description}
               </p>
-              {latest ? (
+              {highlightedRelease ? (
                 <p className="mt-7 flex items-center gap-2.5 text-[12.5px] text-[var(--text-secondary)]">
                   <span className="relative flex size-2">
                     <span className="absolute inline-flex size-full animate-ping rounded-full bg-[var(--accent-link)] opacity-60 motion-reduce:hidden" />
                     <span className="relative inline-flex size-2 rounded-full bg-[var(--accent-link)]" />
                   </span>
-                  Latest release{" "}
+                  {releaseLabel}{" "}
                   <span className="font-medium text-[var(--text-primary)]">
-                    {latest.version}
+                    {highlightedRelease.version}
                   </span>
-                  <span className="text-[var(--text-tertiary)]">· {latest.date}</span>
+                  <span className="text-[var(--text-tertiary)]">
+                    · {highlightedRelease.date}
+                  </span>
                 </p>
               ) : null}
             </header>
@@ -95,7 +100,7 @@ export default function ChangelogContent({
               <p className="text-[12px] text-[var(--text-tertiary)]">
                 Updated with every release.{" "}
                 <a
-                  href="https://github.com/Emanuele-web04/dpcode/releases"
+                  href={GITHUB_RELEASES_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[var(--accent-link)] transition-colors hover:text-[var(--accent-link-hover)]"
@@ -117,8 +122,6 @@ export default function ChangelogContent({
       </main>
 
       <SiteFooter />
-
-      {focusVersion ? <ScrollToRelease anchor={toAnchor(focusVersion)} /> : null}
     </div>
   );
 }

@@ -1,15 +1,19 @@
 // FILE: changelog/[version]/page.tsx
-// Purpose: Shareable per-release deep link — /changelog/v0.1.1. Renders the full
-//          changelog (so the rail/picker keep working) and scrolls the targeted
-//          release into view, while carrying its own canonical URL + metadata so
-//          a shared link previews and indexes as that specific version.
+// Purpose: Shareable per-release deep link — /changelog/v0.1.1. Renders only
+//          the targeted release so canonical URL, metadata, and visible content
+//          all describe the same page.
 // Layer: App Router dynamic page (statically generated per release).
 // Note: The [version] segment is the slug "v0.1.1" (see toVersionSlug); we strip
 //       the leading "v" to look the release up in CHANGELOG_ENTRIES.
 
 import { notFound } from "next/navigation";
 import ChangelogContent from "@/components/ChangelogContent";
-import { pageMetadata } from "@/lib/seo";
+import {
+  breadcrumbJsonLd,
+  jsonLdScript,
+  pageMetadata,
+  releaseJsonLd,
+} from "@/lib/seo";
 import {
   findRelease,
   fromVersionSlug,
@@ -53,5 +57,31 @@ export default async function ChangelogVersionPage({
   const entry = findRelease(fromVersionSlug(slug));
   if (!entry) notFound();
 
-  return <ChangelogContent focusVersion={entry.version} />;
+  const jsonLd = [
+    releaseJsonLd(entry),
+    breadcrumbJsonLd([
+      { name: "Synara", path: "/" },
+      { name: "Changelog", path: "/changelog" },
+      {
+        name: `Synara ${entry.version}`,
+        path: `/changelog/${toVersionSlug(entry.version)}`,
+      },
+    ]),
+  ];
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
+      />
+      <ChangelogContent
+        releases={[entry]}
+        title={`Synara ${entry.version} release notes.`}
+        description={`What changed in Synara ${entry.version} (${entry.date}), including ${entry.features
+          .map((feature) => feature.title)
+          .join(", ")}.`}
+      />
+    </>
+  );
 }

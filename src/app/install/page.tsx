@@ -9,7 +9,20 @@ import SiteFooter from "@/components/SiteFooter";
 import InstallOptions from "@/components/InstallOptions";
 import { getReleaseDownloads } from "@/lib/releases";
 import { getStoredInstallerCount } from "@/lib/installerCount";
-import { pageMetadata } from "@/lib/seo";
+import {
+  INSTALL_JSONLD,
+  breadcrumbJsonLd,
+  jsonLdScript,
+  pageMetadata,
+} from "@/lib/seo";
+
+const INSTALL_PAGE_JSONLD = [
+  INSTALL_JSONLD,
+  breadcrumbJsonLd([
+    { name: "Synara", path: "/" },
+    { name: "Download", path: "/install" },
+  ]),
+];
 
 export const metadata = pageMetadata({
   title: "Download Synara — macOS, Windows & Linux",
@@ -31,6 +44,10 @@ export default async function InstallPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--page-bg)] text-[var(--text-primary)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(INSTALL_PAGE_JSONLD) }}
+      />
       <Navbar />
 
       <section className="pt-10 pb-16 sm:pt-16 sm:pb-24">

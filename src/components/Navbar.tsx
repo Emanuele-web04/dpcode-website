@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { formatStars, getStars } from "@/lib/githubStars";
+import { GITHUB_REPO_URL } from "@/lib/seo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default async function Navbar() {
@@ -54,7 +55,7 @@ export default async function Navbar() {
           <ThemeToggle />
           {stars !== null ? (
             <a
-              href="https://github.com/Emanuele-web04/dpcode"
+              href={GITHUB_REPO_URL}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`GitHub stars: ${formatStars(stars)}`}

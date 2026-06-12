@@ -23,6 +23,17 @@ import {
   PiIcon,
 } from "@/components/BrandIcons";
 import { getInstallerCount } from "@/lib/installerCount";
+import {
+  FAQ_JSONLD,
+  GITHUB_REPO_URL,
+  breadcrumbJsonLd,
+  jsonLdScript,
+} from "@/lib/seo";
+
+const HOME_JSONLD = [
+  FAQ_JSONLD,
+  breadcrumbJsonLd([{ name: "Synara", path: "/" }]),
+];
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +42,10 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--page-bg)] text-[var(--text-primary)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(HOME_JSONLD) }}
+      />
       <div className="relative">
         <Navbar />
 
@@ -81,7 +96,7 @@ export default async function Home() {
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <DownloadButton />
               <a
-                href="https://github.com/Emanuele-web04/dpcode"
+                href={GITHUB_REPO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-[var(--divide)] px-5 py-2.5 text-[13px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)]"

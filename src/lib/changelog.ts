@@ -1,13 +1,11 @@
 // FILE: lib/changelog.ts
 // Purpose: Shared, server-importable helpers for the changelog — sorting by
 //          semver, building the stable section anchors, mapping a release to a
-//          shareable URL slug (and back), and the nav-item list. Centralizing
-//          this keeps the static /changelog page, the per-version
-//          /changelog/v0.1.1 route, and the sitemap perfectly in sync.
+//          shareable URL slug (and back). Centralizing this keeps the static
+//          /changelog page, per-version routes, and the sitemap in sync.
 // Layer: shared logic (no React).
 
 import { CHANGELOG_ENTRIES, type ChangelogEntry } from "@/data/changelog";
-import type { ChangelogNavItem } from "@/lib/useActiveAnchor";
 
 // Newest-first semver compare so the source order can drift without affecting
 // any consumer. Mirrors the in-app sort in whatsNew/logic.ts.
@@ -38,15 +36,6 @@ export function getSortedReleases(): ChangelogEntry[] {
   return [...CHANGELOG_ENTRIES].sort((l, r) =>
     compareVersions(r.version, l.version),
   );
-}
-
-/** Nav items (version, date, anchor) for the rail + picker, newest-first. */
-export function getNavItems(): ChangelogNavItem[] {
-  return getSortedReleases().map((entry) => ({
-    version: entry.version,
-    date: entry.date,
-    anchor: toAnchor(entry.version),
-  }));
 }
 
 /** Find a release by its bare version string (e.g. "0.1.1"), or undefined. */
