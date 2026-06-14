@@ -63,15 +63,13 @@ export function SplitShowcase({
         <div className="relative isolate flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl p-3 sm:p-4">
           {/* Painting backdrop, same as the hero — see .shot-card-bg. */}
           <div aria-hidden className="shot-card-bg absolute inset-0 -z-10" />
-          {/* Screenshot shrinks on narrow/single-column layouts so it doesn't
-              dominate the viewport; widens back to 60% once the row splits.
+          {/* Screenshot stays at 60% so the painting backdrop reads around it.
               `prominentMedia` rows (detailed full-app shots like the split chat
-              and the browser) stay large on mobile so they remain legible. */}
+              and the browser) fill the card on mobile and ease back as the
+              viewport widens so they remain legible. */}
           <div
             className={
-              prominentMedia
-                ? "w-11/12 sm:w-3/4 lg:w-3/5"
-                : "w-2/5 sm:w-1/2 lg:w-3/5"
+              prominentMedia ? "w-full sm:w-3/4 lg:w-3/5" : "w-3/5"
             }
           >
             {children}

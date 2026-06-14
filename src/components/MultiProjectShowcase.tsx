@@ -34,7 +34,7 @@ export function MultiProjectShowcase() {
               <img
                 src="/projects-syn.png"
                 alt="Synara projects sidebar — synara, Remodex, and dpcode-website each with their own threads"
-                className="mx-auto block h-auto w-2/5 rounded-lg sm:w-1/2 sm:rounded-xl lg:w-3/5"
+                className="mx-auto block h-auto w-3/5 rounded-lg sm:rounded-xl"
               />
             </div>
           </div>
