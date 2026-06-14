@@ -11,6 +11,7 @@ import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
 import FAQ from "@/components/FAQ";
 import AskAISection from "@/components/AskAISection";
+import Testimonials from "@/components/Testimonials";
 import ClosingCTA from "@/components/ClosingCTA";
 import PrivacySection from "@/components/PrivacySection";
 import SiteFooter from "@/components/SiteFooter";
@@ -138,6 +139,8 @@ export default async function Home() {
       <PrivacySection />
 
       <AskAISection />
+
+      <Testimonials />
 
       <ClosingCTA initialInstallerCount={initialInstallerCount} />
 

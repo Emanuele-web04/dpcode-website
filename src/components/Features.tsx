@@ -1,12 +1,11 @@
 // FILE: Features.tsx
-// Purpose: Renders homepage provider, workflow, and parallel-work feature sections.
+// Purpose: Renders homepage provider and workflow feature sections.
 // Layer: Marketing UI section
 // Exports: Features default component
 // Depends on: BrandIcons, showcase mocks, and react-icons provider marks
 
 import type { ComponentType } from "react";
 import { SiOpenai, SiGooglegemini } from "react-icons/si";
-import { FiGitMerge } from "react-icons/fi";
 import {
   ClaudeIcon,
   OpencodeIcon,
@@ -14,7 +13,6 @@ import {
   GrokIcon,
   PiIcon,
   KiloCodeIcon,
-  WorktreeIcon,
 } from "@/components/BrandIcons";
 import { SplitShowcase } from "@/components/SplitShowcase";
 import { WorktreeMock } from "@/components/WorktreeMock";
@@ -100,54 +98,12 @@ const activeHarnesses: Harness[] = [
 
 const soonHarnesses: Harness[] = [];
 
-const parallelLanes: {
-  title: string;
-  active?: boolean;
-  age: string;
-  branchIcon: GenericIcon;
-  Icon: GenericIcon;
-  iconClass: string;
-}[] = [
-  {
-    title: "Command Palette Themes",
-    active: true,
-    age: "now",
-    branchIcon: FiGitMerge,
-    Icon: ClaudeIcon,
-    iconClass: "text-[#D97757]",
-  },
-  {
-    title: "Command Palette Themes",
-    age: "6m",
-    branchIcon: FiGitMerge,
-    Icon: SiOpenai,
-    iconClass: "text-[var(--text-primary)]",
-  },
-  {
-    title: "OpenCode Support",
-    age: "25m",
-    branchIcon: WorktreeIcon,
-    Icon: OpencodeIcon,
-    iconClass: "text-[var(--text-primary)]",
-  },
-  {
-    title: "Logo Component",
-    age: "36m",
-    branchIcon: WorktreeIcon,
-    Icon: SiGooglegemini,
-    iconClass: "text-[#4C8BF5]",
-  },
-];
-
 export default function Features() {
   return (
     <div>
       <section className="border-t border-[var(--divide)] py-14 sm:py-20">
         <div className={container}>
-          <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
-            Providers
-          </p>
-          <h2 className={`${heading} mt-3`}>Use what you already pay for.</h2>
+          <h2 className={heading}>Use what you already pay for.</h2>
           <p className={body}>
             Synara speaks every major harness. Plug in Claude, Codex, Gemini,
             OpenCode, Cursor, or Grok with the account you already use. No new
@@ -221,7 +177,6 @@ export default function Features() {
           </p>
 
           <SplitShowcase
-            eyebrow="Ship"
             title="One-click PRs"
             description="Ship the moment your agent lands a green diff. Synara opens, titles, and files the PR for you."
             reverse={false}
@@ -230,7 +185,6 @@ export default function Features() {
           </SplitShowcase>
 
           <SplitShowcase
-            eyebrow="Parallelism"
             title="Worktree-native"
             description="Spin up isolated branches without ever opening a terminal. Build three things in parallel without stomping on yourself."
             reverse
@@ -241,53 +195,6 @@ export default function Features() {
       </section>
 
       <MultiProjectShowcase />
-
-      <section className="border-t border-[var(--divide)] py-14 sm:py-20">
-        <div className={container}>
-          <h2 className={heading}>
-            Ten things at once.
-            <br />
-            Lose track of none.
-          </h2>
-          <p className={body}>
-            Run Claude, Codex, Gemini, OpenCode, Cursor, and Grok across
-            multiple worktrees, across multiple projects, all in one window.
-            Every thread stays exactly where you left it.
-          </p>
-
-          <ul className="mt-12 divide-y divide-[var(--divide)]">
-            {parallelLanes.map(
-              (
-                { title, active, age, branchIcon: BranchIcon, Icon, iconClass },
-                i
-              ) => (
-                <li
-                  key={`${title}-${i}`}
-                  className="flex items-center gap-3.5 py-4 first:pt-0 last:pb-0 sm:gap-4"
-                >
-                  <div className="relative flex size-8 shrink-0 items-center justify-center">
-                    <span className="flex size-6 items-center justify-center rounded-full bg-[var(--mock-row)]">
-                      <Icon className={`size-3.5 ${iconClass}`} />
-                    </span>
-                    {active ? (
-                      <span className="pointer-events-none absolute -right-0.5 -top-0.5 size-2 rounded-full border-2 border-[var(--page-bg)] bg-[var(--accent-link)]" />
-                    ) : null}
-                  </div>
-                  <span className="min-w-0 flex-1 truncate text-[15px] font-medium text-[var(--text-primary)] sm:text-[16px]">
-                    {title}
-                  </span>
-                  <div className="flex shrink-0 items-center gap-2 text-[var(--text-tertiary)]">
-                    <BranchIcon className="size-3.5" />
-                    <span className="w-10 text-right font-mono text-[12px] tabular-nums">
-                      {age}
-                    </span>
-                  </div>
-                </li>
-              )
-            )}
-          </ul>
-        </div>
-      </section>
     </div>
   );
 }

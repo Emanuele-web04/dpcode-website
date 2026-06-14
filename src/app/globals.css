@@ -125,3 +125,20 @@ body {
     animation: none;
   }
 }
+
+/*
+ * Showcase card backdrop. Mirrors the hero: the same painting sits behind each
+ * screenshot card, tinted toward --block-elevated so the surface stays cohesive
+ * with the theme (and consistent across light/dark) while the framed screenshot
+ * remains the focus.
+ */
+.shot-card-bg {
+  background-image:
+    linear-gradient(
+      color-mix(in oklab, var(--block-elevated) 40%, transparent),
+      color-mix(in oklab, var(--block-elevated) 40%, transparent)
+    ),
+    url("/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+}
