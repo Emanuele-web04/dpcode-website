@@ -127,13 +127,15 @@ body {
 }
 
 /*
- * Showcase card backdrop. Dark mode only: the hero painting sits behind each
- * screenshot card, lightly tinted toward --block-elevated so the framed
- * screenshot stays the focus. In light mode the painting washes out to nothing,
- * so we skip it entirely and keep the flat elevated surface.
+ * Showcase card backdrop. The hero painting sits behind each screenshot card.
+ * Light mode shows the painting as-is (no wash, so it stays visible). Dark mode
+ * keeps a light tint toward --block-elevated so the painting doesn't overpower
+ * the framed screenshot.
  */
 .shot-card-bg {
-  background: var(--block-elevated);
+  background-image: url("/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
 }
 .dark .shot-card-bg {
   background-image:
