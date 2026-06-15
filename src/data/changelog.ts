@@ -26,6 +26,20 @@ export interface ChangelogEntry {
 
 export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
   {
+    version: "0.2.3",
+    date: "Jun 16",
+    features: [
+      {
+        id: "pasted-text-editing",
+        title: "Pasted text survives message edits",
+        description:
+          "Editing a message now preserves pasted text blocks instead of dropping or flattening them, so larger prompts stay intact when you refine them.",
+        details:
+          "The composer edit path now keeps pasted text block structure during message editing, with focused coverage around composer pasted-text handling and the full release battery passing after the fix.",
+      },
+    ],
+  },
+  {
     version: "0.2.2",
     date: "Jun 14",
     features: [
