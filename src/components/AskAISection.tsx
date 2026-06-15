@@ -10,7 +10,7 @@ import type { MouseEvent } from "react";
 import { SiClaude, SiGooglegemini, SiOpenai } from "react-icons/si";
 
 const ASK_AI_PROMPT =
-  "Tell me about Synara, the agentic GUI (https://trysynara.com). Should I try it?";
+  "Tell me about Synara, the agentic GUI (https://www.trysynara.com). Should I try it?";
 
 const encodedPrompt = encodeURIComponent(ASK_AI_PROMPT);
 

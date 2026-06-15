@@ -10,8 +10,8 @@ import { FAQ_ITEMS } from "@/data/faqs";
 import { type ChangelogEntry } from "@/data/changelog";
 import { releaseDateIso } from "@/lib/releaseDates";
 
-/** Canonical production origin. */
-export const SITE_URL = "https://trysynara.com";
+/** Canonical production origin; keep aligned with Vercel's primary domain. */
+export const SITE_URL = "https://www.trysynara.com";
 
 export const SITE_NAME = "Synara";
 
