@@ -82,6 +82,14 @@ export const TESTIMONIALS: TestimonialSeed[] = [
     fallbackUrl: "https://x.com/alpes_aux_andes/status/2066574154741027134",
   },
   {
+    id: "2066644113508749678",
+    tier: 1,
+    fallbackHandle: "danfq_dev",
+    fallbackText:
+      "man i just CAN'T get enough of @trySynara\nit's just sooooo goooooooooooood",
+    fallbackUrl: "https://x.com/danfq_dev/status/2066644113508749678",
+  },
+  {
     id: "2062730056082850270",
     tier: 2,
     fallbackHandle: "HugoAssis_",
