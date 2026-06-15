@@ -74,19 +74,20 @@ export const TESTIMONIALS: TestimonialSeed[] = [
     fallbackUrl: "https://x.com/AdrianSandu_/status/2065178684537888877",
   },
   {
+    id: "2066574154741027134",
+    tier: 1,
+    fallbackHandle: "alpes_aux_andes",
+    fallbackText:
+      "Why nobody is talking about @trySynara ?\nThis app is so well designed I can't believe it",
+    fallbackUrl: "https://x.com/alpes_aux_andes/status/2066574154741027134",
+  },
+  {
     id: "2062730056082850270",
     tier: 2,
     fallbackHandle: "HugoAssis_",
     fallbackText:
       "I've been using @trySynara for a few hours now. I'm really impressed. I'd already tried T3 Chat, Orca, and Terax, but none of them managed to grab my attention quite like Synara did.",
     fallbackUrl: "https://x.com/HugoAssis_/status/2062730056082850270",
-  },
-  {
-    id: "2065249741105947068",
-    tier: 2,
-    fallbackHandle: "Angaisb_",
-    fallbackText: "yes, I am, and I'm loving it",
-    fallbackUrl: "https://x.com/Angaisb_/status/2065249741105947068",
   },
   {
     id: "2066256453162385479",
