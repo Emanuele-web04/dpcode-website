@@ -1,22 +1,11 @@
 // FILE: lib/changelog.ts
-// Purpose: Shared, server-importable helpers for the changelog — sorting by
-//          semver, building the stable section anchors, mapping a release to a
-//          shareable URL slug (and back). Centralizing this keeps the static
+// Purpose: Shared, server-importable helpers for the changelog — preserving
+//          curated release order, building stable section anchors, and mapping
+//          releases to shareable URL slugs. Centralizing this keeps the static
 //          /changelog page, per-version routes, and the sitemap in sync.
 // Layer: shared logic (no React).
 
 import { CHANGELOG_ENTRIES, type ChangelogEntry } from "@/data/changelog";
-
-// Newest-first semver compare so the source order can drift without affecting
-// any consumer. Mirrors the in-app sort in whatsNew/logic.ts.
-export function compareVersions(a: string, b: string): number {
-  const pa = a.split(".").map((n) => Number.parseInt(n, 10) || 0);
-  const pb = b.split(".").map((n) => Number.parseInt(n, 10) || 0);
-  for (let i = 0; i < 3; i += 1) {
-    if ((pa[i] ?? 0) !== (pb[i] ?? 0)) return (pa[i] ?? 0) - (pb[i] ?? 0);
-  }
-  return 0;
-}
 
 // Stable in-page anchor per release, e.g. "0.1.1" -> "v0-1-1". Shared by the
 // page sections and the left-rail nav so the two never drift.
@@ -31,11 +20,9 @@ export const toVersionSlug = (version: string) => `v${version}`;
 export const fromVersionSlug = (slug: string) =>
   slug.startsWith("v") ? slug.slice(1) : slug;
 
-/** All releases, sorted newest-first. */
+/** All releases in the curated newest-first order from src/data/changelog.ts. */
 export function getSortedReleases(): ChangelogEntry[] {
-  return [...CHANGELOG_ENTRIES].sort((l, r) =>
-    compareVersions(r.version, l.version),
-  );
+  return [...CHANGELOG_ENTRIES];
 }
 
 /** Find a release by its bare version string (e.g. "0.1.1"), or undefined. */
