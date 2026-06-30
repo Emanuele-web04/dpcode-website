@@ -30,6 +30,14 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
     date: "Jun 30",
     features: [
       {
+        id: "sonnet-5-support",
+        title: "Sonnet 5 is here",
+        description:
+          "Synara now surfaces Sonnet 5 variants in the model picker, so Claude workflows can jump to the newest Sonnet generation right from the app.",
+        details:
+          "The release adds Sonnet 5 model variant metadata and keeps the new choices aligned with the existing provider/model catalog, including sidebar status and model-picker presentation polish.",
+      },
+      {
         id: "cursor-launch-fallbacks",
         title: "Cursor launch fallback is much sturdier",
         description:
@@ -71,11 +79,11 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
       },
       {
         id: "model-and-sidebar-polish",
-        title: "Models, command rows, and status icons got a polish pass",
+        title: "Command rows and status icons got a polish pass",
         description:
-          "Sonnet 5 variants, sidebar status icons, branded command rows, chat bubble padding, and tool labels were tightened for a more readable daily workspace.",
+          "Sidebar status icons, branded command rows, chat bubble padding, and tool labels were tightened for a more readable daily workspace.",
         details:
-          "The release adds Sonnet 5 model variant metadata, refines sidebar status presentation, brands command/tool rows more clearly, and trims chat typography spacing in dense transcript areas.",
+          "The release refines sidebar status presentation, brands command/tool rows more clearly, and trims chat typography spacing in dense transcript areas.",
       },
     ],
   },
