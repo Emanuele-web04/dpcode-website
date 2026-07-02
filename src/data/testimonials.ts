@@ -33,6 +33,14 @@ export interface TestimonialSeed {
 // Ordered strongest-first; the section renders them as a single masonry wall.
 export const TESTIMONIALS: TestimonialSeed[] = [
   {
+    id: "2071916101924262377",
+    tier: 1,
+    fallbackHandle: "prathamdby",
+    fallbackText:
+      "just tried .@trySynara for the same, and holy 10x better experience, and synara is no longer just a t3 code fork; this is such a good product...\n\njust the worktree setup could be a bit better; conductor automatically copies over my .env files and lets me set run commands...",
+    fallbackUrl: "https://x.com/prathamdby/status/2071916101924262377",
+  },
+  {
     id: "2065270654019264867",
     tier: 1,
     fallbackHandle: "LinearUncle",
