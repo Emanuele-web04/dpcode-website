@@ -37,6 +37,30 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
         details:
           "This bridge writes a validated Synara-only snapshot of renderer state, keeps existing project and thread data intact, and prepares database and checkpoint metadata for the final identity cutover. Earlier command and environment aliases are accepted by this bridge release only and will be removed next.",
       },
+      {
+        id: "claude-usage-reliability",
+        title: "Claude threads use far fewer tokens and restart less",
+        description:
+          "Long Claude conversations now track their 1M-token context window per thread, compact automatically, and switch models without restarting the session — ending runaway usage.",
+        details:
+          "Each thread tracks its own context window and warns as usage approaches the limit. After a safeguard reroute, the fallback model stays pinned until you explicitly pick another model, and model or context-window changes apply in-session instead of tearing the session down.",
+      },
+      {
+        id: "desktop-update-verification",
+        title: "Desktop updates now verify their own installs",
+        description:
+          "Synara checks that an update actually installed after restart, detects failed installs, and recovers instead of silently staying on the old version.",
+        details:
+          "A durable install marker survives restarts and tracks handoff state, an install watchdog recovers from hung installs, and on macOS dedicated diagnostics capture updater state to make failures actionable.",
+      },
+      {
+        id: "studio-and-migration-fixes",
+        title: "Studio shortcut and migration fixes",
+        description:
+          "The new-chat keyboard shortcut now routes correctly inside Studio, composer drafts survive the storage migration, and incomplete legacy home imports repair themselves.",
+        details:
+          "Renderer storage migration is guaranteed to run before app hydration, the legacy environment identity is restored from the bridge marker, and checkpoint metadata is canonicalized while keeping existing persisted refs readable.",
+      },
     ],
   },
   {
