@@ -26,7 +26,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
   {
-    version: "0.5.1",
+    version: "0.5.2",
     date: "Jul 13",
     features: [
       {
@@ -36,6 +36,14 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
           "Droid is now available alongside Synara's other agents, with runtime model discovery, session import, token multipliers, and resilient resume and recovery.",
         details:
           "Synara now connects to Factory Droid through ACP, discovers models and their switching capabilities at runtime, imports existing Droid sessions, carries context across forks and restarts, and keeps bootstrap, configuration, and turn teardown state coherent. The release also adds the Factory logo and richer Droid token reporting.",
+      },
+      {
+        id: "large-history-startup",
+        title: "Large conversation histories start reliably",
+        description:
+          "Synara now upgrades large local histories without leaving the project list stuck on its loading screen.",
+        details:
+          "The activity-sequence backfill now builds one indexed lookup instead of repeatedly scanning the entire event history. A database with more than 180,000 activities completes the recovery in seconds while preserving every project, thread, message, and activity.",
       },
       {
         id: "keyboard-model-cycling",
