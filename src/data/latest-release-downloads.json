@@ -1,12 +1,12 @@
 {
-  "version": "v0.5.0",
-  "releasesUrl": "https://github.com/Emanuele-web04/synara/releases/tag/v0.5.0",
+  "version": "v0.5.2",
+  "releasesUrl": "https://github.com/Emanuele-web04/synara/releases/tag/v0.5.2",
   "mac": {
-    "arm64": "https://github.com/Emanuele-web04/synara/releases/download/v0.5.0/Synara-0.5.0-arm64.dmg",
-    "x64": "https://github.com/Emanuele-web04/synara/releases/download/v0.5.0/Synara-0.5.0-x64.dmg"
+    "arm64": "https://github.com/Emanuele-web04/synara/releases/download/v0.5.2/Synara-0.5.2-arm64.dmg",
+    "x64": "https://github.com/Emanuele-web04/synara/releases/download/v0.5.2/Synara-0.5.2-x64.dmg"
   },
-  "windows": "https://github.com/Emanuele-web04/synara/releases/download/v0.5.0/Synara-0.5.0-x64.exe",
-  "linux": "https://github.com/Emanuele-web04/synara/releases/download/v0.5.0/Synara-0.5.0-x86_64.AppImage",
-  "updatedAt": "2026-07-12T07:02:00.699Z",
+  "windows": "https://github.com/Emanuele-web04/synara/releases/download/v0.5.2/Synara-0.5.2-x64.exe",
+  "linux": "https://github.com/Emanuele-web04/synara/releases/download/v0.5.2/Synara-0.5.2-x86_64.AppImage",
+  "updatedAt": "2026-07-13T07:23:57.806Z",
   "source": "https://api.github.com/repos/Emanuele-web04/synara/releases/latest"
 }
