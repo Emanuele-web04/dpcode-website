@@ -7,7 +7,7 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_IMAGES } from "@/lib/seo";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${SITE_NAME} - AI coding workspace`,
+    name: `${SITE_NAME} — AI coding workspace`,
     short_name: SITE_NAME,
     description: SITE_DESCRIPTION,
     start_url: "/",
@@ -15,7 +15,7 @@ export default function manifest(): MetadataRoute.Manifest {
     display: "standalone",
     background_color: "#ffffff",
     theme_color: "#111111",
-    categories: ["developer", "productivity", "utilities"],
+    categories: ["developer", "productivity", "utilities", "ai"],
     icons: [
       {
         src: SITE_IMAGES.icon,

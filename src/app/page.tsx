@@ -3,7 +3,7 @@
 // Layer: App Router page
 // Depends on: Navbar, DownloadButton, InstallerCount, getInstallerCount
 
-import { SiGithub, SiOpenai, SiGooglegemini } from "react-icons/si";
+import { SiGithub, SiOpenai } from "react-icons/si";
 import Navbar from "@/components/Navbar";
 import DownloadButton from "@/components/DownloadButton";
 import InstallerCount from "@/components/InstallerCount";
@@ -22,6 +22,7 @@ import {
   GrokIcon,
   KiloCodeIcon,
   PiIcon,
+  DroidIcon,
 } from "@/components/BrandIcons";
 import { getInstallerCount } from "@/lib/installerCount";
 import {
@@ -59,15 +60,12 @@ export default async function Home() {
         */}
         <section className="pt-6 pb-12 sm:pt-10 sm:pb-20">
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-            <div className="mb-8 flex items-center gap-2 sm:mb-10">
+            <div className="mb-8 flex flex-wrap items-center gap-2 sm:mb-10">
               <div className="inline-flex size-[38px] -rotate-[6deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
                 <ClaudeIcon className="size-[18px] text-[#D97757]" />
               </div>
               <div className="inline-flex size-[38px] rotate-[4deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
                 <SiOpenai className="size-[18px] text-[var(--text-primary)]" />
-              </div>
-              <div className="inline-flex size-[38px] -rotate-[3deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
-                <SiGooglegemini className="size-[18px] text-[#4C8BF5]" />
               </div>
               <div className="inline-flex size-[38px] rotate-[5deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
                 <OpencodeIcon className="size-[18px] text-[var(--text-primary)]" />
@@ -83,6 +81,9 @@ export default async function Home() {
               </div>
               <div className="inline-flex size-[38px] -rotate-[5deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
                 <PiIcon className="size-[18px] text-[var(--text-primary)]" />
+              </div>
+              <div className="inline-flex size-[38px] rotate-[5deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <DroidIcon className="size-[18px] text-[var(--text-primary)]" />
               </div>
             </div>
 

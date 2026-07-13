@@ -7,7 +7,7 @@
 "use client";
 
 import type { MouseEvent } from "react";
-import { SiClaude, SiGooglegemini, SiOpenai } from "react-icons/si";
+import { SiClaude, SiOpenai } from "react-icons/si";
 
 const ASK_AI_PROMPT =
   "Tell me about Synara, the agentic GUI (https://www.trysynara.com). Should I try it?";
@@ -28,13 +28,6 @@ const aiLinks = [
     webHref: `https://claude.ai/new?q=${encodedPrompt}`,
     icon: SiClaude,
     iconClass: "text-[#D97757]",
-  },
-  {
-    label: "Ask Gemini",
-    appHref: `https://gemini.google.com/app?prompt=${encodedPrompt}`,
-    webHref: `https://gemini.google.com/app?prompt=${encodedPrompt}`,
-    icon: SiGooglegemini,
-    iconClass: "text-[#4C8BF5]",
   },
 ];
 

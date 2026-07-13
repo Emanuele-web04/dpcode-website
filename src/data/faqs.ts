@@ -11,7 +11,7 @@ export const FAQ_ITEMS = [
   {
     question: "Do I need a new AI subscription?",
     answer:
-      "No. Synara is built around the accounts and subscriptions you already use. It supports major agent harnesses such as Claude Code, Codex, Gemini, OpenCode, Cursor, Grok, Kilo Code, and Pi, with each provider keeping its own models and capabilities.",
+      "No. Synara is built around the accounts and subscriptions you already use. It supports major agent harnesses such as Claude Code, Codex, OpenCode, Cursor, Grok, Kilo Code, Pi, and Droid, with each provider keeping its own models and capabilities.",
   },
   {
     question: "What do I need installed before using it?",

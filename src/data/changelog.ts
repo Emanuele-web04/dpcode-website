@@ -749,9 +749,9 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
         id: "provider-runtime-reliability",
         title: "Providers recover from more edge cases",
         description:
-          "Codex, Gemini, Grok, Cursor, OpenCode, and provider health paths are sturdier around runtime events, discovery, process cleanup, and idle sessions.",
+          "Codex, Grok, Cursor, OpenCode, and provider health paths are sturdier around runtime events, discovery, process cleanup, and idle sessions.",
         details:
-          "Provider runtime ingestion now handles more canonical event shapes, Gemini ACP probing is more defensive, provider service behavior has broader coverage, idle runtime cleanup was tightened, process runner handling is safer, and Codex review/compaction progress is easier to reconcile.",
+          "Provider runtime ingestion now handles more canonical event shapes, provider service behavior has broader coverage, idle runtime cleanup was tightened, process runner handling is safer, and Codex review/compaction progress is easier to reconcile.",
       },
       {
         id: "automation-approval-safety",
@@ -1079,7 +1079,7 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
         description:
           "Project chats now keep their generated files in clearer chat-specific workspace folders, making it easier to understand what belongs to each conversation.",
         details:
-          "This release adds Codex-like workspace folder creation, associated worktree metadata handling, file-only workspace search, settings search deep links, and harder Gemini probe handling so workspace state stays more predictable across chat and editor surfaces.",
+          "This release adds Codex-like workspace folder creation, associated worktree metadata handling, file-only workspace search, settings search deep links, and more defensive provider probing so workspace state stays more predictable across chat and editor surfaces.",
       },
       {
         id: "transcript-turn-stability",
@@ -1201,7 +1201,7 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
         id: "provider-usage-panels",
         title: "Provider usage is visible where you work",
         description:
-          "Usage limits and pace now show up in the chat environment, settings, and compact controls for Codex, Claude, Cursor, and Gemini.",
+          "Usage limits and pace now show up in the chat environment, settings, and compact controls for Codex, Claude, and Cursor.",
         details:
           "Synara now reads provider credentials and usage data through shared server parsers, normalizes snapshots, stores cached values in SQLite, and renders reusable usage rows, progress tracks, line lists, and settings panels in the web app.",
       },
@@ -1762,7 +1762,7 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
         id: "kilo-code-provider",
         title: "Kilo Code joins the provider lineup",
         description:
-          "Synara can now launch and monitor Kilo Code sessions alongside Codex, Claude, Cursor, OpenCode, and Gemini, with health checks, settings, mentions, handoff, and model compatibility wired through the app.",
+          "Synara can now launch and monitor Kilo Code sessions alongside Codex, Claude, Cursor, and OpenCode, with health checks, settings, mentions, handoff, and model compatibility wired through the app.",
       },
       {
         id: "provider-ordering",
@@ -2281,16 +2281,16 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
     date: "Apr 19",
     features: [
       {
-        id: "gemini-provider-support",
-        title: "♊ Gemini support is here",
+        id: "provider-support",
+        title: "Provider support is here",
         description:
-          "Use Gemini alongside Codex and Claude Agent, with provider-aware models and handoff support built into the app.",
+          "Use multiple coding agents with provider-aware models and handoff support built into the app.",
       },
       {
         id: "custom-provider-binaries",
         title: "🛠️ Custom binary paths for every provider",
         description:
-          "Point Synara at your own Codex, Claude, or Gemini binary when your setup lives outside the default install path.",
+          "Point Synara at your own Codex or Claude binary when your setup lives outside the default install path.",
       },
       {
         id: "assistant-selections-as-context",

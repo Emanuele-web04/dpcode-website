@@ -5,7 +5,7 @@
 // Depends on: BrandIcons, showcase mocks, and react-icons provider marks
 
 import type { ComponentType } from "react";
-import { SiOpenai, SiGooglegemini } from "react-icons/si";
+import { SiOpenai } from "react-icons/si";
 import {
   ClaudeIcon,
   OpencodeIcon,
@@ -13,6 +13,7 @@ import {
   GrokIcon,
   PiIcon,
   KiloCodeIcon,
+  DroidIcon,
 } from "@/components/BrandIcons";
 import { SplitShowcase } from "@/components/SplitShowcase";
 import { WorktreeMock } from "@/components/WorktreeMock";
@@ -52,13 +53,6 @@ const activeHarnesses: Harness[] = [
     status: "GPT-5.5",
   },
   {
-    name: "Gemini",
-    tagline: "3.1 Pro and 3.1 Flash, on your Google AI Pro / Ultra subscription.",
-    Icon: SiGooglegemini,
-    accent: "text-[#4C8BF5]",
-    status: "3.1 Pro",
-  },
-  {
     name: "OpenCode",
     tagline: "Open-source terminal agent on your OpenCode Zen or OpenCode Go subscription.",
     Icon: OpencodeIcon,
@@ -94,6 +88,14 @@ const activeHarnesses: Harness[] = [
     accent: "text-[var(--text-primary)]",
     status: "Available",
   },
+  {
+    name: "Droid",
+    tagline:
+      "Factory's agent-native coding agent for end-to-end development, deep codebase context, reviews, and automation.",
+    Icon: DroidIcon,
+    accent: "text-[var(--text-primary)]",
+    status: "CLI + Desktop",
+  },
 ];
 
 const soonHarnesses: Harness[] = [];
@@ -105,16 +107,16 @@ export default function Features() {
         <div className={container}>
           <h2 className={heading}>Use what you already pay for.</h2>
           <p className={body}>
-            Synara speaks every major harness. Plug in Claude, Codex, Gemini,
-            OpenCode, Cursor, or Grok with the account you already use. No new
-            bills, no walled gardens.
+            Synara speaks every major harness. Plug in Claude, Codex, OpenCode,
+            Cursor, Grok, Kilo Code, Pi, or Droid with the account you already
+            use. No new bills, no walled gardens.
           </p>
 
           <div className="mt-12 grid grid-cols-1 border-t border-[var(--divide)] sm:grid-cols-2">
             {activeHarnesses.map(({ name, tagline, Icon, accent, status }) => (
               <div
                 key={name}
-                className="border-b border-[var(--divide)] p-6 transition-colors hover:bg-[var(--mock-row)] sm:p-7 sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(odd)]:border-[var(--divide)]"
+                className="border-b border-[var(--divide)] p-6 transition-colors hover:bg-[var(--mock-row)] sm:p-7 sm:[&:nth-child(odd):not(:last-child)]:border-r sm:[&:nth-child(odd):not(:last-child)]:border-[var(--divide)]"
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex min-w-0 items-center gap-3">

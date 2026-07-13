@@ -22,24 +22,31 @@ export const GITHUB_RELEASES_URL = `${GITHUB_REPO_URL}/releases`;
 export const X_PROFILE_URL = "https://x.com/emanueledpt";
 export const YOUTUBE_URL = "https://youtube.com/@emanueledpt";
 
-/** Search/share title (~55 chars) — brand first, then high-intent keywords. */
-export const SITE_TITLE = "Synara — Code with Claude Code, Codex, Gemini & Cursor";
+/** Search/share title — brand first, then the strongest current use-case terms. */
+export const SITE_TITLE =
+  "Synara — AI Coding Workspace for Claude Code, Codex & Droid";
 
-/** Meta description (~155 chars) — front-loaded keywords + the core value prop. */
+/** Meta description — front-loaded keywords + the core value proposition. */
 export const SITE_DESCRIPTION =
-  "Synara is a free, open-source desktop app for coding with AI agents — Claude Code, Codex, Gemini, Cursor and more — using the subscriptions you already pay for.";
+  "Free, open-source AI coding workspace for Claude Code, Codex, Droid, Cursor, and more. Run agents in parallel with chats, terminals, diffs, and Git worktrees.";
 
 export const SEO_KEYWORDS = [
   "Synara",
   "AI coding",
   "AI coding agents",
+  "AI coding workspace",
   "agentic coding GUI",
   "AI coding desktop app",
   "Claude Code GUI",
+  "Claude Code desktop app",
   "Codex GUI",
-  "Gemini CLI GUI",
+  "Codex desktop app",
   "Cursor alternative",
   "OpenCode GUI",
+  "Factory Droid",
+  "Droid by Factory",
+  "Droid coding agent",
+  "Droid coding agent GUI",
   "AI pair programming",
   "parallel coding agents",
   "Git worktrees",
@@ -65,7 +72,7 @@ export const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 600,
-  alt: "Synara — the best way to code with the AI subscriptions you already pay for",
+  alt: "Synara — an open-source AI coding workspace for Claude Code, Codex, Droid, and more",
 };
 
 export const SITE_IMAGES = {
@@ -137,13 +144,14 @@ export const SITE_JSONLD = {
       sameAs: GITHUB_REPO_URL,
       operatingSystem: "macOS, Windows, Linux",
       applicationCategory: "DeveloperApplication",
-      applicationSubCategory: "AI coding workspace",
+      applicationSubCategory: "AI coding agent workspace",
       isAccessibleForFree: true,
       license: "https://opensource.org/licenses/MIT",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       author: { "@id": `${SITE_URL}/#organization` },
       featureList: [
-        "Run Claude Code, Codex, Gemini, OpenCode, Cursor, Grok, Kilo Code, and Pi from one desktop workspace",
+        "Run Claude Code, Codex, OpenCode, Cursor, Grok, Kilo Code, Pi, and Droid from one desktop workspace",
+        "Use Factory Droid for end-to-end development, codebase research, code review, and automation",
         "Use existing AI subscriptions instead of a separate Synara AI plan",
         "Manage parallel coding agents with chats, terminals, worktrees, diffs, and pull request flow",
         "Keep projects local while providers receive only the session context needed for their own models and tools",
@@ -185,7 +193,7 @@ export const INSTALL_JSONLD = {
   name: "Download Synara",
   url: absoluteUrl("/install"),
   description:
-    "Download Synara for macOS, Windows, and Linux. Synara is a free desktop app for coding with AI agents using existing provider subscriptions.",
+    "Download Synara for macOS, Windows, and Linux — a free, open-source AI coding workspace for Claude Code, Codex, Droid, Cursor, and more.",
   isPartOf: { "@id": `${SITE_URL}/#website` },
   about: { "@id": `${SITE_URL}/#app` },
   primaryImageOfPage: absoluteUrl(SITE_IMAGES.og),

@@ -10,7 +10,7 @@ export function HandoffChatMock() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/handoff-syn.png"
-        alt="Synara hand-off menu — pass a thread to Claude, Cursor, Gemini, Grok, OpenCode, or Pi mid-conversation"
+        alt="Synara hand-off menu — pass a thread to Claude, Cursor, Grok, OpenCode, or Pi mid-conversation"
         className="block h-auto w-full"
       />
     </div>

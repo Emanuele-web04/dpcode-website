@@ -1,7 +1,7 @@
 // FILE: BrandIcons.tsx
 // Purpose: Holds small brand glyph components used across marketing sections.
 // Layer: UI component helpers
-// Exports: WorktreeIcon, ClaudeIcon, OpencodeIcon, CursorIcon, PiIcon, KiloCodeIcon, GrokIcon
+// Exports: WorktreeIcon, ClaudeIcon, OpencodeIcon, CursorIcon, PiIcon, KiloCodeIcon, GrokIcon, DroidIcon
 // Depends on: react-icons marks and inline SVGs
 
 import { SiClaude } from "react-icons/si";
@@ -107,5 +107,20 @@ export function KiloCodeIcon({ className }: IconProps) {
       <rect x="12" y="6" width="3" height="3" />
       <polygon points="9 12 12 12 12 15 15 15 15 12 12 9 9 9 9 6 6 6 6 15 9 15 9 12" />
     </svg>
+  );
+}
+
+/** Droid mark supplied by Factory, rendered as a currentColor mask. */
+export function DroidIcon({ className }: IconProps) {
+  return (
+    <span
+      className={`inline-block shrink-0 ${className ?? ""}`}
+      aria-hidden="true"
+      style={{
+        backgroundColor: "currentColor",
+        mask: "url('/droid.svg') center / contain no-repeat",
+        WebkitMask: "url('/droid.svg') center / contain no-repeat",
+      }}
+    />
   );
 }
