@@ -97,9 +97,9 @@ export default function PrivacyPage() {
         <Section title="Where your prompts and code go">
           <p>
             When you chat with a model, Synara connects <strong>directly</strong>{" "}
-            to the provider you chose — Claude, Codex, OpenCode, Cursor, Grok,
-            Droid, and so on — using your own existing logins. Your prompts and
-            code go only to that provider, governed by{" "}
+            to the provider you chose — Claude, Codex, OpenCode, Cursor,
+            Antigravity, Grok, Droid, and so on — using your own existing logins.
+            Your prompts and code go only to that provider, governed by{" "}
             <em>their</em> privacy terms. Synara does not proxy, copy, or store
             that traffic on any server of ours.
           </p>

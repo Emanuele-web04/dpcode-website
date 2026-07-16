@@ -7,6 +7,7 @@
 import type { ComponentType } from "react";
 import { SiOpenai } from "react-icons/si";
 import {
+  AntigravityIcon,
   ClaudeIcon,
   OpencodeIcon,
   CursorIcon,
@@ -67,6 +68,14 @@ const activeHarnesses: Harness[] = [
     status: "Composer 2.5",
   },
   {
+    name: "Antigravity",
+    tagline:
+      "Google's lightweight terminal agent for multi-file editing, tool calling, and background subagents.",
+    Icon: AntigravityIcon,
+    accent: "",
+    status: "agy CLI",
+  },
+  {
     name: "Grok",
     tagline: "Run Grok from the same Synara workspace.",
     Icon: GrokIcon,
@@ -108,8 +117,8 @@ export default function Features() {
           <h2 className={heading}>Use what you already pay for.</h2>
           <p className={body}>
             Synara speaks every major harness. Plug in Claude, Codex, OpenCode,
-            Cursor, Grok, Kilo Code, Pi, or Droid with the account you already
-            use. No new bills, no walled gardens.
+            Cursor, Antigravity, Grok, Kilo Code, Pi, or Droid with the account
+            you already use. No new bills, no walled gardens.
           </p>
 
           <div className="mt-12 grid grid-cols-1 border-t border-[var(--divide)] sm:grid-cols-2">

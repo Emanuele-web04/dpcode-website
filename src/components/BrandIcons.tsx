@@ -1,11 +1,13 @@
 // FILE: BrandIcons.tsx
 // Purpose: Holds small brand glyph components used across marketing sections.
 // Layer: UI component helpers
-// Exports: WorktreeIcon, ClaudeIcon, OpencodeIcon, CursorIcon, PiIcon, KiloCodeIcon, GrokIcon, DroidIcon
+// Exports: WorktreeIcon and shared provider brand marks
 // Depends on: react-icons marks and inline SVGs
 
 import { SiClaude } from "react-icons/si";
 import { LuSplit } from "react-icons/lu";
+
+export { AntigravityIcon } from "@/components/AntigravityIcon";
 
 type IconProps = { className?: string };
 

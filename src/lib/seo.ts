@@ -28,7 +28,7 @@ export const SITE_TITLE =
 
 /** Meta description — front-loaded keywords + the core value proposition. */
 export const SITE_DESCRIPTION =
-  "Free, open-source AI coding workspace for Claude Code, Codex, Droid, Cursor, and more. Run agents in parallel with chats, terminals, diffs, and Git worktrees.";
+  "Free, open-source AI coding workspace for Claude Code, Codex, Antigravity, Droid, Cursor, and more. Run agents in parallel with chats, terminals, diffs, and Git worktrees.";
 
 export const SEO_KEYWORDS = [
   "Synara",
@@ -41,6 +41,8 @@ export const SEO_KEYWORDS = [
   "Claude Code desktop app",
   "Codex GUI",
   "Codex desktop app",
+  "Antigravity CLI GUI",
+  "Google Antigravity CLI",
   "Cursor alternative",
   "OpenCode GUI",
   "Factory Droid",
@@ -72,7 +74,7 @@ export const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 600,
-  alt: "Synara — an open-source AI coding workspace for Claude Code, Codex, Droid, and more",
+  alt: "Synara — an open-source AI coding workspace for Claude Code, Codex, Antigravity, Droid, and more",
 };
 
 export const SITE_IMAGES = {
@@ -150,7 +152,8 @@ export const SITE_JSONLD = {
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       author: { "@id": `${SITE_URL}/#organization` },
       featureList: [
-        "Run Claude Code, Codex, OpenCode, Cursor, Grok, Kilo Code, Pi, and Droid from one desktop workspace",
+        "Run Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi, and Droid from one desktop workspace",
+        "Use Google Antigravity CLI for terminal-first multi-step coding, tool use, and background subagents",
         "Use Factory Droid for end-to-end development, codebase research, code review, and automation",
         "Use existing AI subscriptions instead of a separate Synara AI plan",
         "Manage parallel coding agents with chats, terminals, worktrees, diffs, and pull request flow",
@@ -193,7 +196,7 @@ export const INSTALL_JSONLD = {
   name: "Download Synara",
   url: absoluteUrl("/install"),
   description:
-    "Download Synara for macOS, Windows, and Linux — a free, open-source AI coding workspace for Claude Code, Codex, Droid, Cursor, and more.",
+    "Download Synara for macOS, Windows, and Linux — a free, open-source AI coding workspace for Claude Code, Codex, Antigravity, Droid, Cursor, and more.",
   isPartOf: { "@id": `${SITE_URL}/#website` },
   about: { "@id": `${SITE_URL}/#app` },
   primaryImageOfPage: absoluteUrl(SITE_IMAGES.og),

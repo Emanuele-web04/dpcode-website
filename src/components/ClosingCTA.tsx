@@ -2,6 +2,7 @@ import { SiOpenai } from "react-icons/si";
 import DownloadButton from "@/components/DownloadButton";
 import InstallerCount from "@/components/InstallerCount";
 import {
+  AntigravityIcon,
   ClaudeIcon,
   OpencodeIcon,
   CursorIcon,
@@ -31,6 +32,9 @@ export default function ClosingCTA({
           <div className="inline-flex size-[38px] -rotate-[4deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
             <CursorIcon className="size-[18px] text-[var(--text-primary)]" />
           </div>
+          <div className="inline-flex size-[38px] -rotate-[2deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+            <AntigravityIcon className="size-[18px]" />
+          </div>
           <div className="inline-flex size-[38px] rotate-[2deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
             <GrokIcon className="size-[18px] text-[var(--text-primary)]" />
           </div>
@@ -48,8 +52,8 @@ export default function ClosingCTA({
         </h2>
         <p className="mx-auto mt-6 max-w-6xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
           Synara is free, open source, and built for your subscriptions. Plug
-          in Claude, Codex, OpenCode, Cursor, Grok, Kilo Code, Pi, or Droid,
-          and ship faster today.
+          in Claude, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi,
+          or Droid, and ship faster today.
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-3">

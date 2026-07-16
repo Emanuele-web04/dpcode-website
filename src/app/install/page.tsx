@@ -27,7 +27,7 @@ const INSTALL_PAGE_JSONLD = [
 export const metadata = pageMetadata({
   title: "Download Synara — AI Coding Workspace for macOS, Windows & Linux",
   description:
-    "Download Synara for macOS, Windows, or Linux — a free, open-source AI coding workspace for Claude Code, Codex, Droid, Cursor, and more.",
+    "Download Synara for macOS, Windows, or Linux — a free, open-source AI coding workspace for Claude Code, Codex, Antigravity, Droid, Cursor, and more.",
   path: "/install",
 });
 
