@@ -25,7 +25,7 @@ function normalizedAddress(value: string): string {
 }
 
 export async function POST(request: Request): Promise<Response> {
-  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const apiKey = process.env.RESEND_INBOUND_API_KEY?.trim();
   const webhookSecret = process.env.RESEND_WEBHOOK_SECRET?.trim();
   const forwardTo = process.env.SYNARA_FEEDBACK_FORWARD_TO_EMAIL?.trim();
   if (!apiKey || !webhookSecret || !forwardTo) {
