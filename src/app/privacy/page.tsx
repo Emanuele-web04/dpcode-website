@@ -4,8 +4,8 @@
 // Layer: App Router page (static)
 // Depends on: Navbar, SiteFooter, react-icons/lu
 // Note: Claims verified against the synara codebase. Keep them in sync with the
-//       app: local SQLite, direct-to-provider, no Synara cloud/account, and
-//       anonymous PostHog analytics that are OFF by default (opt-in).
+//       app: local SQLite, direct-to-provider, no Synara account, explicit
+//       feedback delivery, and anonymous analytics that are OFF by default.
 
 import type { ReactNode } from "react";
 import Link from "next/link";
@@ -26,7 +26,7 @@ export const metadata = pageMetadata({
   path: "/privacy",
 });
 
-const LAST_UPDATED = "June 4, 2026";
+const LAST_UPDATED = "July 15, 2026";
 
 const RECEIVED_IF_OPTED_IN = [
   "An event name (e.g. “app launched”, “provider connected”)",
@@ -49,7 +49,7 @@ const PRIVACY_JSONLD = [
     "@id": `${SITE_URL}/privacy#webpage`,
     name: "Synara privacy",
     url: `${SITE_URL}/privacy`,
-    dateModified: "2026-06-04",
+    dateModified: "2026-07-15",
     description:
       "Synara privacy details covering local-first storage, direct-to-provider connections, no Synara account, and opt-in anonymous analytics.",
   },
@@ -78,10 +78,13 @@ export default function PrivacyPage() {
         <p className="mt-5 text-[14px] leading-[1.7] text-[var(--text-secondary)] sm:text-[15px]">
           Synara is a desktop app that runs on your machine and connects straight
           to the AI providers you already pay for. There&apos;s no Synara account,
-          no Synara server holding your work, and nothing about your code or
-          prompts is sent to us. This page spells out exactly what that means —
-          in plain language, no &quot;just read the source&quot; required (though
-          you can, it&apos;s open source).
+          no Synara server holding your work, and your code or prompts are not
+          sent to us during normal use. The only exception is feedback you
+          explicitly write and submit through the Feedback Synara dialog,
+          together with the limited diagnostics described below. This page spells
+          out exactly what that means — in plain
+          language, no &quot;just read the source&quot; required (though you can,
+          it&apos;s open source).
         </p>
 
         <Section title="Where your data lives">
@@ -131,7 +134,7 @@ export default function PrivacyPage() {
             />
             <DataCard
               tone="never"
-              title="We never receive"
+              title="Analytics never receives"
               items={NEVER_COLLECTED}
             />
           </div>
@@ -146,6 +149,22 @@ export default function PrivacyPage() {
             . An in-app{" "}
             <span className="text-[var(--text-primary)]">Settings → Privacy</span>{" "}
             toggle is on the way.
+          </p>
+        </Section>
+
+        <Section title="Feedback you choose to send">
+          <p>
+            The in-app <strong>Feedback Synara</strong> dialog sends only when you
+            press Submit. It includes the text you wrote, app version, operating
+            system, provider and model, runtime modes, and session/turn status so
+            we can understand the conditions around a problem.
+          </p>
+          <p>
+            Automated diagnostics do not include chat messages, prompts, project
+            paths, repository contents, session logs, or screenshots. Reports are
+            delivered through our website and email provider to the Synara
+            maintainer for support and product improvement, rather than being added
+            to an analytics profile.
           </p>
         </Section>
 
