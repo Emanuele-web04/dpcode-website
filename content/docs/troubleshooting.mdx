@@ -1,0 +1,45 @@
+---
+title: Troubleshooting
+description: Resolve common provider, authentication, project, Git, worktree, and update problems in Synara.
+---
+
+## Provider is not detected
+
+1. Open a fresh terminal outside Synara.
+2. Run the provider CLI and confirm the executable is installed.
+3. Complete the provider's authentication flow.
+4. Confirm the CLI is discoverable through your shell `PATH`.
+5. Restart Synara and check provider settings again.
+
+If you configured a custom executable path in Synara, verify that the file still exists and is executable.
+
+## Models are missing
+
+Model lists can be discovered dynamically. Confirm that the provider account is authenticated and that the installed runtime is current. Available models can differ by account, subscription, region, provider configuration, and CLI version.
+
+## A task is stuck
+
+Check whether Synara is waiting for an approval, plan response, or user-input request. If the active provider process has stopped responding, stop the turn and retry. Preserve the current diff before restarting or handing the task to another provider.
+
+## Git or worktree operation failed
+
+Run `git status` in the task's actual working directory. Look for unresolved conflicts, a missing branch, a deleted worktree, filesystem permission errors, or a repository lock left by another process.
+
+Do not manually delete a worktree that still has an active Synara task. Commit or preserve wanted changes before cleanup.
+
+## GitHub pull requests are unavailable
+
+Confirm that:
+
+- The project has a GitHub remote.
+- GitHub CLI is installed.
+- `gh auth status` succeeds.
+- The authenticated account can access the repository.
+
+## The desktop update failed
+
+Close Synara completely and try again. If the updater still cannot apply the release, download the newest installer from [trysynara.com/install](/install) or [GitHub Releases](https://github.com/Emanuele-web04/synara/releases).
+
+## Ask for help
+
+Search existing [GitHub issues](https://github.com/Emanuele-web04/synara/issues) before opening a new one. Include your operating system, Synara version, provider, reproduction steps, and relevant logs. Remove secrets, access tokens, private prompts, and proprietary source code before attaching diagnostics.

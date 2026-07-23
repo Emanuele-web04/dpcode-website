@@ -1,0 +1,36 @@
+---
+title: Worktrees
+description: Isolate concurrent Synara tasks using Git worktrees and task-owned branches.
+---
+
+A Git worktree gives a task a separate working directory and checked-out branch while sharing the repository's Git history and object database.
+
+## When to use a worktree
+
+Use one when:
+
+- Two agents may edit the same repository concurrently.
+- You want to preserve your primary checkout exactly as it is.
+- A task needs a dedicated branch and terminal environment.
+- You want to review or discard a task without disturbing other work.
+
+## Task lifecycle
+
+When you create a worktree-backed task, Synara materializes the environment and associates the task with that path. Terminals, provider sessions, file tools, and Git operations for the task use the worktree rather than the primary checkout.
+
+The sidebar keeps the task and its environment together. Synara also retains a bounded set of recently archived managed worktrees while protecting active environments from cleanup.
+
+## Moving work between environments
+
+Use Git commits or an explicit handoff operation to move work. Avoid copying files between the primary checkout and a worktree by hand because that loses branch history and can overwrite unrelated changes.
+
+## Safe cleanup
+
+Before archiving or deleting a worktree-backed task:
+
+1. Review the diff.
+2. Commit or otherwise preserve changes you want.
+3. Push the branch if it needs to survive outside the local repository.
+4. Confirm that no terminal process still depends on the worktree.
+
+Synara performs guarded cleanup, but Git remains the source of truth for work you intend to keep.

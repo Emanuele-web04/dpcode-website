@@ -7,6 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeScript } from "@/components/ThemeScript";
 import { Analytics } from "@vercel/analytics/next";
+import { RootProvider } from "fumadocs-ui/provider/next";
 import {
   SITE_URL,
   SITE_NAME,
@@ -107,7 +108,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(SITE_JSONLD) }}
         />
-        {children}
+        <RootProvider theme={{ enabled: false }}>{children}</RootProvider>
         <Analytics />
       </body>
     </html>

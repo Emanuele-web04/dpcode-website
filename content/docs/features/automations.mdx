@@ -1,0 +1,32 @@
+---
+title: Automations & Studio
+description: Schedule recurring agent work with stop conditions, and give long-running work its own workspace.
+---
+
+Not every task starts with you typing a prompt. Automations run agent work on a schedule; Studio gives long-running, agent-led work a home separate from your day-to-day chats.
+
+## Automations
+
+The Automations workspace is first-class scheduled agent work: a sidebar section with list and detail pages, run history, triage actions, inline editing, and Current/Paused views. Each run executes through the same thread, provider, and worktree pipeline as a normal chat — so everything in [Best practices](/docs/workflows/best-practices) applies to scheduled runs too.
+
+### Create one in plain language
+
+Type an automation-style prompt into the composer — "every morning at 9, check open PRs and summarize failing checks" — and Synara turns it into a scheduled draft you review before it goes live. Intervals, daily/weekly schedules, and cron-like phrasing are understood, in English and Italian.
+
+### Heartbeat automations with stop clauses
+
+A heartbeat automation carries a natural-language stop condition ("stop when the flaky test has passed five consecutive runs"). Synara evaluates it after each successful run and auto-disables the automation with a recorded reason once it is satisfied — recurring work that knows when it is done.
+
+### Know what ran
+
+Turns dispatched by an automation are labelled "Sent via Automation" in the transcript, and each automation keeps its run history for triage.
+
+<Callout type="warn" title="Review scheduled output too">
+  An automation is still an agent producing diffs. Review its changes the same way you review interactive work before anything ships.
+</Callout>
+
+## Studio
+
+Studio is a dedicated workspace for long-running, agent-led work, separate from regular chats, with its own projects, threads, and routing. Outputs — files, generated images — are collected in the Environment panel, so the artifacts of a long piece of work stay in one place instead of scattering across a transcript.
+
+Use a regular task for focused, interactive work; use Studio when the work is bigger than one sitting and you care about its outputs more than its conversation.

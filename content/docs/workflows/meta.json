@@ -1,0 +1,5 @@
+{
+  "title": "Workflows",
+  "defaultOpen": true,
+  "pages": ["best-practices", "parallel-agents", "worktrees", "handoffs", "pull-requests"]
+}

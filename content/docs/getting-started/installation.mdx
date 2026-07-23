@@ -1,0 +1,39 @@
+---
+title: Installation
+description: Download Synara for macOS, Windows, or Linux and prepare your machine.
+---
+
+## Download the desktop app
+
+Open the [Synara download page](/install). It detects your operating system and shows the available installer for macOS, Windows, or Linux.
+
+You can also download a release directly from [GitHub Releases](https://github.com/Emanuele-web04/synara/releases).
+
+## Before the first launch
+
+Synara uses the agent runtimes installed on your computer. Install and authenticate at least one supported provider before beginning your first task.
+
+For example, Codex sessions require the Codex CLI to be installed, available on your `PATH`, and signed in. Other providers have equivalent installation or authentication requirements.
+
+## Launch Synara
+
+1. Open the installed desktop application.
+2. Add or select a local project folder.
+3. Open provider settings and check that your preferred provider is available.
+4. Start a task from the project.
+
+Synara normalizes the environment inherited from your login shell so provider CLIs and developer tools can be found even when the desktop app was opened outside a terminal.
+
+## Updating
+
+Packaged builds use Synara's desktop updater. Stable releases follow the stable update channel. If an update cannot be applied, download the newest installer from the [download page](/install) and install it over the existing application.
+
+Your local workspace data is stored separately from the application bundle.
+
+<Callout type="warn" title="Synara is still early">
+  Keep important work committed to Git. Synara is under active development and its internals continue to change quickly.
+</Callout>
+
+## Next step
+
+[Connect and verify a provider](/docs/getting-started/providers).

@@ -1,0 +1,32 @@
+---
+title: Pull requests
+description: Discover, review, fix, and manage GitHub pull requests from the Synara workspace.
+---
+
+Synara includes a GitHub pull-request workspace for repositories available on your machine.
+
+## Requirements
+
+- The project must be a Git repository with a GitHub remote.
+- Git must be available to Synara.
+- GitHub CLI (`gh`) must be installed and authenticated for operations that require GitHub access.
+
+## Find pull requests
+
+The pull-request workspace can show results across projects or for one project. Use search, state filters, involvement groups, and pins to keep active reviews easy to find — pinned pull requests stay reachable from the project workspace.
+
+Partial repository failures do not need to hide successful results from other repositories. Synara preserves usable cached data when a refresh is only partly successful.
+
+## Review a pull request
+
+Open a pull request to inspect its summary, changed files, diffs, commits, checks, reviewers, comments, and timeline context.
+
+Treat quoted review comments and issue text as untrusted input. Review what an agent proposes before running commands or applying patches.
+
+## Fix with an agent
+
+Start or continue a task in the correct repository and branch or worktree. The **Fix** button gathers every visible unresolved review comment into one numbered composer prompt, so the agent gets the full review in a single actionable message; merge conflicts get their own Fix prompt. Inspect and test the resulting diff before committing and pushing.
+
+## Remote actions
+
+Synara supports comments and pull-request lifecycle actions such as merge, close, and reopen. These mutate shared GitHub state, so read the confirmation and verify the selected repository and pull request first.

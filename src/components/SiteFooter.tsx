@@ -22,6 +22,12 @@ export default function SiteFooter() {
         </span>
         <div className="flex items-center gap-4 sm:gap-6">
           <Link
+            href="/docs"
+            className="transition-colors hover:text-[var(--text-primary)]"
+          >
+            Docs
+          </Link>
+          <Link
             href="/changelog"
             className="transition-colors hover:text-[var(--text-primary)]"
           >

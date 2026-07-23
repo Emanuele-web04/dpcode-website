@@ -1,0 +1,68 @@
+---
+title: Core concepts
+description: The mental model behind Synara — projects, tasks, environments, provider sessions, and the review loop.
+---
+
+Most confusion with Synara disappears once one idea clicks: **everything in Synara belongs to a task**. This page explains the handful of concepts the rest of the docs build on, and points out the features people tend to miss in their first session.
+
+## The workspace at a glance
+
+- **Sidebar** — your projects and their tasks, with live tasks surfaced first.
+- **Conversation** — the transcript of the active task: agent turns, tool activity, plans, approvals, subagents.
+- **Composer** — where you write objectives and pick the provider, model, and effort level.
+- **Terminal drawer** — real terminals in the task's working directory, toggled with `mod+j`.
+- **Browser preview** — a live preview beside the conversation for web work.
+- **Diff and Git views** — review changes, commit, push, and manage pull requests without leaving the app.
+
+## Projects and tasks
+
+A **project** is a local folder, ideally a Git repository. A **task** is one unit of work inside a project, and it owns everything about that work:
+
+| A task owns | Which means |
+| --- | --- |
+| A conversation | The full transcript, plans, and approvals for this objective |
+| A provider session | One agent runtime (Claude Code, Codex, …) attached to this work |
+| An environment | Either your local checkout or an isolated worktree |
+| A Git lifecycle | Its branch, diff, commits, and eventual pull request |
+
+Because ownership is per-task, two tasks never share conversation context — and two tasks in separate worktrees never share files either.
+
+## Environments: local checkout or worktree
+
+A task either works **directly in your checkout** or in a **[worktree](/docs/workflows/worktrees)** — a separate working directory with its own branch that shares the repository's history.
+
+Use the local checkout for one focused task. Use a worktree the moment a second task might touch the same repository, or when you want to review and discard an experiment without disturbing anything else.
+
+## Providers and sessions
+
+Synara drives the agent runtimes installed on your machine — see the [provider list](/docs/getting-started/providers). Each task owns one provider session at a time, but you are not locked in: a **[handoff](/docs/workflows/handoffs)** lets another provider continue the same task, environment, and context. Useful for a second opinion or a provider-specific strength.
+
+## The review loop
+
+Synara treats Git as the source of truth. The intended loop for every task:
+
+1. The agent works; you steer and approve.
+2. You read the resulting diff.
+3. You commit what you want to keep, and only that.
+4. You push and continue in the [pull-request workspace](/docs/workflows/pull-requests) if the repository is on GitHub.
+
+Nothing ships because an agent said it was done — it ships because you reviewed the diff.
+
+## Features easy to miss
+
+These are the things early users most often discover late:
+
+- **`mod+j`** toggles the terminal drawer anywhere — run your own tests while the agent works; **`mod+d`** toggles the diff panel.
+- **`/fork`** splits a thread into its own worktree in one step; **`/plan`** makes the agent propose before executing.
+- **`mod+shift+b`** opens the browser preview beside the conversation.
+- **Split views** (`mod+\`) keep two tasks visible side by side.
+- **`/subagents`** in the composer asks a capable provider to delegate independent pieces of work to parallel child agents.
+- The **pull-request workspace** reviews, comments on, and merges GitHub PRs across all your projects.
+- **AppSnap** (macOS): press both Option keys to capture any app window and attach it to the current task.
+- **`/export`** downloads a thread as a ZIP with a readable transcript; **markers and pins** keep long threads navigable.
+
+The full list of shortcuts is in the [keyboard reference](/docs/reference/keyboard-shortcuts), and [All features](/docs/features/overview) maps everything else on one page.
+
+<Callout type="info" title="Next">
+  With the model in place, read [Best practices](/docs/workflows/best-practices) — it walks through a real end-to-end workflow using all of the above.
+</Callout>

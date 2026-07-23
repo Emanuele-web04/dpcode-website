@@ -1,0 +1,80 @@
+---
+title: Quickstart
+description: Go from download to your first reviewed diff in about five minutes.
+---
+
+Synara can feel unfamiliar on first launch because it is not an editor: it is a workspace that runs the AI coding agents you already pay for. This page is the shortest useful path through it. Every step links to a longer guide if you want the detail.
+
+<Steps>
+<Step>
+
+## Install Synara and one provider
+
+Download Synara from the [install page](/install). Then make sure at least one agent CLI is installed and signed in on your machine — for example Claude Code or Codex. Synara does not sell models; it discovers and drives the [providers](/docs/getting-started/providers) you already use.
+
+Quick check: open a terminal and run the provider's CLI. If it works there, Synara can find it.
+
+</Step>
+<Step>
+
+## Add a project
+
+Open Synara and add a local project folder. A Git repository is strongly recommended — it unlocks diffs, branches, worktrees, commits, and the pull-request workflow.
+
+</Step>
+<Step>
+
+## Start a task
+
+Press `mod+n` to create a task in the active project. Pick a provider, a model, and an effort level in the composer. For your first task, work directly on the local project — [worktrees](/docs/workflows/worktrees) matter once you run more than one task at a time.
+
+</Step>
+<Step>
+
+## Give the agent one concrete objective
+
+State the outcome, the constraints, and how to verify it — not a vague theme:
+
+```text
+Add an empty state to the pull-request list.
+Reuse the existing shared panel components and run the focused browser test.
+```
+
+</Step>
+<Step>
+
+## Watch, steer, verify
+
+While the agent works, the rest of the workspace stays one keystroke away: `mod+j` opens the terminal drawer for running tests yourself, the browser preview shows UI changes live, and the agent will pause when it needs an approval or an answer.
+
+</Step>
+<Step>
+
+## Review the diff, then commit
+
+When the turn ends, read the diff before anything else. Commit only what you want to keep, push, and — if the repository is on GitHub — continue in the [pull-request workspace](/docs/workflows/pull-requests).
+
+</Step>
+</Steps>
+
+That loop — *task, objective, steer, review* — is all of Synara. Everything else is a way to run more of those loops at once, safely.
+
+## Where next
+
+<Cards>
+  <Card
+    title="Core concepts"
+    description="The mental model: projects, tasks, environments, and provider sessions."
+    href="/docs/getting-started/core-concepts"
+  />
+  <Card
+    title="Best practices"
+    description="Patterns that make Synara feel fast, with a real example workflow."
+    href="/docs/workflows/best-practices"
+  />
+  <Card
+    title="Parallel agents"
+    description="Run several independent tasks without them stepping on each other."
+    href="/docs/workflows/parallel-agents"
+  />
+</Cards>

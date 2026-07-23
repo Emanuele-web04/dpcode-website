@@ -1,0 +1,42 @@
+---
+title: Your first task
+description: Add a project, choose an AI provider, and complete a first coding task in Synara.
+---
+
+## 1. Add a project
+
+Choose a local repository or project folder. Synara keeps the project available in the sidebar and opens tasks in that project's working directory.
+
+Git is recommended because it enables branches, diffs, worktrees, commits, pushes, and pull-request workflows. You can still use a non-Git folder for simpler tasks.
+
+## 2. Create a task
+
+Create a new task from the active project. Choose whether it should use the project directly or a separate worktree when that option is available.
+
+- Use the **local project** for one focused task or when you intentionally want to work on the checked-out branch.
+- Use a **worktree** when another task may edit the repository at the same time.
+
+## 3. Choose a provider
+
+Select an enabled provider, model, and reasoning or effort level. Synara remembers provider choices while still allowing you to change models during supported sessions.
+
+## 4. Give the agent a concrete objective
+
+Describe the outcome, relevant constraints, and how to verify the result. Attach or mention files when they are important.
+
+```text
+Add an empty state to the pull-request list.
+Reuse the existing shared panel components and run the focused browser test.
+```
+
+## 5. Follow the work
+
+Keep the conversation, tool activity, terminal, browser preview, and file changes visible as needed. Respond when the provider requests approval or user input.
+
+## 6. Review before shipping
+
+Inspect the resulting diff and run the relevant checks. Commit only the changes you want to keep. If the repository is hosted on GitHub, you can continue into the [pull-request workflow](/docs/workflows/pull-requests).
+
+<Callout type="info" title="Parallel work">
+  Once the basic flow is comfortable, create isolated tasks or use supported subagent workflows to divide independent work. See [Parallel agents](/docs/workflows/parallel-agents).
+</Callout>

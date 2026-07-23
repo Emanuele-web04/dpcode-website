@@ -1,0 +1,44 @@
+---
+title: Parallel agents
+description: Run independent Synara tasks, worktrees, native subagents, and dynamic agent workflows safely.
+---
+
+Synara supports several levels of parallel work. Choose the smallest level that keeps ownership clear.
+
+## Separate top-level tasks
+
+Create separate Synara tasks when work should have its own conversation, provider session, branch, terminal state, and review lifecycle. This is the clearest option for independent deliverables.
+
+Use worktrees if both tasks may edit the same repository. Without isolation, two agents can overwrite or invalidate each other's changes.
+
+## Split chats and handoffs
+
+Split views let you keep more than one task visible. A provider handoff is different: it continues one task with another provider rather than creating parallel ownership.
+
+## Provider-native subagents
+
+Some providers can spawn their own child agents. Synara projects supported child sessions into the task UI, including agent identity, status, activity, and nested sidebar rows. The `/subagents` command can encourage a capable provider to delegate distinct work in parallel.
+
+Provider-native subagents remain children of their owning provider turn. They are not automatically independent Synara top-level tasks or worktrees.
+
+## Dynamic workflows
+
+Current Synara `main` supports richer Claude agent workflows with live phases, effort controls, background notices, pause/stop behavior, and visible child-agent activity.
+
+<Callout type="warn" title="Preview feature from main">
+  Dynamic workflow chrome and the expanded subagent experience are newer than the current stable 0.5.5 release. Their details may change before the next stable release.
+</Callout>
+
+## Synara Agent Gateway
+
+Current `main` also includes the Synara Agent Gateway: an MCP control surface that lets supported provider sessions inspect and manage Synara resources through app-owned tools. It can create or coordinate ordinary Synara tasks, read task state, steer active work, and interact with supported automation surfaces while preserving Synara's project and worktree rules.
+
+Synara injects the gateway only into providers that can truthfully use it. A provider's own `spawn_subagent` or task tool does not create a Synara task and must not be treated as equivalent to the gateway.
+
+## Recommended pattern
+
+1. Split the objective into independently verifiable pieces.
+2. Give each top-level task its own worktree when edits can overlap.
+3. Use native subagents for bounded research or implementation inside one owner task.
+4. Keep integration and final verification with one clearly identified owner.
+5. Review every diff before merging branches or opening pull requests.

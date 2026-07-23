@@ -12,10 +12,13 @@
 
 # testing
 /coverage
+/.playwright-cli
+/output
 
 # next.js
 /.next/
 /out/
+/.source/
 
 # production
 /build

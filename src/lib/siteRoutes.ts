@@ -4,8 +4,14 @@
 
 import type { MetadataRoute } from "next";
 import { getSortedReleases, toVersionSlug } from "@/lib/changelog";
-import { releaseDate, SITE_LATEST_UPDATE, PRIVACY_LAST_UPDATED } from "@/lib/releaseDates";
+import {
+  DOCS_LAST_UPDATED,
+  PRIVACY_LAST_UPDATED,
+  releaseDate,
+  SITE_LATEST_UPDATE,
+} from "@/lib/releaseDates";
 import { absoluteUrl, SITE_IMAGES } from "@/lib/seo";
+import { docsSource } from "@/lib/docs";
 
 export const SITEMAP_PATHS = ["/sitemap.xml", "/changelog/sitemap.xml"] as const;
 
@@ -65,10 +71,18 @@ const staticRoutes = [
 >;
 
 export function getStaticSitemapEntries(): MetadataRoute.Sitemap {
-  return staticRoutes.map(({ path, ...entry }) => ({
-    ...entry,
-    url: absoluteUrl(path),
-  }));
+  return [
+    ...staticRoutes.map(({ path, ...entry }) => ({
+      ...entry,
+      url: absoluteUrl(path),
+    })),
+    ...docsSource.getPages().map((page) => ({
+      url: absoluteUrl(page.url),
+      lastModified: DOCS_LAST_UPDATED,
+      changeFrequency: "weekly" as const,
+      priority: page.url === "/docs" ? 0.85 : 0.7,
+    })),
+  ];
 }
 
 export function getChangelogSitemapEntries(): MetadataRoute.Sitemap {

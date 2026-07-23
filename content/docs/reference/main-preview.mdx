@@ -1,0 +1,61 @@
+---
+title: Features on main
+description: Understand important Synara capabilities that have landed on main after the latest stable release.
+---
+
+<Callout type="warn" title="Unreleased documentation">
+  This page follows the active `main` branch of Synara. These capabilities are newer than stable 0.5.5 and can change before the next release.
+</Callout>
+
+Synara `main` currently contains a large post-0.5.5 development batch. The public documentation tracks the user-facing parts without presenting them as stable release behavior.
+
+## Agent Gateway and app control
+
+The Synara Agent Gateway adds an app-owned MCP tool surface for supported provider sessions. It gives capable agents controlled access to Synara tasks, projects, task state, steering, diagnostics, and selected automation operations.
+
+Gateway-created tasks are normal top-level Synara tasks. Provider-native subagents remain child sessions and do not silently become Synara resources.
+
+## External MCP integrations
+
+Under **Settings → Integrations**, `main` can expose a scoped Synara tool surface to outside MCP apps — Codex, Claude Code, Claude Desktop, or any other MCP client — through a guided pairing flow: copy the pairing command, paste it in a terminal, and the integration moves through Paired → Connected. Synara generates the exact `claude mcp add` / `codex mcp add` command for you.
+
+Paired apps get tools like `synara_capabilities`, `synara_list_allowed_projects`, `synara_create_task`, `synara_wait_for_task`, and `synara_read_task`. Safe defaults apply — managed worktrees and approval-required — with higher-impact scopes behind Advanced permissions. Connections are loopback-only, with revocable per-integration credentials.
+
+## Project spaces
+
+Threads can be organized into named **spaces** per project, with a space switcher tab bar and space-aware orchestration. Keyboard: `mod+alt+←` / `mod+alt+→` switch spaces, `mod+alt+1`…`9` jump directly.
+
+## Native subagents and workflows
+
+Claude subagents and dynamic workflows now receive richer first-class presentation: subagents appear as child threads with their own usage meters, and a workflow run card above the composer shows live agent rows, workflow phases, and pause/resume/stop controls. The composer includes a `/subagents` workflow for explicitly requesting parallel delegation.
+
+## Smaller preview changes
+
+- The AppSnap global capture shortcut is user-configurable in settings.
+- On macOS, sidebar search is `cmd+k` and `ctrl+k` is freed for other bindings.
+- Interrupted worktree cleanup recovers automatically; reverting a checkpoint is rejected while a turn is active.
+
+## Provider and model updates
+
+- Pi model discovery includes newly available Claude Fable 5 and Claude Opus 4.8 entries when the authenticated provider catalog returns them.
+- Namespaced Cursor Grok ACP model identifiers are supported.
+- Provider model choices are prefetched to make new-task creation faster.
+- Provider update paths preserve the configured global package prefix more reliably.
+
+## Performance and reliability
+
+The post-release work reduces first-turn latency, moves independent startup and turn I/O into parallel paths, cuts repeated streaming persistence work, and improves recovery around provider commands, approvals, sessions, attachments, and interrupted gateway operations.
+
+## Interface changes
+
+The sidebar prioritizes live tasks, cross-task labels are clearer, agent activity has stronger hierarchy, workflow cards show their phases more directly, and model/effort controls have been consolidated around the composer.
+
+## Canary workflow for contributors
+
+Contributors can build an isolated **Synara Canary** from a selected remote Git ref. Canary uses its own app identity, data directory, Electron profile, source checkout, logs, and update path, so it can run beside Stable or a development instance without sharing user data.
+
+See the repository's [`docs/canary.md`](https://github.com/Emanuele-web04/synara/blob/main/docs/canary.md) for the current setup, update, rollback, and isolation commands.
+
+## Source of truth
+
+Use the [Synara `main` branch](https://github.com/Emanuele-web04/synara) for implementation status and the [website changelog](/changelog) for stable release notes.

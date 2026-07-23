@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { createMDX } from "fumadocs-mdx/next";
 
 // The canonical production host. Must match SITE_URL in src/lib/seo.ts, which is
 // what every page's <link rel="canonical"> and metadataBase point at.
@@ -25,4 +26,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX();
+
+export default withMDX(nextConfig);

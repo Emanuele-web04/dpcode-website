@@ -25,15 +25,15 @@ export default async function Navbar() {
         </Link>
 
         {/*
-          Middle nav: on mobile only X + Changelog fit alongside the logo, GitHub
-          star count, Download, and ThemeToggle. Install is revealed at sm+.
+          Middle nav: mobile prioritizes Docs + Changelog alongside the primary
+          actions. X and Install are revealed at sm+.
         */}
         <div className="flex min-w-0 flex-1 items-center justify-center gap-3 text-[13px] text-[var(--text-tertiary)] sm:gap-6">
           <a
             href="https://x.com/trySynara"
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 transition-colors hover:text-[var(--text-primary)]"
+            className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] sm:inline"
           >
             X
           </a>
@@ -42,6 +42,12 @@ export default async function Navbar() {
             className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] sm:inline"
           >
             Install
+          </Link>
+          <Link
+            href="/docs"
+            className="shrink-0 transition-colors hover:text-[var(--text-primary)]"
+          >
+            Docs
           </Link>
           <Link
             href="/changelog"

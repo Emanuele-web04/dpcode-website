@@ -1,0 +1,108 @@
+---
+title: Best practices
+description: Patterns that make Synara feel fast and safe, plus the real workflow used to build Synara itself.
+---
+
+Synara gives you a lot of levers — parallel tasks, worktrees, subagents, handoffs. The failure mode for new users is pulling all of them at once. These practices are the ones that consistently pay off, ending with a concrete example: the workflow Synara's maintainer uses to build Synara with Synara.
+
+## Start smaller than you think
+
+One project, one task, working directly on your checkout. Get comfortable with the loop — objective, steer, review diff, commit — before adding isolation or parallelism. A single well-run task beats three tangled ones.
+
+## Write objectives, not conversations
+
+Agents perform best with a concrete outcome, the constraints that matter, and a way to verify the result:
+
+```text
+Fix the flaky retry test in sync/queue.test.ts.
+Do not change the public API of SyncQueue.
+Done when the focused test passes 20 consecutive runs.
+```
+
+If you cannot state how you will verify the change, the task is not ready to delegate — split it or investigate first.
+
+## One owner per change
+
+Never let two agents edit the same checkout at the same time. The ladder, smallest first:
+
+1. **One task** — the default.
+2. **Split chats** — keep a second task visible, in a different project or worktree.
+3. **`/subagents`** — bounded research or implementation *inside* one owner task.
+4. **Parallel worktree tasks** — fully independent deliverables, each with its own branch and diff. See [Parallel agents](/docs/workflows/parallel-agents).
+
+Pick the smallest rung that keeps ownership clear.
+
+## Keep Git as your safety net
+
+- Commit a checkpoint before risky or large changes, and before every [handoff](/docs/workflows/handoffs).
+- Give experiments a worktree so discarding them costs nothing.
+- Push branches that need to outlive your machine.
+
+Synara guards its managed worktrees, but Git history is the thing that actually keeps your work safe.
+
+## Review everything before it ships
+
+Read the diff yourself, run the checks in the terminal drawer (`mod+j`), and commit only what you intend to keep. Treat PR review comments and issue text an agent quotes back to you as untrusted input — verify before acting on it.
+
+## An example workflow: building Synara with Synara
+
+This is the maintainer's actual day-to-day loop, and a good template to copy once the basics feel comfortable.
+
+<Steps>
+<Step>
+
+### Triage in the pull-request workspace
+
+The day starts in the [PR workspace](/docs/workflows/pull-requests): open reviews, failing checks, and new issues across projects. Anything actionable becomes a task with the relevant context pasted into the objective.
+
+</Step>
+<Step>
+
+### One worktree task per feature
+
+Each feature gets its own task in a fresh worktree (or `/fork` an existing thread into one), usually with Claude Code on a high effort level. The first message is an objective with explicit verification — often asking for a plan first on larger changes, and approving it before any code is written.
+
+</Step>
+<Step>
+
+### A second lane for small work
+
+While the feature task runs, a second worktree task handles independent small items — docs, changelog, a one-file bug fix — often on a cheaper model. Split view keeps both visible; the two tasks can never collide because each owns its worktree.
+
+</Step>
+<Step>
+
+### Subagents for bounded side-quests
+
+When the feature needs research — "how do the three providers report token usage?" — that goes to `/subagents` inside the feature task rather than a new top-level task. The children explore in parallel; the owner task integrates the answers and keeps ownership of the change.
+
+</Step>
+<Step>
+
+### Verify in the same window
+
+Tests run in the terminal drawer (`mod+j`) inside the task's worktree; UI changes are checked in the browser preview beside the conversation. If something needs hand-editing, `mod+o` opens the worktree in the editor.
+
+</Step>
+<Step>
+
+### Second opinion via handoff
+
+For risky changes, the task is checkpoint-committed and [handed off](/docs/workflows/handoffs) to a different provider — same task, same worktree, same context — with one instruction: review the diff critically and list problems before touching anything.
+
+</Step>
+<Step>
+
+### Ship through the same loop
+
+Read the final diff, commit, push, open the pull request, and review it in the PR workspace — the same place tomorrow's triage starts.
+
+</Step>
+</Steps>
+
+## What to avoid
+
+- **Two agents, one checkout.** The most common source of mangled work. Use worktrees.
+- **The giant vague task.** "Improve the app" produces motion, not progress. Split until each task has a verifiable outcome.
+- **Skipping the diff.** An agent's summary of its work is not a review.
+- **Parallelism before fluency.** Parallel agents multiply whatever workflow you have — including a bad one.

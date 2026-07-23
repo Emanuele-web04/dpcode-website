@@ -1,0 +1,29 @@
+---
+title: Provider handoffs
+description: Continue a Synara task with another AI provider while preserving the task and Git context.
+---
+
+A handoff changes which provider continues a task. Use it for a second opinion, a provider-specific capability, or a fresh approach without creating a disconnected conversation.
+
+## Before handing off
+
+- Let the current provider finish or stop its active turn.
+- Review any pending approvals or questions.
+- Check the working tree so the next provider sees an understandable state.
+- Commit a checkpoint when the change is large or risky.
+
+## What is preserved
+
+The Synara task remains associated with its project, local environment or worktree, branch, transcript context, and file changes. The new provider receives a recap appropriate for continuing the task.
+
+Provider-native session identifiers and capabilities do not transfer. The receiving provider starts or resumes according to its own runtime.
+
+## Handoff versus a new task
+
+Use a **handoff** when one provider should continue the same objective and environment.
+
+Create a **new task** when both providers should work independently, when you want separate diffs, or when the second provider should not inherit the first task's workspace state.
+
+## Avoid conflicting ownership
+
+Do not keep two active providers editing the same local environment unless you intentionally coordinate them. If both should proceed independently, create separate worktree-backed tasks instead.

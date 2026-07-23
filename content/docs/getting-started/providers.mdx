@@ -1,0 +1,51 @@
+---
+title: Providers
+description: Connect the AI coding runtimes and subscriptions you already use with Synara.
+---
+
+Synara is the workspace around your providers. It does not sell a separate model subscription or replace the provider's own authentication.
+
+## Supported providers
+
+| Provider | What Synara uses |
+| --- | --- |
+| Claude Code | Your local Claude Code installation and account |
+| Codex | Your authenticated Codex CLI session |
+| OpenCode | Your local OpenCode runtime and configured models |
+| Cursor | Your local Cursor agent runtime and account |
+| Antigravity | Your installed and authenticated Antigravity CLI |
+| Grok | Your configured Grok agent access |
+| Kilo Code | Your Kilo runtime and configured credentials |
+| Pi | Pi's configured model providers and authentication |
+| Factory Droid | Your installed and authenticated Droid runtime |
+
+## Connect a provider
+
+1. Install the provider's own CLI or runtime.
+2. Complete authentication using the provider's official flow.
+3. Open Synara settings and select the provider.
+4. Confirm the provider is enabled and that Synara can discover its models.
+5. Start a new task and select a model and reasoning or effort option when available.
+
+Synara discovers provider capabilities at runtime. The models and effort options you see can therefore vary according to the installed CLI version, provider account, and active subscription.
+
+## Make providers yours
+
+- **Cycle models from the keyboard** with `alt+]` / `alt+[` — no picker needed.
+- **Favorite models** to float your picks above large catalogs, and **drag providers into your own order** in settings.
+- **Custom binaries**: point Synara at a specific provider executable instead of the default install path.
+- **Usage panels** show Codex, Claude, and Cursor limits and pace in the Environment panel, so you see rate limits coming.
+
+Details in [Customization](/docs/features/customization).
+
+## Provider sessions
+
+Each Synara task owns a provider session. Synara projects provider events into a shared conversation view while preserving provider-specific capabilities such as plans, approvals, reasoning summaries, tasks, context usage, model changes, and resumable sessions.
+
+## Switching providers
+
+You can hand a task to another provider without abandoning the surrounding Synara thread. See [Provider handoffs](/docs/workflows/handoffs) for the safe workflow and Git considerations.
+
+## If a provider is missing
+
+Check that its executable can be found from a fresh terminal and that authentication succeeds outside Synara. Then restart Synara so it can rediscover the runtime. More checks are available in [Troubleshooting](/docs/troubleshooting).
