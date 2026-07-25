@@ -39,17 +39,6 @@ export default function SiteFooter() {
           >
             Privacy
           </Link>
-          <span>
-            Based on{" "}
-            <a
-              href="https://github.com/pingdotgg/t3code"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--accent-link)] transition-colors hover:text-[var(--accent-link-hover)]"
-            >
-              T3 Code
-            </a>
-          </span>
         </div>
       </div>
     </footer>

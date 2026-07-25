@@ -144,7 +144,7 @@ export default function PrivacyPage() {
             tied to your identity. You can keep them disabled (the default) or, if
             you&apos;d like to help, turn them on by setting{" "}
             <code className="rounded bg-[var(--block-elevated)] px-1.5 py-0.5 font-mono text-[12px]">
-              T3CODE_TELEMETRY_ENABLED=true
+              SYNARA_TELEMETRY_ENABLED=true
             </code>
             . An in-app{" "}
             <span className="text-[var(--text-primary)]">Settings → Privacy</span>{" "}

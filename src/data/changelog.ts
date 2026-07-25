@@ -1873,7 +1873,7 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
         id: "synara-home-migration",
         title: "Synara is now the default home",
         description:
-          "The app now starts from `~/.synara`, carries the Synara environment variables through the desktop and server runtime, and safely imports existing `~/.dpcode` or `~/.t3` data on first launch.",
+          "The app now starts from `~/.synara`, carries the Synara environment variables through the desktop and server runtime, and safely imports existing legacy data on first launch.",
       },
       {
         id: "desktop-platform-polish",
@@ -2236,9 +2236,9 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
       },
       {
         id: "legacy-import-recovery",
-        title: "Legacy T3 imports heal themselves",
+        title: "Legacy imports heal themselves",
         description:
-          "A new migration reconciles older imported T3 Code databases whose migration history skipped Synara schema changes, preventing missing-column crashes after import.",
+          "A new migration reconciles older imported legacy databases whose migration history skipped Synara schema changes, preventing missing-column crashes after import.",
       },
       {
         id: "runtime-idle-cleanup",

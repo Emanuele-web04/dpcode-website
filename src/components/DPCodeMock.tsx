@@ -230,8 +230,8 @@ export default function DPCodeMock() {
 
                 {/* Read markers */}
                 <div className="flex flex-col gap-1 text-[11.5px] text-neutral-400 font-mono">
-                  <p>Read <span className="text-neutral-500">./Tfile_path</span> | /Users/emanueledipietro/Developer/Testing/t3code/apps/web/src/components/ui/button.tsx</p>
-                  <p>Test task_path | /Users/emanueledipietro/Developer/Testing/t3code/apps/web/src/listStates/TaskSortButton.tsx</p>
+                  <p>Read <span className="text-neutral-500">./Tfile_path</span> | /Users/emanueledipietro/Developer/synara/apps/web/src/components/ui/button.tsx</p>
+                  <p>Test task_path | /Users/emanueledipietro/Developer/synara/apps/web/src/listStates/TaskSortButton.tsx</p>
                 </div>
 
                 {/* Assistant message 1 */}
@@ -249,7 +249,7 @@ export default function DPCodeMock() {
 
                 {/* Read markers again */}
                 <div className="flex flex-col gap-1 text-[11.5px] text-neutral-400 font-mono">
-                  <p>Edit <span className="text-neutral-500">./Tbutton_ui</span> | /Users/emanueledipietro/Developer/Testing/t3code/apps/web/src/components/ui/button.tsx</p>
+                  <p>Edit <span className="text-neutral-500">./Tbutton_ui</span> | /Users/emanueledipietro/Developer/synara/apps/web/src/components/ui/button.tsx</p>
                 </div>
 
                 {/* Assistant message 2 */}
