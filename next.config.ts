@@ -22,6 +22,13 @@ const nextConfig: NextConfig = {
         destination: `https://${CANONICAL_HOST}/:path*`,
         permanent: true,
       },
+      {
+        // Search Console discovered the in-app `/export` slash command as a
+        // website URL. Send that legacy crawl target to the command docs.
+        source: "/export",
+        destination: "/docs/reference/slash-commands",
+        permanent: true,
+      },
     ];
   },
 };

@@ -24,7 +24,7 @@ export const YOUTUBE_URL = "https://youtube.com/@emanueledpt";
 
 /** Search/share title — brand first, then the strongest current use-case terms. */
 export const SITE_TITLE =
-  "Synara — AI Coding Workspace for Claude Code, Codex & Droid";
+  "Synara — AI Coding Workspace for Claude Code, Codex & Cursor";
 
 /** Meta description — front-loaded keywords + the core value proposition. */
 export const SITE_DESCRIPTION =
