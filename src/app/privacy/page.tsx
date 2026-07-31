@@ -22,7 +22,7 @@ import {
 export const metadata = pageMetadata({
   title: "Privacy — Synara",
   description:
-    "Exactly what Synara does and doesn't do with your data: local-first storage, direct-to-provider connections, no account, and anonymous analytics that are off by default.",
+    "Synara's security and privacy boundary: local-first storage, direct-to-provider connections, no account, and anonymous analytics that are off by default.",
   path: "/privacy",
 });
 
@@ -51,7 +51,7 @@ const PRIVACY_JSONLD = [
     url: `${SITE_URL}/privacy`,
     dateModified: "2026-07-15",
     description:
-      "Synara privacy details covering local-first storage, direct-to-provider connections, no Synara account, and opt-in anonymous analytics.",
+      "Synara security and privacy details covering local-first storage, direct-to-provider connections, no Synara account, and opt-in anonymous analytics.",
   },
   breadcrumbJsonLd([
     { name: "Synara", path: "/" },
@@ -73,16 +73,16 @@ export default function PrivacyPage() {
           Privacy
         </p>
         <h1 className="mt-3 text-[1.75rem] font-medium leading-[1.1] tracking-[-0.035em] sm:text-[2.25rem]">
-          Your data stays yours.
+          Private by default. Clear by design.
         </h1>
         <p className="mt-5 text-[14px] leading-[1.7] text-[var(--text-secondary)] sm:text-[15px]">
           Synara is a desktop app that runs on your machine and connects straight
-          to the AI providers you already pay for. There&apos;s no Synara account,
-          no Synara server holding your work, and your code or prompts are not
-          sent to us during normal use. The only exception is feedback you
-          explicitly write and submit through the Feedback Synara dialog,
-          together with the limited diagnostics described below. This page spells
-          out exactly what that means — in plain
+          to the providers you already use. There&apos;s no Synara account, no
+          Synara server holding your work, and your code or prompts are not sent
+          to us during normal use. The only exception is feedback you explicitly
+          write and submit through the Feedback Synara dialog, together with the
+          limited diagnostics described below. This page spells out exactly what
+          that means — in plain
           language, no &quot;just read the source&quot; required (though you can,
           it&apos;s open source).
         </p>

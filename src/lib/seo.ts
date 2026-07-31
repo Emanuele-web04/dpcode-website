@@ -24,11 +24,11 @@ export const YOUTUBE_URL = "https://youtube.com/@emanueledpt";
 
 /** Search/share title — brand first, then the strongest current use-case terms. */
 export const SITE_TITLE =
-  "Synara — AI Coding Workspace for Claude Code, Codex & Cursor";
+  "Synara — The Command Center for Agentic Development";
 
 /** Meta description — front-loaded keywords + the core value proposition. */
 export const SITE_DESCRIPTION =
-  "Free, open-source AI coding workspace for Claude Code, Codex, Antigravity, Droid, Cursor, and more. Run agents in parallel with chats, terminals, diffs, and Git worktrees.";
+  "Synara is the free, open-source local-first command center for agentic development, bringing Claude Code, Codex, Cursor, OpenCode, Antigravity, Grok, Kilo Code, Pi, and Droid into one focused workspace for parallel sessions, terminals, previews, diffs, Git worktrees, and pull-request flow.";
 
 export const SEO_KEYWORDS = [
   "Synara",
@@ -37,6 +37,9 @@ export const SEO_KEYWORDS = [
   "AI coding workspace",
   "agentic coding GUI",
   "AI coding desktop app",
+  "agentic development command center",
+  "local-first agent workspace",
+  "multi-agent desktop workspace",
   "Claude Code GUI",
   "Claude Code desktop app",
   "Codex GUI",
@@ -74,7 +77,7 @@ export const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 600,
-  alt: "Synara — an open-source AI coding workspace for Claude Code, Codex, Antigravity, Droid, and more",
+  alt: "Synara — the open-source command center for agentic development",
 };
 
 export const SITE_IMAGES = {
@@ -146,7 +149,7 @@ export const SITE_JSONLD = {
       sameAs: GITHUB_REPO_URL,
       operatingSystem: "macOS, Windows, Linux",
       applicationCategory: "DeveloperApplication",
-      applicationSubCategory: "AI coding agent workspace",
+      applicationSubCategory: "Agentic development workspace",
       isAccessibleForFree: true,
       license: "https://opensource.org/licenses/MIT",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
@@ -155,8 +158,8 @@ export const SITE_JSONLD = {
         "Run Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi, and Droid from one desktop workspace",
         "Use Google Antigravity CLI for terminal-first multi-step coding, tool use, and background subagents",
         "Use Factory Droid for end-to-end development, codebase research, code review, and automation",
-        "Use existing AI subscriptions instead of a separate Synara AI plan",
-        "Manage parallel coding agents with chats, terminals, worktrees, diffs, and pull request flow",
+        "Use the provider subscriptions you already trust instead of adding a Synara model plan",
+        "Direct parallel coding agents with chats, terminals, worktrees, diffs, and pull request flow",
         "Keep projects local while providers receive only the session context needed for their own models and tools",
       ],
     },
@@ -196,7 +199,7 @@ export const INSTALL_JSONLD = {
   name: "Download Synara",
   url: absoluteUrl("/install"),
   description:
-    "Download Synara for macOS, Windows, and Linux — a free, open-source AI coding workspace for Claude Code, Codex, Antigravity, Droid, Cursor, and more.",
+    "Download Synara for macOS, Windows, and Linux — a free, open-source desktop command center for agentic development with Claude Code, Codex, Antigravity, Droid, Cursor, and more.",
   isPartOf: { "@id": `${SITE_URL}/#website` },
   about: { "@id": `${SITE_URL}/#app` },
   primaryImageOfPage: absoluteUrl(SITE_IMAGES.og),
@@ -215,7 +218,7 @@ export function changelogCollectionJsonLd(entries: readonly ChangelogEntry[]) {
     name: "Synara changelog",
     url: absoluteUrl("/changelog"),
     description:
-      "Release notes for Synara, including new AI provider support, coding workflow improvements, performance work, and installer updates.",
+      "Release notes for Synara, including new provider support, agentic workflow improvements, performance work, and installer updates.",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#app` },
     mainEntity: {

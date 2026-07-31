@@ -25,9 +25,9 @@ const INSTALL_PAGE_JSONLD = [
 ];
 
 export const metadata = pageMetadata({
-  title: "Download Synara — AI Coding Workspace for macOS, Windows & Linux",
+  title: "Download Synara — The Command Center for Agentic Development",
   description:
-    "Download Synara for macOS, Windows, or Linux — a free, open-source AI coding workspace for Claude Code, Codex, Antigravity, Droid, Cursor, and more.",
+    "Download Synara — the free, open-source command center for agentic development.",
   path: "/install",
 });
 
@@ -56,9 +56,8 @@ export default async function InstallPage() {
             Download Synara
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
-            Get the desktop app for your machine. Free, native, and built to make
-            you extraordinarily productive with the AI subscriptions you already
-            pay for.
+            Get the desktop app for your machine. Free, native, and built to
+            direct the coding agents and subscriptions you already trust.
           </p>
 
           <div className="mt-12">

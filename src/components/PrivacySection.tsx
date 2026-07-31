@@ -26,15 +26,15 @@ const container = "mx-auto w-full max-w-6xl px-4 sm:px-6";
 const pillars = [
   {
     Icon: LuHardDrive,
-    title: "Local-first",
+    title: "Your work stays local",
     description:
-      "Your chats, projects, and history live in a database on your own machine. There's no Synara cloud holding your work.",
+      "Your chats, projects, settings, and history live in a database on your own machine. There is no Synara cloud holding your work.",
   },
   {
     Icon: LuPlug,
-    title: "Your code, your providers",
+    title: "Direct-to-provider",
     description:
-      "Synara talks directly to the AI services you already pay for, with your own logins. Prompts and code go only to the provider you pick — never through us.",
+      "Synara connects directly to the provider you choose with your existing login. Prompts and code go to that provider—not through a Synara proxy.",
   },
   {
     Icon: LuShieldCheck,
@@ -44,9 +44,9 @@ const pillars = [
   },
   {
     Icon: LuEyeOff,
-    title: "Analytics off by default",
+    title: "Telemetry is opt-in",
     description:
-      "Optional, anonymous usage stats — which features get used, OS, app version — never your code or prompts, and off unless you turn them on.",
+      "Optional, anonymous usage stats are off unless you turn them on. They never include your code, prompts, or chat history.",
   },
 ];
 
@@ -57,11 +57,11 @@ export default function PrivacySection() {
         <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
           Privacy
         </p>
-        <h2 className={`${heading} mt-3`}>Your data stays yours.</h2>
+        <h2 className={`${heading} mt-3`}>Security is a product feature.</h2>
         <p className={body}>
-          A great tool shouldn&apos;t cost you a reason to trust it. Synara runs
-          on your machine and connects straight to the AI you already pay for —
-          here&apos;s exactly what that means for your data.
+          Synara runs on your machine, connects straight to the provider you
+          choose, and keeps telemetry off by default. The boundary is clear:
+          your work stays with you unless you explicitly send it somewhere.
         </p>
 
         <div className="mt-12 grid grid-cols-1 border-t border-[var(--divide)] sm:grid-cols-2">

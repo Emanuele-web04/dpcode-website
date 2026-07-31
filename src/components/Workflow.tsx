@@ -8,8 +8,8 @@ export default function Workflow() {
     <section className="relative overflow-hidden py-12 sm:py-16">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <SplitShowcase
-          title="Split chats. Parallel work."
-          description="Open a lane per agent or task and keep both threads running at once—same window, no tab shuffle, no lost context."
+          title="Direct parallel work."
+          description="Open a lane per agent or task and keep the work moving at once—same window, no tab shuffle, no lost context."
           stacked
           prominentMedia
         >
@@ -17,24 +17,24 @@ export default function Workflow() {
         </SplitShowcase>
 
         <SplitShowcase
-          title="Swap models mid-thread."
-          description="Stuck on a tough bug? Pass it to another model. Full context travels with it."
+          title="Move the work to the right model."
+          description="Stuck on a tough bug? Hand the task to another provider. The full context travels with it."
           reverse
         >
           <HandoffChatMock />
         </SplitShowcase>
 
         <SplitShowcase
-          title="Every process, in sight."
-          description="Dev server, test watcher, log tail. Stop alt-tabbing away from the thing that just broke."
+          title="Keep every live process visible."
+          description="Dev server, test watcher, log tail. Keep the systems around your code in sight while the agent works."
           reverse={false}
         >
           <TerminalTabsMock />
         </SplitShowcase>
 
         <SplitShowcase
-          title="Docs and previews, one pane over."
-          description="Check what an API returns, watch a preview reload, scan the docs. No context switch."
+          title="Build, inspect, and verify in one surface."
+          description="Check what an API returns, watch a preview reload, scan the docs. Verify the result without breaking focus."
           stacked
           prominentMedia
         >

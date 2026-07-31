@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   creator: CREATOR_NAME,
   publisher: SITE_NAME,
   category: "technology",
-  classification: "Developer tools, AI coding, productivity software",
+  classification: "Developer tools, agentic development, productivity software",
   referrer: "origin-when-cross-origin",
   manifest: "/manifest.webmanifest",
   alternates: { canonical: "/" },

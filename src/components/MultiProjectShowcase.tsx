@@ -17,12 +17,12 @@ export function MultiProjectShowcase() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-10 xl:gap-14">
           <div className="min-w-0">
             <h2 className={sectionHeading}>
-              Work across projects at the same time.
+              Keep every codebase within reach.
             </h2>
             <p className={sectionBody}>
-              Juggle client work, your product, and experiments without a dozen
-              windows. One sidebar keeps every codebase a click away—each with
-              its own agents, runs, and state.
+              Move between client work, your product, and experiments without a
+              dozen windows. One sidebar keeps every codebase a click away—each
+              with its own agents, runs, and state.
             </p>
           </div>
 

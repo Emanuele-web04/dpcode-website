@@ -40,7 +40,7 @@ type Harness = {
 const activeHarnesses: Harness[] = [
   {
     name: "Claude Code",
-    tagline: "Opus 4.8, Sonnet 4.6, Haiku — whatever's on your Anthropic plan.",
+    tagline: "Bring your Anthropic plan into a workspace built for serious agentic work.",
     Icon: ClaudeIcon,
     accent: "text-[#D97757]",
     status: "Opus 4.8",
@@ -48,21 +48,21 @@ const activeHarnesses: Harness[] = [
   {
     name: "Codex",
     tagline:
-      "GPT-5.5, GPT-5.4 Thinking, GPT-5.3 Codex — whatever your ChatGPT plan unlocks.",
+      "Use the Codex models your ChatGPT plan already unlocks, with the rest of your workflow beside them.",
     Icon: SiOpenai,
     accent: "text-[var(--text-primary)]",
     status: "GPT-5.5",
   },
   {
     name: "OpenCode",
-    tagline: "Open-source terminal agent on your OpenCode Zen or OpenCode Go subscription.",
+    tagline: "Run the open-source terminal agent from the same focused control surface.",
     Icon: OpencodeIcon,
     accent: "text-[var(--text-primary)]",
     status: "Zen + Go",
   },
   {
     name: "Cursor",
-    tagline: "Composer 2.5, GPT, and Claude — all on your Cursor subscription.",
+    tagline: "Keep Cursor models in the same workspace as every other provider you use.",
     Icon: CursorIcon,
     accent: "text-[var(--text-primary)]",
     status: "Composer 2.5",
@@ -70,14 +70,14 @@ const activeHarnesses: Harness[] = [
   {
     name: "Antigravity",
     tagline:
-      "Google's lightweight terminal agent for multi-file editing, tool calling, and background subagents.",
+      "Give Google’s terminal agent a home for multi-file edits, tool calls, and background work.",
     Icon: AntigravityIcon,
     accent: "",
     status: "agy CLI",
   },
   {
     name: "Grok",
-    tagline: "Run Grok from the same Synara workspace.",
+    tagline: "Run Grok beside the rest of your development stack.",
     Icon: GrokIcon,
     accent: "text-[var(--text-primary)]",
     status: "CLI",
@@ -85,14 +85,14 @@ const activeHarnesses: Harness[] = [
   {
     name: "Kilo Code",
     tagline:
-      "Open-source agent across VS Code, JetBrains, and CLI — 500+ models on your own keys.",
+      "Bring Kilo Code and its model choice into one local-first development workspace.",
     Icon: KiloCodeIcon,
     accent: "text-[var(--text-primary)]",
     status: "500+ models",
   },
   {
     name: "Pi",
-    tagline: "Bring your Pi assistant into Synara.",
+    tagline: "Bring Pi into the same command center as every other agent runtime.",
     Icon: PiIcon,
     accent: "text-[var(--text-primary)]",
     status: "Available",
@@ -100,7 +100,7 @@ const activeHarnesses: Harness[] = [
   {
     name: "Droid",
     tagline:
-      "Factory's agent-native coding agent for end-to-end development, deep codebase context, reviews, and automation.",
+      "Run Factory’s agent-native workflow with deep codebase context, reviews, and automation in view.",
     Icon: DroidIcon,
     accent: "text-[var(--text-primary)]",
     status: "CLI + Desktop",
@@ -116,9 +116,10 @@ export default function Features() {
         <div className={container}>
           <h2 className={heading}>Use what you already pay for.</h2>
           <p className={body}>
-            Synara speaks every major harness. Plug in Claude, Codex, OpenCode,
-            Cursor, Antigravity, Grok, Kilo Code, Pi, or Droid with the account
-            you already use. No new bills, no walled gardens.
+            Synara gives every major agent runtime a serious operating surface.
+            Plug in Claude, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo
+            Code, Pi, or Droid with the account you already use. No new bills,
+            no walled garden, no context scattered across tabs.
           </p>
 
           <div className="mt-12 grid grid-cols-1 border-t border-[var(--divide)] sm:grid-cols-2">
@@ -180,16 +181,17 @@ export default function Features() {
       <section className="py-4 sm:py-6">
         <div className={container}>
           <h2 className={`${heading} max-w-xl`}>
-            The details that make you faster.
+            The operating system for agentic work.
           </h2>
           <p className={body}>
-            Every surface is tuned for flow. Inline diffs, instant worktrees,
-            and a one-click PR the moment your agent finishes.
+            Serious development needs more than a chat window. Synara connects
+            parallel sessions, isolated worktrees, live processes, and delivery
+            into one decisive flow.
           </p>
 
           <SplitShowcase
             title="One-click PRs"
-            description="Ship the moment your agent lands a green diff. Synara opens, titles, and files the PR for you."
+            description="Turn a green diff into a pull request without leaving the workspace. Synara opens, titles, and files the PR for you."
             reverse={false}
           >
             <OneClickPrMock />
@@ -197,7 +199,7 @@ export default function Features() {
 
           <SplitShowcase
             title="Worktree-native"
-            description="Spin up isolated branches without ever opening a terminal. Build three things in parallel without stomping on yourself."
+            description="Isolate every line of work in seconds. Build, test, and review in parallel without stomping on your main checkout."
             reverse
           >
             <WorktreeMock />

@@ -6,12 +6,12 @@ export const FAQ_ITEMS = [
   {
     question: "What is Synara?",
     answer:
-      "Synara is a desktop app for working with coding agents in one focused workspace. It brings chats, terminals, browser previews, diffs, branches, and handoffs into a single interface so you can keep momentum while the agents do the heavy lifting.",
+      "Synara is a free, open-source desktop command center for agentic development. It brings coding agents, chats, terminals, browser previews, diffs, branches, worktrees, and handoffs into one focused workspace so you can direct the work and ship with confidence.",
   },
   {
     question: "Do I need a new AI subscription?",
     answer:
-      "No. Synara is built around the accounts and subscriptions you already use. It supports major agent harnesses such as Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi, and Droid, with each provider keeping its own models and capabilities.",
+      "No. Synara is the control plane around the accounts and subscriptions you already use. It supports Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi, and Droid while each provider keeps its own models and capabilities.",
   },
   {
     question: "What do I need installed before using it?",
@@ -21,16 +21,16 @@ export const FAQ_ITEMS = [
   {
     question: "Can I run multiple tasks at the same time?",
     answer:
-      "Yes. Synara was built for parallel work: open split chats, start separate threads, and run tasks in isolated worktrees so different agents can build, test, or debug without stepping on the same branch.",
+      "Yes. Parallel work is a core Synara workflow: open split chats, start separate threads, and run tasks in isolated worktrees so different agents can build, test, or debug without stepping on the same branch.",
   },
   {
     question: "Does it fit into a normal Git workflow?",
     answer:
-      "Yes. Synara works with regular branches and Git worktrees, keeps diffs visible, and can help you move from a finished agent task to a pull request. You still review the changes and keep the repository in a normal Git shape.",
+      "Yes. Git is first-class in Synara. Work with regular branches or isolated worktrees, keep diffs visible, and move from a finished agent task to a reviewed pull request without leaving the workspace.",
   },
   {
     question: "Does Synara upload my code somewhere?",
     answer:
-      "Synara runs locally as the workspace layer. The provider you choose still receives the prompts, file snippets, diffs, terminal output, or tool results needed for a session, but Synara does not require uploading your whole repo to a separate Synara cloud.",
+      "Synara runs locally as the workspace layer and does not require a Synara cloud account. The provider you choose receives the prompts, file snippets, diffs, terminal output, or tool results needed for that session; Synara does not proxy or store your work on its own server.",
   },
 ] as const;

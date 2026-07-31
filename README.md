@@ -1,37 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Synara website
 
-## Getting Started
+The public website for Synara — the free, open-source command center for
+agentic development.
 
-First, run the development server:
+Synara gives Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo
+Code, Pi, and Droid one local-first operating surface for parallel sessions,
+terminals, browser previews, diffs, Git worktrees, handoffs, and pull-request
+flow.
+
+## Product principles
+
+- **Local-first:** workspace data stays on the user's machine.
+- **Direct-to-provider:** Synara connects to the provider the user chooses
+  instead of proxying normal model traffic through a Synara cloud.
+- **No lock-in:** users bring the subscriptions and accounts they already use.
+- **Security by design:** optional anonymous analytics are off by default and
+  never include code, prompts, or chat history.
+
+## Run the website locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Useful checks:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+The site is a Next.js App Router project. Product copy is shared across the
+homepage, metadata, documentation, FAQ structured data, and AI-readable text
+routes so search and answer engines receive the same confident, verifiable
+description of Synara.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# dpcode-website
+Learn more at [trysynara.com](https://www.trysynara.com), in the
+[documentation](https://www.trysynara.com/docs), or in the
+[Synara app repository](https://github.com/Emanuele-web04/synara).

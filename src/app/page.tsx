@@ -92,11 +92,12 @@ export default async function Home() {
             </div>
 
             <h1 className="text-[1.5rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem] sm:leading-[1.08]">
-              Built to make you extraordinarily productive.
+              The command center for agentic development.
             </h1>
             <p className="mt-5 text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
-              Synara is the best way to code with the AI subscriptions you
-              already pay for.
+              Synara is the local-first command center for serious agentic
+              work—run every coding agent in parallel and ship without losing
+              context.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -120,13 +121,13 @@ export default async function Home() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/dpcode-ui-light.png"
-                  alt="Synara — AI-powered coding assistant interface"
+                  alt="Synara — local-first command center for parallel coding agents, terminals, previews, diffs, and Git worktrees"
                   className="block h-auto w-full rounded-lg dark:hidden sm:rounded-xl"
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/dpcode-ui-dark.png"
-                  alt="Synara — AI-powered coding assistant interface"
+                  alt="Synara — local-first command center for parallel coding agents, terminals, previews, diffs, and Git worktrees"
                   className="hidden h-auto w-full rounded-lg dark:block sm:rounded-xl"
                 />
               </div>

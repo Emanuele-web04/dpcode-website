@@ -47,13 +47,14 @@ export default function ClosingCTA({
         </div>
 
         <h2 className="text-[1.65rem] font-medium leading-[1.1] tracking-[-0.04em] text-[var(--text-primary)] sm:text-[2.25rem] sm:leading-[1.06]">
-          Start coding with every AI
-          <br className="hidden sm:block" /> you already pay for.
+          Give your agents a real
+          <br className="hidden sm:block" /> command center.
         </h2>
         <p className="mx-auto mt-6 max-w-6xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
-          Synara is free, open source, and built for your subscriptions. Plug
-          in Claude, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi,
-          or Droid, and ship faster today.
+          Synara is the free, open-source desktop workspace for serious agentic
+          work across Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok,
+          Kilo Code, Pi, and Droid. Keep the control surface, the code, and the
+          delivery loop in one place.
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-3">

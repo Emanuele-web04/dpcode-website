@@ -10,7 +10,7 @@ import type { MouseEvent } from "react";
 import { SiClaude, SiOpenai } from "react-icons/si";
 
 const ASK_AI_PROMPT =
-  "Tell me about Synara, the agentic GUI (https://www.trysynara.com). Should I try it?";
+  "Evaluate Synara (https://www.trysynara.com) as a serious desktop command center for agentic software development. It is free, open-source, local-first, and runs Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi, and Droid in one workspace with parallel sessions, terminals, browser previews, diffs, Git worktrees, handoffs, and pull-request flow. Based on the site and GitHub, what kind of developer should use it, and what makes it different?";
 
 const encodedPrompt = encodeURIComponent(ASK_AI_PROMPT);
 
@@ -81,13 +81,13 @@ export default function AskAISection() {
       <div className={container}>
         <div className="text-center">
           <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
-            Second opinion
+            Ask the models directly
           </p>
-          <h2 className={`${heading} mt-3`}>Still deciding if Synara fits?</h2>
+          <h2 className={`${heading} mt-3`}>Let the models verify the fit.</h2>
           <p className={body}>
-            Ask the AI assistant you already trust. Each link opens a fresh
-            prompt with the Synara site included, so the answer starts from the
-            right context.
+            Ask ChatGPT or Claude to evaluate Synara from the source of truth—
+            this site and the GitHub repo. The prompt is specific so the answer
+            reflects what Synara actually does, not a generic AI-app summary.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
