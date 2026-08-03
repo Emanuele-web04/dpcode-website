@@ -1,15 +1,10 @@
-import { SiOpenai } from "react-icons/si";
 import DownloadButton from "@/components/DownloadButton";
 import InstallerCount from "@/components/InstallerCount";
+import ProviderMarkRow from "@/components/ProviderMarkRow";
 import {
-  AntigravityIcon,
-  ClaudeIcon,
-  OpencodeIcon,
-  CursorIcon,
-  GrokIcon,
-  KiloCodeIcon,
-  DroidIcon,
-} from "@/components/BrandIcons";
+  PRODUCT_CATEGORY,
+  PRODUCT_HERO_TITLE,
+} from "@/data/product";
 
 export default function ClosingCTA({
   initialInstallerCount,
@@ -19,48 +14,26 @@ export default function ClosingCTA({
   return (
     <section className="border-t border-[var(--divide)] bg-[var(--page-bg)] py-16 sm:py-24">
       <div className="mx-auto w-full max-w-6xl px-4 text-center sm:px-6">
-        <div className="mb-8 flex flex-wrap items-center justify-center gap-2 sm:mb-10">
-          <div className="inline-flex size-[38px] -rotate-[6deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
-            <ClaudeIcon className="size-[18px] text-[#D97757]" />
-          </div>
-          <div className="inline-flex size-[38px] rotate-[4deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
-            <SiOpenai className="size-[18px] text-[var(--text-primary)]" />
-          </div>
-          <div className="inline-flex size-[38px] rotate-[5deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
-            <OpencodeIcon className="size-[18px] text-[var(--text-primary)]" />
-          </div>
-          <div className="inline-flex size-[38px] -rotate-[4deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
-            <CursorIcon className="size-[18px] text-[var(--text-primary)]" />
-          </div>
-          <div className="inline-flex size-[38px] -rotate-[2deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
-            <AntigravityIcon className="size-[18px]" />
-          </div>
-          <div className="inline-flex size-[38px] rotate-[2deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
-            <GrokIcon className="size-[18px] text-[var(--text-primary)]" />
-          </div>
-          <div className="inline-flex size-[38px] rotate-[3deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
-            <KiloCodeIcon className="size-[18px] text-[var(--text-primary)]" />
-          </div>
-          <div className="inline-flex size-[38px] -rotate-[5deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
-            <DroidIcon className="size-[18px] text-[var(--text-primary)]" />
-          </div>
+        <div className="mb-8 sm:mb-10">
+          <ProviderMarkRow centered />
         </div>
 
-        <h2 className="text-[1.65rem] font-medium leading-[1.1] tracking-[-0.04em] text-[var(--text-primary)] sm:text-[2.25rem] sm:leading-[1.06]">
-          Give your agents a real
-          <br className="hidden sm:block" /> command center.
+        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
+          {PRODUCT_CATEGORY}
+        </p>
+        <h2 className="mx-auto mt-4 max-w-3xl text-[2rem] font-medium leading-[1.06] tracking-[-0.045em] text-[var(--text-primary)] sm:text-[3rem]">
+          {PRODUCT_HERO_TITLE}
         </h2>
-        <p className="mx-auto mt-6 max-w-6xl text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
-          Synara is the free, open-source desktop workspace for serious agentic
-          work across Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok,
-          Kilo Code, Pi, and Droid. Keep the control surface, the code, and the
-          delivery loop in one place.
+        <p className="mx-auto mt-6 max-w-2xl text-[14px] leading-[1.7] text-[var(--text-secondary)] sm:text-[16px]">
+          Start with one repository and one provider. Add parallel tasks,
+          worktrees, browser verification, handoffs, and pull-request delivery
+          when the work requires them.
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-3">
           <DownloadButton />
           <p className="text-[11px] text-[var(--text-tertiary)]">
-            <InstallerCount initialCount={initialInstallerCount} />
+            Free and open source · <InstallerCount initialCount={initialInstallerCount} />
           </p>
         </div>
       </div>
