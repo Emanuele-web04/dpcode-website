@@ -1,32 +1,31 @@
 // FILE: Features.tsx
-// Purpose: Renders homepage provider and workflow feature sections.
+// Purpose: Renders homepage provider and product-system sections.
 // Layer: Marketing UI section
-// Exports: Features default component
-// Depends on: BrandIcons, showcase mocks, and react-icons provider marks
 
 import type { ComponentType } from "react";
 import { SiOpenai } from "react-icons/si";
 import {
   AntigravityIcon,
   ClaudeIcon,
-  OpencodeIcon,
   CursorIcon,
-  GrokIcon,
-  PiIcon,
-  KiloCodeIcon,
   DroidIcon,
+  GrokIcon,
+  KiloCodeIcon,
+  OpencodeIcon,
+  PiIcon,
 } from "@/components/BrandIcons";
 import { SplitShowcase } from "@/components/SplitShowcase";
 import { WorktreeMock } from "@/components/WorktreeMock";
 import { MultiProjectShowcase } from "@/components/MultiProjectShowcase";
 import { OneClickPrMock } from "@/components/OneClickPrMock";
+import { PRODUCT_PILLARS } from "@/data/product";
 
 type GenericIcon = ComponentType<{ className?: string }>;
 
 const heading =
   "text-[1.65rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem]";
 const body =
-  "mt-5 max-w-xl text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]";
+  "mt-5 max-w-2xl text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]";
 const container = "mx-auto w-full max-w-6xl px-4 sm:px-6";
 
 type Harness = {
@@ -40,86 +39,83 @@ type Harness = {
 const activeHarnesses: Harness[] = [
   {
     name: "Claude Code",
-    tagline: "Bring your Anthropic plan into a workspace built for serious agentic work.",
+    tagline: "Use the Claude Code runtime and account already configured on your machine.",
     Icon: ClaudeIcon,
     accent: "text-[#D97757]",
-    status: "Opus 4.8",
+    status: "CLI + account",
   },
   {
     name: "Codex",
-    tagline:
-      "Use the Codex models your ChatGPT plan already unlocks, with the rest of your workflow beside them.",
+    tagline: "Run Codex tasks with the authenticated CLI, repository, and review surfaces together.",
     Icon: SiOpenai,
     accent: "text-[var(--text-primary)]",
-    status: "GPT-5.5",
+    status: "CLI + account",
   },
   {
     name: "OpenCode",
-    tagline: "Run the open-source terminal agent from the same focused control surface.",
+    tagline: "Bring OpenCode and its configured provider catalog into the same task system.",
     Icon: OpencodeIcon,
     accent: "text-[var(--text-primary)]",
-    status: "Zen + Go",
+    status: "Configured models",
   },
   {
     name: "Cursor",
-    tagline: "Keep Cursor models in the same workspace as every other provider you use.",
+    tagline: "Use Cursor Agent beside other runtimes without moving the work to another workspace.",
     Icon: CursorIcon,
     accent: "text-[var(--text-primary)]",
-    status: "Composer 2.5",
+    status: "Agent CLI",
   },
   {
     name: "Antigravity",
-    tagline:
-      "Give Google’s terminal agent a home for multi-file edits, tool calls, and background work.",
+    tagline: "Run Antigravity with its own account, models, permissions, and session behavior.",
     Icon: AntigravityIcon,
     accent: "",
     status: "agy CLI",
   },
   {
-    name: "Grok",
-    tagline: "Run Grok beside the rest of your development stack.",
+    name: "Grok Build",
+    tagline: "Use Grok Build through its local runtime and Agent Client Protocol integration.",
     Icon: GrokIcon,
     accent: "text-[var(--text-primary)]",
-    status: "CLI",
+    status: "grok CLI",
   },
   {
     name: "Kilo Code",
-    tagline:
-      "Bring Kilo Code and its model choice into one local-first development workspace.",
+    tagline: "Use Kilo Code with the providers, models, modes, and agents configured in Kilo.",
     Icon: KiloCodeIcon,
     accent: "text-[var(--text-primary)]",
-    status: "500+ models",
+    status: "Configured models",
   },
   {
     name: "Pi",
-    tagline: "Bring Pi into the same command center as every other agent runtime.",
+    tagline: "Run Pi with its provider registry, thinking levels, skills, and native steering.",
     Icon: PiIcon,
     accent: "text-[var(--text-primary)]",
-    status: "Available",
+    status: "Model registry",
   },
   {
-    name: "Droid",
-    tagline:
-      "Run Factory’s agent-native workflow with deep codebase context, reviews, and automation in view.",
+    name: "Factory Droid",
+    tagline: "Use Droid through its authenticated runtime, model controls, and ACP session.",
     Icon: DroidIcon,
     accent: "text-[var(--text-primary)]",
-    status: "CLI + Desktop",
+    status: "droid CLI",
   },
 ];
-
-const soonHarnesses: Harness[] = [];
 
 export default function Features() {
   return (
     <div>
       <section className="border-t border-[var(--divide)] py-14 sm:py-20">
         <div className={container}>
-          <h2 className={heading}>Use what you already pay for.</h2>
+          <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
+            Provider portability
+          </p>
+          <h2 className={`${heading} mt-3`}>Keep the runtimes you already trust.</h2>
           <p className={body}>
-            Synara gives every major agent runtime a serious operating surface.
-            Plug in Claude, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo
-            Code, Pi, or Droid with the account you already use. No new bills,
-            no walled garden, no context scattered across tabs.
+            Synara sits around your coding agents rather than replacing them.
+            Each provider keeps its own authentication, models, tools, and
+            permissions while Synara gives the work a consistent task,
+            environment, review, and delivery layer.
           </p>
 
           <div className="mt-12 grid grid-cols-1 border-t border-[var(--divide)] sm:grid-cols-2">
@@ -147,59 +143,51 @@ export default function Features() {
               </div>
             ))}
           </div>
-
-          {soonHarnesses.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2">
-              {soonHarnesses.map(({ name, tagline, Icon, accent, status }) => (
-                <div
-                  key={name}
-                  className="border-b border-[var(--divide)] p-6 transition-colors hover:bg-[var(--mock-row)] sm:p-7 sm:first:border-r sm:first:border-[var(--divide)]"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex min-w-0 items-center gap-3">
-                      <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-[var(--block-elevated)]">
-                        <Icon className={`size-[18px] ${accent}`} />
-                      </span>
-                      <span className="truncate text-[15px] font-medium text-[var(--text-primary)]">
-                        {name}
-                      </span>
-                    </div>
-                    <span className="shrink-0 font-mono text-[12px] tabular-nums text-[var(--text-tertiary)]">
-                      {status}
-                    </span>
-                  </div>
-                  <p className="mt-3 text-[13px] leading-relaxed text-[var(--text-secondary)] sm:text-[13.5px]">
-                    {tagline}
-                  </p>
-                </div>
-              ))}
-            </div>
-          ) : null}
         </div>
       </section>
 
-      <section className="py-4 sm:py-6">
+      <section className="border-t border-[var(--divide)] py-14 sm:py-20">
         <div className={container}>
-          <h2 className={`${heading} max-w-xl`}>
-            The operating system for agentic work.
+          <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
+            Durable task ownership
+          </p>
+          <h2 className={`${heading} mt-3 max-w-2xl`}>
+            One workspace. Separate tasks. Shared control.
           </h2>
           <p className={body}>
-            Serious development needs more than a chat window. Synara connects
-            parallel sessions, isolated worktrees, live processes, and delivery
-            into one decisive flow.
+            A coding agent is only one part of the job. Synara keeps the
+            objective, environment, live processes, verification evidence, and
+            delivery state attached to the work from first prompt to pull
+            request.
           </p>
 
+          <div className="mt-12 grid grid-cols-1 border-t border-[var(--divide)] sm:grid-cols-2">
+            {PRODUCT_PILLARS.map(({ title, description }) => (
+              <div
+                key={title}
+                className="border-b border-[var(--divide)] p-6 sm:p-7 sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(odd)]:border-[var(--divide)]"
+              >
+                <h3 className="text-[15px] font-medium text-[var(--text-primary)]">
+                  {title}
+                </h3>
+                <p className="mt-3 text-[13px] leading-relaxed text-[var(--text-secondary)] sm:text-[13.5px]">
+                  {description}
+                </p>
+              </div>
+            ))}
+          </div>
+
           <SplitShowcase
-            title="One-click PRs"
-            description="Turn a green diff into a pull request without leaving the workspace. Synara opens, titles, and files the PR for you."
+            title="Deliver from the same task"
+            description="Review the final diff, run the required checks, commit the intended changes, and open the pull request without reconstructing the work in another tool."
             reverse={false}
           >
             <OneClickPrMock />
           </SplitShowcase>
 
           <SplitShowcase
-            title="Worktree-native"
-            description="Isolate every line of work in seconds. Build, test, and review in parallel without stomping on your main checkout."
+            title="Isolate concurrent work"
+            description="Give parallel tasks separate Git worktrees so each agent has a clear branch, working directory, and ownership boundary."
             reverse
           >
             <WorktreeMock />
