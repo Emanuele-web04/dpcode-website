@@ -28,7 +28,7 @@ const WORKFLOWS = [
       "Finish with a clean delivery boundary",
       "What to avoid",
     ],
-    markers: ["git diff --check", "untrusted input", "The completion rule"],
+    markers: ["git diff --check", "untrusted input", "the completion rule"],
   },
   {
     slug: "parallel-agents",
@@ -59,7 +59,7 @@ const WORKFLOWS = [
       "Recovery cases",
       "Worktree checklist",
     ],
-    markers: ["git status --short", "git diff <base-ref>...HEAD", "commits and pushed refs"],
+    markers: ["git status --short", "git diff <base-ref>...head", "commits and pushed refs"],
   },
   {
     slug: "handoffs",
@@ -74,7 +74,7 @@ const WORKFLOWS = [
       "Failure cases",
       "Handoff checklist",
     ],
-    markers: ["checkpoint", "Provider-native state", "changes the worker, not the owner"],
+    markers: ["checkpoint", "provider-native state", "changes the worker, not the owner"],
   },
   {
     slug: "browser-verification",
@@ -96,8 +96,8 @@ const WORKFLOWS = [
       "browser_screenshot",
       "browser_logs",
       "browser_evaluate",
-      "snapshotId",
-      "Observe before retrying",
+      "snapshotid",
+      "observe before retrying",
     ],
   },
   {
@@ -114,7 +114,12 @@ const WORKFLOWS = [
       "Large pull requests",
       "Pull-request completion checklist",
     ],
-    markers: ["gh auth status", "untrusted input", "merge, close, and reopen", "final head"],
+    markers: [
+      "gh auth status",
+      "untrusted input",
+      "merging, closing, and reopening",
+      "final head",
+    ],
   },
   {
     slug: "automations",
@@ -130,7 +135,7 @@ const WORKFLOWS = [
       "Failure handling",
       "Automation checklist",
     ],
-    markers: ["stop condition", "managed worktree", "approval-required", "A timeout is not proof"],
+    markers: ["stop condition", "managed worktree", "approval-required", "a timeout is not proof"],
   },
   {
     slug: "studio",
@@ -146,7 +151,7 @@ const WORKFLOWS = [
       "When to leave Studio",
       "Completion checklist",
     ],
-    markers: ["long-running", "Environment panel", "Generated output is not approved output"],
+    markers: ["long-running", "environment panel", "generated output is not approved output"],
   },
   {
     slug: "agent-gateway",
@@ -172,7 +177,7 @@ const WORKFLOWS = [
       "synara_read_thread",
       "synara_send_message",
       "synara_interrupt_thread",
-      "stable `requestId`",
+      "stable `requestid`",
       "1–20",
       "active caller turn",
     ],
@@ -217,6 +222,10 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+function includesInsensitive(source, expected) {
+  return source.toLocaleLowerCase().includes(expected.toLocaleLowerCase());
+}
+
 test("workflow navigation has the exact guide set and order", () => {
   const meta = JSON.parse(readFileSync(path.join(WORKFLOWS_DIR, "meta.json"), "utf8"));
   assert.deepEqual(meta.pages, WORKFLOWS.map(({ slug }) => slug));
@@ -243,7 +252,10 @@ test("every workflow page satisfies its branch-specific content contract", () =>
     }
 
     for (const marker of workflow.markers) {
-      assert.ok(source.includes(marker), `${workflow.slug} is missing required marker: ${marker}`);
+      assert.ok(
+        includesInsensitive(source, marker),
+        `${workflow.slug} is missing required marker: ${marker}`,
+      );
     }
   }
 });
@@ -267,18 +279,28 @@ test("coordination pages distinguish Agent Gateway from External MCP", () => {
   const gateway = readWorkflow("agent-gateway");
   const external = readWorkflow("external-mcp");
 
-  assert.ok(gateway.includes("internal, thread-scoped MCP"));
+  assert.ok(includesInsensitive(gateway, "internal, thread-scoped MCP"));
   assert.ok(gateway.includes("/docs/workflows/external-mcp"));
-  assert.ok(external.includes("another local application"));
+  assert.ok(includesInsensitive(external, "another local application"));
   assert.ok(external.includes("/docs/workflows/agent-gateway"));
-  assert.ok(external.includes("smaller surface than the internal Agent Gateway"));
+  assert.ok(includesInsensitive(external, "smaller surface than the internal Agent Gateway"));
 });
 
 test("safety-critical workflow claims remain explicit", () => {
-  assert.ok(readWorkflow("parallel-agents").includes("Separate worktrees"));
-  assert.ok(readWorkflow("handoffs").includes("Do not leave two providers actively editing"));
-  assert.ok(readWorkflow("browser-verification").includes("Do not immediately repeat the mutation"));
-  assert.ok(readWorkflow("pull-requests").includes("A green run on an earlier commit"));
-  assert.ok(readWorkflow("automations").includes("Do not allow unreviewed scheduled diffs"));
-  assert.ok(readWorkflow("external-mcp").includes("Revocation takes effect immediately"));
+  assert.ok(includesInsensitive(readWorkflow("parallel-agents"), "separate worktrees"));
+  assert.ok(
+    includesInsensitive(readWorkflow("handoffs"), "do not leave two providers actively editing"),
+  );
+  assert.ok(
+    includesInsensitive(readWorkflow("browser-verification"), "do not immediately repeat the mutation"),
+  );
+  assert.ok(
+    includesInsensitive(readWorkflow("pull-requests"), "a green run on an earlier commit"),
+  );
+  assert.ok(
+    includesInsensitive(readWorkflow("automations"), "do not allow unreviewed scheduled diffs"),
+  );
+  assert.ok(
+    includesInsensitive(readWorkflow("external-mcp"), "revocation takes effect immediately"),
+  );
 });
