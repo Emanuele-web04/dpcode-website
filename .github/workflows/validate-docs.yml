@@ -5,16 +5,18 @@ on:
     branches:
       - main
       - docs/public-surface-overhaul
+      - docs/getting-started-overhaul
   push:
     branches:
       - docs/getting-started-overhaul
+      - docs/provider-guides
 
 permissions:
   contents: read
 
 jobs:
   validate:
-    name: Lint and build
+    name: Test, lint, and build
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -30,6 +32,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Test documentation integrity
+        run: npm run test:docs
 
       - name: Lint
         run: npm run lint
