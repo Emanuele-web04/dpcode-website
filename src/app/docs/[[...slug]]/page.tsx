@@ -21,6 +21,8 @@ type DocumentationPageProps = {
   params: Promise<{ slug?: string[] }>;
 };
 
+const FALLBACK_DOCUMENTATION_DESCRIPTION = "Synara product documentation.";
+
 function documentationTitle(pageTitle: string, pageUrl: string) {
   return pageUrl === "/docs" ? "Synara Documentation" : `${pageTitle} — Synara Docs`;
 }
@@ -49,6 +51,7 @@ export default async function DocumentationPage({ params }: DocumentationPagePro
   const Content = page.data.body;
   const neighbours = findNeighbour(docsSource.getPageTree(), page.url);
   const title = documentationTitle(page.data.title, page.url);
+  const description = page.data.description ?? FALLBACK_DOCUMENTATION_DESCRIPTION;
   const breadcrumbs = documentationBreadcrumbs(slug, page.data.title, page.url);
 
   return (
@@ -59,7 +62,7 @@ export default async function DocumentationPage({ params }: DocumentationPagePro
           __html: jsonLdScript(
             documentationPageJsonLd({
               title,
-              description: page.data.description,
+              description,
               path: page.url,
               lastModified: page.data.lastModified,
             }),
@@ -77,7 +80,7 @@ export default async function DocumentationPage({ params }: DocumentationPagePro
         footer={{ enabled: false }}
       >
         <DocsTitle>{page.data.title}</DocsTitle>
-        <DocsDescription>{page.data.description}</DocsDescription>
+        <DocsDescription>{description}</DocsDescription>
         <DocsBody>
           <Content components={getMDXComponents()} />
         </DocsBody>
@@ -100,7 +103,7 @@ export async function generateMetadata({ params }: DocumentationPageProps): Prom
 
   return documentationPageMetadata({
     title: documentationTitle(page.data.title, page.url),
-    description: page.data.description,
+    description: page.data.description ?? FALLBACK_DOCUMENTATION_DESCRIPTION,
     path: page.url,
   });
 }
