@@ -19,9 +19,10 @@ const MONTHS: Record<string, string> = {
   Dec: "12",
 };
 
-export const SITE_LATEST_UPDATE = new Date("2026-06-12T00:00:00.000Z");
+/** Fallbacks only; dynamic route helpers prefer changelog and Git metadata. */
+export const SITE_LATEST_UPDATE = new Date("2026-08-02T00:00:00.000Z");
 export const PRIVACY_LAST_UPDATED = new Date("2026-06-04T00:00:00.000Z");
-export const DOCS_LAST_UPDATED = new Date("2026-07-21T00:00:00.000Z");
+export const DOCS_LAST_UPDATED = new Date("2026-08-04T00:00:00.000Z");
 
 export function releaseDateIso(dateLabel: string) {
   const [monthName, day] = dateLabel.split(" ");
