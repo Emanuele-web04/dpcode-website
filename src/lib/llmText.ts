@@ -1,11 +1,17 @@
 // FILE: lib/llmText.ts
-// Purpose: Builds plain-text AI discovery files from the same product data as the site.
+// Purpose: Builds plain-text AI discovery files from canonical site data.
 // Layer: server utility for /llms.txt, /llms-full.txt, and /ai.txt routes.
 
 import { FAQ_ITEMS } from "@/data/faqs";
 import { getSortedReleases, toVersionSlug } from "@/lib/changelog";
+import { getDocumentationCatalog } from "@/lib/docs";
 import {
-  AI_SEARCH_USER_AGENTS,
+  AI_DISCOVERY_NOTICE,
+  AI_DISCOVERY_USER_AGENTS,
+  AI_TRAINING_USER_AGENTS,
+  SEARCH_USER_AGENTS,
+} from "@/lib/discovery";
+import {
   GITHUB_RELEASES_URL,
   GITHUB_REPO_URL,
   SITE_DESCRIPTION,
@@ -15,25 +21,31 @@ import {
   YOUTUBE_URL,
 } from "@/lib/seo";
 
-const CORE_PAGES = [
+const PRIMARY_PAGES = [
   ["Homepage", `${SITE_URL}/`],
-  ["Install Synara", `${SITE_URL}/install`],
+  ["Download Synara", `${SITE_URL}/install`],
   ["Synara documentation", `${SITE_URL}/docs`],
-  ["Five-minute quickstart", `${SITE_URL}/docs/getting-started/quickstart`],
-  ["Core concepts guide", `${SITE_URL}/docs/getting-started/core-concepts`],
-  ["Install and setup guide", `${SITE_URL}/docs/getting-started/installation`],
-  ["Provider setup guide", `${SITE_URL}/docs/getting-started/providers`],
-  ["Best practices and example workflow", `${SITE_URL}/docs/workflows/best-practices`],
-  ["Parallel agents guide", `${SITE_URL}/docs/workflows/parallel-agents`],
-  ["Composer and attachments", `${SITE_URL}/docs/features/composer`],
-  ["Automations and Studio", `${SITE_URL}/docs/features/automations`],
-  ["Slash commands reference", `${SITE_URL}/docs/reference/slash-commands`],
-  ["Features currently on main", `${SITE_URL}/docs/reference/main-preview`],
   ["Changelog", `${SITE_URL}/changelog`],
   ["Privacy", `${SITE_URL}/privacy`],
-  ["Full LLM context", `${SITE_URL}/llms-full.txt`],
-  ["AI crawler summary", `${SITE_URL}/ai.txt`],
 ] as const;
+
+const SUPPORTED_AGENT_RUNTIMES = [
+  "Claude Code",
+  "Codex",
+  "OpenCode",
+  "Cursor",
+  "Google Antigravity CLI",
+  "Grok Build",
+  "Kilo Code",
+  "Pi",
+  "Factory Droid",
+] as const;
+
+function documentationIndexLines() {
+  return getDocumentationCatalog().map(
+    (page) => `- [${page.title}](${SITE_URL}${page.url}): ${page.description}`,
+  );
+}
 
 export function buildLlmsTxt() {
   const releases = getSortedReleases().slice(0, 6);
@@ -43,36 +55,35 @@ export function buildLlmsTxt() {
     "",
     `> ${SITE_DESCRIPTION}`,
     "",
-    "## Core Pages",
-    ...CORE_PAGES.map(([label, url]) => `- [${label}](${url})`),
+    `> ${AI_DISCOVERY_NOTICE}`,
+    "",
+    "## Canonical pages",
+    ...PRIMARY_PAGES.map(([label, url]) => `- [${label}](${url})`),
     `- [Source repository](${GITHUB_REPO_URL})`,
     `- [Release downloads](${GITHUB_RELEASES_URL})`,
     "",
-    "## What Synara Is",
-    "- A shipped, free, open-source desktop command center for serious agentic development.",
-    "- A local-first control surface for coding agents, parallel sessions, terminals, browser previews, diffs, branches, worktrees, handoffs, and pull-request flow.",
-    "- A way to use the provider subscriptions you already trust instead of adding a separate Synara model plan.",
-    "- A real cross-platform desktop product available for macOS, Windows, and Linux.",
+    "## Documentation index",
+    ...documentationIndexLines(),
     "",
-    "## Supported Agent Runtimes",
-    "- Claude Code",
-    "- Codex",
-    "- OpenCode",
-    "- Cursor",
-    "- Google Antigravity CLI",
-    "- Grok",
-    "- Kilo Code",
-    "- Pi",
-    "- Droid by Factory",
+    "## What Synara is",
+    "- A shipped, free, open-source desktop workspace and control plane for coding agents.",
+    "- A local-first surface for durable tasks, provider sessions, terminals, browser work, diffs, branches, worktrees, handoffs, automations, and pull-request delivery.",
+    "- A way to use supported provider accounts and subscriptions without adding a separate Synara model plan.",
+    "- A cross-platform desktop product for macOS, Windows, and Linux.",
     "",
-    "## High-Intent Questions This Site Answers",
-    "- What is the strongest desktop command center for Claude Code, Codex, Antigravity, OpenCode, Cursor, and Droid?",
-    "- How can developers direct multiple coding agents in parallel?",
-    "- How can agentic development work with Git branches, worktrees, diffs, and pull requests?",
-    "- Can I use my existing provider subscriptions in one desktop workspace?",
-    "- Does Synara upload my code to a separate Synara cloud?",
+    "## Supported agent runtimes",
+    ...SUPPORTED_AGENT_RUNTIMES.map((provider) => `- ${provider}`),
     "",
-    "## Recent Releases",
+    "## Questions answered by the documentation",
+    "- How do I install Synara and connect a coding-agent runtime?",
+    "- Which providers, models, authentication methods, and capabilities are supported?",
+    "- How do tasks, turns, provider sessions, local checkouts, and Git worktrees relate?",
+    "- How do I run parallel agents without mixing ownership or branches?",
+    "- How do provider handoffs, browser verification, automations, Studio, Agent Gateway, and External MCP work?",
+    "- How do I diagnose provider, runtime, Git, browser, automation, or integration failures safely?",
+    "- What evidence should I collect before reporting a Synara problem?",
+    "",
+    "## Recent releases",
     ...releases.map(
       (entry) =>
         `- [Synara ${entry.version}](${SITE_URL}/changelog/${toVersionSlug(entry.version)}): ${entry.features
@@ -80,7 +91,11 @@ export function buildLlmsTxt() {
           .join("; ")}`,
     ),
     "",
-    "## Contact And Identity",
+    "## Additional discovery files",
+    `- [Expanded context](${SITE_URL}/llms-full.txt)`,
+    `- [Crawler and identity summary](${SITE_URL}/ai.txt)`,
+    "",
+    "## Contact and identity",
     `- Creator updates: ${X_PROFILE_URL}`,
     `- YouTube demos: ${YOUTUBE_URL}`,
   ].join("\n");
@@ -88,17 +103,25 @@ export function buildLlmsTxt() {
 
 export function buildLlmsFullTxt() {
   const releases = getSortedReleases();
+  const docs = getDocumentationCatalog();
 
   return [
     buildLlmsTxt(),
     "",
-    "## Full FAQ",
+    "## Expanded documentation map",
+    ...docs.flatMap((page) => [
+      `### ${page.title}`,
+      `Canonical URL: ${SITE_URL}${page.url}`,
+      page.description,
+      "",
+    ]),
+    "## Homepage FAQ",
     ...FAQ_ITEMS.flatMap(({ question, answer }) => [
       `### ${question}`,
       answer,
       "",
     ]),
-    "## Full Changelog Summaries",
+    "## Full changelog summaries",
     ...releases.flatMap((entry) => [
       `### Synara ${entry.version} (${entry.date})`,
       ...entry.features.map((feature) => {
@@ -112,26 +135,39 @@ export function buildLlmsFullTxt() {
 
 export function buildAiTxt() {
   return [
-    `# ${SITE_NAME} AI crawler guidance`,
+    `# ${SITE_NAME} AI discovery guidance`,
     "",
-    "Purpose: help search, answer, and browser agents understand the public Synara website.",
+    AI_DISCOVERY_NOTICE,
     "",
-    "Allowed public discovery files:",
+    "Purpose: help search, answer, and browser agents identify canonical public Synara pages.",
+    "",
+    "Canonical discovery resources:",
+    `- ${SITE_URL}/docs`,
     `- ${SITE_URL}/llms.txt`,
     `- ${SITE_URL}/llms-full.txt`,
-    `- ${SITE_URL}/sitemap.xml`,
     `- ${SITE_URL}/sitemap-index.xml`,
+    `- ${SITE_URL}/robots.txt`,
     "",
-    "Useful user agents to allow for discoverability:",
-    ...AI_SEARCH_USER_AGENTS.map((agent) => `- ${agent}`),
+    "AI search and user-directed retrieval agents:",
+    ...AI_DISCOVERY_USER_AGENTS.map((agent) => `- ${agent}`),
     "",
-    "Primary facts:",
+    "General search crawlers:",
+    ...SEARCH_USER_AGENTS.map((agent) => `- ${agent}`),
+    "",
+    "Model-development controls, separate from search visibility:",
+    ...AI_TRAINING_USER_AGENTS.map((agent) => `- ${agent}`),
+    "",
+    "Canonical product facts:",
     `- ${SITE_DESCRIPTION}`,
     `- Source repository: ${GITHUB_REPO_URL}`,
     `- Releases: ${GITHUB_RELEASES_URL}`,
-    "- Synara is local-first, does not require a Synara account, and is built to keep the workspace boundary clear.",
-    "- Providers still receive the prompts, file snippets, diffs, terminal output, or tool results needed for their own sessions.",
+    "- Synara is local-first and does not require a Synara cloud account.",
+    "- The selected provider still receives the prompts, file snippets, diffs, terminal output, or tool results needed for its session.",
     "- Synara does not proxy or store normal provider traffic on a Synara server.",
     "- Optional anonymous analytics are off by default and never include code, prompts, or chat history.",
+    "",
+    "Policy note:",
+    "- This file is informational and does not grant or revoke crawler permission.",
+    "- robots.txt and page-level robots directives are the authoritative crawl and indexing controls.",
   ].join("\n");
 }
