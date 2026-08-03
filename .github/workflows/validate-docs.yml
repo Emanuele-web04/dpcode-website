@@ -8,21 +8,23 @@ on:
       - docs/getting-started-overhaul
       - docs/provider-guides
       - docs/workflow-guides
+      - docs/help-and-troubleshooting
   push:
     branches:
       - docs/getting-started-overhaul
       - docs/provider-guides
       - docs/workflow-guides
       - docs/help-and-troubleshooting
+      - docs/quality-seo-aeo
 
 permissions:
   contents: read
 
 jobs:
   validate:
-    name: Test, lint, and build
+    name: Test, lint, build, and smoke
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout
@@ -45,3 +47,6 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Smoke test SEO and AI discovery routes
+        run: npm run test:seo-smoke
