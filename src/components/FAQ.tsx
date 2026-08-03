@@ -1,7 +1,6 @@
 // FILE: FAQ.tsx
-// Purpose: Renders homepage FAQs distilled from the original Synara project docs.
+// Purpose: Renders homepage FAQs from the shared answer contract.
 // Layer: Marketing UI section
-// Exports: FAQ default component
 
 "use client";
 
@@ -10,26 +9,24 @@ import { FiPlus } from "react-icons/fi";
 import { FAQ_ITEMS } from "@/data/faqs";
 
 export default function FAQ() {
-  // Keep one panel open so both opening and closing can animate cleanly.
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
   const toggleQuestion = (question: string) => {
     setOpenQuestion((current) => (current === question ? null : question));
   };
 
   return (
-    <section className="py-14 sm:py-20">
+    <section className="border-t border-[var(--divide)] py-14 sm:py-20">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
         <div className="lg:sticky lg:top-24 lg:self-start">
           <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
-            FAQ
+            Product questions
           </p>
           <h2 className="mt-3 text-[1.65rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem]">
-            The practical bits,
-            <br className="hidden sm:block" /> answered.
+            Understand the boundary before you run the work.
           </h2>
           <p className="mt-5 max-w-sm text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]">
-            A quick pass over setup, providers, parallel work, and how much
-            control you keep while agents are running.
+            How providers, subscriptions, parallel tasks, handoffs, Git, and
+            local workspace data fit together.
           </p>
         </div>
 
