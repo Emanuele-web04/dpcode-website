@@ -6,10 +6,12 @@ on:
       - main
       - docs/public-surface-overhaul
       - docs/getting-started-overhaul
+      - docs/provider-guides
   push:
     branches:
       - docs/getting-started-overhaul
       - docs/provider-guides
+      - docs/workflow-guides
 
 permissions:
   contents: read
