@@ -91,8 +91,13 @@ function readProvider(slug) {
 }
 
 function officialDocumentationSection(source) {
-  const match = /^## Official documentation\n([\s\S]*?)(?=^## |\z)/m.exec(source);
-  return match?.[1] ?? "";
+  const heading = "## Official documentation\n";
+  const start = source.indexOf(heading);
+  if (start === -1) return "";
+
+  const contentStart = start + heading.length;
+  const nextHeading = source.indexOf("\n## ", contentStart);
+  return source.slice(contentStart, nextHeading === -1 ? source.length : nextHeading);
 }
 
 test("root documentation navigation places Providers between Getting started and Workflows", () => {
