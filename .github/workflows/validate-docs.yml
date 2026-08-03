@@ -7,11 +7,13 @@ on:
       - docs/public-surface-overhaul
       - docs/getting-started-overhaul
       - docs/provider-guides
+      - docs/workflow-guides
   push:
     branches:
       - docs/getting-started-overhaul
       - docs/provider-guides
       - docs/workflow-guides
+      - docs/help-and-troubleshooting
 
 permissions:
   contents: read
