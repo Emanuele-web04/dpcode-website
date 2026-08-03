@@ -14,6 +14,9 @@ export const PRODUCT_HERO_TITLE =
 export const PRODUCT_HERO_DESCRIPTION =
   "Use Claude Code, Codex, OpenCode, Cursor, and more side by side—each with its own task, Git worktree, terminal, browser, diff, and delivery loop.";
 
+export const PRODUCT_META_DESCRIPTION =
+  "Synara is a free, open-source, local-first workspace for coding agents with separate tasks, Git worktrees, terminals, browser verification, diffs, handoffs, and pull-request delivery.";
+
 export const PRODUCT_DESCRIPTION =
   "Synara is a free, open-source, local-first workspace and control plane for coding agents. Run Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok Build, Kilo Code, Pi, and Factory Droid across separate tasks with terminals, browser verification, diffs, Git worktrees, handoffs, and pull-request delivery in one desktop app.";
 
