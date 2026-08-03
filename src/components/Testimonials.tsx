@@ -1,13 +1,17 @@
 // FILE: Testimonials.tsx
-// Purpose: "Loved on X" wall — live testimonial tweets rendered as minimal cards.
+// Purpose: Curated public posts from people using Synara.
 // Layer: Marketing UI section (server component)
-// Depends on: loadTestimonialCards (react-tweet pipeline), homepage design tokens
 
 import { SiX } from "react-icons/si";
 import { FiHeart, FiGlobe } from "react-icons/fi";
 import { loadTestimonialCards, type TestimonialCard } from "@/lib/tweets";
 
-// Map common language codes to display names for the "Translated from …" label.
+const EXCLUDED_TESTIMONIAL_IDS = new Set([
+  // Excluded from the homepage because it frames the product defensively around
+  // an earlier fork identity instead of describing a durable user outcome.
+  "2071916101924262377",
+]);
+
 const LANGUAGE_NAMES: Record<string, string> = {
   zh: "Chinese",
   ja: "Japanese",
@@ -27,7 +31,6 @@ function languageName(code: string): string {
   return LANGUAGE_NAMES[code] ?? code.toUpperCase();
 }
 
-// Render the tweet body: strip t.co noise, tidy whitespace, accent @mentions.
 function renderTweetText(text: string) {
   const cleaned = text
     .replace(/https?:\/\/t\.co\/\S+/g, "")
@@ -61,7 +64,6 @@ function VerifiedBadge() {
 
 function TestimonialCardItem({ card }: { card: TestimonialCard }) {
   const initial = (card.name || card.handle).charAt(0).toUpperCase();
-  // Surface the supplied translation in place of a non-English original.
   const showTranslation = Boolean(card.translation && card.translationLang);
   const bodyText = showTranslation ? card.translation! : card.text;
   const showLikes = card.likes != null && card.likes > 0;
@@ -141,22 +143,24 @@ function TestimonialCardItem({ card }: { card: TestimonialCard }) {
 }
 
 export default async function Testimonials() {
-  const cards = await loadTestimonialCards();
+  const cards = (await loadTestimonialCards()).filter(
+    (card) => !EXCLUDED_TESTIMONIAL_IDS.has(card.id),
+  );
   if (cards.length === 0) return null;
 
   return (
-    <section id="testimonials" className="py-14 sm:py-20">
+    <section id="testimonials" className="border-t border-[var(--divide)] py-14 sm:py-20">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="max-w-2xl">
           <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
-            Testimonials
+            From developers
           </p>
           <h2 className="mt-3 text-[1.65rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem]">
-            Loved by people who ship.
+            What people notice when they use Synara.
           </h2>
           <p className="mt-5 text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]">
-            Unedited posts from developers using Synara every day — pulled live
-            from X, so you see exactly what they said.
+            Public posts about the workspace, provider choice, local server,
+            design, and day-to-day development experience.
           </p>
         </div>
 
