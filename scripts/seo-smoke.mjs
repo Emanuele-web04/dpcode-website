@@ -1,16 +1,20 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const HOST = "127.0.0.1";
 const PORT = 3210;
 const ORIGIN = `http://${HOST}:${PORT}`;
-const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+const NEXT_CLI = path.join(ROOT, "node_modules", "next", "dist", "bin", "next");
 
 let output = "";
 const server = spawn(
-  npmCommand,
-  ["run", "start", "--", "-H", HOST, "-p", String(PORT)],
+  process.execPath,
+  [NEXT_CLI, "start", "-H", HOST, "-p", String(PORT)],
   {
+    cwd: ROOT,
     env: { ...process.env, NODE_ENV: "production" },
     stdio: ["ignore", "pipe", "pipe"],
   },
@@ -35,7 +39,7 @@ async function waitForServer() {
       throw new Error(`Next.js exited before becoming ready.\n${output}`);
     }
     try {
-      const response = await fetch(`${ORIGIN}/`);
+      const response = await fetch(`${ORIGIN}/`, { signal: AbortSignal.timeout(5_000) });
       if (response.ok) return;
     } catch {
       // The server is still starting.
@@ -46,7 +50,9 @@ async function waitForServer() {
 }
 
 async function readRoute(pathname, expectedContentType) {
-  const response = await fetch(`${ORIGIN}${pathname}`);
+  const response = await fetch(`${ORIGIN}${pathname}`, {
+    signal: AbortSignal.timeout(10_000),
+  });
   const body = await response.text();
   assert.equal(response.status, 200, `${pathname} returned ${response.status}\n${body}`);
   assert.match(
@@ -59,12 +65,18 @@ async function readRoute(pathname, expectedContentType) {
 
 async function stopServer() {
   if (server.exitCode !== null) return;
+
+  const exited = new Promise((resolve) => server.once("exit", resolve));
   server.kill("SIGTERM");
-  await Promise.race([
-    new Promise((resolve) => server.once("exit", resolve)),
-    delay(5_000),
-  ]);
-  if (server.exitCode === null) server.kill("SIGKILL");
+  await Promise.race([exited, delay(5_000)]);
+
+  if (server.exitCode === null) {
+    server.kill("SIGKILL");
+    await Promise.race([exited, delay(2_000)]);
+  }
+
+  server.stdout.destroy();
+  server.stderr.destroy();
 }
 
 try {
@@ -149,12 +161,18 @@ try {
   const llmsFull = await readRoute("/llms-full.txt", /text\/plain/i);
   assert.ok(llmsFull.includes("## Expanded documentation map"));
   assert.ok(llmsFull.includes("### Report a problem"));
-  assert.ok(llmsFull.includes("Canonical URL: https://www.trysynara.com/docs/troubleshooting/report-a-problem"));
+  assert.ok(
+    llmsFull.includes(
+      "Canonical URL: https://www.trysynara.com/docs/troubleshooting/report-a-problem",
+    ),
+  );
 
   const ai = await readRoute("/ai.txt", /text\/plain/i);
   assert.ok(ai.includes("AI search and user-directed retrieval agents:"));
   assert.ok(ai.includes("Model-development controls, separate from search visibility:"));
-  assert.ok(ai.includes("This file is informational and does not grant or revoke crawler permission."));
+  assert.ok(
+    ai.includes("This file is informational and does not grant or revoke crawler permission."),
+  );
 
   console.log("SEO/AEO production smoke test passed.");
 } finally {
