@@ -19,13 +19,10 @@ export interface DocumentationCatalogEntry {
  * second hand-maintained route list from drifting as guides are added.
  */
 export function getDocumentationCatalog(): DocumentationCatalogEntry[] {
-  return docsSource
-    .getPages()
-    .map((page) => ({
-      title: page.data.title,
-      description: page.data.description,
-      url: page.url,
-      lastModified: page.data.lastModified ?? null,
-    }))
-    .sort((left, right) => left.url.localeCompare(right.url));
+  return docsSource.getPages().map((page) => ({
+    title: page.data.title,
+    description: page.data.description,
+    url: page.url,
+    lastModified: page.data.lastModified ?? null,
+  })).sort((left, right) => left.url.localeCompare(right.url));
 }
