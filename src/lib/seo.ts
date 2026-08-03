@@ -10,8 +10,8 @@ import { FAQ_ITEMS } from "@/data/faqs";
 import { type ChangelogEntry } from "@/data/changelog";
 import {
   PRODUCT_CATEGORY,
-  PRODUCT_DESCRIPTION,
   PRODUCT_HERO_TITLE,
+  PRODUCT_META_DESCRIPTION,
   PRODUCT_NAME,
   SUPPORTED_PROVIDERS,
 } from "@/data/product";
@@ -32,8 +32,8 @@ export const YOUTUBE_URL = "https://youtube.com/@emanueledpt";
 /** Search/share title — brand first, then the primary user outcome. */
 export const SITE_TITLE = `${SITE_NAME} — ${PRODUCT_HERO_TITLE}`;
 
-/** Shared public description used by metadata, JSON-LD, and AI discovery. */
-export const SITE_DESCRIPTION = PRODUCT_DESCRIPTION;
+/** Concise search/share description. The full definition lives in product.ts. */
+export const SITE_DESCRIPTION = PRODUCT_META_DESCRIPTION;
 
 export const SEO_KEYWORDS = [
   "Synara",
