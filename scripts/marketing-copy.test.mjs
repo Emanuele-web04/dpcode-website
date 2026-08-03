@@ -10,14 +10,22 @@ function read(relativePath) {
   return readFileSync(path.join(ROOT, relativePath), "utf8");
 }
 
+function exportedString(source, name) {
+  const match = new RegExp(`export const ${name} =\\s*\"([^\"]+)\";`).exec(source);
+  assert.ok(match, `${name} is not a direct string export`);
+  return match[1];
+}
+
 const PUBLIC_COPY_FILES = [
   "src/app/page.tsx",
   "src/app/install/page.tsx",
-  "src/components/Features.tsx",
-  "src/components/Workflow.tsx",
-  "src/components/PrivacySection.tsx",
   "src/components/ClosingCTA.tsx",
+  "src/components/FAQ.tsx",
+  "src/components/Features.tsx",
+  "src/components/MultiProjectShowcase.tsx",
+  "src/components/PrivacySection.tsx",
   "src/components/Testimonials.tsx",
+  "src/components/Workflow.tsx",
   "src/data/faqs.ts",
   "src/data/product.ts",
   "src/lib/seo.ts",
@@ -32,10 +40,18 @@ test("canonical product language is centralized and consumed by every discovery 
   const faq = read("src/data/faqs.ts");
   const closing = read("src/components/ClosingCTA.tsx");
 
-  assert.ok(product.includes('PRODUCT_HERO_TITLE =\n  "Run every coding agent in one local workspace."'));
-  assert.ok(product.includes("PRODUCT_HERO_DESCRIPTION"));
-  assert.ok(product.includes("PRODUCT_DESCRIPTION"));
-  assert.ok(product.includes("PRODUCT_CATEGORY"));
+  assert.equal(
+    exportedString(product, "PRODUCT_HERO_TITLE"),
+    "Run every coding agent in one local workspace.",
+  );
+  assert.ok(exportedString(product, "PRODUCT_HERO_DESCRIPTION").length >= 100);
+  assert.ok(exportedString(product, "PRODUCT_DESCRIPTION").length >= 220);
+  assert.ok(exportedString(product, "PRODUCT_CATEGORY").length >= 45);
+
+  const metaDescription = exportedString(product, "PRODUCT_META_DESCRIPTION");
+  assert.ok(metaDescription.length >= 140, "metadata description is too thin");
+  assert.ok(metaDescription.length <= 190, "metadata description is too long");
+
   assert.ok(product.includes("SUPPORTED_PROVIDERS"));
   assert.ok(product.includes("PRODUCT_PILLARS"));
 
@@ -48,6 +64,8 @@ test("canonical product language is centralized and consumed by every discovery 
   ]) {
     assert.match(source, /@\/data\/product/, `${name} does not consume canonical product data`);
   }
+
+  assert.ok(seo.includes("SITE_DESCRIPTION = PRODUCT_META_DESCRIPTION"));
 });
 
 test("homepage hierarchy renders the canonical thesis and useful next actions", () => {
@@ -113,7 +131,11 @@ test("public homepage copy avoids defensive identity and repetitive positioning"
     "Let the models verify the fit",
     "no longer just a t3 code fork",
   ]) {
-    assert.equal(combined.toLowerCase().includes(phrase.toLowerCase()), false, `retired phrase remains: ${phrase}`);
+    assert.equal(
+      combined.toLowerCase().includes(phrase.toLowerCase()),
+      false,
+      `retired phrase remains: ${phrase}`,
+    );
   }
 
   assert.equal(
@@ -151,6 +173,6 @@ test("install and metadata surfaces share the new category", () => {
   assert.ok(install.includes("PRODUCT_CATEGORY"));
   assert.ok(install.includes("Download Synara — Coding Agent Workspace"));
   assert.ok(seo.includes("PRODUCT_HERO_TITLE"));
-  assert.ok(seo.includes("PRODUCT_DESCRIPTION"));
+  assert.ok(seo.includes("PRODUCT_META_DESCRIPTION"));
   assert.ok(seo.includes("Coding agent workspace and control plane"));
 });
