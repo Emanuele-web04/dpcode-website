@@ -82,6 +82,51 @@ async function stopServer() {
 try {
   await waitForServer();
 
+  const homepage = await readRoute("/", /text\/html/i);
+  for (const marker of [
+    "Run every coding agent in one local workspace.",
+    "The local-first workspace and control plane for coding agents.",
+    "Read the docs",
+    "Free and open source",
+    "No Synara account required",
+    "One workspace. Separate tasks. Shared control.",
+    "Keep execution and verification in the same loop.",
+    "Know where every part of the work goes.",
+  ]) {
+    assert.ok(homepage.includes(marker), `homepage is missing ${marker}`);
+  }
+  for (const retired of [
+    "The command center for agentic development",
+    "Ask the models directly",
+    "Let the models verify the fit",
+    "no longer just a t3 code fork",
+    "Opus 4.8",
+    "GPT-5.5",
+    "Composer 2.5",
+    "500+ models",
+  ]) {
+    assert.equal(
+      homepage.toLowerCase().includes(retired.toLowerCase()),
+      false,
+      `homepage still renders retired copy: ${retired}`,
+    );
+  }
+  assert.match(
+    homepage,
+    /<title>Synara — Run every coding agent in one local workspace\.<\/title>/,
+  );
+  assert.match(
+    homepage,
+    /<link rel="canonical" href="https:\/\/www\.trysynara\.com\/"/,
+  );
+  assert.ok(homepage.includes('"@type":"SoftwareApplication"'));
+  assert.ok(homepage.includes('"@type":"FAQPage"'));
+
+  const install = await readRoute("/install", /text\/html/i);
+  assert.ok(install.includes("Download Synara"));
+  assert.ok(install.includes("coding-agent runtime already authenticated"));
+  assert.match(install, /<title>Download Synara — Coding Agent Workspace<\/title>/);
+
   const docs = await readRoute("/docs", /text\/html/i);
   assert.match(
     docs,
@@ -149,6 +194,9 @@ try {
 
   const llms = await readRoute("/llms.txt", /text\/plain/i);
   for (const marker of [
+    "The local-first workspace and control plane for coding agents.",
+    "## Product model",
+    "One task owns one line of work",
     "## Documentation index",
     "https://www.trysynara.com/docs/providers",
     "https://www.trysynara.com/docs/workflows",
@@ -170,11 +218,12 @@ try {
   const ai = await readRoute("/ai.txt", /text\/plain/i);
   assert.ok(ai.includes("AI search and user-directed retrieval agents:"));
   assert.ok(ai.includes("Model-development controls, separate from search visibility:"));
+  assert.ok(ai.includes("Supported runtimes: Claude Code, Codex, OpenCode"));
   assert.ok(
     ai.includes("This file is informational and does not grant or revoke crawler permission."),
   );
 
-  console.log("SEO/AEO production smoke test passed.");
+  console.log("Marketing, SEO, AEO, and AI discovery smoke test passed.");
 } finally {
   await stopServer();
 }
