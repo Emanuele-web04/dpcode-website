@@ -7,7 +7,8 @@ import { fileURLToPath } from "node:url";
 import { extractInternalLinks, parseFrontmatter } from "./check-docs.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const WORKFLOWS_DIR = path.join(ROOT, "content", "docs", "workflows");
+const DOCS_DIR = path.join(ROOT, "content", "docs");
+const WORKFLOWS_DIR = path.join(DOCS_DIR, "workflows");
 
 const WORKFLOWS = [
   {
@@ -212,6 +213,10 @@ function readWorkflow(slug) {
   return readFileSync(path.join(WORKFLOWS_DIR, `${slug}.mdx`), "utf8");
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 test("workflow navigation has the exact guide set and order", () => {
   const meta = JSON.parse(readFileSync(path.join(WORKFLOWS_DIR, "meta.json"), "utf8"));
   assert.deepEqual(meta.pages, WORKFLOWS.map(({ slug }) => slug));
@@ -232,7 +237,7 @@ test("every workflow page satisfies its branch-specific content contract", () =>
     for (const section of workflow.requiredSections) {
       assert.match(
         source,
-        new RegExp(`^## ${section.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "m"),
+        new RegExp(`^## ${escapeRegExp(section)}$`, "m"),
         `${workflow.slug} is missing “${section}”`,
       );
     }
@@ -249,6 +254,13 @@ test("the workflow index links to every non-index workflow route", () => {
     const route = `/docs/workflows/${slug}`;
     assert.ok(links.includes(route), `workflow index does not link to ${route}`);
   }
+});
+
+test("the Automations and Studio feature overview points to both detailed workflows", () => {
+  const featureOverview = readFileSync(path.join(DOCS_DIR, "features", "automations.mdx"), "utf8");
+  const links = extractInternalLinks(featureOverview);
+  assert.ok(links.includes("/docs/workflows/automations"));
+  assert.ok(links.includes("/docs/workflows/studio"));
 });
 
 test("coordination pages distinguish Agent Gateway from External MCP", () => {
