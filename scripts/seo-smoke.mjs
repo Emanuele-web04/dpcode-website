@@ -117,7 +117,8 @@ try {
   );
   assert.match(
     homepage,
-    /<link rel="canonical" href="https:\/\/www\.trysynara\.com\/"/,
+    /<link rel="canonical" href="https:\/\/www\.trysynara\.com"\/>/,
+    "homepage must emit the exact canonical production origin",
   );
   assert.ok(homepage.includes('"@type":"SoftwareApplication"'));
   assert.ok(homepage.includes('"@type":"FAQPage"'));
