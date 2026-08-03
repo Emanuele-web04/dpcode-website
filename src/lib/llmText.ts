@@ -3,6 +3,11 @@
 // Layer: server utility for /llms.txt, /llms-full.txt, and /ai.txt routes.
 
 import { FAQ_ITEMS } from "@/data/faqs";
+import {
+  PRODUCT_CATEGORY,
+  PRODUCT_PILLARS,
+  SUPPORTED_PROVIDERS,
+} from "@/data/product";
 import { getSortedReleases, toVersionSlug } from "@/lib/changelog";
 import { getDocumentationCatalog } from "@/lib/docs";
 import {
@@ -29,18 +34,6 @@ const PRIMARY_PAGES = [
   ["Privacy", `${SITE_URL}/privacy`],
 ] as const;
 
-const SUPPORTED_AGENT_RUNTIMES = [
-  "Claude Code",
-  "Codex",
-  "OpenCode",
-  "Cursor",
-  "Google Antigravity CLI",
-  "Grok Build",
-  "Kilo Code",
-  "Pi",
-  "Factory Droid",
-] as const;
-
 function documentationIndexLines() {
   return getDocumentationCatalog().map(
     (page) => `- [${page.title}](${SITE_URL}${page.url}): ${page.description}`,
@@ -52,6 +45,8 @@ export function buildLlmsTxt() {
 
   return [
     `# ${SITE_NAME}`,
+    "",
+    `> ${PRODUCT_CATEGORY}`,
     "",
     `> ${SITE_DESCRIPTION}`,
     "",
@@ -65,14 +60,13 @@ export function buildLlmsTxt() {
     "## Documentation index",
     ...documentationIndexLines(),
     "",
-    "## What Synara is",
-    "- A shipped, free, open-source desktop workspace and control plane for coding agents.",
-    "- A local-first surface for durable tasks, provider sessions, terminals, browser work, diffs, branches, worktrees, handoffs, automations, and pull-request delivery.",
-    "- A way to use supported provider accounts and subscriptions without adding a separate Synara model plan.",
-    "- A cross-platform desktop product for macOS, Windows, and Linux.",
+    "## Product model",
+    ...PRODUCT_PILLARS.map(
+      ({ title, description }) => `- **${title}:** ${description}`,
+    ),
     "",
-    "## Supported agent runtimes",
-    ...SUPPORTED_AGENT_RUNTIMES.map((provider) => `- ${provider}`),
+    "## Supported coding-agent runtimes",
+    ...SUPPORTED_PROVIDERS.map((provider) => `- ${provider}`),
     "",
     "## Questions answered by the documentation",
     "- How do I install Synara and connect a coding-agent runtime?",
@@ -158,13 +152,15 @@ export function buildAiTxt() {
     ...AI_TRAINING_USER_AGENTS.map((agent) => `- ${agent}`),
     "",
     "Canonical product facts:",
+    `- ${PRODUCT_CATEGORY}`,
     `- ${SITE_DESCRIPTION}`,
+    `- Supported runtimes: ${SUPPORTED_PROVIDERS.join(", ")}.`,
     `- Source repository: ${GITHUB_REPO_URL}`,
     `- Releases: ${GITHUB_RELEASES_URL}`,
     "- Synara is local-first and does not require a Synara cloud account.",
     "- The selected provider still receives the prompts, file snippets, diffs, terminal output, or tool results needed for its session.",
     "- Synara does not proxy or store normal provider traffic on a Synara server.",
-    "- Optional anonymous analytics are off by default and never include code, prompts, or chat history.",
+    "- Optional anonymous analytics are off by default and are designed not to include code, prompts, or chat history.",
     "",
     "Policy note:",
     "- This file is informational and does not grant or revoke crawler permission.",
