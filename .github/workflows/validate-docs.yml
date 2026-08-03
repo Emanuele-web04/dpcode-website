@@ -1,4 +1,4 @@
-name: Validate documentation
+name: Validate public surface
 
 on:
   pull_request:
@@ -9,6 +9,7 @@ on:
       - docs/provider-guides
       - docs/workflow-guides
       - docs/help-and-troubleshooting
+      - docs/quality-seo-aeo
   push:
     branches:
       - docs/getting-started-overhaul
@@ -16,6 +17,7 @@ on:
       - docs/workflow-guides
       - docs/help-and-troubleshooting
       - docs/quality-seo-aeo
+      - marketing/homepage-positioning
 
 permissions:
   contents: read
@@ -39,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test documentation integrity
+      - name: Test public-surface contracts
         run: npm run test:docs
 
       - name: Lint
@@ -48,5 +50,5 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Smoke test SEO and AI discovery routes
+      - name: Smoke test production routes
         run: npm run test:seo-smoke
