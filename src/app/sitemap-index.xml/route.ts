@@ -1,17 +1,16 @@
 // FILE: sitemap-index.xml/route.ts
-// Purpose: Serves a sitemap index so Search Console can discover all sitemap files.
+// Purpose: Serves a sitemap index so crawlers can discover every sitemap.
 // Layer: App Router route handler.
 
-import { SITEMAP_PATHS } from "@/lib/siteRoutes";
+import { SITEMAP_INDEX_ENTRIES } from "@/lib/siteRoutes";
 import { absoluteUrl } from "@/lib/seo";
-import { SITE_LATEST_UPDATE } from "@/lib/releaseDates";
 
 export const revalidate = 86400;
 
 export function GET() {
-  const lastmod = SITE_LATEST_UPDATE.toISOString();
-  const entries = SITEMAP_PATHS.map(
-    (path) => `  <sitemap><loc>${absoluteUrl(path)}</loc><lastmod>${lastmod}</lastmod></sitemap>`,
+  const entries = SITEMAP_INDEX_ENTRIES.map(
+    ({ path, lastModified }) =>
+      `  <sitemap><loc>${absoluteUrl(path)}</loc><lastmod>${lastModified.toISOString()}</lastmod></sitemap>`,
   ).join("\n");
 
   return new Response(
