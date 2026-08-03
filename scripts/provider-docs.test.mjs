@@ -7,18 +7,73 @@ import { fileURLToPath } from "node:url";
 import { extractInternalLinks, parseFrontmatter } from "./check-docs.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const PROVIDERS_DIR = path.join(ROOT, "content", "docs", "providers");
+const DOCS_DIR = path.join(ROOT, "content", "docs");
+const PROVIDERS_DIR = path.join(DOCS_DIR, "providers");
 
 const PROVIDERS = [
-  { slug: "claude-code", title: "Claude Code", executable: "claude", authMarker: "claude auth status" },
-  { slug: "codex", title: "Codex", executable: "codex", authMarker: "codex login" },
-  { slug: "opencode", title: "OpenCode", executable: "opencode", authMarker: "/connect" },
-  { slug: "cursor", title: "Cursor", executable: "cursor-agent", authMarker: "cursor-agent login" },
-  { slug: "antigravity", title: "Antigravity", executable: "agy", authMarker: "keyring" },
-  { slug: "grok", title: "Grok Build", executable: "grok", authMarker: "XAI_API_KEY" },
-  { slug: "kilo-code", title: "Kilo Code", executable: "kilo", authMarker: "/connect" },
-  { slug: "pi", title: "Pi", executable: "pi", authMarker: "/login" },
-  { slug: "factory-droid", title: "Factory Droid", executable: "droid", authMarker: "FACTORY_API_KEY" },
+  {
+    slug: "claude-code",
+    title: "Claude Code",
+    executable: "claude",
+    authMarker: "claude auth status",
+    officialDomain: "docs.anthropic.com",
+  },
+  {
+    slug: "codex",
+    title: "Codex",
+    executable: "codex",
+    authMarker: "codex login",
+    officialDomain: "developers.openai.com",
+  },
+  {
+    slug: "opencode",
+    title: "OpenCode",
+    executable: "opencode",
+    authMarker: "/connect",
+    officialDomain: "opencode.ai",
+  },
+  {
+    slug: "cursor",
+    title: "Cursor",
+    executable: "cursor-agent",
+    authMarker: "cursor-agent login",
+    officialDomain: "docs.cursor.com",
+  },
+  {
+    slug: "antigravity",
+    title: "Antigravity",
+    executable: "agy",
+    authMarker: "keyring",
+    officialDomain: "antigravity.google",
+  },
+  {
+    slug: "grok",
+    title: "Grok Build",
+    executable: "grok",
+    authMarker: "XAI_API_KEY",
+    officialDomain: "docs.x.ai",
+  },
+  {
+    slug: "kilo-code",
+    title: "Kilo Code",
+    executable: "kilo",
+    authMarker: "/connect",
+    officialDomain: "kilo.ai",
+  },
+  {
+    slug: "pi",
+    title: "Pi",
+    executable: "pi",
+    authMarker: "/login",
+    officialDomain: "github.com/earendil-works/pi",
+  },
+  {
+    slug: "factory-droid",
+    title: "Factory Droid",
+    executable: "droid",
+    authMarker: "FACTORY_API_KEY",
+    officialDomain: "docs.factory.ai",
+  },
 ];
 
 const REQUIRED_SECTIONS = [
@@ -34,6 +89,26 @@ const REQUIRED_SECTIONS = [
 function readProvider(slug) {
   return readFileSync(path.join(PROVIDERS_DIR, `${slug}.mdx`), "utf8");
 }
+
+function officialDocumentationSection(source) {
+  const match = /^## Official documentation\n([\s\S]*?)(?=^## |\z)/m.exec(source);
+  return match?.[1] ?? "";
+}
+
+test("root documentation navigation places Providers between Getting started and Workflows", () => {
+  const meta = JSON.parse(readFileSync(path.join(DOCS_DIR, "meta.json"), "utf8"));
+  const expectedSequence = [
+    "---Getting started---",
+    "getting-started",
+    "---Providers---",
+    "providers",
+    "---Workflows---",
+    "workflows",
+  ];
+  const start = meta.pages.indexOf(expectedSequence[0]);
+  assert.notEqual(start, -1, "root documentation navigation is missing Getting started");
+  assert.deepEqual(meta.pages.slice(start, start + expectedSequence.length), expectedSequence);
+});
 
 test("provider navigation has the exact supported provider set and order", () => {
   const meta = JSON.parse(readFileSync(path.join(PROVIDERS_DIR, "meta.json"), "utf8"));
@@ -56,39 +131,53 @@ test("every supported provider has a guide with the shared documentation contrac
       assert.match(source, new RegExp(`^## ${section}$`, "m"), `${provider.slug} is missing “${section}”`);
     }
 
-    assert.match(source, new RegExp(`\\b${provider.executable.replaceAll("-", "\\-")}\\b`), `${provider.slug} does not name its executable`);
-    assert.ok(source.includes(provider.authMarker), `${provider.slug} does not document its authentication marker`);
-    assert.match(source, /## Official documentation[\s\S]*https:\/\//, `${provider.slug} needs an official source link`);
+    assert.match(
+      source,
+      new RegExp(`\\b${provider.executable.replaceAll("-", "\\-")}\\b`),
+      `${provider.slug} does not name its executable`,
+    );
+    assert.ok(
+      source.includes(provider.authMarker),
+      `${provider.slug} does not document its authentication marker`,
+    );
+
+    const officialSources = officialDocumentationSection(source);
+    assert.match(
+      officialSources,
+      new RegExp(`https://${provider.officialDomain.replaceAll(".", "\\.")}`),
+      `${provider.slug} does not cite its expected official domain`,
+    );
+    assert.doesNotMatch(
+      officialSources,
+      /\]\(http:\/\//,
+      `${provider.slug} contains an insecure official documentation URL`,
+    );
   }
 });
 
-test("the provider index links to every guide exactly once", () => {
+test("the provider index links to every guide", () => {
   const source = readFileSync(path.join(PROVIDERS_DIR, "index.mdx"), "utf8");
   const links = extractInternalLinks(source);
 
   for (const { slug } of PROVIDERS) {
     const route = `/docs/providers/${slug}`;
-    assert.equal(
-      links.filter((link) => link === route).length >= 1,
-      true,
-      `provider index does not link to ${route}`,
+    assert.ok(links.includes(route), `provider index does not link to ${route}`);
+  }
+});
+
+test("the provider index names every provider and executable", () => {
+  const source = readFileSync(path.join(PROVIDERS_DIR, "index.mdx"), "utf8");
+  for (const provider of PROVIDERS) {
+    assert.ok(source.includes(provider.title), `provider index does not name ${provider.title}`);
+    assert.ok(
+      source.includes(`\`${provider.executable}\``),
+      `provider index does not show ${provider.executable}`,
     );
   }
 });
 
-test("the provider index table names every executable and support row", () => {
-  const source = readFileSync(path.join(PROVIDERS_DIR, "index.mdx"), "utf8");
-  for (const provider of PROVIDERS) {
-    assert.ok(source.includes(provider.title), `provider index does not name ${provider.title}`);
-    assert.ok(source.includes(`\`${provider.executable}\``), `provider index does not show ${provider.executable}`);
-  }
-});
-
 test("the Getting Started provider page points readers to the dedicated provider section", () => {
-  const source = readFileSync(
-    path.join(ROOT, "content", "docs", "getting-started", "providers.mdx"),
-    "utf8",
-  );
+  const source = readFileSync(path.join(DOCS_DIR, "getting-started", "providers.mdx"), "utf8");
   assert.ok(
     source.includes("/docs/providers"),
     "Getting Started providers page must link to the dedicated provider guides",
