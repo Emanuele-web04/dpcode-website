@@ -159,9 +159,16 @@ test("privacy copy states both the local workspace boundary and provider boundar
   }
 });
 
-test("testimonial curation excludes fork-comparison framing from the rendered homepage", () => {
+test("testimonial curation excludes identity-defense and volatile-version framing", () => {
   const testimonials = read("src/components/Testimonials.tsx");
-  assert.ok(testimonials.includes("2071916101924262377"));
+  const excludedIds = [
+    "2071916101924262377",
+    "2065178684537888877",
+  ];
+
+  for (const id of excludedIds) {
+    assert.ok(testimonials.includes(`\"${id}\"`), `testimonial exclusion is missing ${id}`);
+  }
   assert.ok(testimonials.includes("EXCLUDED_TESTIMONIAL_IDS"));
   assert.match(testimonials, /filter\([\s\S]*EXCLUDED_TESTIMONIAL_IDS\.has\(card\.id\)/);
 });
