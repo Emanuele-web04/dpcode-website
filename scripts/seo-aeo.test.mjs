@@ -40,7 +40,11 @@ test("documentation titles and descriptions are unique and answer-ready", () => 
     assert.ok(description.length <= 220, `${relative} description is too long`);
     assert.equal(description.includes("\n"), false, `${relative} description must be one line`);
 
-    assert.equal(titles.has(title.toLowerCase()), false, `${relative} duplicates title in ${titles.get(title.toLowerCase())}`);
+    assert.equal(
+      titles.has(title.toLowerCase()),
+      false,
+      `${relative} duplicates title in ${titles.get(title.toLowerCase())}`,
+    );
     assert.equal(
       descriptions.has(description.toLowerCase()),
       false,
@@ -65,7 +69,7 @@ test("the documentation landing page answers high-intent questions directly", ()
     assert.match(source, new RegExp(`^## ${heading.replace(/[?]/g, "\\?")}$`, "m"));
   }
 
-  for (const route of ["/docs/providers", "/docs/workflows", "/docs/troubleshooting"] ) {
+  for (const route of ["/docs/providers", "/docs/workflows", "/docs/troubleshooting"]) {
     assert.ok(source.includes(route), `docs landing page does not link to ${route}`);
   }
 });
@@ -75,10 +79,14 @@ test("AI-readable indexes are generated from the canonical Fumadocs catalog", ()
   const llmText = read("src/lib/llmText.ts");
 
   assert.ok(docsSource.includes("getDocumentationCatalog"));
-  assert.ok(docsSource.includes("docsSource.getPages()"));
+  assert.match(docsSource, /docsSource\s*\.\s*getPages\s*\(\s*\)/);
   assert.ok(llmText.includes("getDocumentationCatalog"));
   assert.ok(llmText.includes("documentationIndexLines"));
-  assert.equal(llmText.includes("const CORE_PAGES"), false, "AI index must not use the retired hand-maintained docs list");
+  assert.equal(
+    llmText.includes("const CORE_PAGES"),
+    false,
+    "AI index must not use the retired hand-maintained docs list",
+  );
   assert.ok(llmText.includes("AI_DISCOVERY_NOTICE"));
   assert.ok(llmText.includes("robots.txt and page-level robots directives"));
 });
@@ -103,7 +111,7 @@ test("crawler policy separates search visibility from model training", () => {
 
   assert.ok(robots.includes("AI_DISCOVERY_USER_AGENTS"));
   assert.ok(robots.includes("AI_TRAINING_USER_AGENTS"));
-  assert.ok(robots.includes('disallow: PRIVATE_PATHS'));
+  assert.ok(robots.includes("disallow: PRIVATE_PATHS"));
   assert.ok(robots.includes('"/api/"'));
 });
 
@@ -113,7 +121,11 @@ test("canonical sitemaps contain search-result pages, not AI utility files", () 
   const index = read("src/app/sitemap-index.xml/route.ts");
 
   for (const utilityPath of ["/llms.txt", "/llms-full.txt", "/ai.txt"]) {
-    assert.equal(routes.includes(`path: \"${utilityPath}\"`), false, `${utilityPath} must not be a canonical sitemap entry`);
+    assert.equal(
+      routes.includes(`path: \"${utilityPath}\"`),
+      false,
+      `${utilityPath} must not be a canonical sitemap entry`,
+    );
   }
 
   assert.ok(routes.includes("getDocumentationCatalog"));
@@ -136,6 +148,6 @@ test("every docs page emits complete metadata and structured data", () => {
   assert.ok(discovery.includes('type: "article"'));
   assert.ok(discovery.includes('card: "summary_large_image"'));
   assert.ok(discovery.includes('"@type": "TechArticle"'));
-  assert.ok(discovery.includes('mainEntityOfPage'));
-  assert.ok(discovery.includes('dateModified'));
+  assert.ok(discovery.includes("mainEntityOfPage"));
+  assert.ok(discovery.includes("dateModified"));
 });
