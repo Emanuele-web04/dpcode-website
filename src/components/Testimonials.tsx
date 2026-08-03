@@ -7,9 +7,12 @@ import { FiHeart, FiGlobe } from "react-icons/fi";
 import { loadTestimonialCards, type TestimonialCard } from "@/lib/tweets";
 
 const EXCLUDED_TESTIMONIAL_IDS = new Set([
-  // Excluded from the homepage because it frames the product defensively around
-  // an earlier fork identity instead of describing a durable user outcome.
+  // Frames the product defensively around an earlier fork identity instead of
+  // describing a durable user outcome.
   "2071916101924262377",
+  // Compares short-lived model/version labels. The underlying experience may
+  // be valid, but the homepage should not age with provider release names.
+  "2065178684537888877",
 ]);
 
 const LANGUAGE_NAMES: Record<string, string> = {
