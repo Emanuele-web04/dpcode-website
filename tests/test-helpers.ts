@@ -66,7 +66,10 @@ export async function prepareRoute(
 
 export async function waitForImages(page: Page) {
   await page.evaluate(async () => {
-    for (const image of [...document.images]) {
+    const renderedImages = [...document.images].filter(
+      (image) => image.getClientRects().length > 0,
+    );
+    for (const image of renderedImages) {
       image.scrollIntoView({ block: "center", inline: "nearest" });
       await new Promise((resolve) => requestAnimationFrame(resolve));
     }
@@ -74,19 +77,21 @@ export async function waitForImages(page: Page) {
   });
   await page.waitForFunction(
     () =>
-      [...document.images].every(
-        (image) => image.complete || image.naturalWidth > 0,
-      ),
+      [...document.images]
+        .filter((image) => image.getClientRects().length > 0)
+        .every((image) => image.complete && image.naturalWidth > 0),
     undefined,
     { timeout: 30_000 },
   );
   const incomplete = await page.evaluate(() =>
     [...document.images].filter(
-      (image) => image.naturalWidth === 0,
+      (image) =>
+        image.getClientRects().length > 0 &&
+        (!image.complete || image.naturalWidth === 0),
     ).length,
   );
   if (incomplete !== 0) {
-    throw new Error(`Found ${incomplete} incomplete images`);
+    throw new Error(`Found ${incomplete} incomplete rendered images`);
   }
 }
 

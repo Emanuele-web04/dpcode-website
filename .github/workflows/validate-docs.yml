@@ -11,6 +11,7 @@ on:
       - docs/help-and-troubleshooting
       - docs/quality-seo-aeo
       - marketing/homepage-positioning
+      - marketing/visual-storytelling
   push:
     branches:
       - docs/getting-started-overhaul
@@ -20,6 +21,7 @@ on:
       - docs/quality-seo-aeo
       - marketing/homepage-positioning
       - marketing/visual-storytelling
+      - docs/media-system
 
 permissions:
   contents: read

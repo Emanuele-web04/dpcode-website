@@ -115,4 +115,14 @@ test.describe("visual regression @visual", () => {
       maxDiffPixels: 0,
     });
   });
+
+  test("docs-media-core-concepts-light", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    await prepareRoute(page, "/docs/getting-started/core-concepts", "light");
+    const media = page.locator('[data-docs-media="image"]').first();
+    await expect(media).toHaveScreenshot("docs-media-core-concepts-light.png", {
+      animations: "disabled",
+      maxDiffPixels: 0,
+    });
+  });
 });
