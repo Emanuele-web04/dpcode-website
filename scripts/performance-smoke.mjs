@@ -27,7 +27,7 @@ const maximums = {
 function startServer() {
   return spawn(nextBinary, ["start", "-H", "127.0.0.1", "-p", String(port)], {
     cwd: process.cwd(),
-    env: { ...process.env, VISUAL_TEST: "1" },
+    env: { ...process.env },
     stdio: ["ignore", "pipe", "pipe"],
   });
 }

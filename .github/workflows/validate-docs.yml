@@ -12,6 +12,7 @@ on:
       - docs/quality-seo-aeo
       - marketing/homepage-positioning
       - marketing/visual-storytelling
+      - upstream/complete-website-overhaul
   push:
     branches:
       - docs/getting-started-overhaul
@@ -22,6 +23,7 @@ on:
       - marketing/homepage-positioning
       - marketing/visual-storytelling
       - docs/media-system
+      - upstream/complete-website-overhaul
 
 permissions:
   contents: read
@@ -30,7 +32,7 @@ jobs:
   validate:
     name: Test, lint, build, and smoke
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
 
     steps:
       - name: Checkout
@@ -54,7 +56,10 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Build
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Build deterministic browser fixture
         run: VISUAL_TEST=1 npm run build
 
       - name: Smoke test production routes
@@ -105,9 +110,16 @@ jobs:
             test-results
           if-no-files-found: ignore
 
+      - name: Build normal production-data path
+        run: |
+          rm -rf .next
+          npm run build
+
       - name: Production performance checks
         id: performance
         continue-on-error: true
+        env:
+          PERFORMANCE_RUNS: 3
         run: npm run test:performance
 
       - name: Upload performance failure artifact
