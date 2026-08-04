@@ -58,7 +58,7 @@ export default async function Home() {
                     Supported coding-agent runtimes
                   </p>
                   <span className="font-mono text-[10px] tabular-nums text-[var(--text-tertiary)]">
-                    09 connected
+                    09 supported
                   </span>
                 </div>
                 <ProviderMarkRow />

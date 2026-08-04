@@ -183,3 +183,22 @@ test("install and metadata surfaces share the new category", () => {
   assert.ok(seo.includes("PRODUCT_META_DESCRIPTION"));
   assert.ok(seo.includes("Coding agent workspace and control plane"));
 });
+
+test("browser quality mode freezes server-side GitHub data without changing production behavior", () => {
+  const installerCount = read("src/lib/installerCount.ts");
+  const releases = read("src/lib/releases.ts");
+  const stars = read("src/lib/githubStars.ts");
+
+  for (const [name, source] of [
+    ["installer count", installerCount],
+    ["release downloads", releases],
+    ["GitHub stars", stars],
+  ]) {
+    assert.ok(
+      source.includes('process.env.VISUAL_TEST === "1"'),
+      `${name} does not honor deterministic browser quality mode`,
+    );
+  }
+
+  assert.ok(installerCount.includes("return getStoredInstallerCount()"));
+});

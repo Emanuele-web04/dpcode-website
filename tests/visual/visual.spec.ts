@@ -1,6 +1,17 @@
 import { expect, test } from "@playwright/test";
 import { preparePage, prepareRoute } from "../test-helpers";
 
+const STABLE_DOCS_TOC = `
+  #nd-toc a[data-active] {
+    color: var(--color-fd-muted-foreground) !important;
+  }
+
+  #nd-toc [style*="--track-top"] {
+    --track-top: 0px !important;
+    --track-bottom: 0px !important;
+  }
+`;
+
 test.describe("visual regression @visual", () => {
   test("homepage-desktop-light", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1100 });
@@ -93,6 +104,7 @@ test.describe("visual regression @visual", () => {
   test("docs-desktop-light", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1100 });
     await prepareRoute(page, "/docs", "light");
+    await page.addStyleTag({ content: STABLE_DOCS_TOC });
     await expect(page).toHaveScreenshot("docs-desktop-light.png", {
       fullPage: true,
       animations: "disabled",

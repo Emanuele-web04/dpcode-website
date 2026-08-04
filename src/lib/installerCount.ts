@@ -45,6 +45,8 @@ export function countInstallerDownloads(releases: GitHubRelease[]): number {
 
 // Fetches live GitHub totals first, then falls back to the daily Codex-updated snapshot.
 export async function getInstallerCount(): Promise<number | null> {
+  if (process.env.VISUAL_TEST === "1") return getStoredInstallerCount();
+
   try {
     const headers: HeadersInit = {
       Accept: "application/vnd.github+json",
