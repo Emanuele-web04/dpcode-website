@@ -1,7 +1,9 @@
 {
   "head": "9aef7de31047f98728fd93f085f17c30f8d92917",
-  "productionServer": "next start -H 127.0.0.1 -p 3001",
+  "productionServer": "next start -H 127.0.0.1 -p 3003",
   "developmentServer": "next dev -H 127.0.0.1 -p 3002",
+  "captureScript": "scripts/capture-visual-matrix.mjs",
+  "imageLoadStrategy": "The capture script scrolls every image into view, waits for every image to report complete, asserts naturalWidth > 0 for every image, and fails before screenshotting when any image is incomplete.",
   "matrix": [
     {
       "theme": "light",
@@ -10,10 +12,11 @@
         1440,
         1100
       ],
-      "scrollHeight": 10509,
+      "scrollHeight": 10825,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "light",
@@ -22,10 +25,11 @@
         1280,
         900
       ],
-      "scrollHeight": 10509,
+      "scrollHeight": 10825,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "light",
@@ -34,10 +38,11 @@
         1024,
         768
       ],
-      "scrollHeight": 10402,
+      "scrollHeight": 10630,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "light",
@@ -46,10 +51,11 @@
         768,
         1024
       ],
-      "scrollHeight": 12111,
+      "scrollHeight": 12621,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "light",
@@ -58,10 +64,11 @@
         390,
         844
       ],
-      "scrollHeight": 13554,
+      "scrollHeight": 14641,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "light",
@@ -70,10 +77,11 @@
         360,
         800
       ],
-      "scrollHeight": 13784,
+      "scrollHeight": 14791,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "dark",
@@ -82,10 +90,11 @@
         1440,
         1100
       ],
-      "scrollHeight": 10510,
+      "scrollHeight": 10826,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "dark",
@@ -94,10 +103,11 @@
         1280,
         900
       ],
-      "scrollHeight": 10510,
+      "scrollHeight": 10826,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "dark",
@@ -106,10 +116,11 @@
         1024,
         768
       ],
-      "scrollHeight": 10404,
+      "scrollHeight": 10631,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "dark",
@@ -118,10 +129,11 @@
         768,
         1024
       ],
-      "scrollHeight": 12112,
+      "scrollHeight": 12622,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "dark",
@@ -130,10 +142,11 @@
         390,
         844
       ],
-      "scrollHeight": 13554,
+      "scrollHeight": 14641,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     },
     {
       "theme": "dark",
@@ -142,10 +155,11 @@
         360,
         800
       ],
-      "scrollHeight": 13784,
+      "scrollHeight": 14791,
       "overflow": false,
       "focusables": 40,
-      "incompleteImages": 20
+      "imageCount": 30,
+      "incompleteImages": 0
     }
   ],
   "lighthouse": [
@@ -177,4 +191,4 @@
       "cls": 0.001008843258608016
     }
   ]
-}\n
+}
