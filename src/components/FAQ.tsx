@@ -40,17 +40,14 @@ export default function FAQ() {
             const labelId = `${panelId}-label`;
 
             return (
-              <div key={question} className="group/faq relative cursor-pointer py-5">
+              <div key={question} className="group/faq py-5">
                 <button
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={panelId}
-                  aria-labelledby={labelId}
                   onClick={() => toggleQuestion(question)}
-                  className="absolute inset-0 z-10 cursor-pointer appearance-none rounded-md border-0 bg-transparent p-0 outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-link)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--page-bg)]"
-                />
-
-                <div className="relative z-0 flex items-start justify-between gap-5">
+                  className="flex min-h-11 w-full items-start justify-between gap-5 rounded-md border-0 bg-transparent p-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-link)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--page-bg)]"
+                >
                   <span
                     id={labelId}
                     className="text-[15px] font-medium leading-[1.45] text-[var(--text-primary)] transition-colors duration-300 group-hover/faq:text-[var(--accent-link)] sm:text-[16px]"
@@ -58,6 +55,7 @@ export default function FAQ() {
                     {question}
                   </span>
                   <span
+                    aria-hidden="true"
                     className={`mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-[var(--block-elevated)] transition duration-300 ease-out motion-reduce:transition-none ${
                       isOpen
                         ? "rotate-45 text-[var(--accent-link)]"
@@ -66,22 +64,18 @@ export default function FAQ() {
                   >
                     <FiPlus className="size-3.5" aria-hidden="true" />
                   </span>
-                </div>
+                </button>
 
                 <div
                   id={panelId}
-                  aria-hidden={!isOpen}
-                  className={`relative z-0 grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-                    isOpen
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  }`}
+                  role="region"
+                  aria-labelledby={labelId}
+                  hidden={!isOpen}
+                  className="pt-5"
                 >
-                  <div className="overflow-hidden">
-                    <p className="max-w-2xl pt-5 text-[13px] leading-[1.7] text-[var(--text-secondary)] sm:text-[14px]">
-                      {answer}
-                    </p>
-                  </div>
+                  <p className="max-w-2xl text-[13px] leading-[1.7] text-[var(--text-secondary)] sm:text-[14px]">
+                    {answer}
+                  </p>
                 </div>
               </div>
             );

@@ -13,11 +13,12 @@ export default async function Navbar() {
       <div className="mx-auto flex h-9 max-w-6xl items-center justify-between gap-2 sm:gap-6">
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-2 text-[14px] font-medium tracking-[-0.02em] text-[var(--text-primary)]"
+          aria-label="Synara home"
+          className="flex shrink-0 items-center gap-2 text-[14px] font-medium tracking-[-0.02em] text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
         >
           <Image
             src="/synara-icon.png"
-            alt="Synara"
+            alt=""
             width={22}
             height={22}
             className="rounded-[5px] border border-[var(--divide)]"
@@ -34,25 +35,25 @@ export default async function Navbar() {
             href="https://x.com/trySynara"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] sm:inline"
+            className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)] sm:inline"
           >
             X
           </a>
           <Link
             href="/install"
-            className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] sm:inline"
+            className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)] sm:inline"
           >
             Install
           </Link>
           <Link
             href="/docs"
-            className="shrink-0 transition-colors hover:text-[var(--text-primary)]"
+            className="shrink-0 transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
           >
             Docs
           </Link>
           <Link
             href="/changelog"
-            className="shrink-0 transition-colors hover:text-[var(--text-primary)]"
+            className="shrink-0 transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
           >
             Changelog
           </Link>
@@ -66,7 +67,7 @@ export default async function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`GitHub stars: ${formatStars(stars)}`}
-              className="flex items-center gap-1 text-[12.5px] text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)] sm:gap-1.5 sm:text-[13px]"
+              className="flex items-center gap-1 text-[12.5px] text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)] sm:gap-1.5 sm:text-[13px]"
             >
               <FaGithub className="size-4 text-[var(--text-primary)]" />
               {formatStars(stars)}
@@ -74,7 +75,7 @@ export default async function Navbar() {
           ) : null}
           <Link
             href="/install"
-            className="rounded-full border border-[var(--divide)] px-3 py-1 text-[12.5px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)] sm:px-3.5 sm:text-[13px]"
+            className="rounded-full border border-[var(--divide)] px-3 py-1 text-[12.5px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)] sm:px-3.5 sm:text-[13px]"
           >
             Download
           </Link>

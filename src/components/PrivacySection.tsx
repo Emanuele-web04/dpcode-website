@@ -85,7 +85,7 @@ export default function PrivacySection() {
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px]">
           <Link
             href="/privacy"
-            className="inline-flex items-center gap-1.5 font-medium text-[var(--accent-link)] transition-colors hover:text-[var(--accent-link-hover)]"
+            className="inline-flex items-center gap-1.5 font-medium text-[var(--accent-link)] transition-colors hover:text-[var(--accent-link-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
           >
             Read the privacy approach
             <LuArrowRight className="size-4" aria-hidden="true" />
@@ -94,7 +94,7 @@ export default function PrivacySection() {
             href="https://github.com/Emanuele-web04/synara"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]"
+            className="inline-flex items-center gap-1.5 text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
           >
             <LuGithub className="size-4" aria-hidden="true" />
             Inspect the source

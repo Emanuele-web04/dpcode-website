@@ -127,7 +127,7 @@ export default function Features() {
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex min-w-0 items-center gap-3">
                     <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-[var(--block-elevated)]">
-                      <Icon className={`size-[18px] ${accent}`} />
+                      <Icon className={`size-[18px] ${accent}`} aria-hidden="true" />
                     </span>
                     <span className="truncate text-[15px] font-medium text-[var(--text-primary)]">
                       {name}

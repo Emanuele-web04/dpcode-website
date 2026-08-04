@@ -84,6 +84,8 @@ function TestimonialCardItem({ card }: { card: TestimonialCard }) {
           <img
             src={card.avatarUrl}
             alt={`${card.name} avatar`}
+            width={36}
+            height={36}
             loading="lazy"
             className="size-9 shrink-0 rounded-full object-cover ring-1 ring-black/5 dark:ring-white/10"
           />
@@ -120,8 +122,10 @@ function TestimonialCardItem({ card }: { card: TestimonialCard }) {
         <img
           src={card.image.src}
           alt={card.image.alt}
+          width={1200}
+          height={675}
           loading="lazy"
-          className="mt-3.5 max-h-72 w-full rounded-xl border border-[var(--divide)] object-cover"
+          className="mt-3.5 aspect-video max-h-72 w-full rounded-xl border border-[var(--divide)] object-cover"
         />
       )}
 

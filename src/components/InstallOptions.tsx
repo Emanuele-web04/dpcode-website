@@ -119,7 +119,7 @@ export default function InstallOptions({
           href={downloads.releasesUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--accent-link)] transition-colors hover:text-[var(--accent-link-hover)]"
+          className="text-[var(--accent-link)] underline decoration-[var(--accent-link)] underline-offset-2 transition-colors hover:text-[var(--accent-link-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
         >
           Browse all releases
         </a>
@@ -166,9 +166,9 @@ function PlatformCard({
         {icon}
       </span>
 
-      <h3 className="mt-3 text-[15px] font-medium tracking-[-0.02em] text-[var(--text-primary)]">
+      <h2 className="mt-3 text-[15px] font-medium tracking-[-0.02em] text-[var(--text-primary)]">
         {name}
-      </h3>
+      </h2>
       <p className="mt-1 text-[12px] text-[var(--text-tertiary)]">{subtitle}</p>
 
       {/* Pinned to the bottom so every card's Download button lines up. */}

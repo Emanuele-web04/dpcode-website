@@ -73,24 +73,26 @@ export default async function DocumentationPage({ params }: DocumentationPagePro
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbJsonLd(breadcrumbs)) }}
       />
-      <DocsPage
-        toc={page.data.toc}
-        tableOfContent={{ style: "clerk" }}
-        breadcrumb={{ includeRoot: false, includePage: true }}
-        footer={{ enabled: false }}
-      >
-        <DocsTitle>{page.data.title}</DocsTitle>
-        <DocsDescription>{description}</DocsDescription>
-        <DocsBody>
-          <Content components={getMDXComponents()} />
-        </DocsBody>
-        <div className="docs-meta mt-6 flex flex-row flex-wrap items-center justify-end gap-3 border-t border-border pt-4 text-[0.8125rem] text-muted-foreground">
-          {page.data.lastModified ? (
-            <PageLastUpdate date={page.data.lastModified} />
-          ) : null}
-        </div>
-        <DocsPagination previous={neighbours.previous} next={neighbours.next} />
-      </DocsPage>
+      <main id="main-content" aria-label="Documentation content">
+        <DocsPage
+          toc={page.data.toc}
+          tableOfContent={{ style: "clerk" }}
+          breadcrumb={{ includeRoot: false, includePage: true }}
+          footer={{ enabled: false }}
+        >
+          <DocsTitle>{page.data.title}</DocsTitle>
+          <DocsDescription>{description}</DocsDescription>
+          <DocsBody>
+            <Content components={getMDXComponents()} />
+          </DocsBody>
+          <div className="docs-meta mt-6 flex flex-row flex-wrap items-center justify-end gap-3 border-t border-border pt-4 text-[0.8125rem] text-muted-foreground">
+            {page.data.lastModified ? (
+              <PageLastUpdate date={page.data.lastModified} />
+            ) : null}
+          </div>
+          <DocsPagination previous={neighbours.previous} next={neighbours.next} />
+        </DocsPage>
+      </main>
     </>
   );
 }
