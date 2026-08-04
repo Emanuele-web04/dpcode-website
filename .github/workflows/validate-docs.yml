@@ -10,6 +10,7 @@ on:
       - docs/workflow-guides
       - docs/help-and-troubleshooting
       - docs/quality-seo-aeo
+      - marketing/homepage-positioning
   push:
     branches:
       - docs/getting-started-overhaul
@@ -18,6 +19,7 @@ on:
       - docs/help-and-troubleshooting
       - docs/quality-seo-aeo
       - marketing/homepage-positioning
+      - marketing/visual-storytelling
 
 permissions:
   contents: read
