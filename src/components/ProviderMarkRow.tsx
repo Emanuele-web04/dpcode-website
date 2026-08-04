@@ -22,9 +22,16 @@ const marks = [
   { name: "Factory Droid", Icon: DroidIcon, className: "text-[var(--text-primary)]", rotation: "rotate-[5deg]" },
 ] as const;
 
-export default function ProviderMarkRow({ centered = false }: { centered?: boolean }) {
+export default function ProviderMarkRow({
+  centered = false,
+  showLabels = false,
+}: {
+  centered?: boolean;
+  showLabels?: boolean;
+}) {
   return (
     <div
+      role="list"
       className={`flex flex-wrap items-center gap-2 ${centered ? "justify-center" : ""}`}
       aria-label="Supported coding-agent runtimes"
     >
@@ -32,10 +39,13 @@ export default function ProviderMarkRow({ centered = false }: { centered?: boole
         <div
           key={name}
           title={name}
-          className={`inline-flex size-[38px] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04] ${rotation}`}
+          role="listitem"
+          className={`inline-flex items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] dark:border-white/10 dark:bg-white/[0.04] ${showLabels ? "gap-2 px-2.5 py-2" : "size-[38px]"} ${rotation}`}
         >
           <Icon className={`size-[18px] ${className}`} aria-hidden="true" />
-          <span className="sr-only">{name}</span>
+          <span className={showLabels ? "text-[11px] font-medium text-[var(--text-secondary)]" : "sr-only"}>
+            {name}
+          </span>
         </div>
       ))}
     </div>

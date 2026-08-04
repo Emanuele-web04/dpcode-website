@@ -4,11 +4,12 @@ import { FaGithub } from "react-icons/fa";
 import { formatStars, getStars } from "@/lib/githubStars";
 import { GITHUB_REPO_URL } from "@/lib/seo";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import MobileNav from "@/components/MobileNav";
 
 export default async function Navbar() {
   const stars = await getStars();
   return (
-    <nav className="w-full px-4 py-4 sm:px-6">
+    <nav aria-label="Primary navigation" className="relative w-full px-4 py-4 sm:px-6">
       <div className="mx-auto flex h-9 max-w-6xl items-center justify-between gap-2 sm:gap-6">
         <Link
           href="/"
@@ -28,7 +29,7 @@ export default async function Navbar() {
           Middle nav: mobile prioritizes Docs + Changelog alongside the primary
           actions. X and Install are revealed at sm+.
         */}
-        <div className="flex min-w-0 flex-1 items-center justify-center gap-3 text-[13px] text-[var(--text-tertiary)] sm:gap-6">
+        <div className="hidden min-w-0 flex-1 items-center justify-center gap-3 text-[13px] text-[var(--text-tertiary)] sm:flex sm:gap-6">
           <a
             href="https://x.com/trySynara"
             target="_blank"
@@ -57,7 +58,7 @@ export default async function Navbar() {
           </Link>
         </div>
 
-        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
+        <div className="hidden shrink-0 items-center gap-1.5 sm:flex sm:gap-3">
           <ThemeToggle />
           {stars !== null ? (
             <a
@@ -78,6 +79,7 @@ export default async function Navbar() {
             Download
           </Link>
         </div>
+        <MobileNav />
       </div>
     </nav>
   );

@@ -447,6 +447,35 @@ body {
   overflow-x: clip;
 }
 
+.hero-section {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--block-elevated) 38%, transparent),
+      transparent 42%
+    );
+}
+
+.hero-preview {
+  overflow: hidden;
+  border: 1px solid var(--divide);
+  border-radius: 1rem;
+  background: var(--card);
+  box-shadow: 0 24px 70px -44px color-mix(in oklab, var(--text-primary) 55%, transparent);
+}
+
+.hero-preview__chrome {
+  background: color-mix(in oklab, var(--block-elevated) 64%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
+
 /*
  * Hide the scrollbar visually while keeping the element scrollable. Used by the
  * changelog rail so the overflow list scrolls without the OS scrollbar
