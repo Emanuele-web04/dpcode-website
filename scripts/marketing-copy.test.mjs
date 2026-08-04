@@ -68,16 +68,36 @@ test("canonical product language is centralized and consumed by every discovery 
   assert.ok(seo.includes("SITE_DESCRIPTION = PRODUCT_META_DESCRIPTION"));
 });
 
-test("homepage hierarchy renders the canonical thesis and useful next actions", () => {
+test("homepage hierarchy keeps one thesis, one proof image, and a coherent action block", () => {
   const homepage = read("src/app/page.tsx");
 
-  assert.ok(homepage.includes("PRODUCT_CATEGORY"));
   assert.ok(homepage.includes("PRODUCT_HERO_TITLE"));
   assert.ok(homepage.includes("PRODUCT_HERO_DESCRIPTION"));
   assert.ok(homepage.includes('href="/docs"'));
   assert.ok(homepage.includes("Free and open source"));
   assert.ok(homepage.includes("No Synara account required"));
-  assert.ok(homepage.includes("ProviderMarkRow"));
+  assert.ok(homepage.includes("data-home-actions"));
+  assert.ok(homepage.includes("data-hero-preview"));
+  assert.ok(homepage.includes("View Synara on GitHub"));
+  assert.ok(homepage.includes("HomepageRail"));
+
+  for (const removedHeroLabel of [
+    "SUPPORTED CODING-AGENT RUNTIMES",
+    "09 supported",
+    "LOCAL WORKSPACE",
+    "task / environment / evidence",
+    "ONE TASK / ONE ENVIRONMENT",
+    "DIFF · CHECKS · PULL REQUEST",
+  ]) {
+    assert.equal(
+      homepage.toUpperCase().includes(removedHeroLabel),
+      false,
+      `dense hero label remains: ${removedHeroLabel}`,
+    );
+  }
+
+  assert.equal(homepage.includes("ProviderMarkRow"), false);
+  assert.equal(homepage.includes("ControlPlanePath"), false);
   assert.equal(homepage.includes("AskAISection"), false);
 });
 

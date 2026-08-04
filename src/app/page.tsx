@@ -1,140 +1,132 @@
 // FILE: page.tsx
-// Purpose: Renders the homepage and its canonical product positioning.
-// Layer: App Router page
+// Purpose: Public marketing homepage for Synara.
+// Layer: App Router page (server component)
 
+import Image from "next/image";
 import Link from "next/link";
 import { SiGithub } from "react-icons/si";
 import Navbar from "@/components/Navbar";
 import DownloadButton from "@/components/DownloadButton";
 import InstallerCount from "@/components/InstallerCount";
-import ProviderMarkRow from "@/components/ProviderMarkRow";
-import ThemeAwareImage from "@/components/ThemeAwareImage";
-import ControlPlanePath from "@/components/ControlPlanePath";
 import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
 import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
 import ClosingCTA from "@/components/ClosingCTA";
-import PrivacySection from "@/components/PrivacySection";
 import SiteFooter from "@/components/SiteFooter";
+import PrivacySection from "@/components/PrivacySection";
+import HomepageRail from "@/components/HomepageRail";
+import { getInstallerCount } from "@/lib/installerCount";
 import {
-  PRODUCT_CATEGORY,
   PRODUCT_HERO_DESCRIPTION,
   PRODUCT_HERO_TITLE,
 } from "@/data/product";
-import { getInstallerCount } from "@/lib/installerCount";
-import {
-  FAQ_JSONLD,
-  GITHUB_REPO_URL,
-  breadcrumbJsonLd,
-  jsonLdScript,
-} from "@/lib/seo";
-
-const HOME_JSONLD = [
-  FAQ_JSONLD,
-  breadcrumbJsonLd([{ name: "Synara", path: "/" }]),
-];
+import { FAQ_JSONLD, GITHUB_REPO_URL, jsonLdScript } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const initialInstallerCount = await getInstallerCount();
+  const installerCount = await getInstallerCount();
 
   return (
-    <div className="flex min-h-screen flex-col bg-[var(--page-bg)] text-[var(--text-primary)]">
+    <div className="min-h-screen overflow-x-clip bg-[var(--page-bg)] text-[var(--text-primary)]">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdScript(HOME_JSONLD) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(FAQ_JSONLD) }}
       />
-      <div className="relative">
-        <Navbar />
+      <Navbar />
 
-        <main id="main-content">
-          <section className="hero-section pb-12 pt-7 sm:pb-20 sm:pt-12">
-            <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center lg:gap-12 xl:gap-16">
-              <div className="min-w-0">
-                <div className="mb-7 flex items-center justify-between gap-4 sm:mb-9">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--text-tertiary)]">
-                    Supported coding-agent runtimes
-                  </p>
-                  <span className="font-mono text-[10px] tabular-nums text-[var(--text-tertiary)]">
-                    09 supported
-                  </span>
-                </div>
-                <ProviderMarkRow />
+      <main>
+        <section
+          id="overview"
+          aria-labelledby="homepage-title"
+          className="hero-section scroll-mt-20 pb-16 pt-10 sm:pb-24 sm:pt-16 lg:pt-20"
+        >
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
+            <div className="max-w-3xl">
+              <h1
+                id="homepage-title"
+                className="max-w-[15ch] text-[clamp(2.65rem,6.2vw,4.75rem)] font-semibold leading-[0.99] tracking-[-0.055em] text-[var(--text-primary)]"
+              >
+                {PRODUCT_HERO_TITLE}
+              </h1>
+              <p className="mt-6 max-w-2xl text-[16px] leading-[1.65] text-[var(--text-secondary)] sm:text-[18px]">
+                {PRODUCT_HERO_DESCRIPTION}
+              </p>
 
-                <p className="mt-8 max-w-xl font-mono text-[11px] uppercase tracking-[0.13em] text-[var(--text-tertiary)] sm:mt-10">
-                  {PRODUCT_CATEGORY}
-                </p>
-                <h1 className="mt-4 max-w-2xl text-[2.65rem] font-medium leading-[0.98] tracking-[-0.058em] text-[var(--text-primary)] sm:text-[4.5rem] sm:leading-[0.95]">
-                  {PRODUCT_HERO_TITLE}
-                </h1>
-                <p className="mt-6 max-w-xl text-[15px] leading-[1.7] text-[var(--text-secondary)] sm:text-[17px] sm:leading-[1.65]">
-                  {PRODUCT_HERO_DESCRIPTION}
-                </p>
-
-                <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9">
-                  <DownloadButton />
+              <div className="mt-8 w-full max-w-[33rem]" data-home-actions>
+                <div className="grid grid-cols-2 gap-3">
+                  <DownloadButton className="h-11 w-full min-w-0 px-3 sm:px-5" />
                   <Link
                     href="/docs"
-                    className="inline-flex items-center rounded-full border border-[var(--divide)] px-5 py-2.5 text-[13px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
+                    className="inline-flex h-11 w-full items-center justify-center rounded-full border border-[var(--border-strong)] px-3 text-[13px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)] sm:px-5"
                   >
                     Read the docs
                   </Link>
-                  <a
-                    href={GITHUB_REPO_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full px-3 py-2.5 text-[13px] font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
-                  >
-                    <SiGithub className="size-4 shrink-0" aria-hidden="true" />
-                    GitHub
-                  </a>
                 </div>
-                <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[12px] text-[var(--text-tertiary)]">
-                  <span>Free and open source</span>
-                  <span>macOS, Windows, and Linux</span>
-                  <span>No Synara account required</span>
-                  <InstallerCount initialCount={initialInstallerCount} />
-                </div>
+                <a
+                  href={GITHUB_REPO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-[var(--divide)] px-5 text-[13px] font-medium text-[var(--text-secondary)] transition-colors hover:border-[var(--border-strong)] hover:bg-[var(--mock-row)] hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
+                >
+                  <SiGithub className="size-4" aria-hidden="true" />
+                  View Synara on GitHub
+                </a>
               </div>
-
-              <figure className="hero-preview relative min-w-0">
-                <div className="hero-preview__chrome flex items-center justify-between gap-3 border-b border-[var(--divide)] px-3 py-2.5 text-[10px] text-[var(--text-tertiary)] sm:px-4">
-                  <span className="flex items-center gap-2 font-mono uppercase tracking-[0.12em]">
-                    <span className="size-1.5 rounded-full bg-[var(--accent-link)]" aria-hidden="true" />
-                    Local workspace
-                  </span>
-                  <span className="font-mono">task / environment / evidence</span>
-                </div>
-                <div className="overflow-hidden bg-[var(--block-elevated)] p-2 sm:p-3">
-                  <ThemeAwareImage
-                    lightSrc="/dpcode-ui-light.png"
-                    darkSrc="/dpcode-ui-dark.png"
-                    alt="Synara workspace with coding-agent tasks, terminals, browser verification, diffs, and Git worktrees"
-                    width={3216}
-                    height={2090}
-                    priority
-                    className="block h-auto w-full rounded-lg ring-1 ring-black/5 dark:ring-white/10 sm:rounded-xl"
-                  />
-                </div>
-                <figcaption className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t border-[var(--divide)] px-3 py-2.5 text-[10px] font-mono uppercase tracking-[0.1em] text-[var(--text-tertiary)] sm:px-4">
-                  <span>one task / one environment</span>
-                  <span>diff · checks · pull request</span>
-                </figcaption>
-              </figure>
             </div>
-          </section>
-          <ControlPlanePath />
+
+            <figure
+              className="hero-preview mt-12 p-1.5 sm:mt-14 sm:p-2 lg:mt-16"
+              data-hero-preview
+            >
+              <Image
+                src="/dpcode-ui-light.png"
+                alt="Synara workspace with coding-agent tasks, project navigation, and an attached composer"
+                width={3456}
+                height={2160}
+                priority
+                sizes="(max-width: 768px) 100vw, 1280px"
+                className="block h-auto w-full rounded-[0.7rem] dark:hidden"
+              />
+              <Image
+                src="/dpcode-ui-dark.png"
+                alt="Synara workspace in dark mode with coding-agent tasks, project navigation, and an attached composer"
+                width={3456}
+                height={2160}
+                priority
+                sizes="(max-width: 768px) 100vw, 1280px"
+                className="hidden h-auto w-full rounded-[0.7rem] dark:block"
+              />
+            </figure>
+
+            <div className="mt-6 flex flex-col gap-2 border-y border-[var(--divide)] py-4 text-[12.5px] leading-5 text-[var(--text-tertiary)] sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:text-[13px]">
+              <span>Free and open source · No Synara account required</span>
+              <span className="sm:text-right">
+                <InstallerCount initialCount={installerCount} />
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <div id="providers" className="scroll-mt-20">
           <Features />
+        </div>
+        <div id="workflow" className="scroll-mt-20">
           <Workflow />
+        </div>
+        <div id="privacy" className="scroll-mt-20">
           <PrivacySection />
-          <FAQ />
-          <Testimonials />
-          <ClosingCTA initialInstallerCount={initialInstallerCount} />
-        </main>
-      </div>
+        </div>
+        <FAQ />
+        <Testimonials />
+        <div id="download" className="scroll-mt-20">
+          <ClosingCTA />
+        </div>
+      </main>
+
       <SiteFooter />
+      <HomepageRail />
     </div>
   );
 }

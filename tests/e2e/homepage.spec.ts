@@ -7,26 +7,60 @@ import {
 } from "../test-helpers";
 
 test.describe("homepage functional flow", () => {
-  test("keeps the canonical CTAs and external repository link clear", async ({
+  test("keeps one clear hero, aligned CTAs, and a prominent product screenshot", async ({
     page,
   }) => {
+    await page.setViewportSize({ width: 1440, height: 1100 });
     await preparePage(page, "light");
+
     await expect(page.locator("h1")).toHaveText(
       "Run every coding agent in one local workspace.",
     );
-    await expect(page.getByText("09 supported", { exact: true })).toBeVisible();
-    await expect(page.getByText("09 connected", { exact: true })).toHaveCount(
-      0,
+    await expect(page.getByText("09 supported", { exact: true })).toHaveCount(0);
+
+    const actions = page.locator("[data-home-actions]");
+    const download = actions.getByRole("link", { name: /Download for|Download Synara/ });
+    const docs = actions.getByRole("link", { name: "Read the docs" });
+    const github = actions.getByRole("link", { name: "View Synara on GitHub" });
+
+    await expect(download).toHaveAttribute("href", "/install");
+    await expect(docs).toHaveAttribute("href", "/docs");
+    await expect(github).toHaveAttribute("href", /github\.com/);
+
+    const [downloadBox, docsBox, githubBox] = await Promise.all([
+      download.boundingBox(),
+      docs.boundingBox(),
+      github.boundingBox(),
+    ]);
+    expect(downloadBox).not.toBeNull();
+    expect(docsBox).not.toBeNull();
+    expect(githubBox).not.toBeNull();
+    expect(Math.abs(downloadBox!.height - docsBox!.height)).toBeLessThanOrEqual(1);
+    expect(Math.abs(downloadBox!.y - docsBox!.y)).toBeLessThanOrEqual(1);
+    expect(githubBox!.width).toBeGreaterThanOrEqual(
+      downloadBox!.width + docsBox!.width + 10,
     );
-    await expect(
-      page.getByRole("link", { name: "Read the docs" }).first(),
-    ).toHaveAttribute("href", "/docs");
-    await expect(
-      page.getByRole("link", { name: /Download for/ }).first(),
-    ).toHaveAttribute("href", "/install");
-    await expect(
-      page.getByRole("link", { name: /GitHub/ }).first(),
-    ).toHaveAttribute("href", /github\.com/);
+
+    const preview = page.locator("[data-hero-preview]");
+    await expect(preview).toBeVisible();
+    const previewBox = await preview.boundingBox();
+    expect(previewBox).not.toBeNull();
+    expect(previewBox!.width).toBeGreaterThan(1100);
+    expect(previewBox!.y).toBeLessThan(720);
+  });
+
+  test("keeps the quiet section rail out of narrower layouts", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await preparePage(page, "light");
+    const rail = page.getByRole("navigation", { name: "Homepage sections" });
+    await expect(rail).toBeVisible();
+    await expect(rail.getByRole("link", { name: "Overview" })).toHaveAttribute(
+      "aria-current",
+      "location",
+    );
+
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await expect(rail).toBeHidden();
   });
 
   test("supports mobile navigation, FAQ disclosure, theme, and reduced motion", async ({
