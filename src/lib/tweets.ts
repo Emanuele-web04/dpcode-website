@@ -67,7 +67,29 @@ function firstPhoto(tweet: Tweet): { src: string; alt: string } | null {
   };
 }
 
+function fixtureCard(seed: (typeof TESTIMONIALS)[number]): TestimonialCard {
+  return {
+    id: seed.id,
+    tier: seed.tier,
+    name: seed.fallbackHandle,
+    handle: seed.fallbackHandle,
+    avatarUrl: null,
+    text: seed.fallbackText,
+    url: seed.fallbackUrl,
+    likes: null,
+    verified: false,
+    image: null,
+    translation: seed.translation ?? null,
+    translationLang: seed.translationLang ?? null,
+    live: false,
+  };
+}
+
 export async function loadTestimonialCards(): Promise<TestimonialCard[]> {
+  if (process.env.VISUAL_TEST === "1") {
+    return TESTIMONIALS.map(fixtureCard);
+  }
+
   const cards = await Promise.all(
     TESTIMONIALS.map(async (seed): Promise<TestimonialCard> => {
       const fallback: TestimonialCard = {

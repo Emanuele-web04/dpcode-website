@@ -71,6 +71,8 @@ function getFallbackDownloads(): ReleaseDownloads {
 }
 
 export async function getReleaseDownloads(): Promise<ReleaseDownloads> {
+  if (process.env.VISUAL_TEST === "1") return getFallbackDownloads();
+
   try {
     const headers: HeadersInit = {
       Accept: "application/vnd.github+json",

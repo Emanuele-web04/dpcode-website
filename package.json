@@ -9,7 +9,12 @@
     "downloads:update": "node scripts/update-installer-downloads.mjs",
     "lint": "eslint",
     "test:docs": "node --test scripts/*.test.mjs && node scripts/check-docs.mjs",
-    "test:seo-smoke": "node scripts/seo-smoke.mjs"
+    "test:seo-smoke": "node scripts/seo-smoke.mjs",
+    "test:e2e": "playwright test tests/e2e",
+    "test:visual": "playwright test tests/visual --grep @visual",
+    "test:visual:update": "playwright test tests/visual --grep @visual --update-snapshots",
+    "test:a11y": "playwright test tests/a11y",
+    "test:performance": "node scripts/performance-smoke.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
