@@ -10,6 +10,10 @@ const STABLE_DOCS_TOC = `
     --track-top: 0px !important;
     --track-bottom: 0px !important;
   }
+
+  .docs-meta > * {
+    visibility: hidden !important;
+  }
 `;
 
 test.describe("visual regression @visual", () => {

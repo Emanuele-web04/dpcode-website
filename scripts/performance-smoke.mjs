@@ -1,4 +1,6 @@
 import { spawn } from "node:child_process";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { launch } from "chrome-launcher";
 import { chromium } from "playwright";
@@ -115,7 +117,14 @@ try {
       clsBelow: 0.1,
     },
   };
-  console.log(JSON.stringify(summary, null, 2));
+  const serializedSummary = `${JSON.stringify(summary, null, 2)}\n`;
+  console.log(serializedSummary);
+
+  const outputPath =
+    process.env.PERFORMANCE_OUTPUT ?? "test-results/performance-summary.json";
+  await mkdir(path.dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, serializedSummary);
+
   const failed = results.some(
     (result) =>
       result.performance < 90 ||
