@@ -2,157 +2,169 @@
   {
     "theme": "light",
     "name": "large-desktop",
-    "width": 1440,
-    "height": 1100,
+    "viewport": [
+      1440,
+      1100
+    ],
+    "imageCount": 29,
     "scrollWidth": 1440,
-    "scrollHeight": 10029,
-    "overflow": false,
+    "scrollHeight": 10345,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": null
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "light",
     "name": "laptop",
-    "width": 1280,
-    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "imageCount": 29,
     "scrollWidth": 1280,
-    "scrollHeight": 10029,
-    "overflow": false,
+    "scrollHeight": 10345,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": null
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "light",
     "name": "tablet-landscape",
-    "width": 1024,
-    "height": 768,
+    "viewport": [
+      1024,
+      768
+    ],
+    "imageCount": 29,
     "scrollWidth": 1024,
-    "scrollHeight": 10148,
-    "overflow": false,
+    "scrollHeight": 10376,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": null
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "light",
     "name": "tablet-boundary",
-    "width": 768,
-    "height": 1024,
+    "viewport": [
+      768,
+      1024
+    ],
+    "imageCount": 29,
     "scrollWidth": 768,
-    "scrollHeight": 12279,
-    "overflow": false,
+    "scrollHeight": 12789,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": null
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "light",
     "name": "mobile",
-    "width": 390,
-    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "imageCount": 29,
     "scrollWidth": 390,
-    "scrollHeight": 13690,
-    "overflow": false,
+    "scrollHeight": 14777,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": true
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "light",
     "name": "narrow-mobile",
-    "width": 360,
-    "height": 800,
+    "viewport": [
+      360,
+      800
+    ],
+    "imageCount": 29,
     "scrollWidth": 360,
-    "scrollHeight": 13935,
-    "overflow": false,
+    "scrollHeight": 14942,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": true
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "dark",
     "name": "large-desktop",
-    "width": 1440,
-    "height": 1100,
+    "viewport": [
+      1440,
+      1100
+    ],
+    "imageCount": 29,
     "scrollWidth": 1440,
-    "scrollHeight": 10029,
-    "overflow": false,
+    "scrollHeight": 10345,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": null
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "dark",
     "name": "laptop",
-    "width": 1280,
-    "height": 900,
+    "viewport": [
+      1280,
+      900
+    ],
+    "imageCount": 29,
     "scrollWidth": 1280,
-    "scrollHeight": 10029,
-    "overflow": false,
+    "scrollHeight": 10345,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": null
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "dark",
     "name": "tablet-landscape",
-    "width": 1024,
-    "height": 768,
+    "viewport": [
+      1024,
+      768
+    ],
+    "imageCount": 29,
     "scrollWidth": 1024,
-    "scrollHeight": 10148,
-    "overflow": false,
+    "scrollHeight": 10376,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": null
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "dark",
     "name": "tablet-boundary",
-    "width": 768,
-    "height": 1024,
+    "viewport": [
+      768,
+      1024
+    ],
+    "imageCount": 29,
     "scrollWidth": 768,
-    "scrollHeight": 12280,
-    "overflow": false,
+    "scrollHeight": 12790,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": null
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "dark",
     "name": "mobile",
-    "width": 390,
-    "height": 844,
+    "viewport": [
+      390,
+      844
+    ],
+    "imageCount": 29,
     "scrollWidth": 390,
-    "scrollHeight": 13690,
-    "overflow": false,
+    "scrollHeight": 14777,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": true
+    "overflow": false,
+    "incompleteImages": 0
   },
   {
     "theme": "dark",
     "name": "narrow-mobile",
-    "width": 360,
-    "height": 800,
+    "viewport": [
+      360,
+      800
+    ],
+    "imageCount": 29,
     "scrollWidth": 360,
-    "scrollHeight": 13936,
-    "overflow": false,
+    "scrollHeight": 14943,
     "focusables": 43,
-    "mains": 1,
-    "heroImages": 1,
-    "mobileMenuOpen": true
+    "overflow": false,
+    "incompleteImages": 0
   }
-]\n
+]
