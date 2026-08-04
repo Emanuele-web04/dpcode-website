@@ -15,7 +15,7 @@ const LABEL: Record<OS, string> = {
   mac: "Download for macOS",
   windows: "Download for Windows",
   linux: "Download for Linux",
-  unknown: "Download for your machine",
+  unknown: "Download Synara",
 };
 
 type NavigatorWithUserAgentData = Navigator & {
@@ -31,13 +31,13 @@ export default function DownloadButton() {
         detectOS(navigator.userAgent, nav.userAgentData?.platform ?? navigator.platform)
       ];
     },
-    () => LABEL.mac
+    () => LABEL.unknown
   );
 
   return (
     <Link
       href="/install"
-      className="inline-flex items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] px-5 py-2.5 text-[13px] font-medium text-[var(--btn-primary-fg)] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
+      className="inline-flex min-w-[11.75rem] items-center justify-center gap-2 rounded-full bg-[var(--btn-primary-bg)] px-5 py-2.5 text-[13px] font-medium text-[var(--btn-primary-fg)] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
     >
       {label}
       <LuArrowDownToLine className="size-4" aria-hidden="true" />

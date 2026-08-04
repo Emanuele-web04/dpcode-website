@@ -30,3 +30,36 @@ test("browser quality CI uses a supported runtime and preserves failure evidence
   assert.ok(performance.includes("test-results/performance-summary.json"));
   assert.ok(performance.includes("await writeFile(outputPath, serializedSummary)"));
 });
+
+test("performance gate uses the pinned browser stack without Socket-warning dependencies", () => {
+  const packageJson = JSON.parse(read("package.json"));
+  const packageLock = read("package-lock.json");
+  const performance = read("scripts/performance-smoke.mjs");
+
+  assert.equal(packageJson.devDependencies?.lighthouse, undefined);
+  assert.ok(packageJson.devDependencies?.["@playwright/test"]);
+  assert.deepEqual(packageJson.allowScripts, {
+    "esbuild@0.28.1": true,
+    "unrs-resolver@1.11.1": true,
+  });
+
+  assert.ok(performance.includes('from "@playwright/test"'));
+  assert.ok(performance.includes('cdp.send("Network.enable")'));
+  assert.ok(performance.includes('type: "largest-contentful-paint"'));
+  assert.ok(performance.includes('type: "layout-shift"'));
+  assert.ok(performance.includes("encodedDataLength"));
+  assert.doesNotMatch(performance, /from ["']lighthouse["']/);
+  assert.doesNotMatch(performance, /chrome-launcher/);
+
+  for (const removedPackage of [
+    'node_modules/lighthouse',
+    'node_modules/@sentry/node-core',
+    'node_modules/csp_evaluator',
+    'node_modules/chrome-launcher',
+  ]) {
+    assert.ok(
+      !packageLock.includes(`"${removedPackage}"`),
+      `removed Socket-warning dependency remains in lockfile: ${removedPackage}`,
+    );
+  }
+});

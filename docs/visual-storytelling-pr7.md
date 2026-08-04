@@ -259,17 +259,19 @@ Evaluate the production build, not only the development server.
 
 Targets:
 
-- Lighthouse Performance: **90 or higher** on desktop;
-- Lighthouse Accessibility: **95 or higher**;
-- Lighthouse Best Practices: **95 or higher**;
-- Lighthouse SEO: **95 or higher**;
-- CLS: **below 0.10**;
 - desktop LCP: **below 2.5 seconds** in the recorded test environment;
-- no new unbounded image payloads;
+- CLS: **below 0.10**;
+- TTFB: **below 800 ms** against the local production server;
+- production load event: **below 3 seconds**;
+- no failed network requests, browser exceptions, or console errors;
+- exactly one main landmark and one page-level heading;
+- no incomplete images;
+- bounded total, script, image, request, DOM-node, and long-task budgets;
+- the separate accessibility, SEO/AEO, and visual-regression gates remain blocking;
 - no avoidable client-side hydration for static presentation;
 - no material bundle increase without a documented reason.
 
-Record the environment and command used. Treat Lighthouse numbers as evidence, not as the sole quality definition.
+Record the browser version, viewport, environment, command, encoded transfer sizes, and every enforced threshold. The checked-in gate must use the pinned Playwright/Chromium stack already required for browser tests rather than adding a second browser-audit dependency tree. Independent Lighthouse or PageSpeed reports may be attached as supplementary evidence, but they are not a repository dependency or the sole quality definition.
 
 ## Existing checks that must remain green
 
@@ -294,7 +296,7 @@ Post or attach:
 7. animation recording for any meaningful motion;
 8. Playwright or equivalent report;
 9. accessibility report plus manual keyboard notes;
-10. Lighthouse reports and the exact environment;
+10. browser performance report, enforced budgets, and the exact environment;
 11. image and bundle-size comparison;
 12. full CI result on the exact final head;
 13. remaining compromises, each with a specific technical reason.

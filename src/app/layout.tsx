@@ -91,6 +91,8 @@ export const metadata: Metadata = {
   },
 };
 
+const analyticsEnabled = Boolean(process.env.VERCEL) && process.env.VISUAL_TEST !== "1";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -109,7 +111,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: jsonLdScript(SITE_JSONLD) }}
         />
         <RootProvider theme={{ enabled: false }}>{children}</RootProvider>
-        <Analytics />
+        {analyticsEnabled ? <Analytics /> : null}
       </body>
     </html>
   );
