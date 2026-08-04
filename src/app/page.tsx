@@ -9,6 +9,7 @@ import DownloadButton from "@/components/DownloadButton";
 import InstallerCount from "@/components/InstallerCount";
 import ProviderMarkRow from "@/components/ProviderMarkRow";
 import ThemeAwareImage from "@/components/ThemeAwareImage";
+import ControlPlanePath from "@/components/ControlPlanePath";
 import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
 import FAQ from "@/components/FAQ";
@@ -124,6 +125,7 @@ export default async function Home() {
               </figure>
             </div>
           </section>
+          <ControlPlanePath />
           <Features />
           <Workflow />
           <PrivacySection />

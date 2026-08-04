@@ -19,6 +19,7 @@ export default function Workflow() {
         </p>
 
         <SplitShowcase
+          kicker="02 / task ownership"
           title="Run parallel tasks with explicit ownership"
           description="Open a task for each objective and keep its conversation, runtime, environment, and status visible instead of mixing unrelated work into one thread."
           stacked
@@ -28,6 +29,7 @@ export default function Workflow() {
         </SplitShowcase>
 
         <SplitShowcase
+          kicker="04 / provider handoff"
           title="Hand the same task to another provider"
           description="Change the provider while preserving the task environment and the context Synara passes forward. Review the working tree before and after every handoff."
           reverse
@@ -36,6 +38,7 @@ export default function Workflow() {
         </SplitShowcase>
 
         <SplitShowcase
+          kicker="05 / live processes"
           title="Keep long-running processes attached to the work"
           description="Run development servers, test watchers, log tails, and one-off commands beside the task that started them."
           reverse={false}
@@ -44,6 +47,7 @@ export default function Workflow() {
         </SplitShowcase>
 
         <SplitShowcase
+          kicker="05 / verification"
           title="Verify the behavior, not only the diff"
           description="Use the built-in browser to inspect the rendered result, capture evidence, check console output, and return findings to the same task."
           stacked

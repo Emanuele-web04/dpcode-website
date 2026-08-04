@@ -178,6 +178,7 @@ export default function Features() {
           </div>
 
           <SplitShowcase
+            kicker="06 / delivery"
             title="Deliver from the same task"
             description="Review the final diff, run the required checks, commit the intended changes, and open the pull request without reconstructing the work in another tool."
             reverse={false}
@@ -186,6 +187,7 @@ export default function Features() {
           </SplitShowcase>
 
           <SplitShowcase
+            kicker="03 / parallel work"
             title="Isolate concurrent work"
             description="Give parallel tasks separate Git worktrees so each agent has a clear branch, working directory, and ownership boundary."
             reverse
