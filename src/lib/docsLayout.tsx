@@ -1,6 +1,6 @@
 // FILE: lib/docsLayout.tsx
 // Purpose: Shared Fumadocs layout options styled after the site chrome —
-//          same wordmark, 13px nav links, pill Download CTA, site theme toggle.
+//          same wordmark, compact nav links, full-width Download CTA, and top-chrome theme toggle.
 // Layer: docs layout configuration (server-importable).
 
 import Image from "next/image";
@@ -28,22 +28,21 @@ export function docsLayoutOptions(): BaseLayoutProps {
       ),
       url: "/",
       transparentMode: "none",
+      children: (
+        <div className="ms-auto flex items-center justify-end">
+          <ThemeToggle />
+        </div>
+      ),
     },
     links: [
       { text: "Install", url: "/install" },
       { text: "Changelog", url: "/changelog" },
       {
         type: "custom",
-        secondary: true,
-        children: <ThemeToggle />,
-      },
-      {
-        type: "custom",
-        secondary: true,
         children: (
           <Link
             href="/install"
-            className="ms-1 rounded-full border border-[var(--divide)] px-3.5 py-1 text-[12.5px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)] max-md:hidden"
+            className="mx-2 mt-1 flex min-h-9 items-center justify-center rounded-lg border border-[var(--divide)] px-4 py-2 text-[12.5px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
           >
             Download
           </Link>

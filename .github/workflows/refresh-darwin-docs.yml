@@ -1,0 +1,43 @@
+name: Refresh Darwin docs snapshot
+
+on:
+  push:
+    branches:
+      - marketing/visual-storytelling
+
+permissions:
+  contents: read
+
+jobs:
+  refresh-darwin-docs:
+    runs-on: macos-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.19.0
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install chromium
+
+      - name: Build deterministic production site
+        run: VISUAL_TEST=1 npm run build
+
+      - name: Refresh docs baseline
+        run: npx playwright test tests/visual/visual.spec.ts --grep docs-desktop-light --update-snapshots
+
+      - name: Upload Darwin docs baseline
+        uses: actions/upload-artifact@v4
+        with:
+          name: darwin-docs-baseline
+          path: tests/visual/visual.spec.ts-snapshots/docs-desktop-light-darwin.png
+          if-no-files-found: error
