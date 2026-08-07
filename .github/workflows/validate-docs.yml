@@ -56,6 +56,10 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: External link check
+        run: npm run test:links
+        timeout-minutes: 5
+
       - name: Typecheck
         run: npx tsc --noEmit
 

@@ -25,7 +25,7 @@ type GenericIcon = ComponentType<{ className?: string }>;
 const heading =
   "text-[1.65rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem]";
 const body =
-  "mt-5 max-w-2xl text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]";
+  "mt-5 max-w-2xl text-[15px] leading-[1.7] text-[var(--text-secondary)] sm:text-[16px]";
 const container = "mx-auto w-full max-w-6xl px-4 sm:px-6";
 
 type Harness = {
@@ -107,7 +107,7 @@ export default function Features() {
     <div>
       <section className="border-t border-[var(--divide)] py-14 sm:py-20">
         <div className={container}>
-          <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
+          <p className="font-mono text-[12px] leading-relaxed uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
             Provider portability
           </p>
           <h2 className={`${heading} mt-3`}>Keep the runtimes you already trust.</h2>
@@ -133,7 +133,7 @@ export default function Features() {
                       {name}
                     </span>
                   </div>
-                  <span className="shrink-0 font-mono text-[12px] tabular-nums text-[var(--text-tertiary)]">
+                  <span className="shrink-0 text-[12px] font-medium tabular-nums text-[var(--text-secondary)]">
                     {status}
                   </span>
                 </div>
@@ -148,7 +148,7 @@ export default function Features() {
 
       <section className="border-t border-[var(--divide)] py-14 sm:py-20">
         <div className={container}>
-          <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
+          <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
             Durable task ownership
           </p>
           <h2 className={`${heading} mt-3 max-w-2xl`}>

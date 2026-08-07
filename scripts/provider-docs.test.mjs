@@ -37,7 +37,7 @@ const PROVIDERS = [
     title: "Cursor",
     executable: "cursor-agent",
     authMarker: "cursor-agent login",
-    officialDomain: "docs.cursor.com",
+    officialDomain: "cursor.com",
   },
   {
     slug: "antigravity",

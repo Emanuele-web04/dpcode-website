@@ -46,11 +46,11 @@ export default async function Home() {
             <div className="max-w-3xl">
               <h1
                 id="homepage-title"
-                className="max-w-[15ch] text-[clamp(2.65rem,6.2vw,4.75rem)] font-semibold leading-[0.99] tracking-[-0.055em] text-[var(--text-primary)]"
+                className="max-w-[15ch] text-[clamp(2.65rem,6.2vw,4.75rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-[var(--text-primary)]"
               >
                 {PRODUCT_HERO_TITLE}
               </h1>
-              <p className="mt-6 max-w-2xl text-[16px] leading-[1.65] text-[var(--text-secondary)] sm:text-[18px]">
+              <p className="mt-7 max-w-2xl text-[16px] leading-[1.7] text-[var(--text-secondary)] sm:text-[18px]">
                 {PRODUCT_HERO_DESCRIPTION}
               </p>
 
@@ -100,11 +100,11 @@ export default async function Home() {
               />
             </figure>
 
-            <div className="mt-6 flex flex-col gap-2 border-y border-[var(--divide)] py-4 text-[12.5px] leading-5 text-[var(--text-tertiary)] sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:text-[13px]">
-              <span>Free and open source · No Synara account required</span>
-              <span className="sm:text-right">
+            <div className="mt-9 border-t border-[var(--divide)] pt-5">
+              <p className="text-[12.5px] leading-relaxed text-[var(--text-tertiary)] sm:text-[13px]">
+                Free and open source · No Synara account required ·{" "}
                 <InstallerCount initialCount={installerCount} />
-              </span>
+              </p>
             </div>
           </div>
         </section>
@@ -121,7 +121,7 @@ export default async function Home() {
         <FAQ />
         <Testimonials />
         <div id="download" className="scroll-mt-20">
-          <ClosingCTA />
+          <ClosingCTA initialInstallerCount={installerCount} />
         </div>
       </main>
 

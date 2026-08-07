@@ -18,10 +18,10 @@ export default function ClosingCTA({
           <ProviderMarkRow centered />
         </div>
 
-        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
+        <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
           {PRODUCT_CATEGORY}
         </p>
-        <h2 className="mx-auto mt-4 max-w-3xl text-[2rem] font-medium leading-[1.06] tracking-[-0.045em] text-[var(--text-primary)] sm:text-[3rem]">
+        <h2 className="mx-auto mt-4 max-w-3xl text-[2rem] font-medium leading-[1.08] tracking-[-0.045em] text-[var(--text-primary)] sm:text-[3rem]">
           {PRODUCT_HERO_TITLE}
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-[14px] leading-[1.7] text-[var(--text-secondary)] sm:text-[16px]">

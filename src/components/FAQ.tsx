@@ -24,7 +24,7 @@ export default function FAQ() {
           </p>
           <h2
             id="faq-heading"
-            className="mt-3 text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2.25rem]"
+            className="mt-3 text-[1.65rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem]"
           >
             Understand the boundary before you run the work.
           </h2>

@@ -61,7 +61,7 @@ export function SplitShowcase({
         <h3 className="text-[1.35rem] font-medium leading-[1.15] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[1.5rem]">
           {title}
         </h3>
-        <p className="mt-3 max-w-2xl text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]">
+        <p className="mt-3 max-w-2xl text-[15px] leading-[1.7] text-[var(--text-secondary)] sm:text-[16px]">
           {description}
         </p>
       </div>

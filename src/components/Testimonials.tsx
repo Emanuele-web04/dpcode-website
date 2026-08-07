@@ -159,13 +159,13 @@ export default async function Testimonials() {
     <section id="testimonials" className="border-t border-[var(--divide)] py-14 sm:py-20">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="max-w-2xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--text-tertiary)]">
+          <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
             From developers
           </p>
           <h2 className="mt-3 text-[1.65rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem]">
             What people notice when they use Synara.
           </h2>
-          <p className="mt-5 text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]">
+          <p className="mt-5 text-[15px] leading-[1.7] text-[var(--text-secondary)] sm:text-[16px]">
             Public posts about the workspace, provider choice, local server,
             design, and day-to-day development experience.
           </p>
