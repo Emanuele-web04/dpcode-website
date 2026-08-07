@@ -15,7 +15,7 @@ export default function SiteFooter() {
             href="https://x.com/emanueledpt"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[var(--accent-link)] transition-colors hover:text-[var(--accent-link-hover)]"
+            className="text-[var(--accent-link)] transition-colors hover:text-[var(--accent-link-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
           >
             @emanueledpt
           </a>
@@ -23,19 +23,19 @@ export default function SiteFooter() {
         <div className="flex items-center gap-4 sm:gap-6">
           <Link
             href="/docs"
-            className="transition-colors hover:text-[var(--text-primary)]"
+            className="transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
           >
             Docs
           </Link>
           <Link
             href="/changelog"
-            className="transition-colors hover:text-[var(--text-primary)]"
+            className="transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
           >
             Changelog
           </Link>
           <Link
             href="/privacy"
-            className="transition-colors hover:text-[var(--text-primary)]"
+            className="transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
           >
             Privacy
           </Link>

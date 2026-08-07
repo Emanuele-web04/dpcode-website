@@ -80,7 +80,7 @@ export function Card({
   if (!href) return card;
 
   return (
-    <Link href={href} className="group/doccard block h-full no-underline">
+    <Link href={href} className="group/doccard block no-underline">
       {card}
     </Link>
   );

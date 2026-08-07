@@ -13,6 +13,8 @@ type SplitShowcaseProps = {
    * narrow layouts so the painting backdrop reads around it.
    */
   prominentMedia?: boolean;
+  /** Small sequence label tying the visual to the product story. */
+  kicker?: string;
   children: ReactNode;
 };
 
@@ -31,6 +33,7 @@ export function SplitShowcase({
   reverse,
   stacked,
   prominentMedia,
+  kicker,
   children,
 }: SplitShowcaseProps) {
   const wrapperClass = stacked
@@ -50,10 +53,15 @@ export function SplitShowcase({
   return (
     <div className={wrapperClass}>
       <div className={textColClass}>
+        {kicker && (
+          <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--accent-link)]">
+            {kicker}
+          </p>
+        )}
         <h3 className="text-[1.35rem] font-medium leading-[1.15] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[1.5rem]">
           {title}
         </h3>
-        <p className="mt-3 max-w-2xl text-[15px] leading-[1.65] text-[var(--text-secondary)] sm:text-[16px]">
+        <p className="mt-3 max-w-2xl text-[15px] leading-[1.7] text-[var(--text-secondary)] sm:text-[16px]">
           {description}
         </p>
       </div>

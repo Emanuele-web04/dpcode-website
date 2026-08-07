@@ -1,50 +1,74 @@
 ---
 title: Synara documentation
-description: Learn how to set up Synara and direct serious agentic development from one local-first workspace.
+description: Learn how to install Synara, connect coding-agent runtimes, run durable tasks, verify results, and recover safely.
 ---
 
-Synara is a free, open-source desktop command center for agentic development. It gives the coding agents and subscriptions you already use one local-first operating surface for chats, terminals, browser previews, diffs, branches, worktrees, provider sessions, handoffs, and delivery.
+Synara is a free, open-source, local-first desktop workspace and control plane for coding agents. It brings provider sessions, tasks, terminals, browser work, diffs, Git worktrees, handoffs, automations, and pull-request delivery into one application.
 
 <Cards>
   <Card
     title="Quickstart"
-    description="From download to your first reviewed diff in about five minutes."
+    description="Go from installation to your first reviewed diff in about five minutes."
     href="/docs/getting-started/quickstart"
   />
   <Card
-    title="Core concepts"
-    description="The mental model: projects, tasks, environments, and provider sessions."
-    href="/docs/getting-started/core-concepts"
+    title="Provider guides"
+    description="Install, authenticate, verify, and troubleshoot every supported coding-agent runtime."
+    href="/docs/providers"
   />
   <Card
-    title="Best practices"
-    description="Patterns that pay off, plus the real workflow used to build Synara."
-    href="/docs/workflows/best-practices"
+    title="Workflow guides"
+    description="Run parallel agents, worktrees, handoffs, browser verification, automations, and orchestration safely."
+    href="/docs/workflows"
   />
   <Card
-    title="Troubleshoot setup"
-    description="Fix provider detection, authentication, Git, and update issues."
+    title="Troubleshooting"
+    description="Recover from desktop, provider, task, Git, browser, automation, and integration failures."
     href="/docs/troubleshooting"
   />
 </Cards>
 
-## What Synara controls
+## What is Synara?
 
-- **Projects and tasks:** keep several repositories and conversations available without mixing their context.
-- **Agent runtimes:** use Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi, and Factory Droid from one interface.
-- **Development surface:** open terminals and browser previews beside the conversation.
-- **Git environments:** work on the project directly or isolate tasks in linked worktrees.
-- **Review and delivery:** inspect changes, commit, push, and work with GitHub pull requests.
-- **Automations and Studio:** schedule recurring agent runs with stop conditions, and give long-running work its own workspace.
+Synara is the workspace around coding-agent runtimes such as Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok Build, Kilo Code, Pi, and Factory Droid. The provider still owns its account, models, tools, permissions, and service. Synara owns the durable task, working environment, transcript, review surfaces, and delivery workflow around that provider session.
 
-## Local-first by design
+## What does Synara control?
 
-Synara stores its workspace data on your machine and does not require a Synara cloud account. The provider you select still receives the prompts, files, diffs, terminal output, or tool results required for that provider session. The boundary is explicit: Synara is the control surface, not a proxy for your provider traffic.
+- **Projects and tasks:** keep several repositories and durable conversations available without mixing their context.
+- **Provider runtimes:** select supported coding agents, models, and provider-specific options from one interface.
+- **Development surfaces:** use terminals, browser tabs, files, diffs, and Git tools beside the conversation.
+- **Git environments:** work in the local checkout or isolate concurrent tasks in linked worktrees.
+- **Review and delivery:** inspect changes, verify behavior, commit, push, and create pull requests.
+- **Orchestration:** use provider handoffs, automations, Studio, Agent Gateway, and restricted External MCP access where appropriate.
 
-<Callout type="info" title="A shipped product, documented clearly">
-  Synara ships as a cross-platform desktop app. Most pages describe the current stable release; additions available only on the active `main` branch are marked as preview features so you can see exactly what is available today.
+## Does Synara include model access?
+
+No. Synara uses the provider runtimes, accounts, subscriptions, and API credentials already configured on your machine. Model availability and usage limits remain provider-owned.
+
+Start with [Installation](/docs/getting-started/installation) and the [Provider guides](/docs/providers).
+
+## Does Synara upload code to its own cloud?
+
+Synara stores its workspace data locally and does not require a Synara cloud account. The provider selected for a task still receives the prompts, file snippets, diffs, terminal output, or tool results needed for that provider session. Synara is the control surface; it is not a proxy for normal provider traffic.
+
+See [Privacy](/privacy) for the public data boundary.
+
+## How should I run my first task?
+
+Use one clean Git repository, one provider you have already verified, and one bounded objective. Follow the transcript, inspect the complete diff, run the relevant checks independently, and commit only the changes you understand.
+
+Use the [Quickstart](/docs/getting-started/quickstart) for the shortest path or [Your first task](/docs/getting-started/first-task) for the complete walkthrough.
+
+## How do I run several agents safely?
+
+Give each body of work one owner and use separate worktrees for concurrent writers. Keep objectives independently reviewable, preserve Git state before integration, and assign one integration owner.
+
+Continue with [Parallel agents](/docs/workflows/parallel-agents) and [Worktrees](/docs/workflows/worktrees).
+
+## Where do I go when something fails?
+
+Start with the symptom-specific [Troubleshooting hub](/docs/troubleshooting). Preserve work before restarting or cleaning up, identify the failing layer, change one variable at a time, and collect the smallest useful diagnostic bundle.
+
+<Callout type="info" title="Stable release versus current main">
+  Most pages describe stable behavior. Features available only on the active application `main` branch are identified as preview behavior where that distinction matters.
 </Callout>
-
-## Start here
-
-New to Synara? Take the five-minute [Quickstart](/docs/getting-started/quickstart), skim [Core concepts](/docs/getting-started/core-concepts) so the workspace makes sense, then copy the example workflow in [Best practices](/docs/workflows/best-practices). For the step-by-step setup detail, see [Installation](/docs/getting-started/installation), [Providers](/docs/getting-started/providers), and [Your first task](/docs/getting-started/first-task).

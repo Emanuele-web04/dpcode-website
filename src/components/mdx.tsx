@@ -5,6 +5,12 @@ import type { MDXComponents } from "mdx/types";
 import { Callout } from "@/components/docs/callout";
 import { Card, Cards } from "@/components/docs/card";
 import { Step, Steps } from "@/components/docs/steps";
+import {
+  DocsGallery,
+  DocsImage,
+  DocsScreenshot,
+  DocsVideo,
+} from "@/components/docs/media";
 
 /*
  * Every docs page gets these without per-file imports. Headings and code
@@ -19,6 +25,10 @@ export function getMDXComponents(components?: MDXComponents) {
     Callout,
     Card,
     Cards,
+    DocsGallery,
+    DocsImage,
+    DocsScreenshot,
+    DocsVideo,
     Step,
     Steps,
     Tab,

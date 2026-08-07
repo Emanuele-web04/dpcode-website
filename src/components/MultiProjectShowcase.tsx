@@ -1,8 +1,6 @@
 // FILE: MultiProjectShowcase.tsx
-// Purpose: "Work across projects" section — projects sidebar screenshot.
+// Purpose: Shows persistent project and task organization across repositories.
 // Layer: Marketing UI section
-// Note: The image is framed in the same elevated background style as the hero
-//       screenshot to keep the surface consistent across the page.
 
 const sectionHeading =
   "text-[1.35rem] font-medium leading-[1.14] tracking-[-0.03em] text-[var(--text-primary)] sm:text-[1.6rem]";
@@ -16,24 +14,21 @@ export function MultiProjectShowcase() {
       <div className={container}>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-10 xl:gap-14">
           <div className="min-w-0">
-            <h2 className={sectionHeading}>
-              Keep every codebase within reach.
-            </h2>
+            <h2 className={sectionHeading}>Keep every repository ready to resume.</h2>
             <p className={sectionBody}>
-              Move between client work, your product, and experiments without a
-              dozen windows. One sidebar keeps every codebase a click away—each
-              with its own agents, runs, and state.
+              Move between products, client work, and experiments without
+              rebuilding context from scattered windows. Each project keeps its
+              own tasks, provider sessions, environments, and activity state.
             </p>
           </div>
 
           <div className="relative min-w-0">
             <div className="relative isolate overflow-hidden rounded-xl p-2 ring-1 ring-black/5 sm:rounded-2xl sm:p-3 dark:ring-white/10">
-              {/* Painting backdrop, same as the hero — see .shot-card-bg. */}
               <div aria-hidden className="shot-card-bg absolute inset-0 -z-10" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/projects-syn.png"
-                alt="Synara projects sidebar — synara, Remodex, and dpcode-website each with their own threads"
+                alt="Synara project sidebar with separate repositories, tasks, and activity state"
                 className="mx-auto block h-auto w-3/5 rounded-lg sm:rounded-xl"
               />
             </div>

@@ -8,12 +8,19 @@
 import type { Metadata } from "next";
 import { FAQ_ITEMS } from "@/data/faqs";
 import { type ChangelogEntry } from "@/data/changelog";
+import {
+  PRODUCT_CATEGORY,
+  PRODUCT_HERO_TITLE,
+  PRODUCT_META_DESCRIPTION,
+  PRODUCT_NAME,
+  SUPPORTED_PROVIDERS,
+} from "@/data/product";
 import { releaseDateIso } from "@/lib/releaseDates";
 
 /** Canonical production origin; keep aligned with Vercel's primary domain. */
 export const SITE_URL = "https://www.trysynara.com";
 
-export const SITE_NAME = "Synara";
+export const SITE_NAME = PRODUCT_NAME;
 
 export const CREATOR_NAME = "Emanuele Di Pietro";
 export const CREATOR_URL = "https://emanueledipietro.com";
@@ -22,39 +29,31 @@ export const GITHUB_RELEASES_URL = `${GITHUB_REPO_URL}/releases`;
 export const X_PROFILE_URL = "https://x.com/emanueledpt";
 export const YOUTUBE_URL = "https://youtube.com/@emanueledpt";
 
-/** Search/share title — brand first, then the strongest current use-case terms. */
-export const SITE_TITLE =
-  "Synara — The Command Center for Agentic Development";
+/** Search/share title — brand first, then the primary user outcome. */
+export const SITE_TITLE = `${SITE_NAME} — ${PRODUCT_HERO_TITLE}`;
 
-/** Meta description — front-loaded keywords + the core value proposition. */
-export const SITE_DESCRIPTION =
-  "Synara is the free, open-source local-first command center for agentic development, bringing Claude Code, Codex, Cursor, OpenCode, Antigravity, Grok, Kilo Code, Pi, and Droid into one focused workspace for parallel sessions, terminals, previews, diffs, Git worktrees, and pull-request flow.";
+/** Concise search/share description. The full definition lives in product.ts. */
+export const SITE_DESCRIPTION = PRODUCT_META_DESCRIPTION;
 
 export const SEO_KEYWORDS = [
   "Synara",
-  "AI coding",
   "AI coding agents",
-  "AI coding workspace",
-  "agentic coding GUI",
-  "AI coding desktop app",
-  "agentic development command center",
-  "local-first agent workspace",
-  "multi-agent desktop workspace",
-  "Claude Code GUI",
-  "Claude Code desktop app",
-  "Codex GUI",
-  "Codex desktop app",
-  "Antigravity CLI GUI",
-  "Google Antigravity CLI",
-  "Cursor alternative",
-  "OpenCode GUI",
-  "Factory Droid",
-  "Droid by Factory",
-  "Droid coding agent",
-  "Droid coding agent GUI",
-  "AI pair programming",
+  "coding agent workspace",
+  "local-first coding workspace",
+  "multi-agent development",
+  "coding agent control plane",
   "parallel coding agents",
+  "Claude Code workspace",
+  "Codex workspace",
+  "OpenCode GUI",
+  "Cursor agent workspace",
+  "Antigravity CLI GUI",
+  "Grok Build",
+  "Kilo Code",
+  "Pi coding agent",
+  "Factory Droid",
   "Git worktrees",
+  "agent browser verification",
   "developer tools",
   "open source AI coding app",
 ];
@@ -77,7 +76,7 @@ export const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 600,
-  alt: "Synara — the open-source command center for agentic development",
+  alt: `${SITE_NAME} — ${PRODUCT_CATEGORY}`,
 };
 
 export const SITE_IMAGES = {
@@ -102,8 +101,7 @@ export function jsonLdScript(value: unknown) {
 
 /**
  * schema.org structured data (Organization + WebSite + SoftwareApplication).
- * Rendered once in the root layout so it applies to every route. Helps Google
- * understand the brand and surface a richer result for the app.
+ * Rendered once in the root layout so it applies to every route.
  */
 export const SITE_JSONLD = {
   "@context": "https://schema.org",
@@ -149,18 +147,18 @@ export const SITE_JSONLD = {
       sameAs: GITHUB_REPO_URL,
       operatingSystem: "macOS, Windows, Linux",
       applicationCategory: "DeveloperApplication",
-      applicationSubCategory: "Agentic development workspace",
+      applicationSubCategory: "Coding agent workspace and control plane",
       isAccessibleForFree: true,
       license: "https://opensource.org/licenses/MIT",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       author: { "@id": `${SITE_URL}/#organization` },
       featureList: [
-        "Run Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi, and Droid from one desktop workspace",
-        "Use Google Antigravity CLI for terminal-first multi-step coding, tool use, and background subagents",
-        "Use Factory Droid for end-to-end development, codebase research, code review, and automation",
-        "Use the provider subscriptions you already trust instead of adding a Synara model plan",
-        "Direct parallel coding agents with chats, terminals, worktrees, diffs, and pull request flow",
-        "Keep projects local while providers receive only the session context needed for their own models and tools",
+        `Run ${SUPPORTED_PROVIDERS.join(", ")} from one desktop workspace`,
+        "Keep each task attached to its provider session, working directory, terminal, browser, diff, and delivery state",
+        "Use isolated Git worktrees for parallel agent tasks",
+        "Hand work between supported providers without changing the task environment",
+        "Verify results with commands, browser evidence, diffs, checks, commits, and pull requests",
+        "Keep workspace state local while selected providers receive the context required for their sessions",
       ],
     },
   ],
@@ -198,8 +196,7 @@ export const INSTALL_JSONLD = {
   "@id": `${SITE_URL}/install#webpage`,
   name: "Download Synara",
   url: absoluteUrl("/install"),
-  description:
-    "Download Synara for macOS, Windows, and Linux — a free, open-source desktop command center for agentic development with Claude Code, Codex, Antigravity, Droid, Cursor, and more.",
+  description: `Download ${SITE_NAME} for macOS, Windows, and Linux — ${PRODUCT_CATEGORY}`,
   isPartOf: { "@id": `${SITE_URL}/#website` },
   about: { "@id": `${SITE_URL}/#app` },
   primaryImageOfPage: absoluteUrl(SITE_IMAGES.og),
@@ -218,7 +215,7 @@ export function changelogCollectionJsonLd(entries: readonly ChangelogEntry[]) {
     name: "Synara changelog",
     url: absoluteUrl("/changelog"),
     description:
-      "Release notes for Synara, including new provider support, agentic workflow improvements, performance work, and installer updates.",
+      "Release notes for Synara, including provider support, coding-agent workflows, reliability, performance, and installer updates.",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#app` },
     mainEntity: {

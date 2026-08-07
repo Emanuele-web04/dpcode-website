@@ -2,35 +2,41 @@
 // Purpose: Shared FAQ copy used by the homepage UI and FAQPage JSON-LD.
 // Layer: static content (server/client importable).
 
+import { PRODUCT_DESCRIPTION } from "@/data/product";
+
 export const FAQ_ITEMS = [
   {
     question: "What is Synara?",
-    answer:
-      "Synara is a free, open-source desktop command center for agentic development. It brings coding agents, chats, terminals, browser previews, diffs, branches, worktrees, and handoffs into one focused workspace so you can direct the work and ship with confidence.",
+    answer: PRODUCT_DESCRIPTION,
   },
   {
-    question: "Do I need a new AI subscription?",
+    question: "Does Synara include models or require another AI subscription?",
     answer:
-      "No. Synara is the control plane around the accounts and subscriptions you already use. It supports Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi, and Droid while each provider keeps its own models and capabilities.",
+      "Synara does not sell a separate model plan. It connects to supported coding-agent runtimes and the provider accounts already configured on your machine. Each provider keeps its own authentication, models, limits, tools, and permissions.",
   },
   {
-    question: "What do I need installed before using it?",
+    question: "What must be installed before I start?",
     answer:
-      "Install the Synara desktop app, then make sure the agent runtime you want to use is authenticated on your machine. For Codex sessions, that means the Codex CLI should be on your PATH and signed in before Synara starts a session.",
+      "Install the Synara desktop app and at least one supported coding-agent runtime. Authenticate that runtime outside Synara, verify that its executable works from a fresh terminal, then confirm that Synara detects it in provider settings.",
   },
   {
-    question: "Can I run multiple tasks at the same time?",
+    question: "Can several agents work at the same time?",
     answer:
-      "Yes. Parallel work is a core Synara workflow: open split chats, start separate threads, and run tasks in isolated worktrees so different agents can build, test, or debug without stepping on the same branch.",
+      "Yes. Create separate tasks and use isolated Git worktrees when agents may edit concurrently. Each task keeps its own provider session, working directory, terminal, browser, diff, and delivery state so ownership remains visible.",
   },
   {
-    question: "Does it fit into a normal Git workflow?",
+    question: "Can I switch providers without starting the task over?",
     answer:
-      "Yes. Git is first-class in Synara. Work with regular branches or isolated worktrees, keep diffs visible, and move from a finished agent task to a reviewed pull request without leaving the workspace.",
+      "Synara supports provider handoffs for supported runtimes. The next provider continues in the same task environment with the context Synara passes forward. Review the working tree before and after a handoff because providers do not have identical tools or session semantics.",
   },
   {
-    question: "Does Synara upload my code somewhere?",
+    question: "How does Synara fit into Git and pull-request workflows?",
     answer:
-      "Synara runs locally as the workspace layer and does not require a Synara cloud account. The provider you choose receives the prompts, file snippets, diffs, terminal output, or tool results needed for that session; Synara does not proxy or store your work on its own server.",
+      "Use a normal branch or an isolated worktree, inspect the resulting diff, run the required checks, commit the intended changes, push the branch, and open or review the pull request from the same task workflow.",
+  },
+  {
+    question: "Does Synara upload my code to its own cloud?",
+    answer:
+      "Synara does not require a Synara cloud workspace account or proxy normal provider traffic through its own model service. The selected provider still receives the prompts, files, diffs, command output, and tool results required for that provider session.",
   },
 ] as const;

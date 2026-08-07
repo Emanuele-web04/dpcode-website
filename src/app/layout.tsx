@@ -2,7 +2,7 @@
 // Purpose: Root document shell with global fonts, metadata, analytics, and JSON-LD.
 // Layer: App Router layout.
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeScript } from "@/components/ThemeScript";
@@ -91,6 +91,12 @@ export const metadata: Metadata = {
   },
 };
 
+const analyticsEnabled = Boolean(process.env.VERCEL) && process.env.VISUAL_TEST !== "1";
+
+export const viewport: Viewport = {
+  themeColor: "#111111",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -109,7 +115,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: jsonLdScript(SITE_JSONLD) }}
         />
         <RootProvider theme={{ enabled: false }}>{children}</RootProvider>
-        <Analytics />
+        {analyticsEnabled ? <Analytics /> : null}
       </body>
     </html>
   );

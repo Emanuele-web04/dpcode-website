@@ -1,32 +1,35 @@
 ---
 title: Automations & Studio
-description: Schedule recurring agent work with stop conditions, and give long-running work its own workspace.
+description: Understand Synara’s scheduled-work and long-running-project surfaces, then follow the detailed workflow guides.
 ---
 
-Not every task starts with you typing a prompt. Automations run agent work on a schedule; Studio gives long-running, agent-led work a home separate from your day-to-day chats.
+Automations and Studio support work that does not fit a single interactive task. Automations run a defined objective on a schedule; Studio gives long-running, output-oriented work a dedicated home.
 
 ## Automations
 
-The Automations workspace is first-class scheduled agent work: a sidebar section with list and detail pages, run history, triage actions, inline editing, and Current/Paused views. Each run executes through the same thread, provider, and worktree pipeline as a normal chat — so everything in [Best practices](/docs/workflows/best-practices) applies to scheduled runs too.
+The Automations workspace includes scheduled work, run history, current and paused states, inline editing, and task transcripts that identify automation-triggered turns.
 
-### Create one in plain language
+Use it when the objective, schedule, environment, verification, and stop condition can be reviewed before the first run. Scheduled work still uses real providers and environments, so its output requires the same diff and test review as an interactive task.
 
-Type an automation-style prompt into the composer — "every morning at 9, check open PRs and summarize failing checks" — and Synara turns it into a scheduled draft you review before it goes live. Intervals, daily/weekly schedules, and cron-like phrasing are understood, in English and Italian.
-
-### Heartbeat automations with stop clauses
-
-A heartbeat automation carries a natural-language stop condition ("stop when the flaky test has passed five consecutive runs"). Synara evaluates it after each successful run and auto-disables the automation with a recorded reason once it is satisfied — recurring work that knows when it is done.
-
-### Know what ran
-
-Turns dispatched by an automation are labelled "Sent via Automation" in the transcript, and each automation keeps its run history for triage.
-
-<Callout type="warn" title="Review scheduled output too">
-  An automation is still an agent producing diffs. Review its changes the same way you review interactive work before anything ships.
-</Callout>
+<Cards>
+  <Card
+    title="Automation workflow"
+    description="Create safe recurring work, define stop conditions, review run history, and handle retries."
+    href="/docs/workflows/automations"
+  />
+  <Card
+    title="Studio workflow"
+    description="Define deliverables, organize outputs, review checkpoints, and decide when work should move into a normal project task."
+    href="/docs/workflows/studio"
+  />
+</Cards>
 
 ## Studio
 
-Studio is a dedicated workspace for long-running, agent-led work, separate from regular chats, with its own projects, threads, and routing. Outputs — files, generated images — are collected in the Environment panel, so the artifacts of a long piece of work stay in one place instead of scattering across a transcript.
+Studio separates long-running, agent-led projects from day-to-day task conversations. Its Environment panel collects outputs such as files and generated images so the deliverables remain visible outside the transcript.
 
-Use a regular task for focused, interactive work; use Studio when the work is bigger than one sitting and you care about its outputs more than its conversation.
+Use it when the work spans several checkpoints and the artifact set matters more than one repository diff. Use a normal Git-backed task when branch ownership, tests, commits, and pull requests are the primary result.
+
+<Callout type="warn" title="Long-running does not mean unbounded">
+  Give scheduled work and Studio projects explicit authority, deliverables, verification, and completion criteria before letting them continue unattended.
+</Callout>

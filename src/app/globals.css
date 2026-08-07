@@ -9,16 +9,17 @@
 :root {
   --page-bg: #f5f4f2;
   --text-primary: #141413;
-  --text-secondary: color-mix(in oklab, var(--text-primary) 58%, transparent);
-  --text-tertiary: color-mix(in oklab, var(--text-primary) 42%, transparent);
+  --text-secondary: #5b5955;
+  --text-tertiary: #66635e;
+  --sidebar-section-color: #3a3834;
   --block-elevated: #e8e6e2;
   --mock-surface: #ddd9d3;
   --mock-row: color-mix(in oklab, var(--text-primary) 6%, transparent);
   --mock-row-strong: color-mix(in oklab, var(--text-primary) 10%, transparent);
   --divide: color-mix(in oklab, var(--text-primary) 12%, transparent);
   --border-strong: color-mix(in oklab, var(--text-primary) 28%, transparent);
-  --accent-link: #ea580c;
-  --accent-link-hover: #c2410c;
+  --accent-link: #a43a0a;
+  --accent-link-hover: #7d2b05;
   --glow-a: color-mix(in oklab, #0ea5e9 22%, transparent);
   --glow-b: color-mix(in oklab, #8b5cf6 16%, transparent);
   --btn-primary-bg: #1c1917;
@@ -70,16 +71,17 @@
 .dark {
   --page-bg: #121110;
   --text-primary: #f5f4f2;
-  --text-secondary: color-mix(in oklab, var(--text-primary) 55%, transparent);
-  --text-tertiary: color-mix(in oklab, var(--text-primary) 38%, transparent);
+  --text-secondary: #aaa8a3;
+  --text-tertiary: #97948e;
+  --sidebar-section-color: #c9c5bd;
   --block-elevated: #1c1b19;
   --mock-surface: #161514;
   --mock-row: color-mix(in oklab, var(--text-primary) 8%, transparent);
   --mock-row-strong: color-mix(in oklab, var(--text-primary) 12%, transparent);
   --divide: color-mix(in oklab, var(--text-primary) 12%, transparent);
   --border-strong: color-mix(in oklab, var(--text-primary) 28%, transparent);
-  --accent-link: #fb923c;
-  --accent-link-hover: #fdba74;
+  --accent-link: #ffb27f;
+  --accent-link-hover: #ffd0b5;
   --glow-a: color-mix(in oklab, #38bdf8 18%, transparent);
   --glow-b: color-mix(in oklab, #a78bfa 12%, transparent);
   --btn-primary-bg: #fafaf9;
@@ -233,7 +235,7 @@
   margin-bottom: 0.25rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--text-tertiary);
+  color: var(--sidebar-section-color);
 }
 
 :is(#nd-sidebar, #nd-sidebar-mobile) p:first-child {
@@ -266,6 +268,7 @@
    consistent step between blocks. */
 #nd-docs-layout article {
   padding-top: 2.25rem;
+  padding-bottom: 3rem;
   gap: 0.625rem;
 }
 
@@ -447,6 +450,14 @@ body {
   overflow-x: clip;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
+
 /*
  * Hide the scrollbar visually while keeping the element scrollable. Used by the
  * changelog rail so the overflow list scrolls without the OS scrollbar
@@ -511,7 +522,7 @@ body {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;

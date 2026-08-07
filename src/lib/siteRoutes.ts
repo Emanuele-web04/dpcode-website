@@ -1,9 +1,10 @@
 // FILE: lib/siteRoutes.ts
-// Purpose: Defines canonical crawl targets shared by sitemap routes and LLM docs.
+// Purpose: Defines canonical crawl targets shared by sitemap routes.
 // Layer: server utility.
 
 import type { MetadataRoute } from "next";
 import { getSortedReleases, toVersionSlug } from "@/lib/changelog";
+import { getDocumentationCatalog } from "@/lib/docs";
 import {
   DOCS_LAST_UPDATED,
   PRIVACY_LAST_UPDATED,
@@ -11,14 +12,41 @@ import {
   SITE_LATEST_UPDATE,
 } from "@/lib/releaseDates";
 import { absoluteUrl, SITE_IMAGES } from "@/lib/seo";
-import { docsSource } from "@/lib/docs";
 
 export const SITEMAP_PATHS = ["/sitemap.xml", "/changelog/sitemap.xml"] as const;
+
+const releases = getSortedReleases();
+const latestReleaseUpdate = releases[0] ? releaseDate(releases[0].date) : SITE_LATEST_UPDATE;
+const documentationCatalog = getDocumentationCatalog();
+
+function normalizedDate(value: Date | string | null, fallback: Date) {
+  if (!value) return fallback;
+  const date = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(date.getTime()) ? fallback : date;
+}
+
+const latestDocumentationUpdate = documentationCatalog.reduce(
+  (latest, page) => {
+    const candidate = normalizedDate(page.lastModified, DOCS_LAST_UPDATED);
+    return candidate > latest ? candidate : latest;
+  },
+  DOCS_LAST_UPDATED,
+);
+
+const mainSitemapUpdate =
+  latestDocumentationUpdate > latestReleaseUpdate
+    ? latestDocumentationUpdate
+    : latestReleaseUpdate;
+
+export const SITEMAP_INDEX_ENTRIES = [
+  { path: "/sitemap.xml", lastModified: mainSitemapUpdate },
+  { path: "/changelog/sitemap.xml", lastModified: latestReleaseUpdate },
+] as const;
 
 const staticRoutes = [
   {
     path: "/",
-    lastModified: SITE_LATEST_UPDATE,
+    lastModified: latestReleaseUpdate,
     changeFrequency: "daily",
     priority: 1,
     images: [
@@ -29,14 +57,14 @@ const staticRoutes = [
   },
   {
     path: "/install",
-    lastModified: SITE_LATEST_UPDATE,
+    lastModified: latestReleaseUpdate,
     changeFrequency: "daily",
     priority: 0.95,
     images: [absoluteUrl(SITE_IMAGES.og)],
   },
   {
     path: "/changelog",
-    lastModified: SITE_LATEST_UPDATE,
+    lastModified: latestReleaseUpdate,
     changeFrequency: "daily",
     priority: 0.8,
     images: [absoluteUrl(SITE_IMAGES.og)],
@@ -48,27 +76,21 @@ const staticRoutes = [
     priority: 0.35,
     images: [absoluteUrl(SITE_IMAGES.og)],
   },
-  {
-    path: "/llms.txt",
-    lastModified: SITE_LATEST_UPDATE,
-    changeFrequency: "weekly",
-    priority: 0.25,
-  },
-  {
-    path: "/llms-full.txt",
-    lastModified: SITE_LATEST_UPDATE,
-    changeFrequency: "weekly",
-    priority: 0.2,
-  },
-  {
-    path: "/ai.txt",
-    lastModified: SITE_LATEST_UPDATE,
-    changeFrequency: "weekly",
-    priority: 0.2,
-  },
 ] satisfies Array<
   Omit<MetadataRoute.Sitemap[number], "url"> & { path: string }
 >;
+
+function documentationPriority(url: string) {
+  if (url === "/docs") return 0.9;
+  if (
+    url === "/docs/getting-started/quickstart" ||
+    url === "/docs/getting-started/installation"
+  ) {
+    return 0.85;
+  }
+  if (url.split("/").filter(Boolean).length === 2) return 0.8;
+  return 0.7;
+}
 
 export function getStaticSitemapEntries(): MetadataRoute.Sitemap {
   return [
@@ -76,17 +98,17 @@ export function getStaticSitemapEntries(): MetadataRoute.Sitemap {
       ...entry,
       url: absoluteUrl(path),
     })),
-    ...docsSource.getPages().map((page) => ({
+    ...documentationCatalog.map((page) => ({
       url: absoluteUrl(page.url),
-      lastModified: DOCS_LAST_UPDATED,
+      lastModified: normalizedDate(page.lastModified, DOCS_LAST_UPDATED),
       changeFrequency: "weekly" as const,
-      priority: page.url === "/docs" ? 0.85 : 0.7,
+      priority: documentationPriority(page.url),
     })),
   ];
 }
 
 export function getChangelogSitemapEntries(): MetadataRoute.Sitemap {
-  return getSortedReleases().map((entry) => ({
+  return releases.map((entry) => ({
     url: absoluteUrl(`/changelog/${toVersionSlug(entry.version)}`),
     lastModified: releaseDate(entry.date),
     changeFrequency: "monthly",

@@ -1,0 +1,151 @@
+name: Validate public surface
+
+on:
+  pull_request:
+    branches:
+      - main
+      - docs/public-surface-overhaul
+      - docs/getting-started-overhaul
+      - docs/provider-guides
+      - docs/workflow-guides
+      - docs/help-and-troubleshooting
+      - docs/quality-seo-aeo
+      - marketing/homepage-positioning
+      - marketing/visual-storytelling
+      - upstream/complete-website-overhaul
+  push:
+    branches:
+      - docs/getting-started-overhaul
+      - docs/provider-guides
+      - docs/workflow-guides
+      - docs/help-and-troubleshooting
+      - docs/quality-seo-aeo
+      - marketing/homepage-positioning
+      - marketing/visual-storytelling
+      - docs/media-system
+      - upstream/complete-website-overhaul
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Test, lint, build, and smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.19.0
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Test public-surface contracts
+        run: npm run test:docs
+
+      - name: Lint
+        run: npm run lint
+
+      - name: External link check
+        run: npm run test:links
+        timeout-minutes: 5
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Build deterministic browser fixture
+        run: VISUAL_TEST=1 npm run build
+
+      - name: Smoke test production routes
+        run: npm run test:seo-smoke
+
+      - name: Functional browser checks
+        id: e2e
+        continue-on-error: true
+        run: npm run test:e2e
+
+      - name: Upload functional failure artifacts
+        if: ${{ always() && steps.e2e.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: functional-browser-failure
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
+
+      - name: Accessibility checks
+        id: a11y
+        continue-on-error: true
+        run: npm run test:a11y
+
+      - name: Upload accessibility failure artifacts
+        if: ${{ always() && steps.a11y.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-failure
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
+
+      - name: Visual regression checks
+        id: visual
+        continue-on-error: true
+        run: npm run test:visual
+
+      - name: Upload visual failure artifacts
+        if: ${{ always() && steps.visual.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression-failure
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
+
+      - name: Build normal production-data path
+        run: |
+          rm -rf .next
+          npm run build
+
+      - name: Production performance checks
+        id: performance
+        continue-on-error: true
+        env:
+          PERFORMANCE_RUNS: 3
+        run: npm run test:performance
+
+      - name: Upload performance failure artifact
+        if: ${{ always() && steps.performance.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-failure
+          path: test-results/performance-summary.json
+          if-no-files-found: error
+
+      - name: Enforce browser quality gates
+        if: ${{ always() }}
+        env:
+          E2E_OUTCOME: ${{ steps.e2e.outcome }}
+          A11Y_OUTCOME: ${{ steps.a11y.outcome }}
+          VISUAL_OUTCOME: ${{ steps.visual.outcome }}
+          PERFORMANCE_OUTCOME: ${{ steps.performance.outcome }}
+        run: |
+          if [[ "$E2E_OUTCOME" != "success" || \
+                "$A11Y_OUTCOME" != "success" || \
+                "$VISUAL_OUTCOME" != "success" || \
+                "$PERFORMANCE_OUTCOME" != "success" ]]; then
+            echo "One or more browser quality gates failed. See the failing step and uploaded artifacts."
+            exit 1
+          fi

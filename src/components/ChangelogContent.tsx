@@ -103,7 +103,7 @@ export default function ChangelogContent({
                   href={GITHUB_RELEASES_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[var(--accent-link)] transition-colors hover:text-[var(--accent-link-hover)]"
+                  className="text-[var(--accent-link)] underline underline-offset-2 transition-colors hover:text-[var(--accent-link-hover)]"
                 >
                   See releases on GitHub
                 </a>

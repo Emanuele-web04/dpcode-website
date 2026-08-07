@@ -36,7 +36,7 @@ export const CHANGELOG_ENTRIES: readonly ChangelogEntry[] = [
         description:
           "We did not add it, and we have no access to the PostHog project receiving the events.",
         details:
-          "The configuration has been removed. Synara no longer sends remote product analytics. The events did not include prompts, source code, filenames, or file contents. We're sorry this wasn't caught earlier",
+          "The configuration has been removed. Synara no longer sends remote product analytics. The events did not include prompts, source code, filenames, or file contents. We're sorry this wasn't caught earlier.",
       },
     ],
   },
