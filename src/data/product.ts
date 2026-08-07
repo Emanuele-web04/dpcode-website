@@ -9,10 +9,10 @@ export const PRODUCT_CATEGORY =
   "The local-first workspace and control plane for coding agents.";
 
 export const PRODUCT_HERO_TITLE =
-  "Run every coding agent in one local workspace.";
+  "Run every coding agent in one workspace";
 
 export const PRODUCT_HERO_DESCRIPTION =
-  "Use Claude Code, Codex, OpenCode, Cursor, and more side by side—each with its own task, Git worktree, terminal, browser, diff, and delivery loop.";
+  "Synara is the local-first command center for serious agentic work—run every coding agent in parallel and ship without losing context.";
 
 export const PRODUCT_META_DESCRIPTION =
   "Synara is a free, open-source, local-first workspace for coding agents with separate tasks, Git worktrees, terminals, browser verification, diffs, handoffs, and pull-request delivery.";

@@ -42,7 +42,7 @@ test("canonical product language is centralized and consumed by every discovery 
 
   assert.equal(
     exportedString(product, "PRODUCT_HERO_TITLE"),
-    "Run every coding agent in one local workspace.",
+    "Run every coding agent in one workspace",
   );
   assert.ok(exportedString(product, "PRODUCT_HERO_DESCRIPTION").length >= 100);
   assert.ok(exportedString(product, "PRODUCT_DESCRIPTION").length >= 220);
@@ -73,12 +73,9 @@ test("homepage hierarchy keeps one thesis, one proof image, and a coherent actio
 
   assert.ok(homepage.includes("PRODUCT_HERO_TITLE"));
   assert.ok(homepage.includes("PRODUCT_HERO_DESCRIPTION"));
-  assert.ok(homepage.includes('href="/docs"'));
-  assert.ok(homepage.includes("Free and open source"));
-  assert.ok(homepage.includes("No Synara account required"));
   assert.ok(homepage.includes("data-home-actions"));
   assert.ok(homepage.includes("data-hero-preview"));
-  assert.ok(homepage.includes("View Synara on GitHub"));
+  assert.ok(homepage.includes("Star on GitHub"));
   assert.ok(homepage.includes("HomepageRail"));
 
   for (const removedHeroLabel of [
@@ -145,11 +142,11 @@ test("public homepage copy avoids defensive identity and repetitive positioning"
   const combined = PUBLIC_COPY_FILES.map(read).join("\n");
 
   for (const phrase of [
-    "The command center for agentic development",
     "operating system for agentic work",
     "Ask the models directly",
     "Let the models verify the fit",
     "no longer just a t3 code fork",
+    "The command center for agentic development",
   ]) {
     assert.equal(
       combined.toLowerCase().includes(phrase.toLowerCase()),

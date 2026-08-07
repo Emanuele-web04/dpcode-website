@@ -19,15 +19,6 @@ Gateway-created tasks are normal top-level Synara tasks. Provider-native subagen
 
 Under **Settings → Integrations**, `main` can expose a scoped Synara tool surface to outside MCP apps — Codex, Claude Code, Claude Desktop, or any other MCP client — through a guided pairing flow: copy the pairing command, paste it in a terminal, and the integration moves through Paired → Connected. Synara generates the exact `claude mcp add` / `codex mcp add` command for you.
 
-<DocsScreenshot
-  src="/docs-media/settings-integrations-light.png"
-  alt="Integrations settings page showing the empty state before any external MCP app is connected"
-  width={1440}
-  height={900}
-  provenance="real"
-  caption="The Integrations settings page before any external agent is connected."
-/>
-
 Paired apps get tools like `synara_capabilities`, `synara_list_allowed_projects`, `synara_create_task`, `synara_wait_for_task`, and `synara_read_task`. Safe defaults apply — managed worktrees and approval-required — with higher-impact scopes behind Advanced permissions. Connections are loopback-only, with revocable per-integration credentials.
 
 ## Project spaces
@@ -58,26 +49,6 @@ The post-release work reduces first-turn latency, moves independent startup and 
 ## Interface changes
 
 The sidebar prioritizes live tasks, cross-task labels are clearer, agent activity has stronger hierarchy, workflow cards show their phases more directly, and model/effort controls have been consolidated around the composer.
-
-The Appearance settings page controls the desktop theme and related display preferences, in both light and dark modes:
-
-<DocsScreenshot
-  src="/docs-media/settings-appearance-light.png"
-  alt="Appearance settings page in light theme with theme and display options"
-  width={1440}
-  height={900}
-  provenance="real"
-  caption="Appearance settings in light theme."
-/>
-
-<DocsScreenshot
-  src="/docs-media/settings-appearance-dark.png"
-  alt="Appearance settings page in dark theme with theme and display options"
-  width={1440}
-  height={900}
-  provenance="real"
-  caption="Appearance settings in dark theme."
-/>
 
 ## Canary workflow for contributors
 

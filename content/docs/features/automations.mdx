@@ -11,23 +11,24 @@ The Automations workspace includes scheduled work, run history, current and paus
 
 Use it when the objective, schedule, environment, verification, and stop condition can be reviewed before the first run. Scheduled work still uses real providers and environments, so its output requires the same diff and test review as an interactive task.
 
-<Card
-  title="Automation workflow"
-  description="Create safe recurring work, define stop conditions, review run history, and handle retries."
-  href="/docs/workflows/automations"
-/>
+<Cards>
+  <Card
+    title="Automation workflow"
+    description="Create safe recurring work, define stop conditions, review run history, and handle retries."
+    href="/docs/workflows/automations"
+  />
+  <Card
+    title="Studio workflow"
+    description="Define deliverables, organize outputs, review checkpoints, and decide when work should move into a normal project task."
+    href="/docs/workflows/studio"
+  />
+</Cards>
 
 ## Studio
 
 Studio separates long-running, agent-led projects from day-to-day task conversations. Its Environment panel collects outputs such as files and generated images so the deliverables remain visible outside the transcript.
 
 Use it when the work spans several checkpoints and the artifact set matters more than one repository diff. Use a normal Git-backed task when branch ownership, tests, commits, and pull requests are the primary result.
-
-<Card
-  title="Studio workflow"
-  description="Define deliverables, organize outputs, review checkpoints, and decide when work should move into a normal project task."
-  href="/docs/workflows/studio"
-/>
 
 <Callout type="warn" title="Long-running does not mean unbounded">
   Give scheduled work and Studio projects explicit authority, deliverables, verification, and completion criteria before letting them continue unattended.

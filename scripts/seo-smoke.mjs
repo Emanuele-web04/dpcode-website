@@ -84,11 +84,10 @@ try {
 
   const homepage = await readRoute("/", /text\/html/i);
   for (const marker of [
-    "Run every coding agent in one local workspace.",
+    "Run every coding agent in one workspace",
     "The local-first workspace and control plane for coding agents.",
-    "Read the docs",
+    "Star on GitHub",
     "Free and open source",
-    "No Synara account required",
     "One workspace. Separate tasks. Shared control.",
     "Keep execution and verification in the same loop.",
     "Know where every part of the work goes.",
@@ -96,7 +95,6 @@ try {
     assert.ok(homepage.includes(marker), `homepage is missing ${marker}`);
   }
   for (const retired of [
-    "The command center for agentic development",
     "Ask the models directly",
     "Let the models verify the fit",
     "no longer just a t3 code fork",
@@ -104,6 +102,7 @@ try {
     "GPT-5.5",
     "Composer 2.5",
     "500+ models",
+    "The command center for agentic development",
   ]) {
     assert.equal(
       homepage.toLowerCase().includes(retired.toLowerCase()),
@@ -113,7 +112,7 @@ try {
   }
   assert.match(
     homepage,
-    /<title>Synara — Run every coding agent in one local workspace\.<\/title>/,
+    /<title>Synara — Run every coding agent in one workspace<\/title>/,
   );
   assert.match(
     homepage,

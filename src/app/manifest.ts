@@ -7,7 +7,7 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_IMAGES } from "@/lib/seo";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${SITE_NAME} — command center for agentic development`,
+    name: `${SITE_NAME} — Run every coding agent in one workspace`,
     short_name: SITE_NAME,
     description: SITE_DESCRIPTION,
     start_url: "/",

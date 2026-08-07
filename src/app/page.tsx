@@ -2,9 +2,8 @@
 // Purpose: Public marketing homepage for Synara.
 // Layer: App Router page (server component)
 
-import Image from "next/image";
 import Link from "next/link";
-import { SiGithub } from "react-icons/si";
+import { SiGithub, SiOpenai } from "react-icons/si";
 import Navbar from "@/components/Navbar";
 import DownloadButton from "@/components/DownloadButton";
 import InstallerCount from "@/components/InstallerCount";
@@ -16,6 +15,16 @@ import ClosingCTA from "@/components/ClosingCTA";
 import SiteFooter from "@/components/SiteFooter";
 import PrivacySection from "@/components/PrivacySection";
 import HomepageRail from "@/components/HomepageRail";
+import {
+  AntigravityIcon,
+  ClaudeIcon,
+  OpencodeIcon,
+  CursorIcon,
+  GrokIcon,
+  KiloCodeIcon,
+  PiIcon,
+  DroidIcon,
+} from "@/components/BrandIcons";
 import { getInstallerCount } from "@/lib/installerCount";
 import {
   PRODUCT_HERO_DESCRIPTION,
@@ -40,71 +49,86 @@ export default async function Home() {
         <section
           id="overview"
           aria-labelledby="homepage-title"
-          className="hero-section scroll-mt-20 pb-16 pt-10 sm:pb-24 sm:pt-16 lg:pt-20"
+          className="hero-section scroll-mt-20 pt-6 pb-12 sm:pt-10 sm:pb-20"
         >
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
-            <div className="max-w-3xl">
-              <h1
-                id="homepage-title"
-                className="max-w-[15ch] text-[clamp(2.65rem,6.2vw,4.75rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-[var(--text-primary)]"
-              >
-                {PRODUCT_HERO_TITLE}
-              </h1>
-              <p className="mt-7 max-w-2xl text-[16px] leading-[1.7] text-[var(--text-secondary)] sm:text-[18px]">
-                {PRODUCT_HERO_DESCRIPTION}
-              </p>
-
-              <div className="mt-8 w-full max-w-[33rem]" data-home-actions>
-                <div className="grid grid-cols-2 gap-3">
-                  <DownloadButton className="h-11 w-full min-w-0 px-3 sm:px-5" />
-                  <Link
-                    href="/docs"
-                    className="inline-flex h-11 w-full items-center justify-center rounded-full border border-[var(--border-strong)] px-3 text-[13px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)] sm:px-5"
-                  >
-                    Read the docs
-                  </Link>
-                </div>
-                <a
-                  href={GITHUB_REPO_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-[var(--divide)] px-5 text-[13px] font-medium text-[var(--text-secondary)] transition-colors hover:border-[var(--border-strong)] hover:bg-[var(--mock-row)] hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
-                >
-                  <SiGithub className="size-4" aria-hidden="true" />
-                  View Synara on GitHub
-                </a>
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+            <div className="mb-8 flex flex-wrap items-center gap-2 sm:mb-10">
+              <div className="inline-flex size-[38px] -rotate-[6deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <ClaudeIcon className="size-[18px] text-[#D97757]" />
+              </div>
+              <div className="inline-flex size-[38px] rotate-[4deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <SiOpenai
+                  className="size-[18px] text-[var(--text-primary)]"
+                  aria-hidden="true"
+                />
+              </div>
+              <div className="inline-flex size-[38px] rotate-[5deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <OpencodeIcon className="size-[18px] text-[var(--text-primary)]" />
+              </div>
+              <div className="inline-flex size-[38px] -rotate-[4deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <CursorIcon className="size-[18px] text-[var(--text-primary)]" />
+              </div>
+              <div className="inline-flex size-[38px] -rotate-[2deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <AntigravityIcon className="size-[18px]" />
+              </div>
+              <div className="inline-flex size-[38px] rotate-[2deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <GrokIcon className="size-[18px] text-[var(--text-primary)]" />
+              </div>
+              <div className="inline-flex size-[38px] rotate-[3deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <KiloCodeIcon className="size-[18px] text-[var(--text-primary)]" />
+              </div>
+              <div className="inline-flex size-[38px] -rotate-[5deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <PiIcon className="size-[18px] text-[var(--text-primary)]" />
+              </div>
+              <div className="inline-flex size-[38px] rotate-[5deg] items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.03] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
+                <DroidIcon className="size-[18px] text-[var(--text-primary)]" />
               </div>
             </div>
 
-            <figure
-              className="hero-preview mt-12 p-1.5 sm:mt-14 sm:p-2 lg:mt-16"
-              data-hero-preview
+            <h1
+              id="homepage-title"
+              className="text-[1.5rem] font-medium leading-[1.12] tracking-[-0.035em] text-[var(--text-primary)] sm:text-[2rem] sm:leading-[1.08]"
             >
-              <Image
-                src="/dpcode-ui-light.png"
-                alt="Synara workspace with coding-agent tasks, project navigation, and an attached composer"
-                width={3456}
-                height={2160}
-                priority
-                sizes="(max-width: 768px) 100vw, 1280px"
-                className="block h-auto w-full rounded-[0.7rem] dark:hidden"
-              />
-              <Image
-                src="/dpcode-ui-dark.png"
-                alt="Synara workspace in dark mode with coding-agent tasks, project navigation, and an attached composer"
-                width={3456}
-                height={2160}
-                priority
-                sizes="(max-width: 768px) 100vw, 1280px"
-                className="hidden h-auto w-full rounded-[0.7rem] dark:block"
-              />
-            </figure>
+              {PRODUCT_HERO_TITLE}
+            </h1>
+            <p className="mt-5 text-[13px] leading-[1.6] text-[var(--text-secondary)] sm:text-[14px]">
+              {PRODUCT_HERO_DESCRIPTION}
+            </p>
 
-            <div className="mt-9 border-t border-[var(--divide)] pt-5">
-              <p className="text-[12.5px] leading-relaxed text-[var(--text-tertiary)] sm:text-[13px]">
-                Free and open source · No Synara account required ·{" "}
-                <InstallerCount initialCount={installerCount} />
-              </p>
+            <div
+              className="mt-9 flex flex-wrap items-center gap-3"
+              data-home-actions
+            >
+              <DownloadButton />
+              <a
+                href={GITHUB_REPO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--divide)] px-5 py-2.5 text-[13px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)]"
+              >
+                <SiGithub className="size-4 shrink-0" aria-hidden="true" />
+                Star on GitHub
+              </a>
+            </div>
+            <p className="mt-4 text-[12px] text-[var(--text-tertiary)]">
+              <InstallerCount initialCount={installerCount} />
+            </p>
+
+            <div className="relative mt-10 sm:mt-14" data-hero-preview>
+              <div className="relative overflow-hidden rounded-xl bg-[var(--block-elevated)] p-2 ring-1 ring-black/5 sm:rounded-2xl sm:p-3 dark:ring-white/10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/dpcode-ui-light.png"
+                  alt="Synara — local-first command center for parallel coding agents, terminals, previews, diffs, and Git worktrees"
+                  className="block h-auto w-full rounded-lg dark:hidden sm:rounded-xl"
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/dpcode-ui-dark.png"
+                  alt="Synara — local-first command center for parallel coding agents, terminals, previews, diffs, and Git worktrees"
+                  className="hidden h-auto w-full rounded-lg dark:block sm:rounded-xl"
+                />
+              </div>
             </div>
           </div>
         </section>

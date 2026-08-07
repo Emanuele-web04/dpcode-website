@@ -14,32 +14,27 @@ test.describe("homepage functional flow", () => {
     await preparePage(page, "light");
 
     await expect(page.locator("h1")).toHaveText(
-      "Run every coding agent in one local workspace.",
+      "Run every coding agent in one workspace",
     );
     await expect(page.getByText("09 supported", { exact: true })).toHaveCount(0);
 
     const actions = page.locator("[data-home-actions]");
-    const download = actions.getByRole("link", { name: /Download for|Download Synara/ });
-    const docs = actions.getByRole("link", { name: "Read the docs" });
-    const github = actions.getByRole("link", { name: "View Synara on GitHub" });
+    const download = actions.getByRole("link", {
+      name: /Download for|Download Synara/,
+    });
+    const github = actions.getByRole("link", { name: "Star on GitHub" });
 
     await expect(download).toHaveAttribute("href", "/install");
-    await expect(docs).toHaveAttribute("href", "/docs");
     await expect(github).toHaveAttribute("href", /github\.com/);
 
-    const [downloadBox, docsBox, githubBox] = await Promise.all([
+    const [downloadBox, githubBox] = await Promise.all([
       download.boundingBox(),
-      docs.boundingBox(),
       github.boundingBox(),
     ]);
     expect(downloadBox).not.toBeNull();
-    expect(docsBox).not.toBeNull();
     expect(githubBox).not.toBeNull();
-    expect(Math.abs(downloadBox!.height - docsBox!.height)).toBeLessThanOrEqual(1);
-    expect(Math.abs(downloadBox!.y - docsBox!.y)).toBeLessThanOrEqual(1);
-    expect(githubBox!.width).toBeGreaterThanOrEqual(
-      downloadBox!.width + docsBox!.width + 10,
-    );
+    // Both CTAs share the same row in the compact hero.
+    expect(Math.abs(downloadBox!.y - githubBox!.y)).toBeLessThanOrEqual(2);
 
     const preview = page.locator("[data-hero-preview]");
     await expect(preview).toBeVisible();
