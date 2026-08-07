@@ -1,7 +1,0 @@
-{
-  "engine": "@axe-core/playwright",
-  "routes": ["/", "/install", "/docs"],
-  "themes": ["light", "dark"],
-  "viewport": [1440, 1100],
-  "violations": []
-}

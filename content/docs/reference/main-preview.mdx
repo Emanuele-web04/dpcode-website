@@ -1,54 +1,23 @@
 ---
 title: Features on main
-description: Understand important Synara capabilities that have landed on main after the latest stable release.
+description: Understand important Synara capabilities on main — and where earlier preview-track features shipped in stable releases.
 ---
 
 <Callout type="info" title="Preview track: main">
-  Synara ships a stable desktop release. This page follows the active `main` branch and gives an early look at capabilities newer than the latest stable release (v0.7.0); those details can change before the next release.
+  Synara ships a stable desktop release. This page follows the active `main` branch and gives an early look at capabilities newer than the latest stable release (v0.7.0); those details can change before the next release. Preview-track features that have since shipped in stable releases are covered by the [changelog](/changelog) instead.
 </Callout>
 
-Synara `main` currently contains a large post-v0.7.0 development batch. The public documentation tracks the user-facing parts without presenting them as stable release behavior.
+The public documentation tracks the user-facing parts of `main` without presenting them as stable release behavior.
 
-## Agent Gateway and app control
+## Shipped in stable releases
 
-The Synara Agent Gateway adds an app-owned MCP tool surface for supported provider sessions. It gives capable agents controlled access to Synara tasks, projects, task state, steering, diagnostics, and selected automation operations.
+Several capabilities this page previously presented as main-only have shipped in the 0.6.x stable releases. Each is documented on its own page and in the [changelog](/changelog):
 
-Gateway-created tasks are normal top-level Synara tasks. Provider-native subagents remain child sessions and do not silently become Synara resources.
-
-## External MCP integrations
-
-Under **Settings → Integrations**, `main` can expose a scoped Synara tool surface to outside MCP apps — Codex, Claude Code, Claude Desktop, or any other MCP client — through a guided pairing flow: copy the pairing command, paste it in a terminal, and the integration moves through Paired → Connected. Synara generates the exact `claude mcp add` / `codex mcp add` command for you.
-
-Paired apps get tools like `synara_capabilities`, `synara_list_allowed_projects`, `synara_create_task`, `synara_wait_for_task`, and `synara_read_task`. Safe defaults apply — managed worktrees and approval-required — with higher-impact scopes behind Advanced permissions. Connections are loopback-only, with revocable per-integration credentials.
-
-## Project spaces
-
-Threads can be organized into named **spaces** per project, with a space switcher tab bar and space-aware orchestration. Keyboard: `mod+alt+←` / `mod+alt+→` switch spaces, `mod+alt+1`…`9` jump directly.
-
-## Native subagents and workflows
-
-Claude subagents and dynamic workflows now receive richer first-class presentation: subagents appear as child threads with their own usage meters, and a workflow run card above the composer shows live agent rows, workflow phases, and pause/resume/stop controls. The composer includes a `/subagents` workflow for explicitly requesting parallel delegation.
-
-## Smaller preview changes
-
-- The AppSnap global capture shortcut is user-configurable in settings.
-- On macOS, sidebar search is `cmd+k` and `ctrl+k` is freed for other bindings.
-- Interrupted worktree cleanup recovers automatically; reverting a checkpoint is rejected while a turn is active.
-
-## Provider and model updates
-
-- Pi model discovery includes newly available Claude Fable 5 and Claude Opus 4.8 entries when the authenticated provider catalog returns them.
-- Namespaced Cursor Grok ACP model identifiers are supported.
-- Provider model choices are prefetched to make new-task creation faster.
-- Provider update paths preserve the configured global package prefix more reliably.
-
-## Performance and reliability
-
-The post-release work reduces first-turn latency, moves independent startup and turn I/O into parallel paths, cuts repeated streaming persistence work, and improves recovery around provider commands, approvals, sessions, attachments, and interrupted gateway operations.
-
-## Interface changes
-
-The sidebar prioritizes live tasks, cross-task labels are clearer, agent activity has stronger hierarchy, workflow cards show their phases more directly, and model/effort controls have been consolidated around the composer.
+- **Agent Gateway and app control** — an app-owned MCP tool surface that lets capable agents create and steer Synara tasks under the app's project and worktree rules. → [Parallel agents](/docs/workflows/parallel-agents) · shipped in 0.6.0
+- **External MCP integrations** — pair Codex, Claude Code, Claude Desktop, or any other MCP client through **Settings → Integrations** with a guided pairing flow and a scoped, revocable Synara tool surface. → [External MCP](/docs/workflows/external-mcp) · shipped in 0.6.0
+- **Project spaces** — organize threads into named spaces per project, with a switcher tab bar and `mod+alt+←` / `mod+alt+→` navigation. → [Features overview](/docs/features/overview) · shipped in 0.6.0
+- **Native subagents and workflows** — subagents appear as child threads with their own usage meters, and workflow run cards show live agent rows, workflow phases, and pause/resume/stop controls. → [Parallel agents](/docs/workflows/parallel-agents) · shipped in 0.6.0
+- **Provider and model updates** — Claude Fable 5 and Opus 4.8 in Pi, namespaced Cursor and Grok model identifiers, prefetched provider model choices, and safer provider update paths. → [Changelog](/changelog) · shipped in 0.6.0
 
 ## Canary workflow for contributors
 

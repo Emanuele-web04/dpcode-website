@@ -450,18 +450,6 @@ body {
   overflow-x: clip;
 }
 
-.hero-preview {
-  overflow: hidden;
-  border: 1px solid var(--divide);
-  border-radius: 1rem;
-  background: var(--card);
-  box-shadow: 0 24px 70px -44px color-mix(in oklab, var(--text-primary) 55%, transparent);
-}
-
-.hero-preview__chrome {
-  background: color-mix(in oklab, var(--block-elevated) 64%, transparent);
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -534,7 +522,7 @@ body {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;

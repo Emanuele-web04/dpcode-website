@@ -76,7 +76,7 @@ function TestimonialCardItem({ card }: { card: TestimonialCard }) {
       href={card.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group mb-4 block break-inside-avoid rounded-2xl border border-[var(--divide)] bg-[var(--block-elevated)] p-5 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-[var(--border-strong)] hover:shadow-[0_8px_30px_-12px_rgba(0,0,0,0.25)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+      className="group mb-4 block break-inside-avoid rounded-2xl border border-[var(--divide)] bg-[var(--block-elevated)] p-5 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-[var(--border-strong)] hover:shadow-[0_8px_30px_-12px_rgba(0,0,0,0.25)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
     >
       <header className="flex items-center gap-3">
         {card.avatarUrl ? (

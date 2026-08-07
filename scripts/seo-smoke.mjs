@@ -133,7 +133,7 @@ try {
     /<link rel="canonical" href="https:\/\/www\.trysynara\.com\/docs"/,
     "docs page is missing its absolute self-canonical",
   );
-  assert.match(docs, /property="og:type" content="article"/);
+  assert.match(docs, /property="og:type" content="website"/);
   assert.match(docs, /property="og:image"/);
   assert.match(docs, /name="twitter:card" content="summary_large_image"/);
   assert.ok(docs.includes('"@type":"TechArticle"'), "docs page is missing TechArticle JSON-LD");
