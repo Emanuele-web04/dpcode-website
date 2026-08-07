@@ -34,6 +34,12 @@ export default function SiteFooter() {
             Changelog
           </Link>
           <Link
+            href="/sponsor"
+            className="transition-colors hover:text-[var(--text-primary)]"
+          >
+            Sponsor
+          </Link>
+          <Link
             href="/privacy"
             className="transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
           >

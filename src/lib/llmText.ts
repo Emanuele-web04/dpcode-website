@@ -31,6 +31,8 @@ const PRIMARY_PAGES = [
   ["Download Synara", `${SITE_URL}/install`],
   ["Synara documentation", `${SITE_URL}/docs`],
   ["Changelog", `${SITE_URL}/changelog`],
+  ["Sponsor Synara", `${SITE_URL}/sponsor`],
+  ["Synara sponsors", `${SITE_URL}/sponsors`],
   ["Privacy", `${SITE_URL}/privacy`],
 ] as const;
 

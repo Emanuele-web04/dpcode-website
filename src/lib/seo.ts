@@ -26,6 +26,7 @@ export const CREATOR_NAME = "Emanuele Di Pietro";
 export const CREATOR_URL = "https://emanueledipietro.com";
 export const GITHUB_REPO_URL = "https://github.com/Emanuele-web04/synara";
 export const GITHUB_RELEASES_URL = `${GITHUB_REPO_URL}/releases`;
+export const GITHUB_SPONSORS_URL = "https://github.com/sponsors/Emanuele-web04";
 export const X_PROFILE_URL = "https://x.com/emanueledpt";
 export const YOUTUBE_URL = "https://youtube.com/@emanueledpt";
 
@@ -247,6 +248,78 @@ export function releaseJsonLd(entry: ChangelogEntry) {
     author: { "@id": `${SITE_URL}/#organization` },
     publisher: { "@id": `${SITE_URL}/#organization` },
     about: { "@id": `${SITE_URL}/#app` },
+  };
+}
+
+/**
+ * Sponsorship tiers as an OfferCatalog hanging off the sponsor page, so the
+ * prices are machine-readable rather than trapped in the layout.
+ */
+export function sponsorJsonLd(
+  tiers: ReadonlyArray<{ label: string; amount: number; tagline: string }>,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/sponsor#webpage`,
+    name: "Sponsor Synara",
+    url: absoluteUrl("/sponsor"),
+    description:
+      "Sponsor Synara through GitHub Sponsors. Monthly tiers from $5 to $499 plus custom one-time amounts fund development, releases, and docs for the free, open-source desktop app.",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#app` },
+    primaryImageOfPage: absoluteUrl(SITE_IMAGES.og),
+    mainEntity: {
+      "@type": "OfferCatalog",
+      name: "Synara sponsorship tiers",
+      itemListElement: tiers.map((tier) => ({
+        "@type": "Offer",
+        name: tier.label,
+        description: tier.tagline,
+        price: String(tier.amount),
+        priceCurrency: "USD",
+        url: GITHUB_SPONSORS_URL,
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: tier.amount,
+          priceCurrency: "USD",
+          billingIncrement: 1,
+          unitCode: "MON",
+        },
+      })),
+    },
+  };
+}
+
+/** The sponsor wall as an ItemList of the people credited on it. */
+export function sponsorsPageJsonLd(
+  sponsors: ReadonlyArray<{ login: string; name: string }>,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/sponsors#webpage`,
+    name: "Synara sponsors",
+    url: absoluteUrl("/sponsors"),
+    description:
+      "The people and companies funding Synara, the free and open-source command center for agentic development.",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#app` },
+    primaryImageOfPage: absoluteUrl(SITE_IMAGES.og),
+    mainEntity: {
+      "@type": "ItemList",
+      name: "Synara sponsors",
+      numberOfItems: sponsors.length,
+      itemListElement: sponsors.map((sponsor, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Person",
+          name: sponsor.name,
+          url: `https://github.com/${sponsor.login}`,
+        },
+      })),
+    },
   };
 }
 

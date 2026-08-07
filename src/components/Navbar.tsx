@@ -57,6 +57,12 @@ export default async function Navbar() {
           >
             Changelog
           </Link>
+          <Link
+            href="/sponsor"
+            className="hidden shrink-0 transition-colors hover:text-[var(--text-primary)] sm:inline"
+          >
+            Sponsor
+          </Link>
         </div>
 
         <div className="hidden shrink-0 items-center gap-1.5 sm:flex sm:gap-3">

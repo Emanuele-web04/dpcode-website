@@ -23,6 +23,7 @@ const MONTHS: Record<string, string> = {
 export const SITE_LATEST_UPDATE = new Date("2026-08-02T00:00:00.000Z");
 export const PRIVACY_LAST_UPDATED = new Date("2026-06-04T00:00:00.000Z");
 export const DOCS_LAST_UPDATED = new Date("2026-08-04T00:00:00.000Z");
+export const SPONSOR_LAST_UPDATED = new Date("2026-08-07T00:00:00.000Z");
 
 export function releaseDateIso(dateLabel: string) {
   const [monthName, day] = dateLabel.split(" ");
