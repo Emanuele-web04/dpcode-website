@@ -60,11 +60,16 @@ jobs:
         run: npm run test:links
         timeout-minutes: 5
 
-      - name: Typecheck
-        run: npx tsc --noEmit
-
       - name: Build deterministic browser fixture
         run: VISUAL_TEST=1 npm run build
+
+      # Must follow the build. src/lib/docs.ts imports `collections/server`,
+      # which tsconfig maps to ./.source — a directory fumadocs generates
+      # during `next build` and that .gitignore keeps out of the repo. Run
+      # standalone on a fresh `npm ci` checkout, tsc has nothing to resolve
+      # and fails with TS2307 on every branch.
+      - name: Typecheck
+        run: npx tsc --noEmit
 
       - name: Smoke test production routes
         run: npm run test:seo-smoke
