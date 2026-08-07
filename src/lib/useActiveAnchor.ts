@@ -9,6 +9,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { scrollToAnchor } from "@/lib/scrollToAnchor";
 
 export interface ChangelogNavItem {
   readonly version: string;
@@ -49,16 +50,8 @@ export function useActiveAnchor(items: readonly ChangelogNavItem[]) {
 
   const jumpTo = useCallback(
     (anchor: string, event?: { preventDefault: () => void }) => {
-      const target = document.getElementById(anchor);
-      if (!target) return; // no section — let a native anchor jump handle it
-      event?.preventDefault();
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      target.scrollIntoView({
-        behavior: reduce ? "auto" : "smooth",
-        block: "start",
-      });
-      history.replaceState(null, "", `#${anchor}`);
-      setActive(anchor);
+      // Missing section — leave the event alone and let the native jump handle it.
+      if (scrollToAnchor(anchor, event)) setActive(anchor);
     },
     [],
   );

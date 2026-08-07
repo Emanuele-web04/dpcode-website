@@ -68,16 +68,26 @@ export default function FAQ() {
                   />
                 </button>
 
+                {/*
+                  Animating to `auto` height is not interpolatable, so the panel
+                  is a single-row grid whose track animates 0fr -> 1fr. The inner
+                  `min-h-0` wrapper lets the row actually collapse, and padding
+                  lives inside it so it collapses along with the text.
+                */}
                 <div
                   id={panelId}
                   role="region"
                   aria-labelledby={labelId}
-                  hidden={!isOpen}
-                  className="pb-5 sm:pb-6"
+                  inert={!isOpen}
+                  className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
                 >
-                  <p className="max-w-2xl text-[14px] leading-[1.75] text-[var(--text-secondary)]">
-                    {answer}
-                  </p>
+                  <div className="min-h-0">
+                    <p className="max-w-2xl pb-5 text-[14px] leading-[1.75] text-[var(--text-secondary)] sm:pb-6">
+                      {answer}
+                    </p>
+                  </div>
                 </div>
               </div>
             );

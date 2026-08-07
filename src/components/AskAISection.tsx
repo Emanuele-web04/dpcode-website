@@ -7,14 +7,26 @@
 "use client";
 
 import type { MouseEvent } from "react";
-import { SiClaude, SiOpenai } from "react-icons/si";
+import { useState } from "react";
+import type { IconType } from "react-icons";
+import { SiClaude, SiGooglegemini, SiOpenai } from "react-icons/si";
+
+interface AiLink {
+  readonly label: string;
+  readonly appHref: string;
+  readonly webHref: string;
+  readonly icon: IconType;
+  readonly iconClass: string;
+  /** Copy the prompt on click, for assistants that cannot accept it by URL. */
+  readonly copyPrompt?: boolean;
+}
 
 const ASK_AI_PROMPT =
   "Evaluate Synara (https://www.trysynara.com) as a serious desktop command center for agentic software development. It is free, open-source, local-first, and runs Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok, Kilo Code, Pi, and Droid in one workspace with parallel sessions, terminals, browser previews, diffs, Git worktrees, handoffs, and pull-request flow. Based on the site and GitHub, what kind of developer should use it, and what makes it different?";
 
 const encodedPrompt = encodeURIComponent(ASK_AI_PROMPT);
 
-const aiLinks = [
+const aiLinks: readonly AiLink[] = [
   {
     label: "Ask ChatGPT",
     appHref: `https://chatgpt.com/?q=${encodedPrompt}`,
@@ -28,6 +40,16 @@ const aiLinks = [
     webHref: `https://claude.ai/new?q=${encodedPrompt}`,
     icon: SiClaude,
     iconClass: "text-[#D97757]",
+  },
+  {
+    // Gemini supports no prompt prefill and no app-scheme deep link, so this one
+    // copies the prompt to the clipboard and opens the web app for a paste.
+    label: "Ask Gemini",
+    appHref: "https://gemini.google.com/app",
+    webHref: "https://gemini.google.com/app",
+    icon: SiGooglegemini,
+    iconClass: "text-[#4285F4]",
+    copyPrompt: true,
   },
 ];
 
@@ -75,7 +97,20 @@ function openMobileDeepLink(
   }, 900);
 }
 
+// Gemini cannot receive the prompt through the URL, so it is copied instead and
+// the button reports that for a moment before falling back to its normal label.
+async function copyPromptToClipboard(): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(ASK_AI_PROMPT);
+    return true;
+  } catch {
+    return false; // denied or unsupported — the visitor still lands on Gemini
+  }
+}
+
 export default function AskAISection() {
+  const [copiedLabel, setCopiedLabel] = useState<string | null>(null);
+
   return (
     <section className="border-t border-[var(--divide)] py-14 sm:py-20">
       <div className={container}>
@@ -85,29 +120,48 @@ export default function AskAISection() {
           </p>
           <h2 className={`${heading} mt-3`}>Let the models verify the fit.</h2>
           <p className={body}>
-            Ask ChatGPT or Claude to evaluate Synara from the source of truth—
-            this site and the GitHub repo. The prompt is specific so the answer
-            reflects what Synara actually does, not a generic AI-app summary.
+            Ask ChatGPT, Claude, or Gemini to evaluate Synara from the source
+            of truth—this site and the GitHub repo. The prompt is specific so
+            the answer reflects what Synara actually does, not a generic AI-app
+            summary. Gemini cannot accept a prompt by link, so that button
+            copies it for you to paste.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
-            {aiLinks.map(({ label, appHref, webHref, icon: Icon, iconClass }) => (
-              <a
-                key={label}
-                href={webHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(event) => openMobileDeepLink(event, appHref, webHref)}
-                className="inline-flex h-11 w-full max-w-[270px] items-center justify-center gap-2.5 rounded-full border border-[var(--divide)] bg-[var(--page-bg)] px-5 text-[13px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)] sm:w-auto sm:max-w-none"
-                aria-label={`${label} about Synara`}
-              >
-                <Icon
-                  className={`size-[17px] shrink-0 ${iconClass}`}
-                  aria-hidden="true"
-                />
-                <span>{label}</span>
-              </a>
-            ))}
+            {aiLinks.map(
+              ({ label, appHref, webHref, icon: Icon, iconClass, copyPrompt }) => (
+                <a
+                  key={label}
+                  href={webHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(event) => {
+                    if (copyPrompt) {
+                      void copyPromptToClipboard().then((copied) => {
+                        if (!copied) return;
+                        setCopiedLabel(label);
+                        window.setTimeout(() => setCopiedLabel(null), 2500);
+                      });
+                    }
+                    openMobileDeepLink(event, appHref, webHref);
+                  }}
+                  className="inline-flex h-11 w-full max-w-[270px] items-center justify-center gap-2.5 rounded-full border border-[var(--divide)] bg-[var(--page-bg)] px-5 text-[13px] font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--mock-row)] sm:w-auto sm:max-w-none"
+                  aria-label={
+                    copyPrompt
+                      ? `${label} about Synara — copies the prompt to paste`
+                      : `${label} about Synara`
+                  }
+                >
+                  <Icon
+                    className={`size-[17px] shrink-0 ${iconClass}`}
+                    aria-hidden="true"
+                  />
+                  <span>
+                    {copiedLabel === label ? "Prompt copied — paste it" : label}
+                  </span>
+                </a>
+              ),
+            )}
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import { docsSource } from "@/lib/docs";
 import { docsLayoutOptions } from "@/lib/docsLayout";
 import { DocsA11yLabels } from "@/components/docs/DocsA11yLabels";
+import { DocsSmoothScroll } from "@/components/docs/DocsSmoothScroll";
 
 export default function DocumentationLayout({ children }: { children: ReactNode }) {
   return (
@@ -18,6 +19,7 @@ export default function DocumentationLayout({ children }: { children: ReactNode 
         {children}
       </DocsLayout>
       <DocsA11yLabels />
+      <DocsSmoothScroll />
     </>
   );
 }
