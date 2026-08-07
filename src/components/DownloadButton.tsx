@@ -39,7 +39,7 @@ export default function DownloadButton({ className = "" }: DownloadButtonProps) 
   return (
     <Link
       href="/install"
-      className={`inline-flex min-h-11 min-w-[10.5rem] items-center justify-center gap-2 rounded-full bg-[var(--btn-primary-bg)] px-5 text-[13px] font-medium text-[var(--btn-primary-fg)] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)] ${className}`}
+      className={`inline-flex min-w-[10.5rem] items-center justify-center gap-2 rounded-full bg-[var(--btn-primary-bg)] px-5 py-2.5 text-[13px] font-medium text-[var(--btn-primary-fg)] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)] ${className}`}
     >
       <span className="whitespace-nowrap">{label}</span>
       <LuArrowDownToLine className="size-4 shrink-0" aria-hidden="true" />

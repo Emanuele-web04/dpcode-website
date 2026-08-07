@@ -450,15 +450,6 @@ body {
   overflow-x: clip;
 }
 
-.hero-section {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--block-elevated) 38%, transparent),
-      transparent 42%
-    );
-}
-
 .hero-preview {
   overflow: hidden;
   border: 1px solid var(--divide);

@@ -15,17 +15,11 @@ const SECTIONS = [
   { id: "download", label: "Download" },
 ] as const;
 
-// Per-section resting line widths, tapering short → longest → short like the app's
-// thread indicator. Inactive lines grow one step on hover. Literal classes so Tailwind
-// JIT picks them up.
-const LINE_CLASSES: Record<(typeof SECTIONS)[number]["id"], string> = {
-  overview: "w-4 group-hover:w-5 bg-[var(--text-tertiary)] group-hover:bg-[var(--text-secondary)]",
-  providers: "w-5 group-hover:w-6 bg-[var(--text-tertiary)] group-hover:bg-[var(--text-secondary)]",
-  workflow: "w-6 group-hover:w-7 bg-[var(--text-tertiary)] group-hover:bg-[var(--text-secondary)]",
-  privacy: "w-5 group-hover:w-6 bg-[var(--text-tertiary)] group-hover:bg-[var(--text-secondary)]",
-  faq: "w-4 group-hover:w-5 bg-[var(--text-tertiary)] group-hover:bg-[var(--text-secondary)]",
-  download: "w-3.5 group-hover:w-5 bg-[var(--text-tertiary)] group-hover:bg-[var(--text-secondary)]",
-};
+// Uniform inactive line: every section rests at the same width (w-5) and grows one
+// step on hover (w-6). The active line stays w-10 — exactly 2x the resting width, so
+// active/inactive stay proportional. Literal classes so Tailwind JIT picks them up.
+const LINE_CLASSES =
+  "w-5 group-hover:w-6 bg-[var(--text-tertiary)] group-hover:bg-[var(--text-secondary)]";
 
 export default function HomepageRail() {
   const [activeId, setActiveId] = useState<string>(SECTIONS[0].id);
@@ -81,7 +75,7 @@ export default function HomepageRail() {
                   className={`block h-[3px] rounded-sm transition-[width,background-color] motion-reduce:transition-none ${
                     active
                       ? "w-10 bg-[var(--text-primary)]"
-                      : LINE_CLASSES[id]
+                      : LINE_CLASSES
                   }`}
                 />
                 <span className="sr-only">{label}</span>

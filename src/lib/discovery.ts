@@ -51,7 +51,7 @@ export function documentationPageMetadata({
     description,
     alternates: { canonical: path },
     openGraph: {
-      type: "article",
+      type: path === "/docs" ? "website" : "article",
       siteName: SITE_NAME,
       url: path,
       title,

@@ -19,7 +19,7 @@ export default function Workflow() {
         </p>
 
         <SplitShowcase
-          kicker="02 / task ownership"
+          kicker="03 / task ownership"
           title="Run parallel tasks with explicit ownership"
           description="Open a task for each objective and keep its conversation, runtime, environment, and status visible instead of mixing unrelated work into one thread."
           stacked
@@ -47,7 +47,7 @@ export default function Workflow() {
         </SplitShowcase>
 
         <SplitShowcase
-          kicker="05 / verification"
+          kicker="06 / verification"
           title="Verify the behavior, not only the diff"
           description="Use the built-in browser to inspect the rendered result, capture evidence, check console output, and return findings to the same task."
           stacked
