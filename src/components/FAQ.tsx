@@ -18,7 +18,7 @@ export default function FAQ() {
       className="scroll-mt-20 border-t border-[var(--divide)] py-16 sm:py-24"
     >
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
-        <div className="max-w-2xl">
+        <div className="mx-auto max-w-2xl">
           <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
             Product questions
           </p>
@@ -34,7 +34,7 @@ export default function FAQ() {
           </p>
         </div>
 
-        <div className="mt-10 max-w-3xl divide-y divide-[var(--divide)] border-y border-[var(--divide)] sm:mt-12">
+        <div className="mx-auto mt-10 max-w-3xl divide-y divide-[var(--divide)] border-y border-[var(--divide)] sm:mt-12">
           {FAQ_ITEMS.map(({ question, answer }) => {
             const isOpen = openQuestion === question;
             const panelId = `faq-${question
