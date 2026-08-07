@@ -291,9 +291,17 @@ export function sponsorJsonLd(
   };
 }
 
-/** The sponsor wall as an ItemList of the people credited on it. */
+/**
+ * The sponsor wall as an ItemList of the people credited on it.
+ *
+ * Takes an already-resolved `url` per sponsor rather than building a GitHub
+ * profile link here: `sponsorLink()` in lib/sponsors owns that choice (it
+ * prefers a sponsor's own site over their GitHub profile), and this module
+ * can't import it — lib/sponsors imports GITHUB_SPONSORS_URL from here, so
+ * reaching back the other way would make the two files circular.
+ */
 export function sponsorsPageJsonLd(
-  sponsors: ReadonlyArray<{ login: string; name: string }>,
+  sponsors: ReadonlyArray<{ name: string; url: string }>,
 ) {
   return {
     "@context": "https://schema.org",
@@ -316,7 +324,7 @@ export function sponsorsPageJsonLd(
         item: {
           "@type": "Person",
           name: sponsor.name,
-          url: `https://github.com/${sponsor.login}`,
+          url: sponsor.url,
         },
       })),
     },

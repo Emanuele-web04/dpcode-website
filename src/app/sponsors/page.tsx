@@ -14,7 +14,7 @@ import SiteFooter from "@/components/SiteFooter";
 import { SponsorRow } from "@/components/SponsorRow";
 import { SPONSORS } from "@/data/sponsors";
 import { ctaButtonClass } from "@/lib/ctaButton";
-import { groupSponsors, orderedSponsors } from "@/lib/sponsors";
+import { groupSponsors, orderedSponsors, sponsorLink } from "@/lib/sponsors";
 import {
   GITHUB_SPONSORS_URL,
   breadcrumbJsonLd,
@@ -33,7 +33,12 @@ export const metadata = pageMetadata({
 const ORDERED_SPONSORS = orderedSponsors(SPONSORS);
 
 const SPONSORS_JSONLD = [
-  sponsorsPageJsonLd(ORDERED_SPONSORS),
+  sponsorsPageJsonLd(
+    ORDERED_SPONSORS.map((sponsor) => ({
+      name: sponsor.name,
+      url: sponsorLink(sponsor),
+    })),
+  ),
   breadcrumbJsonLd([
     { name: "Synara", path: "/" },
     { name: "Sponsors", path: "/sponsors" },
