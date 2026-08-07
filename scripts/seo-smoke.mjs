@@ -95,8 +95,6 @@ try {
     assert.ok(homepage.includes(marker), `homepage is missing ${marker}`);
   }
   for (const retired of [
-    "Ask the models directly",
-    "Let the models verify the fit",
     "no longer just a t3 code fork",
     "Opus 4.8",
     "GPT-5.5",

@@ -95,7 +95,10 @@ test("homepage hierarchy keeps one thesis, one proof image, and a coherent actio
 
   assert.equal(homepage.includes("ProviderMarkRow"), false);
   assert.equal(homepage.includes("ControlPlanePath"), false);
-  assert.equal(homepage.includes("AskAISection"), false);
+  assert.ok(
+    homepage.includes("AskAISection"),
+    "AskAISection must be rendered (upstream homepage feature, restored)",
+  );
 });
 
 test("provider cards use stable runtime capabilities instead of volatile model marketing", () => {
@@ -143,8 +146,6 @@ test("public homepage copy avoids defensive identity and repetitive positioning"
 
   for (const phrase of [
     "operating system for agentic work",
-    "Ask the models directly",
-    "Let the models verify the fit",
     "no longer just a t3 code fork",
     "The command center for agentic development",
   ]) {
@@ -155,10 +156,9 @@ test("public homepage copy avoids defensive identity and repetitive positioning"
     );
   }
 
-  assert.equal(
+  assert.ok(
     existsSync(path.join(ROOT, "src/components/AskAISection.tsx")),
-    false,
-    "retired defensive AskAI section still exists",
+    "AskAISection.tsx must exist (upstream homepage feature, restored)",
   );
 });
 

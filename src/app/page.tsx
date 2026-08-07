@@ -9,6 +9,7 @@ import InstallerCount from "@/components/InstallerCount";
 import Features from "@/components/Features";
 import Workflow from "@/components/Workflow";
 import FAQ from "@/components/FAQ";
+import AskAISection from "@/components/AskAISection";
 import Testimonials from "@/components/Testimonials";
 import ClosingCTA from "@/components/ClosingCTA";
 import SiteFooter from "@/components/SiteFooter";
@@ -151,6 +152,9 @@ export default async function Home() {
         <div id="privacy" className="scroll-mt-20">
           <PrivacySection />
         </div>
+
+        <AskAISection />
+
         <FAQ />
         <Testimonials />
         <div id="download" className="scroll-mt-20">
