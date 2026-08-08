@@ -10,7 +10,6 @@ import { FAQ_ITEMS } from "@/data/faqs";
 import { type ChangelogEntry } from "@/data/changelog";
 import {
   PRODUCT_CATEGORY,
-  PRODUCT_HERO_TITLE,
   PRODUCT_META_DESCRIPTION,
   PRODUCT_NAME,
   SUPPORTED_PROVIDERS,
@@ -30,8 +29,12 @@ export const GITHUB_SPONSORS_URL = "https://github.com/sponsors/Emanuele-web04";
 export const X_PROFILE_URL = "https://x.com/emanueledpt";
 export const YOUTUBE_URL = "https://youtube.com/@emanueledpt";
 
-/** Search/share title — brand first, then the primary user outcome. */
-export const SITE_TITLE = `${SITE_NAME} — ${PRODUCT_HERO_TITLE}`;
+/**
+ * Search/share title — brand first, then the high-intent provider keywords.
+ * Kept deliberately separate from `PRODUCT_HERO_TITLE`: the on-page H1 sells the
+ * outcome, while this title has to win the SERP/share-card keyword match.
+ */
+export const SITE_TITLE = `${SITE_NAME} — AI Coding Workspace for Claude Code, Codex & Cursor`;
 
 /** Concise search/share description. The full definition lives in product.ts. */
 export const SITE_DESCRIPTION = PRODUCT_META_DESCRIPTION;
