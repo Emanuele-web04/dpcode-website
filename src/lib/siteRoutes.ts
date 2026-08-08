@@ -10,6 +10,7 @@ import {
   PRIVACY_LAST_UPDATED,
   releaseDate,
   SITE_LATEST_UPDATE,
+  SPONSOR_LAST_UPDATED,
 } from "@/lib/releaseDates";
 import { absoluteUrl, SITE_IMAGES } from "@/lib/seo";
 
@@ -67,6 +68,20 @@ const staticRoutes = [
     lastModified: latestReleaseUpdate,
     changeFrequency: "daily",
     priority: 0.8,
+    images: [absoluteUrl(SITE_IMAGES.og)],
+  },
+  {
+    path: "/sponsor",
+    lastModified: SPONSOR_LAST_UPDATED,
+    changeFrequency: "monthly",
+    priority: 0.5,
+    images: [absoluteUrl(SITE_IMAGES.og)],
+  },
+  {
+    path: "/sponsors",
+    lastModified: SPONSOR_LAST_UPDATED,
+    changeFrequency: "monthly",
+    priority: 0.4,
     images: [absoluteUrl(SITE_IMAGES.og)],
   },
   {

@@ -14,6 +14,13 @@ const CANONICAL_HOST = "www.trysynara.com";
 const VERCEL_ALIAS_HOST = "dpcode-website.vercel.app";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      // Sponsor avatars on /sponsor. GitHub serves every user avatar from this
+      // host, so the pathname stays open rather than listing one id per sponsor.
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
+    ],
+  },
   async redirects() {
     return [
       {
