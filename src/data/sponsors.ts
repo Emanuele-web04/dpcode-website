@@ -32,15 +32,23 @@ export type Sponsor = {
 /** Newest first. */
 export const SPONSORS: readonly Sponsor[] = [
   {
+    login: "sandeshapparala",
+    name: "Sandesh Apparala",
+    avatarUrl: "https://avatars.githubusercontent.com/u/138796263?v=4",
+    since: "Aug 4, 2026",
+  },
+  {
     login: "aristotl-dylan",
     name: "aristotl-dylan",
     avatarUrl: "https://avatars.githubusercontent.com/u/247120692?v=4",
     top: true,
+    since: "Aug 3, 2026",
   },
   {
     login: "lassejlv",
     name: "Lasse",
     avatarUrl: "https://avatars.githubusercontent.com/u/77295879?v=4",
+    since: "Aug 3, 2026",
     websiteUrl: "https://lassejlv.dk",
   },
   {
@@ -48,6 +56,7 @@ export const SPONSORS: readonly Sponsor[] = [
     name: "Howardedu",
     avatarUrl: "https://avatars.githubusercontent.com/u/99465200?v=4",
     top: true,
+    since: "Aug 3, 2026",
   },
   {
     login: "m-vts",
