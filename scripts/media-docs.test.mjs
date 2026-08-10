@@ -101,6 +101,26 @@ test("media authoring guide defines privacy, provenance, accessibility, and asse
   }
 });
 
+test("the capture audit separates captured-from and re-verified-with versions", () => {
+  const audit = read("docs/media-audit-2026-08-09.md");
+
+  assert.match(audit, /Captured with: Synara desktop app \d+\.\d+\.\d+/);
+  assert.match(audit, /Re-verified with: Synara desktop app \d+\.\d+\.\d+/);
+  assert.match(audit, /Re-verified on: \d{4}-\d{2}-\d{2}/);
+  assert.match(
+    audit,
+    /The published rasters were captured from .* and checked scene-for-scene against .* before publication/,
+  );
+
+  const captured = audit.match(/Captured with: Synara desktop app ([\d.]+)/)[1];
+  const reverified = audit.match(/Re-verified with: Synara desktop app ([\d.]+)/)[1];
+  assert.notEqual(
+    captured,
+    reverified,
+    "captured-from and re-verified-with versions must be recorded separately",
+  );
+});
+
 test("the core concepts guide uses the current real app capture and dimensions", () => {
   const coreConcepts = read("content/docs/getting-started/core-concepts.mdx");
   const block = componentBlocks(coreConcepts, "DocsScreenshot")[0];

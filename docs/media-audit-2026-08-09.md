@@ -4,7 +4,7 @@ This audit records the product rasters reviewed for the 2026-08-09 website refre
 
 ## Capture record
 
-- Source app: Synara desktop app 0.7.0 (`com.emanueledipietro.synara`)
+- Captured with: Synara desktop app 0.7.0 (`com.emanueledipietro.synara`)
 - Capture date: 2026-08-09
 - Desktop capture size: 1232 x 768
 - Themes: light and dark where noted
@@ -13,7 +13,11 @@ This audit records the product rasters reviewed for the 2026-08-09 website refre
 
 ## Re-verification
 
-- Re-verified 2026-08-10 against the installed Synara desktop app 0.7.1 (`/Applications/Synara.app`): the New thread composer, Environment panel, Git actions menu, Hand off menu, and Terminal 1 scenes match the captures above. No capture needed replacing.
+- Re-verified with: Synara desktop app 0.7.1 (`/Applications/Synara.app`)
+- Re-verified on: 2026-08-10
+- The New thread composer, Environment panel, Git actions menu, Hand off menu, and Terminal 1 scenes match the captures above. No capture needed replacing.
+
+The published rasters were captured from 0.7.0 and checked scene-for-scene against 0.7.1 before publication; the two versions are recorded separately so the provenance boundary stays readable.
 
 ## Asset decisions
 
