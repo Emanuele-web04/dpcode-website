@@ -11,6 +11,10 @@ This audit records the product rasters reviewed for the 2026-08-09 website refre
 - Evidence rule: every replacement is a current app capture or a geometry-only crop of one. No UI was invented or composited.
 - Scope rule: visible app labels remain under the user's explicit task scope. The published rasters contain no credentials, API keys, tokens, cookies, or other authentication material. Transient loading and error states were excluded.
 
+## Re-verification
+
+- Re-verified 2026-08-10 against the installed Synara desktop app 0.7.1 (`/Applications/Synara.app`): the New thread composer, Environment panel, Git actions menu, Hand off menu, and Terminal 1 scenes match the captures above. No capture needed replacing.
+
 ## Asset decisions
 
 | Asset | Decision | Current evidence |
