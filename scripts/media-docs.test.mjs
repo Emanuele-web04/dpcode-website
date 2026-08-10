@@ -101,15 +101,15 @@ test("media authoring guide defines privacy, provenance, accessibility, and asse
   }
 });
 
-test("the initial docs integration is explicitly derived and dimensioned", () => {
+test("the core concepts guide uses the current real app capture and dimensions", () => {
   const coreConcepts = read("content/docs/getting-started/core-concepts.mdx");
   const block = componentBlocks(coreConcepts, "DocsScreenshot")[0];
 
   assert.ok(block);
   assert.match(block, /lightSrc="\/dpcode-ui-light\.png"/);
   assert.match(block, /darkSrc="\/dpcode-ui-dark\.png"/);
-  assert.match(block, /width=\{3216\}/);
-  assert.match(block, /height=\{2090\}/);
-  assert.match(block, /provenance="derived"/);
-  assert.match(block, /representative composition/i);
+  assert.match(block, /width=\{1232\}/);
+  assert.match(block, /height=\{768\}/);
+  assert.match(block, /provenance="real"/);
+  assert.match(block, /current Synara desktop capture/i);
 });
