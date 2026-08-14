@@ -158,3 +158,40 @@ the app.
 
 **Decision — REMOVAL STANDS:** evidence source is the app's built-in command list
 (unverified in this repo) — **needs app-source confirmation, low risk**.
+
+## Synara v0.7.2 feature documentation
+
+Date checked: **2026-08-15**
+
+**Claims:** Persistent and autonomous thread goals; `/goal` controls; evidence-first Debug
+mode; full-thread and message-level forks; native fork coverage; local/worktree fork targets;
+the macOS iOS Simulator pane and device controls; workspace file and source search; stacked
+pull-request navigation and prefix merging; automation consecutive-failure policies.
+
+**Primary source:** Local Synara checkout
+`/Users/emanueledipietro/Developer/synara` at release tag `v0.7.2`, commit
+`18ff99857d5b84adab2019c2839fa4f6df761b7c`.
+
+Key source paths checked:
+
+- Goals and commands: `apps/web/src/composerSlashCommands.ts`,
+  `apps/web/src/hooks/useComposerSlashCommands.ts`,
+  `apps/web/src/components/chat/ComposerGoalHeader.tsx`, and
+  `apps/server/src/agentGateway/Layers/AgentGateway.ts`
+- Fork lifecycle: `apps/web/src/hooks/useComposerSlashCommands.ts`,
+  `apps/web/src/lib/threadEnvironment.ts`,
+  `apps/web/src/components/chat/MessagesTimeline.tsx`, and provider fork adapters
+- Debug policy: `apps/server/src/provider/debugMode.ts` and composer interaction-mode controls
+- iOS Simulator: `apps/web/src/components/DevicePanel.tsx`,
+  `apps/web/src/components/DevicePanel.logic.ts`,
+  `apps/web/src/components/device/DeviceControlRail.tsx`, and server device services/tools
+- Workspace search: `apps/web/src/components/chat/SingleChatSurface.tsx` and
+  `apps/web/src/components/WorkspaceSearchPalette.tsx`
+- Stacked PRs: `apps/web/src/components/pullRequest/PullRequestStackPopover.tsx`,
+  `pullRequestStack.logic.ts`, and `PullRequestDetailPanel.tsx`
+- Automation failures: `apps/web/src/lib/automationFailurePolicy.ts`, automation form/detail
+  controls, and `apps/server/src/automation/Layers/AutomationService.ts`
+
+**Decision:** Public documentation follows the shipped release source. The older internal
+`docs/device-pane-spec.md` was treated as historical design context only because several
+pre-implementation non-goals changed before v0.7.2 shipped.
