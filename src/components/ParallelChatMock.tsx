@@ -10,7 +10,7 @@ export function ParallelChatMock() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/split-syn.png"
-        alt="Synara split view — two agent threads running in parallel in the same window"
+        alt="Synara task workspace with the conversation and rendered homepage visible side by side in the built-in browser"
         className="block h-auto w-full"
       />
     </div>

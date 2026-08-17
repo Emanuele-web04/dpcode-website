@@ -101,15 +101,35 @@ test("media authoring guide defines privacy, provenance, accessibility, and asse
   }
 });
 
-test("the initial docs integration is explicitly derived and dimensioned", () => {
+test("the capture audit separates captured-from and re-verified-with versions", () => {
+  const audit = read("docs/media-audit-2026-08-09.md");
+
+  assert.match(audit, /Captured with: Synara desktop app \d+\.\d+\.\d+/);
+  assert.match(audit, /Re-verified with: Synara desktop app \d+\.\d+\.\d+/);
+  assert.match(audit, /Re-verified on: \d{4}-\d{2}-\d{2}/);
+  assert.match(
+    audit,
+    /The published rasters were captured from .* and checked scene-for-scene against .* before publication/,
+  );
+
+  const captured = audit.match(/Captured with: Synara desktop app ([\d.]+)/)[1];
+  const reverified = audit.match(/Re-verified with: Synara desktop app ([\d.]+)/)[1];
+  assert.notEqual(
+    captured,
+    reverified,
+    "captured-from and re-verified-with versions must be recorded separately",
+  );
+});
+
+test("the core concepts guide uses the current real app capture and dimensions", () => {
   const coreConcepts = read("content/docs/getting-started/core-concepts.mdx");
   const block = componentBlocks(coreConcepts, "DocsScreenshot")[0];
 
   assert.ok(block);
   assert.match(block, /lightSrc="\/dpcode-ui-light\.png"/);
   assert.match(block, /darkSrc="\/dpcode-ui-dark\.png"/);
-  assert.match(block, /width=\{3216\}/);
-  assert.match(block, /height=\{2090\}/);
-  assert.match(block, /provenance="derived"/);
-  assert.match(block, /representative composition/i);
+  assert.match(block, /width=\{1232\}/);
+  assert.match(block, /height=\{768\}/);
+  assert.match(block, /provenance="real"/);
+  assert.match(block, /current Synara desktop capture/i);
 });

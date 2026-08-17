@@ -28,7 +28,7 @@ export function MultiProjectShowcase() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/projects-syn.png"
-                alt="Synara project sidebar with separate repositories, tasks, and activity state"
+                alt="Synara sidebar with current task groups, projects, branches, and activity"
                 className="mx-auto block h-auto w-3/5 rounded-lg sm:rounded-xl"
               />
             </div>

@@ -110,7 +110,7 @@ try {
   }
   assert.match(
     homepage,
-    /<title>Synara — Run every coding agent in one workspace<\/title>/,
+    /<title>Synara — AI Coding Workspace for Claude Code, Codex &amp; Cursor<\/title>/,
   );
   assert.match(
     homepage,

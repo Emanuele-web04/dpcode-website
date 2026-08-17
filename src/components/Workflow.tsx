@@ -57,7 +57,7 @@ export default function Workflow() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/browser-syn.png"
-              alt="Synara browser verification beside a coding-agent task"
+              alt="Synara task workspace with the rendered Synara homepage open in the built-in browser beside the conversation"
               className="block h-auto w-full"
             />
           </div>

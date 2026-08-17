@@ -10,7 +10,7 @@ export function TerminalTabsMock() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/terminals-syn.png"
-        alt="Synara terminals — Terminal 1, 2, and 3 tabs with Claude Code running in the project directory"
+        alt="Synara Terminal 1 open beside the task workspace with the current project branch prompt visible"
         className="block h-auto w-full"
       />
     </div>
