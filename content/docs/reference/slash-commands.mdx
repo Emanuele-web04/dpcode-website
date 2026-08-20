@@ -30,11 +30,13 @@ Type `/` in the composer to open the command menu. Provider-native commands (lik
 | Command | What it does |
 | --- | --- |
 | `/fork` (`/branch`) | Fork the thread into the local checkout or a new worktree |
-| `/side` | Open a guarded side-thread from this conversation |
+| `/side [provider] [prompt]` | Open a guarded side-thread, optionally on another available provider |
 | `/subagents` | Ask the assistant to delegate independent work to parallel subagents |
 | `/automation` | Turn this prompt into a scheduled [automation](/docs/features/automations) |
 
 Read [Thread forks](/docs/workflows/forks) for message-level forks, native provider coverage, and environment ownership.
+
+For a cross-provider side chat, put the provider kind or display name first—for example, `/side codex review the current diff` or `/side Claude Code investigate the failing test`. Synara removes that provider token from the child prompt and accepts it only when the target runtime is available. Without a provider token, `/side` continues on the current provider.
 
 ## Persistent goals
 

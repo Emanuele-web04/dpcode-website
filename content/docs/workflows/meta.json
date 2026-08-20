@@ -10,6 +10,7 @@
     "handoffs",
     "debugging",
     "browser-verification",
+    "headless-server",
     "pull-requests",
     "automations",
     "studio",

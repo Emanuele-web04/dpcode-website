@@ -72,3 +72,26 @@ test("stacked PR and automation failure policy updates remain explicit", () => {
   assert.ok(automations.includes("Stop after 3 failures"));
   assert.ok(automations.includes("A successful run resets the consecutive-failure count"));
 });
+
+test("v0.7.3 durable workflows are documented and connected", () => {
+  const workflowMeta = JSON.parse(read("content/docs/workflows/meta.json"));
+  const workflowIndex = read("content/docs/workflows/index.mdx");
+  const headless = read("content/docs/workflows/headless-server.mdx");
+  const browser = read("content/docs/workflows/browser-verification.mdx");
+  const commands = read("content/docs/reference/slash-commands.mdx");
+  const desktop = read("content/docs/troubleshooting/desktop-and-updates.mdx");
+  const worktrees = read("content/docs/troubleshooting/git-and-worktrees.mdx");
+
+  assert.ok(workflowMeta.pages.includes("headless-server"));
+  assert.ok(workflowIndex.includes("/docs/workflows/headless-server"));
+  assert.ok(headless.includes("synara-server-<version>.tar.gz"));
+  assert.ok(headless.includes("server status"));
+  assert.ok(headless.includes("SYNARA_AUTH_TOKEN"));
+  assert.ok(browser.includes("Floating over the conversation"));
+  assert.ok(browser.includes("two presentations of one task-scoped browser session"));
+  assert.ok(commands.includes("`/side [provider] [prompt]`"));
+  assert.ok(desktop.includes("Resume chats automatically"));
+  assert.ok(desktop.includes("Use custom title bar"));
+  assert.ok(worktrees.includes("wsl.exe"));
+  assert.ok(worktrees.includes("\\\\wsl.localhost"));
+});

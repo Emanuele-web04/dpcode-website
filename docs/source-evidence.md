@@ -195,3 +195,44 @@ Key source paths checked:
 **Decision:** Public documentation follows the shipped release source. The older internal
 `docs/device-pane-spec.md` was treated as historical design context only because several
 pre-implementation non-goals changed before v0.7.2 shipped.
+
+## Synara v0.7.3 feature documentation
+
+Date checked: **2026-08-21**
+
+**Claims:** Guarded desktop quit and startup continuation; a floating task-owned browser;
+usage views for every locally verifiable provider; first-class WSL UNC launching; optional
+custom title bars on Windows and Linux; the headless release tarball and `synara server
+status`; cross-provider `/side`; and provider streaming, diagnostic, workspace, and runtime
+reliability fixes.
+
+**Primary source:** Local Synara checkout
+`/Users/emanueledipietro/Developer/synara` at the v0.7.3 release commit
+`a93c47e275870f34ec7aa8cd72f2a0ff6246db7c`. The audited range from v0.7.2 contains 224
+commits, including 50 merge commits, across 321 changed files.
+
+Key source paths checked:
+
+- Quit and continuation: `apps/desktop/src/runningChatsQuitGuard.ts`,
+  `apps/web/src/components/RunningChatsQuitDialog.tsx`,
+  `apps/web/src/lib/runningChatsQuitConfirmation.ts`, and
+  `apps/server/src/orchestration/quitResume.ts`
+- Floating browser: `apps/web/src/components/chat/FloatingBrowserPanel.tsx`,
+  `FloatingBrowserPanel.browser.tsx`, and `apps/web/src/components/BrowserTabStrip.tsx`
+- Provider usage: `apps/server/src/providerUsage/`,
+  `apps/server/src/providerUsageSnapshot.ts`, and
+  `apps/web/src/lib/providerUsageSnapshot.ts`
+- WSL and desktop chrome: `packages/shared/src/windowsProcess.ts`,
+  `apps/server/src/provider/acp/AcpWslCwd.test.ts`, and
+  `apps/desktop/src/desktopCustomTitleBar.ts`
+- Headless distribution and status: `.github/workflows/release.yml`,
+  `apps/server/scripts/cli.ts`, and `apps/server/src/serverStatusCli.ts`
+- Cross-provider side chats: `apps/web/src/composerSlashCommands.ts`,
+  `apps/web/src/lib/sidechatCreation.ts`, and
+  `apps/web/src/lib/sidechatCreatorRegistry.ts`
+- Provider correctness: `apps/server/src/provider/Layers/AntigravityAdapter.ts` and
+  `apps/server/src/provider/Layers/OpenCodeAdapter.ts`
+
+**Decision:** The changelog and durable guides describe the release commit, not every
+intermediate merge. The experimental DeepSeek Harness work was reverted before v0.7.3 and
+is therefore explicitly excluded from the shipped provider list.

@@ -132,6 +132,27 @@ const WORKFLOWS = [
     ],
   },
   {
+    slug: "headless-server",
+    title: "Headless server",
+    requiredSections: [
+      "Requirements",
+      "Install the release tarball",
+      "Check server readiness",
+      "Choose the data directory deliberately",
+      "Remote access is opt-in",
+      "Updating a headless installation",
+      "Completion checklist",
+    ],
+    markers: [
+      "synara-server-<version>.tar.gz",
+      "npm install --omit=dev",
+      "server status",
+      "loopback-only",
+      "SYNARA_AUTH_TOKEN",
+      "Do not publish the raw server port",
+    ],
+  },
+  {
     slug: "pull-requests",
     title: "Pull requests",
     requiredSections: [
