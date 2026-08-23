@@ -2,7 +2,14 @@ import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { prepareRoute } from "../test-helpers";
 
-for (const pathname of ["/", "/install", "/docs"]) {
+for (const pathname of [
+  "/",
+  "/install",
+  "/docs",
+  "/about",
+  "/contact",
+  "/changelog",
+]) {
   for (const theme of ["light", "dark"] as const) {
     test(`${pathname} ${theme} has no axe violations`, async ({ page }) => {
       await prepareRoute(page, pathname, theme);

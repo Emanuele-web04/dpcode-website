@@ -8,13 +8,14 @@
     "start": "next start",
     "downloads:update": "node scripts/update-installer-downloads.mjs",
     "lint": "eslint",
-    "test:docs": "node --test scripts/*.test.mjs && node scripts/check-docs.mjs",
+    "test:docs": "node --test scripts/*.test.mjs src/lib/acceptNegotiation.test.mjs && node scripts/check-docs.mjs",
     "test:links": "node scripts/check-external-links.mjs",
     "test:seo-smoke": "node scripts/seo-smoke.mjs",
     "test:e2e": "playwright test tests/e2e",
     "test:visual": "playwright test tests/visual --grep @visual",
     "test:visual:update": "playwright test tests/visual --grep @visual --update-snapshots",
     "test:a11y": "playwright test tests/a11y",
+    "test:agent-readiness": "node scripts/agent-readiness-smoke.mjs",
     "test:performance": "node scripts/performance-smoke.mjs"
   },
   "dependencies": {

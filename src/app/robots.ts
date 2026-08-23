@@ -12,7 +12,7 @@ import {
 import { SITE_URL, absoluteUrl } from "@/lib/seo";
 import { SITEMAP_PATHS } from "@/lib/siteRoutes";
 
-const PUBLIC_ALLOW_PATHS = ["/", ...AI_DISCOVERY_PATHS];
+const PUBLIC_ALLOW_PATHS = ["/", "/openapi.json", ...AI_DISCOVERY_PATHS];
 const PRIVATE_PATHS = ["/api/"];
 
 export default function robots(): MetadataRoute.Robots {

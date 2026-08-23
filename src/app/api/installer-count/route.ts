@@ -5,6 +5,7 @@
 
 import { NextResponse } from "next/server";
 
+import { apiErrorResponse } from "@/lib/apiResponse";
 import { getInstallerCount } from "@/lib/installerCount";
 
 // COST FIX (Vercel audit): the homepage mounts InstallerCount twice (hero + closing CTA),
@@ -18,11 +19,13 @@ export async function GET() {
   const count = await getInstallerCount();
 
   if (count === null) {
-    return NextResponse.json(
-      { error: "Unable to fetch installer count." },
+    return apiErrorResponse(
+      { error: "Unable to fetch installer count.", code: "upstream_unavailable" },
+      503,
       {
-        status: 503,
         headers: {
+          // The route deliberately never caches failures; the 60s revalidate
+          // only applies to successful CDN-cached responses.
           "Cache-Control": "no-store, max-age=0",
         },
       }

@@ -74,6 +74,11 @@ jobs:
       - name: Smoke test production routes
         run: npm run test:seo-smoke
 
+      # Agent-readiness gate: runs right after the production build, before
+      # the browser suites, spawning its own server on a dedicated port.
+      - name: Agent-readiness smoke
+        run: npm run test:agent-readiness
+
       - name: Functional browser checks
         id: e2e
         continue-on-error: true

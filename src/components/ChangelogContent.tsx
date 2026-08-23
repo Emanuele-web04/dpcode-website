@@ -7,7 +7,7 @@
 
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
-import { LuArrowDownToLine, LuLink } from "react-icons/lu";
+import { LuArrowDownToLine, LuChevronLeft, LuChevronRight, LuLink } from "react-icons/lu";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import ChangelogNav from "@/components/ChangelogNav";
@@ -38,13 +38,20 @@ export default function ChangelogContent({
   releases = getSortedReleases(),
   title = "What's new in Synara.",
   description = "New providers, performance work, and the steady polish that makes the app faster and sturdier. Every release is logged here — the same notes you see in the app's \"What's new\" dialog.",
+  previousPath,
+  nextPath,
+  showLatestPulse = true,
 }: {
-  releases?: ChangelogEntry[];
+  releases?: readonly ChangelogEntry[];
   title?: string;
   description?: string;
+  previousPath?: string;
+  nextPath?: string;
+  showLatestPulse?: boolean;
 } = {}) {
   const highlightedRelease = releases[0];
   const releaseLabel = releases.length === 1 ? "Release" : "Latest release";
+  const hasPagination = Boolean(previousPath || nextPath);
   const navItems = releases.map((entry) => ({
     version: entry.version,
     date: entry.date,
@@ -73,7 +80,7 @@ export default function ChangelogContent({
               <p className="mt-5 text-[14px] leading-[1.7] text-[var(--text-secondary)] sm:text-[15px]">
                 {description}
               </p>
-              {highlightedRelease ? (
+              {highlightedRelease && showLatestPulse ? (
                 <p className="mt-7 flex items-center gap-2.5 text-[12.5px] text-[var(--text-secondary)]">
                   <span className="relative flex size-2">
                     <span className="absolute inline-flex size-full animate-ping rounded-full bg-[var(--accent-link)] opacity-60 motion-reduce:hidden" />
@@ -96,26 +103,67 @@ export default function ChangelogContent({
               ))}
             </div>
 
-            <div className="mt-20 flex flex-col gap-4 border-t border-[var(--divide)] pt-8 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-[12px] text-[var(--text-tertiary)]">
-                Updated with every release.{" "}
-                <a
-                  href={GITHUB_RELEASES_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--accent-link)] underline underline-offset-2 transition-colors hover:text-[var(--accent-link-hover)]"
+            <div className="mt-20 border-t border-[var(--divide)] pt-8">
+              {hasPagination ? (
+                <nav
+                  aria-label="Changelog pages"
+                  className="flex items-center justify-between gap-4"
                 >
-                  See releases on GitHub
-                </a>
-                .
-              </p>
-              <Link
-                href="/install"
-                className="inline-flex w-fit items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] px-5 py-2.5 text-[13px] font-medium text-[var(--btn-primary-fg)] transition-opacity hover:opacity-90"
+                  {previousPath ? (
+                    <Link
+                      href={previousPath}
+                      className="group inline-flex items-center gap-1.5 text-[13px] text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+                    >
+                      <LuChevronLeft
+                        aria-hidden="true"
+                        className="size-4 transition-transform group-hover:-translate-x-0.5"
+                      />
+                      Newer releases
+                    </Link>
+                  ) : (
+                    <span aria-hidden="true" />
+                  )}
+                  {nextPath ? (
+                    <Link
+                      href={nextPath}
+                      className="group inline-flex items-center gap-1.5 text-[13px] text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+                    >
+                      Older releases
+                      <LuChevronRight
+                        aria-hidden="true"
+                        className="size-4 transition-transform group-hover:translate-x-0.5"
+                      />
+                    </Link>
+                  ) : (
+                    <span aria-hidden="true" />
+                  )}
+                </nav>
+              ) : null}
+              <div
+                className={`flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between${
+                  hasPagination ? " mt-8" : ""
+                }`}
               >
-                Download Synara
-                <LuArrowDownToLine className="size-4" aria-hidden="true" />
-              </Link>
+                <p className="text-[12px] text-[var(--text-tertiary)]">
+                  Updated with every release.{" "}
+                  <a
+                    href={GITHUB_RELEASES_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--accent-link)] underline underline-offset-2 transition-colors hover:text-[var(--accent-link-hover)]"
+                  >
+                    See releases on GitHub
+                  </a>
+                  .
+                </p>
+                <Link
+                  href="/install"
+                  className="inline-flex w-fit items-center gap-2 rounded-full bg-[var(--btn-primary-bg)] px-5 py-2.5 text-[13px] font-medium text-[var(--btn-primary-fg)] transition-opacity hover:opacity-90"
+                >
+                  Download Synara
+                  <LuArrowDownToLine className="size-4" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

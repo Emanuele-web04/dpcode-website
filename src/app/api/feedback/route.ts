@@ -3,6 +3,8 @@
 // Layer: App Router route handler (Node.js runtime)
 // Depends on: Server-only Resend, recipient, and verified sender configuration.
 
+import { apiErrorResponse } from "@/lib/apiResponse";
+
 export const runtime = "nodejs";
 
 const RESEND_API_URL = "https://api.resend.com/emails";
@@ -256,7 +258,11 @@ export function OPTIONS(request: Request): Response {
   const requestOrigin = request.headers.get("origin");
   const allowedOrigin = corsOrigin(request);
   if (requestOrigin && !allowedOrigin) {
-    return jsonResponse({ error: "Origin is not allowed." }, 403, null);
+    return apiErrorResponse(
+      { error: "Origin is not allowed.", code: "forbidden_origin" },
+      403,
+      { headers: responseHeaders(null) },
+    );
   }
   return new Response(null, {
     status: 204,
@@ -268,42 +274,69 @@ export async function POST(request: Request): Promise<Response> {
   const requestOrigin = request.headers.get("origin");
   const allowedOrigin = corsOrigin(request);
   if (requestOrigin && !allowedOrigin) {
-    return jsonResponse({ error: "Origin is not allowed." }, 403, null);
+    return apiErrorResponse(
+      { error: "Origin is not allowed.", code: "forbidden_origin" },
+      403,
+      { headers: responseHeaders(null) },
+    );
   }
   if (request.headers.get("x-synara-feedback") !== "1") {
-    return jsonResponse({ error: "Invalid feedback client." }, 400, allowedOrigin);
+    return apiErrorResponse(
+      { error: "Invalid feedback client.", code: "invalid_client" },
+      400,
+      { headers: responseHeaders(allowedOrigin) },
+    );
   }
 
   const contentLength = Number(request.headers.get("content-length") ?? "0");
   if (Number.isFinite(contentLength) && contentLength > MAX_REQUEST_BYTES) {
-    return jsonResponse({ error: "Feedback is too large." }, 413, allowedOrigin);
+    return apiErrorResponse(
+      { error: "Feedback is too large.", code: "payload_too_large" },
+      413,
+      { headers: responseHeaders(allowedOrigin) },
+    );
   }
 
   const rateLimit = consumeRateLimit(requestIp(request));
   if (!rateLimit.allowed) {
-    const response = jsonResponse(
-      { error: "Too many feedback reports. Please try again later." },
+    return apiErrorResponse(
+      { error: "Too many feedback reports. Please try again later.", code: "rate_limited" },
       429,
-      allowedOrigin,
+      {
+        headers: {
+          ...responseHeaders(allowedOrigin),
+          "retry-after": String(rateLimit.retryAfter),
+        },
+      },
     );
-    response.headers.set("retry-after", String(rateLimit.retryAfter));
-    return response;
   }
 
   let body: unknown;
   try {
     const rawBody = await request.text();
     if (Buffer.byteLength(rawBody, "utf8") > MAX_REQUEST_BYTES) {
-      return jsonResponse({ error: "Feedback is too large." }, 413, allowedOrigin);
+      return apiErrorResponse(
+        { error: "Feedback is too large.", code: "payload_too_large" },
+        413,
+        { headers: responseHeaders(allowedOrigin) },
+      );
     }
     body = JSON.parse(rawBody);
   } catch {
-    return jsonResponse({ error: "Feedback payload is invalid." }, 400, allowedOrigin);
+    return apiErrorResponse(
+      { error: "Feedback payload is invalid.", code: "invalid_payload" },
+      400,
+      { headers: responseHeaders(allowedOrigin) },
+    );
   }
 
   const feedback = parseFeedback(body);
   if (!feedback) {
-    return jsonResponse({ error: "Feedback payload is invalid." }, 400, allowedOrigin);
+    return apiErrorResponse(
+      { error: "Feedback payload is invalid.", code: "invalid_payload" },
+      400,
+      { headers: responseHeaders(allowedOrigin) },
+    );
   }
 
   try {
@@ -312,10 +345,13 @@ export async function POST(request: Request): Promise<Response> {
   } catch (error) {
     console.error("[feedback] delivery failed", error);
     const unavailable = error instanceof Error && error.message.includes("not configured");
-    return jsonResponse(
-      { error: unavailable ? "Feedback delivery is temporarily unavailable." : "Feedback could not be delivered." },
+    return apiErrorResponse(
+      {
+        error: unavailable ? "Feedback delivery is temporarily unavailable." : "Feedback could not be delivered.",
+        code: unavailable ? "delivery_unavailable" : "delivery_failed",
+      },
       unavailable ? 503 : 502,
-      allowedOrigin,
+      { headers: responseHeaders(allowedOrigin) },
     );
   }
 }

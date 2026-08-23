@@ -29,6 +29,12 @@ export const GITHUB_SPONSORS_URL = "https://github.com/sponsors/Emanuele-web04";
 export const X_PROFILE_URL = "https://x.com/emanueledpt";
 export const YOUTUBE_URL = "https://youtube.com/@emanueledpt";
 
+/** Product's own X (Twitter) account, distinct from the creator's. */
+export const PRODUCT_X_URL = "https://x.com/trySynara";
+
+/** Public customer-contact address, approved for structured data and routes. */
+export const FEEDBACK_EMAIL = "feedback@trysynara.com";
+
 /**
  * Search/share title — brand first, then the high-intent provider keywords.
  * Kept deliberately separate from `PRODUCT_HERO_TITLE`: the on-page H1 sells the
@@ -118,13 +124,25 @@ export const SITE_JSONLD = {
       url: SITE_URL,
       logo: absoluteUrl(SITE_IMAGES.icon),
       image: absoluteUrl(SITE_IMAGES.og),
+      email: FEEDBACK_EMAIL,
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: FEEDBACK_EMAIL,
+      },
       founder: {
         "@type": "Person",
         name: CREATOR_NAME,
         url: CREATOR_URL,
         sameAs: [X_PROFILE_URL, YOUTUBE_URL],
       },
-      sameAs: [GITHUB_REPO_URL, X_PROFILE_URL, YOUTUBE_URL, CREATOR_URL],
+      sameAs: [
+        GITHUB_REPO_URL,
+        X_PROFILE_URL,
+        YOUTUBE_URL,
+        CREATOR_URL,
+        PRODUCT_X_URL,
+      ],
     },
     {
       "@type": "WebSite",

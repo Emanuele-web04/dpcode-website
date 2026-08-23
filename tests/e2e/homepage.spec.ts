@@ -153,4 +153,32 @@ test.describe("homepage functional flow", () => {
     await page.goto("/docs", { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("main")).toHaveCount(1);
   });
+
+  test("keeps a single h1 and reaches the approved About and Contact pages", async ({
+    page,
+  }) => {
+    await preparePage(page, "light");
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator("h1")).toHaveText(
+      "Run every coding agent in one workspace",
+    );
+    await expect(
+      page.getByText("One workspace. Separate tasks. Shared control."),
+    ).toBeVisible();
+
+    // The trust pages are reachable from the footer and render server HTML.
+    await expect(page.locator('footer a[href="/about"]')).toBeVisible();
+    await expect(page.locator('footer a[href="/contact"]')).toBeVisible();
+
+    await page.goto("/about", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.getByText("Who maintains it")).toBeVisible();
+
+    await page.goto("/contact", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.getByText("Get in touch")).toBeVisible();
+    await expect(
+      page.locator('a[href^="mailto:feedback@trysynara.com"]'),
+    ).toBeVisible();
+  });
 });

@@ -1,5 +1,6 @@
 // FILE: SiteFooter.tsx
-// Purpose: Shared page footer (credits + attribution + privacy link) used across routes.
+// Purpose: Shared page footer (credits + attribution + site links incl. About,
+//          Contact, and Privacy) used across routes.
 // Layer: Presentational component
 // Depends on: next/link, design tokens in globals.css
 
@@ -38,6 +39,18 @@ export default function SiteFooter() {
             className="transition-colors hover:text-[var(--text-primary)]"
           >
             Sponsor
+          </Link>
+          <Link
+            href="/about"
+            className="transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
+          >
+            About
+          </Link>
+          <Link
+            href="/contact"
+            className="transition-colors hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-link)]"
+          >
+            Contact
           </Link>
           <Link
             href="/privacy"

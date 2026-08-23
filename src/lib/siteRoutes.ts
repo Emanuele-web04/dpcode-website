@@ -3,7 +3,7 @@
 // Layer: server utility.
 
 import type { MetadataRoute } from "next";
-import { getSortedReleases, toVersionSlug } from "@/lib/changelog";
+import { getChangelogPageCount, getSortedReleases, toVersionSlug } from "@/lib/changelog";
 import { getDocumentationCatalog } from "@/lib/docs";
 import {
   DOCS_LAST_UPDATED,
@@ -91,6 +91,20 @@ const staticRoutes = [
     priority: 0.35,
     images: [absoluteUrl(SITE_IMAGES.og)],
   },
+  {
+    path: "/about",
+    lastModified: SITE_LATEST_UPDATE,
+    changeFrequency: "yearly",
+    priority: 0.3,
+    images: [absoluteUrl(SITE_IMAGES.og)],
+  },
+  {
+    path: "/contact",
+    lastModified: SITE_LATEST_UPDATE,
+    changeFrequency: "yearly",
+    priority: 0.3,
+    images: [absoluteUrl(SITE_IMAGES.og)],
+  },
 ] satisfies Array<
   Omit<MetadataRoute.Sitemap[number], "url"> & { path: string }
 >;
@@ -107,11 +121,24 @@ function documentationPriority(url: string) {
   return 0.7;
 }
 
+export function getChangelogArchivePaths(): string[] {
+  const pageCount = getChangelogPageCount();
+  return Array.from({ length: Math.max(0, pageCount - 1) }, (_, index) =>
+    `/changelog/page/${index + 2}`,
+  );
+}
+
 export function getStaticSitemapEntries(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes.map(({ path, ...entry }) => ({
       ...entry,
       url: absoluteUrl(path),
+    })),
+    ...getChangelogArchivePaths().map((path) => ({
+      url: absoluteUrl(path),
+      lastModified: latestReleaseUpdate,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
     ...documentationCatalog.map((page) => ({
       url: absoluteUrl(page.url),
