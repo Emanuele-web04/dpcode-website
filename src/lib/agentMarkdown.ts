@@ -727,7 +727,7 @@ export function resolveChangelogPage(
   ) {
     return undefined;
   }
-  if (!/^\d+$/.test(segments[2])) return undefined;
+  if (!/^[1-9]\d*$/.test(segments[2])) return undefined;
   const page = Number(segments[2]);
   if (page < 2) return undefined;
   const model = getChangelogPage(page);
