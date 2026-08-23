@@ -27,7 +27,7 @@ import {
   pageMetadata,
 } from "@/lib/seo";
 
-const LAST_UPDATED = "August 24, 2026";
+const LAST_UPDATED = "August 23, 2026";
 
 /** Approved public customer contact; also the sender of the in-app Feedback
  *  dialog and the inbound alias for feedback replies. */
@@ -109,7 +109,7 @@ const CONTACT_JSONLD = [
     "@id": `${SITE_URL}/contact#webpage`,
     name: "Contact Synara",
     url: `${SITE_URL}/contact`,
-    dateModified: "2026-08-24",
+    dateModified: "2026-08-23",
     description:
       "Public contact channels for Synara: feedback and product questions, public technical issues, social updates, and privacy questions.",
   },

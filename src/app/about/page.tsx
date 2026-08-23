@@ -34,7 +34,7 @@ import {
   pageMetadata,
 } from "@/lib/seo";
 
-const LAST_UPDATED = "August 24, 2026";
+const LAST_UPDATED = "August 23, 2026";
 
 const MIT_LICENSE_URL = "https://opensource.org/licenses/MIT";
 
@@ -52,7 +52,7 @@ const ABOUT_JSONLD = [
     "@id": `${SITE_URL}/about#webpage`,
     name: "About Synara",
     url: `${SITE_URL}/about`,
-    dateModified: "2026-08-24",
+    dateModified: "2026-08-23",
     description: PRODUCT_META_DESCRIPTION,
   },
   breadcrumbJsonLd([
