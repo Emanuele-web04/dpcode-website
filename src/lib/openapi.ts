@@ -166,7 +166,7 @@ export const OPENAPI_DOCUMENT = {
             required: false,
             description:
               "Maximum number of results to return. When omitted, the server applies its default limit.",
-            schema: { type: "integer", minimum: 1 },
+            schema: { type: "integer" },
           },
           {
             name: "tag",
@@ -182,14 +182,6 @@ export const OPENAPI_DOCUMENT = {
             description:
               "Language code to search in. Defaults to the site default language.",
             schema: { type: "string" },
-          },
-          {
-            name: "mode",
-            in: "query",
-            required: false,
-            description:
-              "Search mode. `full` is full-text search (the default); `vector` is accepted but only enabled when the server is configured with embedding support.",
-            schema: { type: "string", enum: ["full", "vector"] },
           },
         ],
         responses: {

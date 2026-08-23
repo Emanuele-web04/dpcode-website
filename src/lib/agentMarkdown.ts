@@ -38,6 +38,7 @@ import {
 import {
   findRelease,
   fromVersionSlug,
+  getChangelogPage,
   getSortedReleases,
   toVersionSlug,
 } from "@/lib/changelog";
@@ -57,10 +58,15 @@ import {
   YOUTUBE_URL,
 } from "@/lib/seo";
 import type { ChangelogEntry } from "@/data/changelog";
+import type { ChangelogPage } from "@/lib/changelog";
 import type { DocumentationCatalogEntry } from "@/lib/docs";
 
-/** The only two formats a negotiated request may resolve to. */
-export type NegotiatedFormat = "html" | "markdown";
+/**
+ * The only two formats a negotiated request may resolve to. Defined
+ * authoritatively in acceptNegotiation.ts; re-exported here so consumers of
+ * this module keep a single source of truth.
+ */
+export type { NegotiatedFormat } from "@/lib/acceptNegotiation";
 
 /** Result of resolving a canonical public path to its Markdown representation. */
 export interface MarkdownResult {
@@ -490,6 +496,38 @@ function renderChangelogReleaseMarkdown(entry: ChangelogEntry): string {
   ]);
 }
 
+/**
+ * One page of the paginated changelog archive (`/changelog/page/N`): only that
+ * page's releases, the previous/next navigation, the canonical page URL, and
+ * sources. Mirrors the static `/changelog/page/[page]` route's ChangelogContent
+ * (title, description, and prev/next links). Release sections reuse
+ * releaseSection so headings and per-release canonical URLs stay identical to
+ * the full archive.
+ */
+function renderChangelogPageMarkdown(model: ChangelogPage): string {
+  const { page, pageCount, releases, previousPath, nextPath } = model;
+  const navigation = [
+    ...(previousPath ? [`- [Newer releases](${absoluteUrl(previousPath)})`] : []),
+    ...(nextPath ? [`- [Older releases](${absoluteUrl(nextPath)})`] : []),
+  ];
+  return render([
+    `# Changelog — Synara — Page ${page} of ${pageCount}`,
+    "",
+    `> Older Synara releases, page ${page} of ${pageCount}.`,
+    "",
+    ...releases.flatMap((entry) => releaseSection(entry)),
+    ...(navigation.length > 0
+      ? ["## Navigation", "", ...navigation, ""]
+      : []),
+    canonicalLine(`/changelog/page/${page}`),
+    "",
+    ...sourcesBlock([
+      { label: "Source repository", url: GITHUB_REPO_URL },
+      { label: "Release downloads", url: GITHUB_RELEASES_URL },
+    ]),
+  ]);
+}
+
 function renderAboutMarkdown(): string {
   return render([
     "# About Synara",
@@ -671,6 +709,39 @@ export function resolveChangelogRelease(
 }
 
 /**
+ * Resolve a paginated changelog archive page (`/changelog/page/N`) to its
+ * representation, or undefined when the page does not exist. Mirrors the
+ * static `/changelog/page/[page]` route (`dynamicParams = false`): page 1
+ * renders at the index (`/changelog`) and is never duplicated here, and only
+ * integer page numbers from 2 through the last page resolve.
+ */
+export function resolveChangelogPage(
+  path: string,
+): PublicRepresentation | undefined {
+  const normalized = normalizePath(path);
+  const segments = normalized.split("/").filter(Boolean);
+  if (
+    segments.length !== 3 ||
+    segments[0] !== "changelog" ||
+    segments[1] !== "page"
+  ) {
+    return undefined;
+  }
+  if (!/^\d+$/.test(segments[2])) return undefined;
+  const page = Number(segments[2]);
+  if (page < 2) return undefined;
+  const model = getChangelogPage(page);
+  if (!model) return undefined;
+  return {
+    path: `/changelog/page/${model.page}`,
+    title: `Changelog — Synara — Page ${model.page} of ${model.pageCount}`,
+    summary: `Older Synara releases, page ${model.page} of ${model.pageCount}.`,
+    cacheControl: MARKDOWN_CACHE_CONTROL,
+    renderMarkdown: () => renderChangelogPageMarkdown(model),
+  };
+}
+
+/**
  * Normalize a public path for exact lookup: ensure a leading slash, collapse
  * duplicate slashes, and drop a trailing slash (except on the root path).
  */
@@ -714,7 +785,8 @@ export function resolveMarkdown(path: string): MarkdownResult | null {
     }
   }
   if (normalized.startsWith("/changelog/")) {
-    const representation = resolveChangelogRelease(normalized);
+    const representation =
+      resolveChangelogPage(normalized) ?? resolveChangelogRelease(normalized);
     if (representation) {
       return {
         status: 200,

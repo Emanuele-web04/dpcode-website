@@ -22,19 +22,14 @@ import {
   SITE_URL,
   GITHUB_REPO_URL,
   X_PROFILE_URL,
+  FEEDBACK_EMAIL,
+  PRODUCT_X_URL,
   breadcrumbJsonLd,
   jsonLdScript,
   pageMetadata,
 } from "@/lib/seo";
 
 const LAST_UPDATED = "August 23, 2026";
-
-/** Approved public customer contact; also the sender of the in-app Feedback
- *  dialog and the inbound alias for feedback replies. */
-const FEEDBACK_EMAIL = "feedback@trysynara.com";
-
-/** Product account, distinct from the maintainer's personal X profile. */
-const PRODUCT_X_URL = "https://x.com/trySynara";
 
 const GITHUB_ISSUES_URL = `${GITHUB_REPO_URL}/issues`;
 
