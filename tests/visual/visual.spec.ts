@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
 import { preparePage, prepareRoute } from "../test-helpers";
 
+const INSTALL_ANTIALIASING_TOLERANCE_PIXELS = 50;
+
 const STABLE_DOCS_TOC = `
   #nd-toc a[data-active] {
     color: var(--color-fd-muted-foreground) !important;
@@ -101,7 +103,7 @@ test.describe("visual regression @visual", () => {
     await expect(page).toHaveScreenshot("install-desktop-light.png", {
       fullPage: true,
       animations: "disabled",
-      maxDiffPixels: 0,
+      maxDiffPixels: INSTALL_ANTIALIASING_TOLERANCE_PIXELS,
     });
   });
 
