@@ -49,7 +49,7 @@ async function waitForServer() {
   throw new Error(`Timed out waiting for ${ORIGIN}.\n${output}`);
 }
 
-async function readRoute(pathname, expectedContentType) {
+async function getRoute(pathname, expectedContentType) {
   const response = await fetch(`${ORIGIN}${pathname}`, {
     signal: AbortSignal.timeout(10_000),
   });
@@ -60,7 +60,12 @@ async function readRoute(pathname, expectedContentType) {
     expectedContentType,
     `${pathname} returned the wrong content type`,
   );
-  return body;
+  return { body, response };
+}
+
+async function readRoute(pathname, expectedContentType) {
+  const route = await getRoute(pathname, expectedContentType);
+  return route.body;
 }
 
 async function stopServer() {
@@ -141,9 +146,14 @@ try {
   assert.ok(docsIndexMarkdown.includes("# Synara documentation"));
   assert.ok(docsIndexMarkdown.includes("## What is Synara?"));
 
-  const docsMarkdown = await readRoute(
+  const { body: docsMarkdown, response: docsMarkdownResponse } = await getRoute(
     "/docs/providers/claude-code.md",
     /text\/markdown/i,
+  );
+  assert.equal(docsMarkdownResponse.headers.get("x-robots-tag"), "noindex, follow");
+  assert.equal(
+    docsMarkdownResponse.headers.get("link"),
+    '<https://www.trysynara.com/docs/providers/claude-code>; rel="canonical"',
   );
   for (const marker of [
     "# Claude Code",
