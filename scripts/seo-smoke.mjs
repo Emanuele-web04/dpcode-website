@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const HOST = "127.0.0.1";
-const PORT = 3210;
+const PORT = Number(process.env.SEO_SMOKE_PORT ?? 3210);
 const ORIGIN = `http://${HOST}:${PORT}`;
 const NEXT_CLI = path.join(ROOT, "node_modules", "next", "dist", "bin", "next");
 
@@ -110,7 +110,7 @@ try {
   }
   assert.match(
     homepage,
-    /<title>Synara — Run every coding agent in one workspace<\/title>/,
+    /<title>Synara — AI Coding Workspace for Claude Code, Codex &amp; Cursor<\/title>/,
   );
   assert.match(
     homepage,
@@ -136,6 +136,24 @@ try {
   assert.match(docs, /name="twitter:card" content="summary_large_image"/);
   assert.ok(docs.includes('"@type":"TechArticle"'), "docs page is missing TechArticle JSON-LD");
   assert.ok(docs.includes('"@type":"BreadcrumbList"'), "docs page is missing breadcrumb JSON-LD");
+
+  const docsIndexMarkdown = await readRoute("/docs.md", /text\/markdown/i);
+  assert.ok(docsIndexMarkdown.includes("# Synara documentation"));
+  assert.ok(docsIndexMarkdown.includes("## What is Synara?"));
+
+  const docsMarkdown = await readRoute(
+    "/docs/providers/claude-code.md",
+    /text\/markdown/i,
+  );
+  for (const marker of [
+    "# Claude Code",
+    "Canonical URL: https://www.trysynara.com/docs/providers/claude-code",
+    "## Install",
+    "claude --version",
+  ]) {
+    assert.ok(docsMarkdown.includes(marker), `Markdown documentation is missing ${marker}`);
+  }
+  assert.equal(docsMarkdown.includes("<html"), false);
 
   for (const pathname of [
     "/docs/providers",
@@ -196,27 +214,29 @@ try {
     "## Product model",
     "One task owns one line of work",
     "## Documentation index",
-    "https://www.trysynara.com/docs/providers",
-    "https://www.trysynara.com/docs/workflows",
-    "https://www.trysynara.com/docs/troubleshooting",
+    "https://www.trysynara.com/docs/providers.md",
+    "https://www.trysynara.com/docs/workflows.md",
+    "https://www.trysynara.com/docs/troubleshooting.md",
     "robots.txt and page-level indexing directives remain authoritative",
   ]) {
     assert.ok(llms.includes(marker), `llms.txt is missing ${marker}`);
   }
 
   const llmsFull = await readRoute("/llms-full.txt", /text\/plain/i);
-  assert.ok(llmsFull.includes("## Expanded documentation map"));
-  assert.ok(llmsFull.includes("### Report a problem"));
+  assert.ok(llmsFull.includes("## Full documentation"));
+  assert.ok(llmsFull.includes("# Report a problem"));
   assert.ok(
     llmsFull.includes(
       "Canonical URL: https://www.trysynara.com/docs/troubleshooting/report-a-problem",
     ),
   );
+  assert.ok(llmsFull.includes("claude --version"));
 
   const ai = await readRoute("/ai.txt", /text\/plain/i);
   assert.ok(ai.includes("AI search and user-directed retrieval agents:"));
   assert.ok(ai.includes("Model-development controls, separate from search visibility:"));
   assert.ok(ai.includes("Supported runtimes: Claude Code, Codex, OpenCode"));
+  assert.ok(ai.includes("Markdown documentation: https://www.trysynara.com/docs.md"));
   assert.ok(
     ai.includes("This file is informational and does not grant or revoke crawler permission."),
   );
