@@ -3,9 +3,9 @@ import {
   AntigravityIcon,
   ClaudeIcon,
   CursorIcon,
+  DevinIcon,
   DroidIcon,
   GrokIcon,
-  KiloCodeIcon,
   OpencodeIcon,
   PiIcon,
 } from "@/components/BrandIcons";
@@ -17,7 +17,7 @@ const marks = [
   { name: "Cursor", Icon: CursorIcon, className: "text-[var(--text-primary)]", rotation: "-rotate-[4deg]" },
   { name: "Antigravity", Icon: AntigravityIcon, className: "", rotation: "-rotate-[2deg]" },
   { name: "Grok Build", Icon: GrokIcon, className: "text-[var(--text-primary)]", rotation: "rotate-[2deg]" },
-  { name: "Kilo Code", Icon: KiloCodeIcon, className: "text-[var(--text-primary)]", rotation: "rotate-[3deg]" },
+  { name: "Devin CLI", Icon: DevinIcon, className: "text-[var(--text-primary)]", rotation: "rotate-[3deg]" },
   { name: "Pi", Icon: PiIcon, className: "text-[var(--text-primary)]", rotation: "-rotate-[5deg]" },
   { name: "Factory Droid", Icon: DroidIcon, className: "text-[var(--text-primary)]", rotation: "rotate-[5deg]" },
 ] as const;

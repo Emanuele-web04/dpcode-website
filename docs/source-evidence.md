@@ -1,6 +1,6 @@
 # Source evidence — external documentation claims
 
-Date checked: **2026-08-07**
+Date checked: **2026-09-01**
 
 This file records, per provider, the claims in `content/docs` that required source
 verification, the primary source used, and the date the source was checked.
@@ -81,12 +81,17 @@ install scripts `https://x.ai/cli/install.sh` and `https://x.ai/cli/install.ps1`
 **Primary source:** [x.ai Grok Build docs](https://docs.x.ai/build/overview) checked
 2026-08-07 (HTTP 200); [github.com/xai-org/grok-build](https://github.com/xai-org/grok-build) HTTP 200.
 
-## Kilo Code
+## Devin CLI
 
-**Claims:** Kilo Code CLI platform docs, Kilo CLI product/installation, and source repository.
+**Claims:** Devin CLI installation on macOS, Linux, WSL, and Windows; the `devin`
+executable; `devin auth login`, `devin auth status`, `devin models list --format json`,
+`devin update`, and the `devin acp` stdio server; ACP authentication through
+`WINDSURF_API_KEY` or credentials stored by `devin auth login`.
 
-**Primary source:** [Kilo docs](https://kilo.ai/docs/code-with-ai/platforms/cli) checked
-2026-08-07 (HTTP 200); `https://kilo.ai/cli` HTTP 200; [github.com/Kilo-Org/kilocode](https://github.com/Kilo-Org/kilocode) HTTP 200.
+**Primary source:** [Devin CLI quickstart](https://docs.devin.ai/cli),
+[commands and flags](https://docs.devin.ai/cli/reference/commands), and
+[configuration file reference](https://docs.devin.ai/cli/reference/configuration/config-file),
+checked 2026-09-01 (HTTP 200 with current CLI content).
 
 ## OpenCode
 
@@ -236,3 +241,39 @@ Key source paths checked:
 **Decision:** The changelog and durable guides describe the release commit, not every
 intermediate merge. The experimental DeepSeek Harness work was reverted before v0.7.3 and
 is therefore explicitly excluded from the shipped provider list.
+
+## Synara v0.8.0 feature documentation
+
+Date checked: **2026-09-01**
+
+**Claims:** Devin CLI ACP integration; provider-neutral WebMCP browser tools; in-thread
+find; server-backed provider enablement and all-enabled-provider usage; queued follow-up
+and live-transcript reliability; source-data isolation and migration recovery; durable
+side-chat panes; sidebar navigation ordering; file actions and path/PDF handling; Kilo
+Code removal and migration to OpenCode; and the release's security and platform boundary
+fixes.
+
+**Primary source:** Local Synara checkout
+`/Users/emanueledipietro/Developer/synara` at pre-release head
+`8b428c474d49583637ad899fd9ada61cc40b18da`. The audited range from v0.7.3 contains 94
+commits, including 61 merged pull requests, across 518 changed files.
+
+Key source paths checked:
+
+- Devin: `apps/server/src/provider/Layers/DevinAdapter.ts`,
+  `apps/server/src/provider/acp/DevinAcpSupport.ts`,
+  `apps/server/src/providerUsage/providers/devin.ts`, and provider settings metadata
+- Browser tools and transcript find: `apps/server/src/agentGateway/browserTools.ts`,
+  `apps/web/src/components/chat/`, and `apps/web/src/lib/matchHighlight.ts`
+- Provider policy and context: `apps/server/src/provider/Layers/ProviderHealth.ts`,
+  `apps/server/src/orchestration/Layers/ProviderCommandReactor.ts`, and provider-usage services
+- Migration and recovery: `apps/server/src/persistence/Migrations/098_MigrateKiloToOpenCode.ts`,
+  migration runtime identity/recovery services, and desktop source-launch configuration
+- Side chats, navigation, and file actions: the side-chat lifecycle services,
+  `apps/web/src/sidebarNavOrdering.ts`, and edited-file/path/PDF helpers
+- Boundary hardening: shared path/network/payload utilities, provider credential handling,
+  updater shutdown logic, and the focused tests named in the v0.8.0 root changelog
+
+**Decision:** Current provider, feature, troubleshooting, and workflow guides now describe
+the 0.8.0 release. Historical Kilo Code references remain only inside older release notes;
+current provider navigation and marketing surfaces point to Devin CLI.

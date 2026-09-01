@@ -111,7 +111,7 @@ test("provider cards use stable runtime capabilities instead of volatile model m
     "Cursor",
     "Antigravity",
     "Grok Build",
-    "Kilo Code",
+    "Devin CLI",
     "Pi",
     "Factory Droid",
   ]) {
@@ -134,6 +134,7 @@ test("provider cards use stable runtime capabilities instead of volatile model m
     "Agent CLI",
     "agy CLI",
     "grok CLI",
+    "ACP + account",
     "Model registry",
     "droid CLI",
   ]) {
