@@ -3,6 +3,9 @@
 // Layer: App Router route handler (Node.js runtime)
 // Depends on: Server-only Resend, recipient, and verified sender configuration.
 
+import { apiError } from "@/lib/agentHttp";
+import { DIAGNOSTIC_FIELDS } from "@/lib/apiContract";
+
 export const runtime = "nodejs";
 
 const RESEND_API_URL = "https://api.resend.com/emails";
@@ -38,28 +41,6 @@ interface RateLimitRecord {
 
 const rateLimits = new Map<string, RateLimitRecord>();
 
-const DIAGNOSTIC_FIELDS = [
-  "appVersion",
-  "submittedAt",
-  "provider",
-  "model",
-  "projectKind",
-  "environmentMode",
-  "runtimeMode",
-  "interactionMode",
-  "sessionStatus",
-  "latestTurnState",
-  "messageCount",
-  "activityCount",
-  "hasPendingApproval",
-  "hasPendingUserInput",
-  "hasThreadError",
-  "userAgent",
-  "platform",
-  "language",
-  "viewport",
-] as const;
-
 function corsOrigin(request: Request): string | null {
   const origin = request.headers.get("origin");
   if (!origin) return null;
@@ -94,7 +75,20 @@ function responseHeaders(origin: string | null): HeadersInit {
   };
 }
 
-function jsonResponse(body: unknown, status: number, origin: string | null): Response {
+const FEEDBACK_ERRORS: Record<number, [string, string]> = {
+  400: ["INVALID_FEEDBACK", "Send x-synara-feedback: 1 and the JSON body described in /openapi.json, including every diagnostics field (use null when unknown)."],
+  403: ["ORIGIN_NOT_ALLOWED", "Use the Synara desktop app or a loopback client; do not submit from another website."],
+  413: ["PAYLOAD_TOO_LARGE", "Keep the request within 65536 bytes and details within 5000 characters."],
+  429: ["RATE_LIMITED", "Wait for the Retry-After interval before submitting again."],
+  502: ["DELIVERY_FAILED", "Retry later; if delivery remains unavailable, use the repository issue tracker."],
+  503: ["DELIVERY_UNAVAILABLE", "Retry later; the maintainer must configure feedback delivery."],
+};
+
+function jsonResponse(body: { error?: string; ok?: boolean }, status: number, origin: string | null): Response {
+  if (body.error) {
+    const [code, hint] = FEEDBACK_ERRORS[status];
+    return apiError(code, body.error, hint, status, responseHeaders(origin));
+  }
   return new Response(JSON.stringify(body), {
     status,
     headers: responseHeaders(origin),

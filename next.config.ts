@@ -39,10 +39,23 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
-    return [
-      { source: "/docs.md", destination: "/llms.mdx/docs" },
-      { source: "/docs/:path*.md", destination: "/llms.mdx/docs/:path*" },
-    ];
+    return {
+      afterFiles: [
+        { source: "/index.md", destination: "/llms.mdx/pages" },
+        { source: "/docs.md", destination: "/llms.mdx/docs" },
+        { source: "/docs/:path*.md", destination: "/llms.mdx/docs/:path*" },
+        { source: "/:path*.md", destination: "/llms.mdx/pages/:path*" },
+      ],
+      // Only unmatched non-browser requests reach this recovery handler.
+      fallback: [{
+        source: "/:path*",
+        destination: "/llms.mdx/pages/:path*",
+        missing: [
+          { type: "header", key: "accept", value: ".*[tT][eE][xX][tT]/[hH][tT][mM][lL].*" },
+          { type: "header", key: "rsc", value: "1" },
+        ],
+      }],
+    };
   },
 };
 

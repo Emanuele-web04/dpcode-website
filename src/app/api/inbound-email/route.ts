@@ -3,6 +3,8 @@
 // Layer: App Router route handler (Node.js runtime)
 // Depends on: Resend and server-only webhook/forwarding configuration.
 
+import { apiError } from "@/lib/agentHttp";
+
 import { Resend } from "resend";
 
 export const runtime = "nodejs";
@@ -10,7 +12,12 @@ export const runtime = "nodejs";
 const FEEDBACK_ADDRESS = "feedback@trysynara.com";
 const FORWARD_FROM = `Synara Feedback <${FEEDBACK_ADDRESS}>`;
 
-function jsonResponse(body: unknown, status: number): Response {
+function jsonResponse(body: { error?: string; ok?: boolean; ignored?: boolean }, status: number): Response {
+  if (body.error) {
+    const code = status === 400 ? "INVALID_WEBHOOK_SIGNATURE" : status === 503 ? "WEBHOOK_UNAVAILABLE" : "WEBHOOK_FORWARD_FAILED";
+    const hint = status === 400 ? "Only Resend may call this endpoint; provide a valid signed webhook." : "The maintainer must check inbound email configuration and provider availability.";
+    return apiError(code, body.error, hint, status);
+  }
   return Response.json(body, {
     status,
     headers: {
@@ -25,6 +32,15 @@ function normalizedAddress(value: string): string {
 }
 
 export async function POST(request: Request): Promise<Response> {
+  try {
+    return await handleWebhook(request);
+  } catch (error) {
+    console.error("[inbound-email] webhook failed", error);
+    return jsonResponse({ error: "Feedback email could not be forwarded." }, 502);
+  }
+}
+
+async function handleWebhook(request: Request): Promise<Response> {
   const apiKey = process.env.RESEND_INBOUND_API_KEY?.trim();
   const webhookSecret = process.env.RESEND_WEBHOOK_SECRET?.trim();
   const forwardTo = process.env.SYNARA_FEEDBACK_FORWARD_TO_EMAIL?.trim();

@@ -3,6 +3,8 @@
 // Layer: App Router route handler
 // Depends on: getInstallerCount server utility
 
+import { apiError } from "@/lib/agentHttp";
+
 import { NextResponse } from "next/server";
 
 import { getInstallerCount } from "@/lib/installerCount";
@@ -18,15 +20,7 @@ export async function GET() {
   const count = await getInstallerCount();
 
   if (count === null) {
-    return NextResponse.json(
-      { error: "Unable to fetch installer count." },
-      {
-        status: 503,
-        headers: {
-          "Cache-Control": "no-store, max-age=0",
-        },
-      }
-    );
+    return apiError("INSTALLER_COUNT_UNAVAILABLE", "Unable to fetch installer count.", "Retry in 60 seconds; downloads remain available at /install.", 503);
   }
 
   return NextResponse.json(
