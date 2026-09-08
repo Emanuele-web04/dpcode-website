@@ -221,8 +221,14 @@ try {
   const llms = await readRoute("/llms.txt", /text\/plain/i);
   for (const marker of [
     "The local-first workspace and control plane for coding agents.",
-    "## Product model",
     "One task owns one line of work",
+    "Providers stay portable",
+    "Parallel work stays isolated",
+    "Results stay reviewable",
+    "## When to use Synara",
+    "https://www.trysynara.com/agent-instructions.md",
+    "## Public API",
+    "https://www.trysynara.com/openapi.json",
     "## Documentation index",
     "https://www.trysynara.com/docs/providers.md",
     "https://www.trysynara.com/docs/workflows.md",
