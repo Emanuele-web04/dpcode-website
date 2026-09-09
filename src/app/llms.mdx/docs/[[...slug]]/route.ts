@@ -2,7 +2,7 @@
 // Purpose: Serves every public documentation page as clean Markdown.
 // Layer: Internal App Router endpoint exposed through /docs*.md rewrites.
 
-import { notFound } from "next/navigation";
+import { markdownNotFound } from "@/lib/agentHttp";
 import { docsSource } from "@/lib/docs";
 import { buildDocumentationMarkdown } from "@/lib/docsMarkdown";
 import { SITE_URL } from "@/lib/seo";
@@ -17,7 +17,7 @@ export async function GET(_: Request, { params }: MarkdownDocumentationRouteProp
   const { slug } = await params;
   const page = docsSource.getPage(slug);
 
-  if (!page) notFound();
+  if (!page) return markdownNotFound();
   const canonicalUrl = `${SITE_URL}${page.url}`;
 
   return new Response(`${await buildDocumentationMarkdown(page)}\n`, {

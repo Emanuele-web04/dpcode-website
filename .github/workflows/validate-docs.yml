@@ -53,6 +53,9 @@ jobs:
       - name: Test public-surface contracts
         run: npm run test:docs
 
+      - name: Test agent protocols and API contracts
+        run: npm run test:agents
+
       - name: Lint
         run: npm run lint
 
@@ -73,6 +76,9 @@ jobs:
 
       - name: Smoke test production routes
         run: npm run test:seo-smoke
+
+      - name: Verify agent HTTP surfaces
+        run: npm run test:agents-http
 
       - name: Functional browser checks
         id: e2e
