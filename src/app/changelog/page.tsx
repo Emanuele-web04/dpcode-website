@@ -39,7 +39,7 @@ export default function ChangelogPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
-      <ChangelogContent compact />
+      <ChangelogContent />
     </>
   );
 }

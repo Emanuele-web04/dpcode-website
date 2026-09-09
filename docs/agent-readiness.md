@@ -19,17 +19,13 @@ Implemented locally on 2026-09-08. Production deployment and a new Ora/Is Agenti
 | `/api/inbound-email` | Existing signed service callback, excluded from agent operations; failures remain JSON. |
 | `/llms.txt` | Project summary, when-to-use links and H2 file lists following the published format. |
 | `/agent-instructions.md` | Concrete retrieval instructions, API use, explicit consent for feedback, recovery and local-runtime boundaries. |
-| `/changelog` | Compact release summaries and all original anchors, picker and links. Complete notes remain on all 71 version pages. |
+| `/changelog` | Unchanged full release notes, anchors, picker and links. The Markdown representation is a compact version list; complete notes remain on all 71 version pages. |
 
 The [Accept negotiation guidance](https://acceptmarkdown.com/guides/accept-parsing), [llms.txt format](https://llmstxt.org/#format), and [OpenAPI 3.1.1 specification](https://spec.openapis.org/oas/v3.1.1.html) informed the implementation. The OpenAPI validator and runtime response-schema checks run in tests.
 
 ## Next.js compatibility
 
-The pinned Next.js 16.3.0 page runtime template replaces an existing `Vary` header when it adds its Flight headers. This was reproduced by HTTP tests: the proxy supplied `Accept`, but HTML and Flight responses lost it.
-
-`scripts/patch-next-vary.mjs`, run by `prebuild` and `predev`, makes the minimal change in the CommonJS and ESM page templates: retain existing Vary values when adding Next's values. It is idempotent and fails explicitly if an unrecognized upstream version/template is encountered. There is no custom server and no extra HTTP hop. The public HTTP suite tests both representations in alternating order and tests Flight separately.
-
-Use the npm build/dev commands so the compatibility step runs. Remove this patch once a Next release preserves custom Vary values itself, and keep the HTTP tests.
+Next.js 16.3.0 replaces a custom `Vary` header on HTML and Flight page responses with its own value. This is left as is: Vercel's CDN already includes `Accept` and `Accept-Encoding` in its cache key, and Markdown responses are produced by route handlers that set `Vary: Accept, Accept-Encoding` themselves. The HTTP suite asserts `Vary` on Markdown responses only and tests both representations in alternating order.
 
 ## Verification
 

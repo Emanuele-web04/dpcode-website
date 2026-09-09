@@ -36,12 +36,10 @@ function renderInline(text: string): ReactNode {
 
 export default function ChangelogContent({
   releases = getSortedReleases(),
-  compact = false,
   title = "What's new in Synara.",
   description = "New providers, performance work, and the steady polish that makes the app faster and sturdier. Every release is logged here — the same notes you see in the app's \"What's new\" dialog.",
 }: {
   releases?: ChangelogEntry[];
-  compact?: boolean;
   title?: string;
   description?: string;
 } = {}) {
@@ -94,7 +92,7 @@ export default function ChangelogContent({
 
             <div className="mt-14 space-y-16 sm:mt-20 sm:space-y-24">
               {releases.map((entry) => (
-                <Release key={entry.version} entry={entry} compact={compact} />
+                <Release key={entry.version} entry={entry} />
               ))}
             </div>
 
@@ -128,7 +126,7 @@ export default function ChangelogContent({
   );
 }
 
-function Release({ entry, compact }: { entry: ChangelogEntry; compact: boolean }) {
+function Release({ entry }: { entry: ChangelogEntry }) {
   const anchor = toAnchor(entry.version);
   const single = entry.features.length === 1;
 
@@ -153,19 +151,7 @@ function Release({ entry, compact }: { entry: ChangelogEntry; compact: boolean }
         </span>
       </h2>
 
-      {compact ? (
-        <div className="mt-6">
-          <p className="text-[15px] leading-[1.65] text-[var(--text-secondary)]">
-            {entry.features.slice(0, 3).map(feature => feature.title).join("; ")}
-          </p>
-          <Link
-            href={`/changelog/${toVersionSlug(entry.version)}`}
-            className="mt-6 inline-block text-[14px] text-[var(--accent-link)] underline underline-offset-4"
-          >
-            Read all {entry.features.length} updates in Synara {entry.version}
-          </Link>
-        </div>
-      ) : single ? (
+      {single ? (
         <div className="mt-6">
           <Feature feature={entry.features[0]} />
         </div>
